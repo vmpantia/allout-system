@@ -6,6 +6,7 @@ namespace AllOut.Api.Contractors
     public interface IProductService
     {
         Task<IEnumerable<Product>> GetProductsAsync();
+        Task<Product> GetProductByIDAsync(Guid productID);
         Task<string> SaveProductAsync(ProductRequest request);
     }
 }

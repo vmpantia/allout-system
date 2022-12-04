@@ -10,5 +10,6 @@
         public static string ERROR_PRODUCT_REQUEST_NULL = "Product Request cannot be NULL.";
         public static string ERROR_PRODUCT_NOT_FOUND_CHANGE = "Product NOT found, Changes cannot be process.";
         public static string ERROR_PRODUCT_NOT_FOUND_DELETE = "Product NOT found, Deletion cannot be process.";
+        public static string ERROR_PRODUCT_NOT_FOUND = "Product ID NOT found.";
     }
 }

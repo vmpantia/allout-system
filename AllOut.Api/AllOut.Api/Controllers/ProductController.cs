@@ -30,6 +30,20 @@ namespace AllOut.Api.Controllers
             }
         }
 
+        [HttpGet("GetProductByID/{id}")]
+        public async Task<IActionResult> GetProductIDAsync(Guid id)
+        {
+            try
+            {
+                var response = await _product.GetProductByIDAsync(id);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("SaveProduct")]
         public async Task<IActionResult> SaveProductAsync(ProductRequest request)
         {

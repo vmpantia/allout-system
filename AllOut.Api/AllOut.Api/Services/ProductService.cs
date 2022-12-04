@@ -23,6 +23,16 @@ namespace AllOut.Api.Services
             return await _db.Products.ToListAsync();
         }
 
+        public async Task<Product> GetProductByIDAsync(Guid productID)
+        {
+            var product = await _db.Products.FindAsync(productID);
+
+            if (product == null)
+                throw new ServiceException(Constants.ERROR_PRODUCT_NOT_FOUND);
+
+            return product;
+        }
+
         public async Task<string> SaveProductAsync(ProductRequest request)
         {
             //Check if Request is NULL
