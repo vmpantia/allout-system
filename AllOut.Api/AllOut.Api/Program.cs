@@ -6,7 +6,12 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+#if PROD
+var connectionString = builder.Configuration.GetConnectionString("PROD_SQL_CON");
+#else
 var connectionString = builder.Configuration.GetConnectionString("DEV_SQL_CON");
+#endif
+
 builder.Services.AddDbContext<AllOutDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IProductService, ProductService>();
