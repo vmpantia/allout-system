@@ -4,7 +4,7 @@ namespace AllOut.Api.DataAccess.Models
 {
     public class Inventory_TRN
     {
-        [Key]
+        [Key, MaxLength(12)]
         public string RequestID { get; set; }
         public Guid InventoryID { get; set; }
         public Guid ProductID { get; set; }

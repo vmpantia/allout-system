@@ -4,7 +4,7 @@ namespace AllOut.Api.DataAccess.Models
 {
     public class Request
     {
-        [Key]
+        [Key, MaxLength(12)]
         public string RequestID { get; set; }
         [Required, MaxLength(5)]
         public string FunctionID { get; set; }

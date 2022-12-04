@@ -4,7 +4,7 @@ namespace AllOut.Api.DataAccess.Models
 {
     public class Category_TRN
     {
-        [Key]
+        [Key, MaxLength(12)]
         public string RequestID { get; set; }
         public Guid CategoryID { get; set; }
         public string Name { get; set; }

@@ -15,6 +15,7 @@ var connectionString = builder.Configuration.GetConnectionString("DEV_SQL_CON");
 builder.Services.AddDbContext<AllOutDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
 
 builder.Services.AddControllers();

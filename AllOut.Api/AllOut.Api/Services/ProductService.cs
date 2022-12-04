@@ -28,7 +28,7 @@ namespace AllOut.Api.Services
             var product = await _db.Products.FindAsync(productID);
 
             if (product == null)
-                throw new ServiceException(Constants.ERROR_PRODUCT_NOT_FOUND);
+                throw new ServiceException(String.Format(Constants.ERROR_OBJECT_NOT_FOUND, Constants.OBJECT_PRODUCT));
 
             return product;
         }
@@ -37,14 +37,14 @@ namespace AllOut.Api.Services
         {
             //Check if Request is NULL
             if (request == null)
-                throw new ServiceException(Constants.ERROR_PRODUCT_REQUEST_NULL);
+                throw new ServiceException(String.Format(Constants.ERROR_OBJECT_REQUEST_NULL, Constants.OBJECT_PRODUCT));
 
             var requestID = await _request.InsertRequest(_db, request.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
 
             if (requestID == null)
-                throw new ServiceException(Constants.ERROR_REQUEST_ID_NULL);
+                throw new ServiceException(String.Format(Constants.ERROR_OBJECT_ID_NULL, Constants.OBJECT_PRODUCT));
 
             switch (request.FunctionID)
             {
@@ -78,7 +78,7 @@ namespace AllOut.Api.Services
             var currentProduct = await _db.Products.FindAsync(inputProduct.ProductID);
 
             if (currentProduct == null)
-                throw new ServiceException(Constants.ERROR_PRODUCT_NOT_FOUND_CHANGE);
+                throw new ServiceException(String.Format(Constants.ERROR_OBJECT_NOT_FOUND_CHANGE, Constants.OBJECT_PRODUCT));
 
             //currentProduct.ProductID = inputProduct.ProductID;
             currentProduct.CategoryID = inputProduct.CategoryID;
@@ -94,7 +94,7 @@ namespace AllOut.Api.Services
             var currentProduct = await _db.Products.FindAsync(productID);
 
             if (currentProduct == null)
-                throw new ServiceException(Constants.ERROR_PRODUCT_NOT_FOUND_DELETE);
+                throw new ServiceException(String.Format(Constants.ERROR_OBJECT_NOT_FOUND_DELETE, Constants.OBJECT_PRODUCT));
 
             _db.Remove(currentProduct);
         }
