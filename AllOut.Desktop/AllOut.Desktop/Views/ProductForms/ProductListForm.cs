@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AllOut.Desktop.Controllers;
+using AllOut.Desktop.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,17 @@ namespace AllOut.Desktop.Views.ProductForms
         public ProductListForm()
         {
             InitializeComponent();
+            PopulateProducts();
+        }
+
+        private void PopulateProducts()
+        {
+            var productList = HTTPController.GetProducts();
+
+            if(productList == null)
+                productList = new List<Product>();
+
+            tblProductList.DataSource = productList;
         }
     }
 }

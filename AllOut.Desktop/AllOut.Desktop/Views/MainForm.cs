@@ -33,6 +33,7 @@ namespace AllOut.Desktop.Views
             productList.Dock = DockStyle.Fill;
             productList.Show();
             pnlContent.Controls.Add(productList);
+            this.Text = "Product";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
