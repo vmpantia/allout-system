@@ -81,9 +81,11 @@ namespace AllOut.Api.Services
                 throw new ServiceException(String.Format(Constants.ERROR_OBJECT_NOT_FOUND_CHANGE, Constants.OBJECT_PRODUCT));
 
             //currentProduct.ProductID = inputProduct.ProductID;
+            currentProduct.BrandID = inputProduct.BrandID;
             currentProduct.CategoryID = inputProduct.CategoryID;
             currentProduct.Name = inputProduct.Name;
             currentProduct.Description = inputProduct.Description;
+            currentProduct.ReorderPoint = inputProduct.ReorderPoint;
             currentProduct.Status = inputProduct.Status;
             //currentProduct.CreatedDate = inputProduct.CreatedDate;
             currentProduct.ModifiedDate = Globals.EXEC_DATETIME;
@@ -105,9 +107,11 @@ namespace AllOut.Api.Services
             {
                 RequestID = requestID,
                 ProductID = inputProduct.ProductID,
+                BrandID = inputProduct.BrandID,
                 CategoryID = inputProduct.CategoryID,
                 Name = inputProduct.Name,
                 Description = inputProduct.Description,
+                ReorderPoint = inputProduct.ReorderPoint,
                 Status = inputProduct.Status,
                 CreatedDate = inputProduct.CreatedDate,
                 ModifiedDate = inputProduct.ModifiedDate

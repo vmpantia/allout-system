@@ -6,11 +6,44 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AllOut.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialTableCreation : Migration
+    public partial class InitialCreateTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Brand_TRN",
+                columns: table => new
+                {
+                    RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    BrandID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brand_TRN", x => x.RequestID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Brands",
+                columns: table => new
+                {
+                    BrandID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brands", x => x.BrandID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
@@ -31,7 +64,7 @@ namespace AllOut.Api.Migrations
                 name: "Category_TRN",
                 columns: table => new
                 {
-                    RequestID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
                     CategoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -51,7 +84,6 @@ namespace AllOut.Api.Migrations
                     InventoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    ReOrderPoint = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -64,7 +96,7 @@ namespace AllOut.Api.Migrations
                 name: "Inventory_TRN",
                 columns: table => new
                 {
-                    RequestID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
                     InventoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
@@ -81,11 +113,13 @@ namespace AllOut.Api.Migrations
                 name: "Product_TRN",
                 columns: table => new
                 {
-                    RequestID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
                     ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BrandID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReorderPoint = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -100,9 +134,11 @@ namespace AllOut.Api.Migrations
                 columns: table => new
                 {
                     ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BrandID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ReorderPoint = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -116,7 +152,7 @@ namespace AllOut.Api.Migrations
                 name: "Requests",
                 columns: table => new
                 {
-                    RequestID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
                     FunctionID = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
                     RequestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RequestBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -135,6 +171,12 @@ namespace AllOut.Api.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Brand_TRN");
+
+            migrationBuilder.DropTable(
+                name: "Brands");
+
             migrationBuilder.DropTable(
                 name: "Categories");
 
