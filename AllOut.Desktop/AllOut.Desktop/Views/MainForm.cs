@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AllOut.Desktop.Views.ProductForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,28 @@ namespace AllOut.Desktop.Views
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
+            pnlContent.Controls.Clear();
+
+            var productList = new ProductListForm();
+            productList.TopLevel = false;
+            productList.FormBorderStyle = FormBorderStyle.None;
+            productList.Dock = DockStyle.Fill;
+            productList.Show();
+            pnlContent.Controls.Add(productList);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

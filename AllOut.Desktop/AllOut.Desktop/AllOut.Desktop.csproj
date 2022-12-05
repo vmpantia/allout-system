@@ -64,6 +64,12 @@
     <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProductForms\ProductListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ProductForms\ProductListForm.Designer.cs">
+      <DependentUpon>ProductListForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -79,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProductForms\ProductListForm.resx">
+      <DependentUpon>ProductListForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -100,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\alloutlogo.jpg" />
+    <None Include="Images\icons8-new-copy-90.png" />
     <None Include="Images\icons8-logout-rounded-down-96.png" />
     <None Include="Images\icons8-branding-90.png" />
     <None Include="Images\icons8-category-96.png" />

@@ -42,9 +42,7 @@ namespace AllOut.Desktop.Views
             }
 
             var mainForm = new MainForm();
-            mainForm.Show();
-
-            this.Hide();
+            mainForm.ShowDialog();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
