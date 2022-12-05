@@ -136,6 +136,7 @@
             // 
             // txtPassword
             // 
+            this.txtPassword.BorderColor = System.Drawing.Color.Silver;
             this.txtPassword.BorderRadius = 6;
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPassword.DefaultText = "";
@@ -146,13 +147,14 @@
             this.txtPassword.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtPassword.IconLeft = global::AllOut.Desktop.Properties.Resources.icons8_password_key_96;
             this.txtPassword.IconLeftOffset = new System.Drawing.Point(3, 0);
             this.txtPassword.Location = new System.Drawing.Point(64, 292);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
+            this.txtPassword.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.txtPassword.PlaceholderText = "Password";
             this.txtPassword.SelectedText = "";
             this.txtPassword.Size = new System.Drawing.Size(284, 41);
@@ -160,6 +162,7 @@
             // 
             // txtUsername
             // 
+            this.txtUsername.BorderColor = System.Drawing.Color.Silver;
             this.txtUsername.BorderRadius = 6;
             this.txtUsername.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtUsername.DefaultText = "";
@@ -170,13 +173,14 @@
             this.txtUsername.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtUsername.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtUsername.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtUsername.IconLeft = global::AllOut.Desktop.Properties.Resources.icons8_user_96;
             this.txtUsername.IconLeftOffset = new System.Drawing.Point(3, 0);
             this.txtUsername.Location = new System.Drawing.Point(64, 233);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.PasswordChar = '\0';
+            this.txtUsername.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.txtUsername.PlaceholderText = "Username";
             this.txtUsername.SelectedText = "";
             this.txtUsername.Size = new System.Drawing.Size(284, 41);

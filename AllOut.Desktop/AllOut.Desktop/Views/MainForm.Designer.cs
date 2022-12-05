@@ -101,6 +101,7 @@
             this.btnBrand.TabIndex = 3;
             this.btnBrand.Text = "Brand";
             this.btnBrand.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnBrand.Click += new System.EventHandler(this.btnBrand_Click);
             // 
             // guna2PictureBox1
             // 
@@ -234,7 +235,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();

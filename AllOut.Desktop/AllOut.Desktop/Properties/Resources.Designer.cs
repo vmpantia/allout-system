@@ -93,6 +93,16 @@ namespace AllOut.Desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_close_90 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-close-90", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_dashboard_layout_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-dashboard-layout-96", resourceCulture);
@@ -136,6 +146,16 @@ namespace AllOut.Desktop.Properties {
         internal static System.Drawing.Bitmap icons8_password_key_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-password-key-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_save_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-save-96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
