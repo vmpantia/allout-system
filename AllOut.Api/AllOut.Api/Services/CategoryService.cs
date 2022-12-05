@@ -80,7 +80,7 @@ namespace AllOut.Api.Services
             if (currentCategory == null)
                 throw new ServiceException(String.Format(Constants.ERROR_OBJECT_NOT_FOUND_CHANGE, Constants.OBJECT_CATEGORY));
 
-            currentCategory.CategoryID = inputCategory.CategoryID;
+            //currentCategory.CategoryID = inputCategory.CategoryID;
             currentCategory.Name = inputCategory.Name;
             currentCategory.Description = inputCategory.Description;
             currentCategory.Status = inputCategory.Status;

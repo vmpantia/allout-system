@@ -8,7 +8,6 @@ namespace AllOut.Api.Services
 {
     public class RequestService : IRequestService
     {
-
         public async Task<string> InsertRequest(AllOutDbContext db, Guid userID, string functionID, string requestStatus)
         {
             var newRequest = new Request
