@@ -40,6 +40,7 @@ namespace AllOut.Desktop.Common
         public const string TITLE_ADD_BRAND = "Add Brand";
         public const string TITLE_EDIT_BRAND = "Edit Brand";
         public const string TITLE_SAVE_BRAND = "Save Brand";
+        public const string TITLE_UPDATE_BRANDS = "Update Brands";
 
         /*-----------------DESCRIPTIONS-----------------*/
         public const string DESCRIPTION_ADD_BRAND = "In this page you can add brand.";
@@ -48,7 +49,9 @@ namespace AllOut.Desktop.Common
         /*-----------------FUNCTION ID-----------------*/
         public const string FUNCTION_ID_ADD_BRAND_BY_ADMIN = "02A00";
         public const string FUNCTION_ID_CHANGE_BRAND_BY_ADMIN = "02C00";
+        public const string FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN = "12C00";
         public const string FUNCTION_ID_DELETE_BRAND_BY_ADMIN = "02D00";
+        public const string FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN = "12D00";
         #endregion
 
         #region REQUEST STATUS
@@ -57,6 +60,8 @@ namespace AllOut.Desktop.Common
 
         #region MESSAGE
         public const string MESSAGE_OBJECT_SAVED = "{0} has been Saved Successfully! \n";
+        public const string MESSAGE_OBJECT_UPDATE = "{0} has been Udate Successfully! \n";
+        public const string MESSAGE_OBJECT_SELECT_INVALID = "No {0} selected.";
         public const string MESSAGE_OBJECT_NAME_REQUIRED = "{0} Name field is Required.";
         public const string MESSAGE_OBJECT_UNABLE_EDIT = "Unable to Edit {0}.";
         public const string MESSAGE_EMPTY_CREDENTIAL = "Username or Password field is required.";
@@ -66,6 +71,7 @@ namespace AllOut.Desktop.Common
         #region OBJECT
         public const string OBJECT_PRODUCT = "Product";
         public const string OBJECT_BRAND = "Brand";
+        public const string OBJECT_BRANDS = "Brands";
         public const string OBJECT_CATEGORY = "Category";
         public const string OBJECT_REQUEST = "Request";
         #endregion

@@ -2,6 +2,7 @@
 using AllOut.Desktop.Controllers;
 using AllOut.Desktop.Models;
 using AllOut.Desktop.Models.enums;
+using AllOut.Desktop.Models.Requests;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -23,6 +24,7 @@ namespace AllOut.Desktop.Views.BrandForms
             PopulateBrands();
         }
 
+        #region ASYNC METHODS
         private async void PopulateBrands()
         {
             tblBrandList.DataSource = null;
@@ -75,23 +77,64 @@ namespace AllOut.Desktop.Views.BrandForms
             tblBrandList.Columns[ID_COL_IDX].Visible = false;
         }
 
+        private async void UpdateStatusByIDs(string functionID, int newStatus)
+        {
+            if(_brandIDs.Count == 0)
+            {
+                MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_SELECT_INVALID, Constants.OBJECT_BRAND),
+                                Constants.TITLE_UPDATE_BRANDS,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return;
+            }
+
+            var request = new UpdateStatusByIDsRequest
+            {
+                UserID = Guid.NewGuid(),
+                FunctionID = functionID,
+                RequestStatus = Constants.FUNCTION_ID_DELETE_BRAND_BY_ADMIN,
+                IDs = _brandIDs,
+                newStatus = newStatus
+            };
+
+            var response = await HttpController.PostUpdateStatusByIDs(request);
+
+            if (response.Result != ResponseResult.SUCCESS)
+            {
+                MessageBox.Show(response.Data.ToString(),
+                                Constants.TITLE_UPDATE_BRANDS,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_UPDATE, Constants.OBJECT_BRANDS) + response.Data,
+                            Constants.TITLE_UPDATE_BRANDS,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+        }
+        #endregion
+
         private void SelectAll(bool isSelectAll)
         {
+            //Reset BrandID's
             _brandIDs = new List<Guid>();
             foreach (DataGridViewRow item in tblBrandList.Rows)
             {
+                //Change CheckBox Value
                 DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)item.Cells[CHECKBOX_COL_IDX];
                 cell.Value = isSelectAll;
 
-                var val = item.Cells[ID_COL_IDX].Value;
-                var id = Guid.Parse(val.ToString());
-
+                var id = ParseBrandIDByCellValue(item.Cells[ID_COL_IDX].Value);
                 if (isSelectAll)
                     _brandIDs.Add(id);
-
                 else
                     _brandIDs.Remove(id);
             }
+        }
+        
+        private Guid ParseBrandIDByCellValue(object value)
+        {
+            return value == null ? Guid.Empty : Guid.Parse(value.ToString());
         }
 
         private void btnAddBrand_Click(object sender, EventArgs e)
@@ -111,28 +154,38 @@ namespace AllOut.Desktop.Views.BrandForms
             SelectAll(false);
         }
 
+        private void btnEnable_Click(object sender, EventArgs e)
+        {
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.INT_STATUS_ENABLED);
+        }
+
+        private void btnDisable_Click(object sender, EventArgs e)
+        {
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.INT_STATUS_DISABLED);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.INT_STATUS_DELETION);
+        }
+
         private void tblBrandList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 && (e.ColumnIndex != BUTTON_COL_IDX || e.ColumnIndex != CHECKBOX_COL_IDX))
                 return;
 
             var row = tblBrandList.Rows[e.RowIndex];
+            var id = ParseBrandIDByCellValue(row.Cells[ID_COL_IDX].Value);
 
-            var val = row.Cells[ID_COL_IDX].Value;
-            if (val == null)
-            {
-                MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_UNABLE_EDIT, Constants.OBJECT_BRAND),
-                                Constants.TITLE_EDIT_BRAND,
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
-            var id = Guid.Parse(val.ToString());
+            //Check if Edit Button is Clicked
             if (e.ColumnIndex == BUTTON_COL_IDX)
             {
+                //Show Brand Form
                 var form = new BrandForm(id);
                 form.ShowDialog();
                 PopulateBrands();
             }
+            //Check if Select CheckBox is Clicked
             else if (e.ColumnIndex == CHECKBOX_COL_IDX)
             {
                 var isIDExist = _brandIDs.Exists(data => data == id);

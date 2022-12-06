@@ -163,6 +163,37 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
+        public static async Task<Response> PostUpdateStatusByIDs(UpdateStatusByIDsRequest request)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare Data and API URL
+                var url = string.Concat(APIBaseURL, "Brand/UpdateStatusByIDs");
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.PostAsync(url, data);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.ToString();
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
         #endregion
     }
 }
