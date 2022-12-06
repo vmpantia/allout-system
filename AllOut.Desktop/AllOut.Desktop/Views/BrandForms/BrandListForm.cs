@@ -48,9 +48,9 @@ namespace AllOut.Desktop.Views.BrandForms
             //Add Edit Button on 1st Column
             DataGridViewButtonColumn editButton = new DataGridViewButtonColumn
             {
-                Name = "Edit",
-                HeaderText = "Action",
-                Text = "Edit",
+                Name = Constants.BUTTON_NAME_EDIT,
+                HeaderText = Constants.BUTTON_HEADER_ACTION,
+                Text = Constants.BUTTON_NAME_EDIT,
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader,
                 UseColumnTextForButtonValue = true
             };
@@ -94,8 +94,8 @@ namespace AllOut.Desktop.Views.BrandForms
                 var val = tblBrandList.Rows[e.RowIndex].Cells[1].Value;
                 if(val == null)
                 {
-                    MessageBox.Show("Error in clicking edit button.",
-                                    "Select Brand for Edit",
+                    MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_UNABLE_EDIT, Constants.OBJECT_BRAND),
+                                    Constants.TITLE_EDIT_BRAND,
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                 }

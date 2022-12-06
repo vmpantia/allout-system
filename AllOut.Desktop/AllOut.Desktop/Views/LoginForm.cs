@@ -30,14 +30,14 @@ namespace AllOut.Desktop.Views
 
             if(string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text))
             {
-                lblLoginError.Text = Constants.ERROR_EMPTY_CREDENTIAL;
+                lblLoginError.Text = Constants.MESSAGE_EMPTY_CREDENTIAL;
                 return;
             }
 
             if(txtUsername.Text.ToUpper() != "ADMIN" &&
                 txtPassword.Text.ToUpper() != "ADMIN")
             {
-                lblLoginError.Text = Constants.ERROR_INCORRECT_CREDENTIAL;
+                lblLoginError.Text = Constants.MESSAGE_INCORRECT_CREDENTIAL;
                 return;
             }
 

@@ -40,20 +40,20 @@
         #endregion
 
         #region ERROR MESSAGES
-        public static string ERROR_OBJECT_ID_NULL = "{0} ID cannot be NULL.";
-        public static string ERROR_OBJECT_REQUEST_NULL = "{0} Request cannot be NULL.";
-        public static string ERROR_OBJECT_NOT_FOUND_CHANGE = "{0} NOT found, Changes cannot be process.";
-        public static string ERROR_OBJECT_NOT_FOUND_DELETE = "{0} NOT found, Deletion cannot be process.";
-        public static string ERROR_OBJECT_NOT_FOUND = "{0} ID NOT found.";
-        public static string ERROR_OBJECT_NAME_EXIST_DISABLED = "{0} Name already Exist in the System. It's currently Disabled.";
-        public static string ERROR_OBJECT_NAME_EXIST = "{0} Brand Name already Exist in the System.";
+        public const string ERROR_OBJECT_ID_NULL = "{0} ID cannot be NULL.";
+        public const string ERROR_OBJECT_REQUEST_NULL = "{0} Request cannot be NULL.";
+        public const string ERROR_OBJECT_NOT_FOUND_CHANGE = "{0} NOT found, Changes cannot be process.";
+        public const string ERROR_OBJECT_NOT_FOUND_DELETE = "{0} NOT found, Deletion cannot be process.";
+        public const string ERROR_OBJECT_NOT_FOUND = "{0} ID NOT found.";
+        public const string ERROR_OBJECT_NAME_EXIST_DISABLED = "{0} Name already Exist in the System. It's currently Disabled.";
+        public const string ERROR_OBJECT_NAME_EXIST = "{0} Brand Name already Exist in the System.";
         #endregion
 
         #region OBJECT
-        public static string OBJECT_PRODUCT = "Product";
-        public static string OBJECT_BRAND = "Brand";
-        public static string OBJECT_CATEGORY = "Category";
-        public static string OBJECT_REQUEST = "Request";
+        public const string OBJECT_PRODUCT = "Product";
+        public const string OBJECT_BRAND = "Brand";
+        public const string OBJECT_CATEGORY = "Category";
+        public const string OBJECT_REQUEST = "Request";
         #endregion
     }
 }

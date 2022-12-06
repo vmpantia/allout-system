@@ -30,12 +30,11 @@ namespace AllOut.Desktop.Views.BrandForms
             if(!_isAdd)
             {
                 var response = await HttpController.GetBrandByID(brandID);
-                if (response.Result == ResponseResult.SYSTEM_ERROR ||
-                    response.Result == ResponseResult.API_ERROR)
+                if (response.Result != ResponseResult.SUCCESS)
                 {
-                    MessageBox.Show(response.Data.ToString(),
-                                    "Edit Brand",
-                                    MessageBoxButtons.OK,
+                    MessageBox.Show(response.Data.ToString(), 
+                                    Constants.TITLE_EDIT_BRAND, 
+                                    MessageBoxButtons.OK, 
                                     MessageBoxIcon.Error);
                     return;
                 }
@@ -63,8 +62,8 @@ namespace AllOut.Desktop.Views.BrandForms
         {
             if (string.IsNullOrEmpty(txtBrandName.Text))
             {
-                MessageBox.Show("Brand Name field is Required.",
-                                "Save Brand",
+                MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_NAME_REQUIRED, Constants.OBJECT_BRAND),
+                                Constants.TITLE_SAVE_BRAND,
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                 return;
@@ -85,22 +84,19 @@ namespace AllOut.Desktop.Views.BrandForms
 
             var response = await HttpController.PostSaveBrand(request);
 
-            if (response.Result == ResponseResult.SUCCESS)
-            {
-                MessageBox.Show("Brand has been Saved Successfully! \n" +
-                                 response.Data,
-                                 "Save Brand",
-                                 MessageBoxButtons.OK,
-                                 MessageBoxIcon.Information);
-                this.Close();
-            }
-            else
+            if (response.Result != ResponseResult.SUCCESS)
             {
                 MessageBox.Show(response.Data.ToString(),
-                                "Save Brand",
+                                Constants.TITLE_SAVE_BRAND,
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
+                return;
             }
+            MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_SAVED, Constants.OBJECT_BRAND) + response.Data,
+                            Constants.TITLE_SAVE_BRAND,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

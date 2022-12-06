@@ -11,8 +11,10 @@ namespace AllOut.Desktop.Common
     {
         public const string NA = "N/A";
 
+        #region FORMS
         public const string FORM_PRODUCTS = "Products";
         public const string FORM_BRANDS = "Brands";
+        #endregion
 
         #region STATUS
         /*-----------------STRING STATUS-----------------*/
@@ -37,6 +39,7 @@ namespace AllOut.Desktop.Common
         /*-----------------TITLE-----------------*/
         public const string TITLE_ADD_BRAND = "Add Brand";
         public const string TITLE_EDIT_BRAND = "Edit Brand";
+        public const string TITLE_SAVE_BRAND = "Save Brand";
 
         /*-----------------DESCRIPTIONS-----------------*/
         public const string DESCRIPTION_ADD_BRAND = "In this page you can add brand.";
@@ -52,7 +55,25 @@ namespace AllOut.Desktop.Common
         public const string REQUEST_STATUS_COMPLETED = "A2";
         #endregion
 
-        public const string ERROR_EMPTY_CREDENTIAL = "Username or Password field is required.";
-        public const string ERROR_INCORRECT_CREDENTIAL = "Incorrect Username or Password.";
+        #region MESSAGE
+        public const string MESSAGE_OBJECT_SAVED = "{0} has been Saved Successfully! \n";
+        public const string MESSAGE_OBJECT_NAME_REQUIRED = "{0} Name field is Required.";
+        public const string MESSAGE_OBJECT_UNABLE_EDIT = "Unable to Edit {0}.";
+        public const string MESSAGE_EMPTY_CREDENTIAL = "Username or Password field is required.";
+        public const string MESSAGE_INCORRECT_CREDENTIAL = "Incorrect Username or Password.";
+        #endregion
+
+        #region OBJECT
+        public const string OBJECT_PRODUCT = "Product";
+        public const string OBJECT_BRAND = "Brand";
+        public const string OBJECT_CATEGORY = "Category";
+        public const string OBJECT_REQUEST = "Request";
+        #endregion
+
+        #region ACTION BUTTON
+        public const string BUTTON_NAME_EDIT = "Edit";
+        public const string BUTTON_HEADER_ACTION = "Action";
+        #endregion
+
     }
 }
