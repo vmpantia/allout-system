@@ -1,4 +1,5 @@
 ﻿using AllOut.Desktop.Common;
+using AllOut.Desktop.Controllers;
 using AllOut.Desktop.Models;
 using System;
 using System.Collections.Generic;
@@ -16,17 +17,17 @@ namespace AllOut.Desktop.Views.BrandForms
     {
         private bool _isAdd = true;
         private Brand _brandInfo;
-        public BrandForm(Brand editBrand = null)
+        public BrandForm(Guid brandID = new Guid())
         {
             InitializeComponent();
 
-            if(editBrand != null)
+            if(brandID != Guid.Empty)
                 _isAdd = false;
 
             lblBrandFormTitle.Text = _isAdd ? Constants.TITLE_ADD_BRAND : Constants.TITLE_EDIT_BRAND;
             lblBrandFormDescription.Text = _isAdd ? Constants.DESCRIPTION_ADD_BRAND : Constants.DESCRIPTION_EDIT_BRAND;
 
-            _brandInfo = _isAdd ? new Brand() : editBrand;
+            _brandInfo = _isAdd ? new Brand() : HTTPController.GetBrandByID(brandID);
             PopulateBrand(_brandInfo);
         }
 
@@ -42,6 +43,19 @@ namespace AllOut.Desktop.Views.BrandForms
             _brandInfo.Name = txtBrandName.Text;
             _brandInfo.Description = txtBrandDescription.Text;
             _brandInfo.Status = Utility.ConvertBooleanToStatus(tglStatus.Checked);
+            _brandInfo.CreatedDate = _isAdd ? DateTime.Now : _brandInfo.CreatedDate;
+            _brandInfo.ModifiedDate = _isAdd ? _brandInfo.ModifiedDate : DateTime.Now;
+
+            var request = new BrandRequest
+            {
+                UserID = Guid.NewGuid(),
+                FunctionID = "02A00",
+                RequestStatus = "A2",
+                inputBrand = _brandInfo,
+            };
+
+            var result = HTTPController.SaveBrand(request);
+            MessageBox.Show(result);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
