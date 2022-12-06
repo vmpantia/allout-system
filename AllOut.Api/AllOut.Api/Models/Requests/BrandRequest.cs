@@ -1,6 +1,6 @@
 ﻿using AllOut.Api.DataAccess.Models;
 
-namespace AllOut.Api.Models
+namespace AllOut.Api.Models.Requests
 {
     public class BrandRequest
     {

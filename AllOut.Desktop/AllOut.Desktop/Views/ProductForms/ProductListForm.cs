@@ -1,5 +1,6 @@
 ﻿using AllOut.Desktop.Controllers;
 using AllOut.Desktop.Models;
+using AllOut.Desktop.Models.enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,11 +23,16 @@ namespace AllOut.Desktop.Views.ProductForms
 
         private void PopulateProducts()
         {
-            var productList = HTTPController.GetProducts();
+            var response = HTTPController.GetProducts();
 
-            if(productList == null)
-                productList = new List<Product>();
+            if (response.Result == ResponseResult.SYSTEM_ERROR ||
+                response.Result == ResponseResult.API_ERROR)
+            {
+                tblProductList.Visible = false;
+                return;
+            }
 
+            var productList = response.Data as List<Product>;
             tblProductList.DataSource = productList;
         }
     }

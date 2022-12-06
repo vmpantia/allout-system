@@ -1,4 +1,6 @@
 ﻿using AllOut.Desktop.Models;
+using AllOut.Desktop.Models.enums;
+using AllOut.Desktop.Models.Requests;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,95 +14,127 @@ namespace AllOut.Desktop.Controllers
     {
         private const string APIBaseUrl = "https://localhost:7252/api/";
 
-        public static List<Product> GetProducts()
+        #region GET METHODS
+        public static Response GetProducts()
         {
+            var response = new Response();
             var url = string.Concat(APIBaseUrl, "Product/GetProducts");
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
             request.Method = "GET";
             request.KeepAlive = true;
             try
             {
-                var result = new List<Product>();
                 using (var httpResponse = (HttpWebResponse)request.GetResponse())
                 {
-                    if (httpResponse.StatusCode != HttpStatusCode.OK)
-                    {
-                        throw new Exception("Request Failed\n");
-                    }
                     using (var reader = new StreamReader(httpResponse.GetResponseStream()))
                     {
                         var js = new JavaScriptSerializer();
                         var objText = reader.ReadToEnd();
-                        result = (List<Product>)js.Deserialize(objText, typeof(List<Product>));
-                        return result;
+
+                        if (httpResponse.StatusCode == HttpStatusCode.OK)
+                        {
+                            var data = (List<Product>)js.Deserialize(objText, typeof(List<Product>));
+                            response.Result = ResponseResult.SUCCESS;
+                            response.Data = data;
+                        }
+                        else
+                        {
+                            var message = (string)js.Deserialize(objText, typeof(string));
+                            response.Result = ResponseResult.API_ERROR;
+                            response.Message = message;
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                return null;
+                response.Result = ResponseResult.SYSTEM_ERROR;
+                response.Message = ex.Message;
             }
+            return response;
         }
-        public static List<Brand> GetBrands()
+        public static Response GetBrands()
         {
+            var response = new Response();
             var url = string.Concat(APIBaseUrl, "Brand/GetBrands");
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
             request.Method = "GET";
             request.KeepAlive = true;
             try
             {
-                var result = new List<Brand>();
                 using (var httpResponse = (HttpWebResponse)request.GetResponse())
                 {
-                    if (httpResponse.StatusCode != HttpStatusCode.OK)
-                    {
-                        throw new Exception("Request Failed\n");
-                    }
                     using (var reader = new StreamReader(httpResponse.GetResponseStream()))
                     {
                         var js = new JavaScriptSerializer();
                         var objText = reader.ReadToEnd();
-                        result = (List<Brand>)js.Deserialize(objText, typeof(List<Brand>));
-                        return result;
+
+                        if (httpResponse.StatusCode == HttpStatusCode.OK)
+                        {
+                            var data = (List<Brand>)js.Deserialize(objText, typeof(List<Brand>));
+                            response.Result = ResponseResult.SUCCESS;
+                            response.Data = data;
+                        }
+                        else
+                        {
+                            var message = (string)js.Deserialize(objText, typeof(string));
+                            response.Result = ResponseResult.API_ERROR;
+                            response.Message = message;
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                return null;
+                response.Result = ResponseResult.SYSTEM_ERROR;
+                response.Message = ex.Message;
             }
+            return response;
         }
-        public static Brand GetBrandByID(Guid brandID)
+        public static Response GetBrandByID(Guid id)
         {
-            var url = string.Concat(APIBaseUrl, "Brand/GetBrandID/", brandID);
+            var response = new Response();
+            var url = string.Concat(APIBaseUrl, "Brand/GetBrandByID/", id);
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
             request.Method = "GET";
             request.KeepAlive = true;
             try
             {
-                var result = new Brand();
                 using (var httpResponse = (HttpWebResponse)request.GetResponse())
                 {
-                    if (httpResponse.StatusCode != HttpStatusCode.OK)
-                    {
-                        throw new Exception("Request Failed\n");
-                    }
                     using (var reader = new StreamReader(httpResponse.GetResponseStream()))
                     {
                         var js = new JavaScriptSerializer();
                         var objText = reader.ReadToEnd();
-                        result = (Brand)js.Deserialize(objText, typeof(Brand));
-                        return result;
+
+                        if (httpResponse.StatusCode == HttpStatusCode.OK)
+                        {
+                            var data = (Brand)js.Deserialize(objText, typeof(Brand));
+                            response.Result = ResponseResult.SUCCESS;
+                            response.Data = data;
+                        }
+                        else
+                        {
+                            var message = (string)js.Deserialize(objText, typeof(string));
+                            response.Result = ResponseResult.API_ERROR;
+                            response.Message = message;
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                return null;
+                response.Result = ResponseResult.SYSTEM_ERROR;
+                response.Message = ex.Message;
             }
+            return response;
         }
-        public static string SaveBrand(BrandRequest request)
+        #endregion
+
+        #region POST METHODS    
+        public static Response SaveBrand(BrandRequest request)
         {
+            var response = new Response();
             var serializer = new JavaScriptSerializer();
             string data = serializer.Serialize(request);
             byte[] byteArray = Encoding.UTF8.GetBytes(data);
@@ -119,24 +153,23 @@ namespace AllOut.Desktop.Controllers
 
                 using (var httpResponse = (HttpWebResponse)webRequest.GetResponse())
                 {
-                    if (httpResponse.StatusCode != HttpStatusCode.OK)
-                    {
-                        throw new Exception("Request Failed\n");
-                    }
                     using (var reader = new StreamReader(httpResponse.GetResponseStream()))
                     {
-                        var js = new System.Web.Script.Serialization.JavaScriptSerializer();
+                        var js = new JavaScriptSerializer();
                         var objText = reader.ReadToEnd();
-                        var result = (string)js.Deserialize(objText, typeof(string));
-                        return result;
+                        var message = (string)js.Deserialize(objText, typeof(string));
+                        response.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                        response.Message = data;
                     }
                 }
             }
             catch (Exception ex)
             {
-                return null;
+                response.Result = ResponseResult.SYSTEM_ERROR;
+                response.Message = ex.Message;
             }
-
+            return response;
         }
+        #endregion
     }
 }

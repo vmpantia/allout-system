@@ -1,6 +1,8 @@
 ﻿using AllOut.Desktop.Controllers;
 using AllOut.Desktop.Models;
+using AllOut.Desktop.Models.enums;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,11 +24,15 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private void PopulateBrands()
         {
-            var brandList = HTTPController.GetBrands();
+            var response = HTTPController.GetBrands();
 
-            if (brandList == null)
-                brandList = new List<Brand>();
-
+            if (response.Result == ResponseResult.SYSTEM_ERROR ||
+                response.Result == ResponseResult.API_ERROR)
+            {
+                tblBrandList.Visible = false;
+                return;
+            }
+            var brandList = response.Data as List<Brand>;
             tblBrandList.DataSource = brandList;
         }
 

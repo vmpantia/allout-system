@@ -2,7 +2,7 @@
 using AllOut.Api.Contractors;
 using AllOut.Api.DataAccess;
 using AllOut.Api.DataAccess.Models;
-using AllOut.Api.Models;
+using AllOut.Api.Models.Requests;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
 

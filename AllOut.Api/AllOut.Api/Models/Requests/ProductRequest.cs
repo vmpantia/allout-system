@@ -1,15 +1,15 @@
 ﻿using AllOut.Api.DataAccess.Models;
 
-namespace AllOut.Api.Models
+namespace AllOut.Api.Models.Requests
 {
-    public class InventoryRequest
+    public class ProductRequest
     {
         //Request Information
         public Guid UserID { get; set; }
         public string FunctionID { get; set; }
         public string RequestStatus { get; set; }
 
-        //Inventory Information
-        public Inventory inputInventory { get; set; }
+        //Product Information
+        public Product inputProduct { get; set; }
     }
 }

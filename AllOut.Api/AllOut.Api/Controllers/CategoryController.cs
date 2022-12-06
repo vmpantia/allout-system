@@ -1,7 +1,5 @@
 ﻿using AllOut.Api.Contractors;
-using AllOut.Api.Models;
-using AllOut.Api.Services;
-using Microsoft.AspNetCore.Http;
+using AllOut.Api.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AllOut.Api.Controllers

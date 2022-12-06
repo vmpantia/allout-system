@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AllOut.Desktop.Models
+namespace AllOut.Desktop.Models.Requests
 {
     public class BrandRequest
     {
