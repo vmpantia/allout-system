@@ -50,11 +50,11 @@
             this.btnLogin.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnLogin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnLogin.FillColor = System.Drawing.Color.DodgerBlue;
-            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.Location = new System.Drawing.Point(64, 372);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(137, 45);
+            this.btnLogin.Size = new System.Drawing.Size(137, 34);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -90,11 +90,11 @@
             this.btnClose.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnClose.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnClose.FillColor = System.Drawing.Color.Gray;
-            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(211, 372);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(137, 45);
+            this.btnClose.Size = new System.Drawing.Size(137, 34);
             this.btnClose.TabIndex = 8;
             this.btnClose.Text = "Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -117,7 +117,7 @@
             this.guna2CircleButton1.ForeColor = System.Drawing.Color.White;
             this.guna2CircleButton1.Image = global::AllOut.Desktop.Properties.Resources.icons8_facebook_96;
             this.guna2CircleButton1.ImageSize = new System.Drawing.Size(50, 50);
-            this.guna2CircleButton1.Location = new System.Drawing.Point(64, 438);
+            this.guna2CircleButton1.Location = new System.Drawing.Point(64, 425);
             this.guna2CircleButton1.Name = "guna2CircleButton1";
             this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.guna2CircleButton1.Size = new System.Drawing.Size(50, 50);

@@ -70,8 +70,5 @@ namespace AllOut.Desktop.Controllers
                 return null;
             }
         }
-
-
-        public static string SaveBrand()
     }
 }

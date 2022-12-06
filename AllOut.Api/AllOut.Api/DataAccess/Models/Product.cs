@@ -11,7 +11,7 @@ namespace AllOut.Api.DataAccess.Models
         [Required, MaxLength(50)]
         public string Name { get; set; }
         [MaxLength(100)]
-        public string Description { get; set; }
+        public string Description { get; set; } 
         public int ReorderPoint { get; set; }
         public int Status { get; set; } 
         public DateTime? CreatedDate { get; set; }
