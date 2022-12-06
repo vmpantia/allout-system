@@ -21,9 +21,9 @@ namespace AllOut.Desktop.Views.ProductForms
             PopulateProducts();
         }
 
-        private void PopulateProducts()
+        private async void PopulateProducts()
         {
-            var response = HTTPController.GetProducts();
+            var response = await HttpController.GetProducts();
 
             if (response.Result == ResponseResult.SYSTEM_ERROR ||
                 response.Result == ResponseResult.API_ERROR)

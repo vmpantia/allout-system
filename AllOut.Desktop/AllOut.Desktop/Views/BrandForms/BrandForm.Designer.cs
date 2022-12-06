@@ -59,6 +59,7 @@
             this.txtBrandName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtBrandName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtBrandName.Location = new System.Drawing.Point(21, 97);
+            this.txtBrandName.MaxLength = 50;
             this.txtBrandName.Name = "txtBrandName";
             this.txtBrandName.PasswordChar = '\0';
             this.txtBrandName.PlaceholderForeColor = System.Drawing.Color.Silver;
@@ -83,6 +84,7 @@
             this.txtBrandDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtBrandDescription.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtBrandDescription.Location = new System.Drawing.Point(21, 174);
+            this.txtBrandDescription.MaxLength = 100;
             this.txtBrandDescription.Multiline = true;
             this.txtBrandDescription.Name = "txtBrandDescription";
             this.txtBrandDescription.PasswordChar = '\0';

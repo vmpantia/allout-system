@@ -5,7 +5,7 @@ namespace AllOut.Desktop.Models
     public class Response
     {
         public ResponseResult Result { get; set; }
-        public string Message { get; set; }
+        public string StatusCode { get; set; }
         public object Data { get; set; }
     }
 }

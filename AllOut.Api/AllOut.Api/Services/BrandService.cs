@@ -75,7 +75,7 @@ namespace AllOut.Api.Services
             var isNameExist = _db.Brands.Where(data => data.Name == inputBrand.Name).Any();
 
             if (isNameExist)
-                throw new ServiceException("Product Name already Exist in the System.");
+                throw new ServiceException("Brand Name already Exist in the System.");
 
             await _db.Brands.AddAsync(inputBrand);
         }

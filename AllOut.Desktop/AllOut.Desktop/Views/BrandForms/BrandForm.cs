@@ -25,19 +25,18 @@ namespace AllOut.Desktop.Views.BrandForms
             PopulateBrand(brandID);
         }
 
-        private void PopulateBrand(Guid brandID)
+        private async void PopulateBrand(Guid brandID)
         {
             if(!_isAdd)
             {
-                var response = HTTPController.GetBrandByID(brandID);
+                var response = await HttpController.GetBrandByID(brandID);
                 if (response.Result == ResponseResult.SYSTEM_ERROR ||
                     response.Result == ResponseResult.API_ERROR)
                 {
-                    MessageBox.Show("Error in Editing Brand! \n" +
-                                     response.Message,
-                                     "Edit Brand",
-                                     MessageBoxButtons.OK,
-                                     MessageBoxIcon.Error);
+                    MessageBox.Show(response.Data.ToString(),
+                                    "Edit Brand",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
                     return;
                 }
                 _brandInfo = response.Data as Brand;
@@ -48,8 +47,17 @@ namespace AllOut.Desktop.Views.BrandForms
             tglStatus.Checked = Utility.ConvertStatusToBoolean(_brandInfo.Status);
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtBrandName.Text))
+            {
+                MessageBox.Show("Brand Name field is Required.",
+                                "Save Brand",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return;
+            }
+
             _brandInfo.Name = txtBrandName.Text;
             _brandInfo.Description = txtBrandDescription.Text;
             _brandInfo.Status = Utility.ConvertBooleanToStatus(tglStatus.Checked);
@@ -63,12 +71,12 @@ namespace AllOut.Desktop.Views.BrandForms
                 inputBrand = _brandInfo,
             };
 
-            var response = HTTPController.SaveBrand(request);
+            var response = await HttpController.PostSaveBrand(request);
 
-            if(response.Result == ResponseResult.SUCCESS)
+            if (response.Result == ResponseResult.SUCCESS)
             {
                 MessageBox.Show("Brand has been Saved Successfully! \n" +
-                                 response.Message, 
+                                 response.Data,
                                  "Save Brand",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Information);
@@ -76,11 +84,10 @@ namespace AllOut.Desktop.Views.BrandForms
             }
             else
             {
-                MessageBox.Show("Error in Saving Brand! \n" +
-                                 response.Message,
-                                 "Save Brand",
-                                 MessageBoxButtons.OK,
-                                 MessageBoxIcon.Error);
+                MessageBox.Show(response.Data.ToString(),
+                                "Save Brand",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
         }
 

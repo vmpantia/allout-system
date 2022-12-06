@@ -9,6 +9,8 @@ namespace AllOut.Desktop.Common
 {
     internal class Constants
     {
+        public const string NA = "N/A";
+
         public const string FORM_PRODUCTS = "Products";
         public const string FORM_BRANDS = "Brands";
 

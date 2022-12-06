@@ -1,173 +1,167 @@
-﻿using AllOut.Desktop.Models;
+﻿using AllOut.Desktop.Common;
+using AllOut.Desktop.Models;
 using AllOut.Desktop.Models.enums;
 using AllOut.Desktop.Models.Requests;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
-using System.Web.Script.Serialization;
+using System.Threading.Tasks;
 
 namespace AllOut.Desktop.Controllers
 {
-    public class HTTPController
+    public class HttpController 
     {
-        private const string APIBaseUrl = "https://localhost:7252/api/";
+        private static readonly string APIBaseURL = "https://localhost:7252/api/";
 
         #region GET METHODS
-        public static Response GetProducts()
+        public static async Task<Response> GetProducts()
         {
-            var response = new Response();
-            var url = string.Concat(APIBaseUrl, "Product/GetProducts");
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
-            request.Method = "GET";
-            request.KeepAlive = true;
+            var customResponse = new Response();
             try
             {
-                using (var httpResponse = (HttpWebResponse)request.GetResponse())
-                {
-                    using (var reader = new StreamReader(httpResponse.GetResponseStream()))
-                    {
-                        var js = new JavaScriptSerializer();
-                        var objText = reader.ReadToEnd();
+                //Prepare API URL
+                var url = string.Concat(APIBaseURL, "Product/GetProducts");
 
-                        if (httpResponse.StatusCode == HttpStatusCode.OK)
-                        {
-                            var data = (List<Product>)js.Deserialize(objText, typeof(List<Product>));
-                            response.Result = ResponseResult.SUCCESS;
-                            response.Data = data;
-                        }
-                        else
-                        {
-                            var message = (string)js.Deserialize(objText, typeof(string));
-                            response.Result = ResponseResult.API_ERROR;
-                            response.Message = message;
-                        }
-                    }
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<Product>>(content);
+                    return customResponse;
                 }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
             }
             catch (Exception ex)
             {
-                response.Result = ResponseResult.SYSTEM_ERROR;
-                response.Message = ex.Message;
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.ToString();
+                customResponse.StatusCode = Constants.NA;
             }
-            return response;
+            return customResponse;
         }
-        public static Response GetBrands()
+        public static async Task<Response> GetBrands()
         {
-            var response = new Response();
-            var url = string.Concat(APIBaseUrl, "Brand/GetBrands");
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
-            request.Method = "GET";
-            request.KeepAlive = true;
+            var customResponse = new Response();
             try
             {
-                using (var httpResponse = (HttpWebResponse)request.GetResponse())
-                {
-                    using (var reader = new StreamReader(httpResponse.GetResponseStream()))
-                    {
-                        var js = new JavaScriptSerializer();
-                        var objText = reader.ReadToEnd();
+                //Prepare API URL
+                var url = string.Concat(APIBaseURL, "Brand/GetBrands");
 
-                        if (httpResponse.StatusCode == HttpStatusCode.OK)
-                        {
-                            var data = (List<Brand>)js.Deserialize(objText, typeof(List<Brand>));
-                            response.Result = ResponseResult.SUCCESS;
-                            response.Data = data;
-                        }
-                        else
-                        {
-                            var message = (string)js.Deserialize(objText, typeof(string));
-                            response.Result = ResponseResult.API_ERROR;
-                            response.Message = message;
-                        }
-                    }
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<Brand>>(content);
+                    return customResponse;
                 }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                response.Result = ResponseResult.SYSTEM_ERROR;
-                response.Message = ex.Message;
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.ToString();
+                customResponse.StatusCode = Constants.NA;
             }
-            return response;
+            return customResponse;
         }
-        public static Response GetBrandByID(Guid id)
+        public static async Task<Response> GetBrandByID(Guid id)
         {
-            var response = new Response();
-            var url = string.Concat(APIBaseUrl, "Brand/GetBrandByID/", id);
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
-            request.Method = "GET";
-            request.KeepAlive = true;
+            var customResponse = new Response();
             try
             {
-                using (var httpResponse = (HttpWebResponse)request.GetResponse())
-                {
-                    using (var reader = new StreamReader(httpResponse.GetResponseStream()))
-                    {
-                        var js = new JavaScriptSerializer();
-                        var objText = reader.ReadToEnd();
+                //Prepare API URL
+                var url = string.Concat(APIBaseURL, "Brand/GetBrandByID/", id);
 
-                        if (httpResponse.StatusCode == HttpStatusCode.OK)
-                        {
-                            var data = (Brand)js.Deserialize(objText, typeof(Brand));
-                            response.Result = ResponseResult.SUCCESS;
-                            response.Data = data;
-                        }
-                        else
-                        {
-                            var message = (string)js.Deserialize(objText, typeof(string));
-                            response.Result = ResponseResult.API_ERROR;
-                            response.Message = message;
-                        }
-                    }
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<Brand>(content);
+                    return customResponse;
                 }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
             }
             catch (Exception ex)
             {
-                response.Result = ResponseResult.SYSTEM_ERROR;
-                response.Message = ex.Message;
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.ToString();
+                customResponse.StatusCode = Constants.NA;
             }
-            return response;
+            return customResponse;
         }
         #endregion
 
-        #region POST METHODS    
-        public static Response SaveBrand(BrandRequest request)
-        {
-            var response = new Response();
-            var js = new JavaScriptSerializer();
-            string data = js.Serialize(request);
-            byte[] byteArray = Encoding.UTF8.GetBytes(data);
-            var url = string.Concat(APIBaseUrl, "Brand/SaveBrand");
-            HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create(url);
-            webRequest.Method = "POST";
-            webRequest.ContentType = "application/json";
-            webRequest.KeepAlive = true;
-            webRequest.ContentLength = byteArray.Length;
 
+        #region POST METHODS    
+        public static async Task<Response> PostSaveBrand(BrandRequest request)
+        {
+            var customResponse = new Response();
             try
             {
-                Stream dataStream = webRequest.GetRequestStream();
-                dataStream.Write(byteArray, 0, byteArray.Length);
-                dataStream.Close();
+                //Prepare Data and API URL
+                var url = string.Concat(APIBaseURL, "Brand/SaveBrand");
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-                using (var httpResponse = (HttpWebResponse)webRequest.GetResponse())
-                {
-                    using (var reader = new StreamReader(httpResponse.GetResponseStream()))
-                    {
-                        var objText = reader.ReadToEnd();
-                        var message = (string)js.Deserialize(objText, typeof(string));
-                        response.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
-                        response.Message = message;
-                    }
-                }
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.PostAsync(url, data);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
             }
             catch (Exception ex)
             {
-                response.Result = ResponseResult.SYSTEM_ERROR;
-                response.Message = ex.Message;
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.ToString();
+                customResponse.StatusCode = Constants.NA;
             }
-            return response;
+            return customResponse;
         }
         #endregion
     }

@@ -2,14 +2,7 @@
 using AllOut.Desktop.Models;
 using AllOut.Desktop.Models.enums;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AllOut.Desktop.Views.BrandForms
@@ -22,9 +15,9 @@ namespace AllOut.Desktop.Views.BrandForms
             PopulateBrands();
         }
 
-        private void PopulateBrands()
+        private async void PopulateBrands()
         {
-            var response = HTTPController.GetBrands();
+            var response = await HttpController.GetBrands();
 
             if (response.Result == ResponseResult.SYSTEM_ERROR ||
                 response.Result == ResponseResult.API_ERROR)
