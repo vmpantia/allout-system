@@ -67,6 +67,34 @@ namespace AllOut.Api.Services
             return requestID;
         }
 
+        public async Task<string> UpdateStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        {
+            //Check if Request is NULL
+            if (request == null)
+                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_REQUEST_NULL, Constants.OBJECT_BRAND));
+
+            var requestID = await _request.InsertRequest(_db, request.UserID,
+                                                              request.FunctionID,
+                                                              request.RequestStatus);
+            var count = 0;
+            foreach(var id in request.IDs)
+            {
+                count++;
+                var brand = await _db.Brands.FindAsync(id);
+                if(brand != null)
+                {
+                    brand.Status = request.newStatus;
+                    brand.ModifiedDate = DateTime.Now;
+                    await InsertBrand_TRN(brand, requestID.ToString(), count);
+                }
+            }
+
+            await _db.SaveChangesAsync();
+
+            return requestID;
+        }
+
+
         private async Task InsertBrand(Brand inputBrand)
         {
             var duplicate = await _db.Brands.Where(data => data.Name == inputBrand.Name).ToListAsync();
@@ -109,11 +137,12 @@ namespace AllOut.Api.Services
             _db.Remove(currentBrand);
         }
 
-        private async Task InsertBrand_TRN(Brand inputBrand, string requestID)
+        private async Task InsertBrand_TRN(Brand inputBrand, string requestID, int number = 1)
         {
             var newTrn = new Brand_TRN
             {
                 RequestID = requestID,
+                Number = number,
                 BrandID = inputBrand.BrandID,
                 Name = inputBrand.Name,
                 Description = inputBrand.Description,

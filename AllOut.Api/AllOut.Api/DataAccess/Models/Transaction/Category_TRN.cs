@@ -1,11 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace AllOut.Api.DataAccess.Models
 {
+    [PrimaryKey(nameof(RequestID), nameof(Number))]
     public class Category_TRN
     {
-        [Key, MaxLength(12)]
+        [MaxLength(12)]
         public string RequestID { get; set; }
+        public int Number { get; set; }
         public Guid CategoryID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

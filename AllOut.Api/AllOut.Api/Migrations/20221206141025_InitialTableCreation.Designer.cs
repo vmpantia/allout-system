@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AllOut.Api.Migrations
 {
     [DbContext(typeof(AllOutDbContext))]
-    [Migration("20221205011302_InitialCreateTables")]
-    partial class InitialCreateTables
+    [Migration("20221206141025_InitialTableCreation")]
+    partial class InitialTableCreation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,6 +61,9 @@ namespace AllOut.Api.Migrations
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
 
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("BrandID")
                         .HasColumnType("uniqueidentifier");
 
@@ -81,7 +84,7 @@ namespace AllOut.Api.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("RequestID");
+                    b.HasKey("RequestID", "Number");
 
                     b.ToTable("Brand_TRN");
                 });
@@ -122,6 +125,9 @@ namespace AllOut.Api.Migrations
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
 
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("CategoryID")
                         .HasColumnType("uniqueidentifier");
 
@@ -142,7 +148,7 @@ namespace AllOut.Api.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("RequestID");
+                    b.HasKey("RequestID", "Number");
 
                     b.ToTable("Category_TRN");
                 });
@@ -176,6 +182,9 @@ namespace AllOut.Api.Migrations
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
 
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -194,7 +203,7 @@ namespace AllOut.Api.Migrations
                     b.Property<int>("ReOrderPoint")
                         .HasColumnType("int");
 
-                    b.HasKey("RequestID");
+                    b.HasKey("RequestID", "Number");
 
                     b.ToTable("Inventory_TRN");
                 });
@@ -244,6 +253,9 @@ namespace AllOut.Api.Migrations
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
 
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("BrandID")
                         .HasColumnType("uniqueidentifier");
 
@@ -273,7 +285,7 @@ namespace AllOut.Api.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("RequestID");
+                    b.HasKey("RequestID", "Number");
 
                     b.ToTable("Product_TRN");
                 });

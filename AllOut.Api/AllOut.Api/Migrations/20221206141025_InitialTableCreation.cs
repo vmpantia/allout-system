@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AllOut.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreateTables : Migration
+    public partial class InitialTableCreation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,6 +16,7 @@ namespace AllOut.Api.Migrations
                 columns: table => new
                 {
                     RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
                     BrandID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -25,7 +26,7 @@ namespace AllOut.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Brand_TRN", x => x.RequestID);
+                    table.PrimaryKey("PK_Brand_TRN", x => new { x.RequestID, x.Number });
                 });
 
             migrationBuilder.CreateTable(
@@ -65,6 +66,7 @@ namespace AllOut.Api.Migrations
                 columns: table => new
                 {
                     RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
                     CategoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -74,7 +76,7 @@ namespace AllOut.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Category_TRN", x => x.RequestID);
+                    table.PrimaryKey("PK_Category_TRN", x => new { x.RequestID, x.Number });
                 });
 
             migrationBuilder.CreateTable(
@@ -97,6 +99,7 @@ namespace AllOut.Api.Migrations
                 columns: table => new
                 {
                     RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
                     InventoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
@@ -106,7 +109,7 @@ namespace AllOut.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Inventory_TRN", x => x.RequestID);
+                    table.PrimaryKey("PK_Inventory_TRN", x => new { x.RequestID, x.Number });
                 });
 
             migrationBuilder.CreateTable(
@@ -114,6 +117,7 @@ namespace AllOut.Api.Migrations
                 columns: table => new
                 {
                     RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
                     ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BrandID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -126,7 +130,7 @@ namespace AllOut.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product_TRN", x => x.RequestID);
+                    table.PrimaryKey("PK_Product_TRN", x => new { x.RequestID, x.Number });
                 });
 
             migrationBuilder.CreateTable(

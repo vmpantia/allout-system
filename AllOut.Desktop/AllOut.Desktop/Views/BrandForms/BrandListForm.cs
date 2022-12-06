@@ -27,6 +27,7 @@ namespace AllOut.Desktop.Views.BrandForms
         #region ASYNC METHODS
         private async void PopulateBrands()
         {
+            _brandIDs = new List<Guid>();
             tblBrandList.DataSource = null;
             tblBrandList.Rows.Clear();
             tblBrandList.Columns.Clear();
@@ -92,7 +93,7 @@ namespace AllOut.Desktop.Views.BrandForms
             {
                 UserID = Guid.NewGuid(),
                 FunctionID = functionID,
-                RequestStatus = Constants.FUNCTION_ID_DELETE_BRAND_BY_ADMIN,
+                RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
                 IDs = _brandIDs,
                 newStatus = newStatus
             };
@@ -111,6 +112,7 @@ namespace AllOut.Desktop.Views.BrandForms
                             Constants.TITLE_UPDATE_BRANDS,
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+            PopulateBrands();
         }
         #endregion
 

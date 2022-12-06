@@ -77,5 +77,23 @@ namespace AllOut.Api.Controllers
             }
         }
 
+        [HttpPost("UpdateStatusByIDs")]
+        public async Task<IActionResult> UpdateStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        {
+            try
+            {
+                var response = await _Brand.UpdateStatusByIDsAsync(request);
+                return Ok(response);
+            }
+            catch (ServiceException ex)
+            {
+                return Conflict(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
