@@ -145,6 +145,15 @@
     <None Include="Images\icons8-password-key-96.png" />
     <None Include="Images\icons8-save-96.png" />
     <None Include="Images\icons8-close-90.png" />
+    <None Include="Images\icons8-plus-math-90.png" />
+    <None Include="Images\icons8-active-58.png" />
+    <None Include="Images\icons8-disabled-64.png" />
+    <None Include="Images\icons8-search-50.png" />
+    <None Include="Images\icons8-trash-90.png" />
+    <None Include="Images\icons8-enable-toggle-slider-isolated-in-white-background-96.png" />
+    <None Include="Images\icons8-disable-toggle-slider-isolated-in-white-background-96.png" />
+    <None Include="Images\icons8-checkmark-90.png" />
+    <None Include="Images\icons8-indeterminate-checkbox-96.png" />
     <Content Include="Images\icons8-user-96.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

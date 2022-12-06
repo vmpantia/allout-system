@@ -70,9 +70,11 @@ namespace AllOut.Desktop.Common
         public const string OBJECT_REQUEST = "Request";
         #endregion
 
-        #region ACTION BUTTON
+        #region ACTIONS
         public const string BUTTON_NAME_EDIT = "Edit";
+        public const string BUTTON_NAME_SELECTION = "Selection";
         public const string BUTTON_HEADER_ACTION = "Action";
+        public const string BUTTON_HEADER_SELECT = "Select";
         #endregion
 
     }

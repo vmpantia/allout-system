@@ -31,18 +31,18 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pnlContent = new System.Windows.Forms.Panel();
             this.btnBrand = new Guna.UI2.WinForms.Guna2Button();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.btnCategory = new Guna.UI2.WinForms.Guna2Button();
             this.btnProduct = new Guna.UI2.WinForms.Guna2Button();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
-            this.pnlContent = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -83,6 +83,37 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "vincent.pantia";
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.btnLogout);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 511);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(219, 81);
+            this.panel3.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(12, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(138, 17);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "AllOut.Version 2022.01";
+            // 
+            // pnlContent
+            // 
+            this.pnlContent.BackColor = System.Drawing.Color.White;
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Location = new System.Drawing.Point(219, 0);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Padding = new System.Windows.Forms.Padding(10);
+            this.pnlContent.Size = new System.Drawing.Size(1007, 592);
+            this.pnlContent.TabIndex = 5;
+            // 
             // btnBrand
             // 
             this.btnBrand.BorderRadius = 6;
@@ -93,6 +124,7 @@
             this.btnBrand.FillColor = System.Drawing.Color.Transparent;
             this.btnBrand.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnBrand.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnBrand.Image = global::AllOut.Desktop.Properties.Resources.icons8_branding_90;
             this.btnBrand.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnBrand.Location = new System.Drawing.Point(15, 229);
@@ -124,6 +156,7 @@
             this.btnCategory.FillColor = System.Drawing.Color.Transparent;
             this.btnCategory.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnCategory.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnCategory.Image = global::AllOut.Desktop.Properties.Resources.icons8_category_96;
             this.btnCategory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnCategory.Location = new System.Drawing.Point(15, 272);
@@ -143,6 +176,7 @@
             this.btnProduct.FillColor = System.Drawing.Color.Transparent;
             this.btnProduct.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnProduct.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnProduct.Image = global::AllOut.Desktop.Properties.Resources.icons8_shipping_product_96;
             this.btnProduct.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnProduct.Location = new System.Drawing.Point(15, 186);
@@ -163,6 +197,7 @@
             this.btnDashboard.FillColor = System.Drawing.Color.Transparent;
             this.btnDashboard.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDashboard.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnDashboard.Image = global::AllOut.Desktop.Properties.Resources.icons8_dashboard_layout_96;
             this.btnDashboard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDashboard.Location = new System.Drawing.Point(15, 143);
@@ -171,27 +206,6 @@
             this.btnDashboard.TabIndex = 0;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.btnLogout);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 511);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(219, 81);
-            this.panel3.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(12, 54);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 17);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "AllOut.Version 2022.01";
             // 
             // btnLogout
             // 
@@ -203,6 +217,7 @@
             this.btnLogout.FillColor = System.Drawing.Color.Transparent;
             this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnLogout.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnLogout.Image = global::AllOut.Desktop.Properties.Resources.icons8_logout_rounded_down_96;
             this.btnLogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnLogout.Location = new System.Drawing.Point(12, 9);
@@ -212,16 +227,6 @@
             this.btnLogout.Text = "Logout";
             this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // pnlContent
-            // 
-            this.pnlContent.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(219, 0);
-            this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlContent.Size = new System.Drawing.Size(1007, 592);
-            this.pnlContent.TabIndex = 5;
             // 
             // MainForm
             // 
@@ -237,9 +242,9 @@
             this.Text = "Main";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
