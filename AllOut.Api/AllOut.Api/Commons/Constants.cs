@@ -8,6 +8,19 @@
         public const int REQUEST_ID_PREFIX_LENGTH = 8;
         public const int REQUEST_ID_SUFFIX_LENGTH = 4;
 
+
+        #region STATUS
+        /*-----------------string STATUS-----------------*/
+        public const string STRING_STATUS_ENABLED = "Enabled";
+        public const string STRING_STATUS_DISABLED = "Disabled";
+        public const string STRING_STATUS_DELETION = "Deletion";
+
+        /*-----------------INT STATUS-----------------*/
+        public const int INT_STATUS_ENABLED = 0;
+        public const int INT_STATUS_DISABLED = 1;
+        public const int INT_STATUS_DELETION = 2;
+        #endregion
+
         #region PRODUCT FUNCTIONID
         public const string FUNCTION_ID_ADD_PRODUCT_BY_ADMIN = "01A00";
         public const string FUNCTION_ID_CHANGE_PRODUCT_BY_ADMIN = "01C00";
@@ -32,9 +45,11 @@
         public static string ERROR_OBJECT_NOT_FOUND_CHANGE = "{0} NOT found, Changes cannot be process.";
         public static string ERROR_OBJECT_NOT_FOUND_DELETE = "{0} NOT found, Deletion cannot be process.";
         public static string ERROR_OBJECT_NOT_FOUND = "{0} ID NOT found.";
+        public static string ERROR_OBJECT_NAME_EXIST_DISABLED = "{0} Name already Exist in the System. It's currently Disabled.";
+        public static string ERROR_OBJECT_NAME_EXIST = "{0} Brand Name already Exist in the System.";
         #endregion
 
-        #region Object
+        #region OBJECT
         public static string OBJECT_PRODUCT = "Product";
         public static string OBJECT_BRAND = "Brand";
         public static string OBJECT_CATEGORY = "Category";

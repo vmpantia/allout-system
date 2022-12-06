@@ -28,7 +28,7 @@ namespace AllOut.Api.Services
             var brand = await _db.Brands.FindAsync(BrandID);
 
             if (brand == null)
-                throw new ServiceException(String.Format(Constants.ERROR_OBJECT_NOT_FOUND, Constants.OBJECT_BRAND));
+                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND, Constants.OBJECT_BRAND));
 
             return brand;
         }
@@ -37,24 +37,21 @@ namespace AllOut.Api.Services
         {
             //Check if Request is NULL
             if (request == null)
-                throw new ServiceException(String.Format(Constants.ERROR_OBJECT_REQUEST_NULL, Constants.OBJECT_BRAND));
+                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_REQUEST_NULL, Constants.OBJECT_BRAND));
 
             var requestID = await _request.InsertRequest(_db, request.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
 
             if (requestID == null)
-                throw new ServiceException(String.Format(Constants.ERROR_OBJECT_ID_NULL, Constants.OBJECT_BRAND));
+                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_ID_NULL, Constants.OBJECT_BRAND));
 
             switch (request.FunctionID)
             {
                 case Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN: //Add Brand
-                    request.inputBrand.BrandID = Guid.NewGuid();
-                    request.inputBrand.CreatedDate = Globals.EXEC_DATETIME;
                     await InsertBrand(request.inputBrand);
                     break;
                 case Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN: //Change Brand
-                    request.inputBrand.ModifiedDate = Globals.EXEC_DATETIME;
                     await UpdateBrand(request.inputBrand);
                     break;
                 default: //Delete Brand
@@ -72,11 +69,18 @@ namespace AllOut.Api.Services
 
         private async Task InsertBrand(Brand inputBrand)
         {
-            var isNameExist = _db.Brands.Where(data => data.Name == inputBrand.Name).Any();
+            var duplicate = await _db.Brands.Where(data => data.Name == inputBrand.Name).ToListAsync();
 
-            if (isNameExist)
-                throw new ServiceException("Brand Name already Exist in the System.");
+            if (duplicate.Count > 0)
+            {
+                if (duplicate.First().Status != Constants.INT_STATUS_ENABLED)
+                    throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NAME_EXIST_DISABLED, Constants.OBJECT_BRAND));
 
+                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NAME_EXIST, Constants.OBJECT_BRAND));
+            }
+
+            inputBrand.BrandID = Guid.NewGuid();
+            inputBrand.CreatedDate = Globals.EXEC_DATETIME;
             await _db.Brands.AddAsync(inputBrand);
         }
 
@@ -85,7 +89,7 @@ namespace AllOut.Api.Services
             var currentBrand = await _db.Brands.FindAsync(inputBrand.BrandID);
 
             if (currentBrand == null)
-                throw new ServiceException(String.Format(Constants.ERROR_OBJECT_NOT_FOUND_CHANGE, Constants.OBJECT_BRAND));
+                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND_CHANGE, Constants.OBJECT_BRAND));
 
             //currentBrand.BrandID = inputBrand.BrandID;
             currentBrand.Name = inputBrand.Name;
@@ -100,7 +104,7 @@ namespace AllOut.Api.Services
             var currentBrand = await _db.Categories.FindAsync(BrandID);
 
             if (currentBrand == null)
-                throw new ServiceException(String.Format(Constants.ERROR_OBJECT_NOT_FOUND_DELETE, Constants.OBJECT_BRAND));
+                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND_DELETE, Constants.OBJECT_BRAND));
 
             _db.Remove(currentBrand);
         }

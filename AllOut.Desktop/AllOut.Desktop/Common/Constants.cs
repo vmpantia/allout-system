@@ -29,6 +29,8 @@ namespace AllOut.Desktop.Common
         public static Color COLOR_STATUS_ENABLED = Color.FromArgb(39, 174, 96);
         public static Color COLOR_STATUS_DISABLED = Color.FromArgb(64, 64, 64);
         public static Color COLOR_STATUS_DELETION = Color.FromArgb(192, 57, 43);
+
+        public static Font FONT_STATUS = new Font("Segoe UI", 9, FontStyle.Bold);
         #endregion
 
         #region BRAND

@@ -7,12 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 #if PROD
-var connectionString = builder.Configuration.GetConnectionString("PROD_SQL_CON");
+var connectionstring = builder.Configuration.GetConnectionString("PROD_SQL_CON");
 #else
-var connectionString = builder.Configuration.GetConnectionString("DEV_SQL_CON");
+var connectionstring = builder.Configuration.GetConnectionString("DEV_SQL_CON");
 #endif
 
-builder.Services.AddDbContext<AllOutDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<AllOutDbContext>(options => options.UseSqlServer(connectionstring));
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IBrandService, BrandService  >();

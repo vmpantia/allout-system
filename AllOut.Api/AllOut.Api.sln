@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllOut.Api", "AllOut.Api\AllOut.Api.csproj", "{53827BC7-AC46-4F8A-AA8D-AED4FADE84DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllOut.Api", "AllOut.Api\AllOut.Api.csproj", "{53827BC7-AC46-4F8A-AA8D-AED4FADE84DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
