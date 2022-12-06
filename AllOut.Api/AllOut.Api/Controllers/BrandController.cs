@@ -1,6 +1,7 @@
 ﻿using AllOut.Api.Contractors;
 using AllOut.Api.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
+using Puregold.API.Exceptions;
 
 namespace AllOut.Api.Controllers
 {
@@ -20,7 +21,15 @@ namespace AllOut.Api.Controllers
             try
             {
                 var response = await _Brand.GetBrandsAsync();
-                return Ok(response);    
+
+                if (response == null)
+                    return NotFound();
+
+                return Ok(response);
+            }
+            catch (ServiceException ex)
+            {
+                return Conflict(ex.Message);
             }
             catch (Exception ex)
             {
@@ -34,7 +43,15 @@ namespace AllOut.Api.Controllers
             try
             {
                 var response = await _Brand.GetBrandByIDAsync(id);
+
+                if (response == null)
+                    return NotFound();
+
                 return Ok(response);
+            }
+            catch (ServiceException ex)
+            {
+                return Conflict(ex.Message);
             }
             catch (Exception ex)
             {
@@ -49,6 +66,10 @@ namespace AllOut.Api.Controllers
             {
                 var response = await _Brand.SaveBrandAsync(request);
                 return Ok(response);
+            }
+            catch (ServiceException ex)
+            {
+                return Conflict(ex.Message);
             }
             catch (Exception ex)
             {
