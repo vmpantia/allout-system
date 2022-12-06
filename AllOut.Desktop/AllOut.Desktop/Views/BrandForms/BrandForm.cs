@@ -42,9 +42,21 @@ namespace AllOut.Desktop.Views.BrandForms
                 _brandInfo = response.Data as Brand;
             }
 
-            txtBrandName.Text = _brandInfo.Name;
-            txtBrandDescription.Text = _brandInfo.Description;
-            tglStatus.Checked = Utility.ConvertStatusToBoolean(_brandInfo.Status);
+            PopulateFields(_brandInfo);
+            EnableFields(_brandInfo.Status == Constants.INT_STATUS_ENABLED);
+        }
+
+        private void EnableFields(bool isEnabled)
+        {
+            txtBrandName.Enabled = isEnabled;
+            txtBrandDescription.Enabled = isEnabled;
+        }
+
+        private void PopulateFields(Brand brand)
+        {
+            txtBrandName.Text = brand.Name;
+            txtBrandDescription.Text = brand.Description;
+            tglStatus.Checked = Utility.ConvertStatusToBoolean(brand.Status);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -94,11 +106,12 @@ namespace AllOut.Desktop.Views.BrandForms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             _brandInfo = null;
-            this.Close();
+            Close();
         }
 
         private void tglStatus_CheckedChanged(object sender, EventArgs e)
         {
+            EnableFields(tglStatus.Checked);
             lblStatus.Text = (tglStatus.Checked ? Constants.STRING_STATUS_ENABLED : Constants.STRING_STATUS_DISABLED).ToUpper();
             lblStatus.ForeColor = tglStatus.Checked ? Constants.COLOR_STATUS_ENABLED : Constants.COLOR_STATUS_DISABLED;
         }
