@@ -50,9 +50,11 @@ namespace AllOut.Api.Services
             {
                 case Constants.FUNCTION_ID_ADD_CATEGORY_BY_ADMIN: //Add Category
                     request.inputCategory.CategoryID = Guid.NewGuid();
+                    request.inputCategory.CreatedDate = Globals.EXEC_DATETIME;
                     await InsertCategory(request.inputCategory);
                     break;
                 case Constants.FUNCTION_ID_CHANGE_CATEGORY_BY_ADMIN: //Change Category
+                    request.inputCategory.ModifiedDate = Globals.EXEC_DATETIME;
                     await UpdateCategory(request.inputCategory);
                     break;
                 default: //Delete Category

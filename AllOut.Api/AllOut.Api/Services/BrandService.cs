@@ -50,9 +50,11 @@ namespace AllOut.Api.Services
             {
                 case Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN: //Add Brand
                     request.inputBrand.BrandID = Guid.NewGuid();
+                    request.inputBrand.CreatedDate = Globals.EXEC_DATETIME;
                     await InsertBrand(request.inputBrand);
                     break;
                 case Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN: //Change Brand
+                    request.inputBrand.ModifiedDate = Globals.EXEC_DATETIME;
                     await UpdateBrand(request.inputBrand);
                     break;
                 default: //Delete Brand

@@ -50,9 +50,11 @@ namespace AllOut.Api.Services
             {
                 case Constants.FUNCTION_ID_ADD_PRODUCT_BY_ADMIN: //Add Product
                     request.inputProduct.ProductID = Guid.NewGuid();
+                    request.inputProduct.CreatedDate = Globals.EXEC_DATETIME;
                     await InsertProduct(request.inputProduct);
                     break;
                 case Constants.FUNCTION_ID_CHANGE_PRODUCT_BY_ADMIN: //Change Product
+                    request.inputProduct.ModifiedDate = Globals.EXEC_DATETIME;
                     await UpdateProduct(request.inputProduct);
                     break;
                 default: //Delete Product
