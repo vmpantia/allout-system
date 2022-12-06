@@ -40,6 +40,7 @@ namespace AllOut.Desktop.Views.BrandForms
         {
             var form = new BrandForm();
             form.ShowDialog();
+            PopulateBrands();
         }
     }
 }

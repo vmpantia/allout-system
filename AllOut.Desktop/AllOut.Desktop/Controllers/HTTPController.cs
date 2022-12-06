@@ -135,8 +135,8 @@ namespace AllOut.Desktop.Controllers
         public static Response SaveBrand(BrandRequest request)
         {
             var response = new Response();
-            var serializer = new JavaScriptSerializer();
-            string data = serializer.Serialize(request);
+            var js = new JavaScriptSerializer();
+            string data = js.Serialize(request);
             byte[] byteArray = Encoding.UTF8.GetBytes(data);
             var url = string.Concat(APIBaseUrl, "Brand/SaveBrand");
             HttpWebRequest webRequest = (HttpWebRequest)HttpWebRequest.Create(url);
@@ -155,11 +155,10 @@ namespace AllOut.Desktop.Controllers
                 {
                     using (var reader = new StreamReader(httpResponse.GetResponseStream()))
                     {
-                        var js = new JavaScriptSerializer();
                         var objText = reader.ReadToEnd();
                         var message = (string)js.Deserialize(objText, typeof(string));
                         response.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
-                        response.Message = data;
+                        response.Message = message;
                     }
                 }
             }
