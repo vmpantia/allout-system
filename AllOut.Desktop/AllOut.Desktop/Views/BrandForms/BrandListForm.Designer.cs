@@ -32,28 +32,28 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnUnselectAll = new Guna.UI2.WinForms.Guna2Button();
+            this.btnDelete = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSelectAll = new Guna.UI2.WinForms.Guna2Button();
+            this.btnDisable = new Guna.UI2.WinForms.Guna2Button();
+            this.btnAddBrand = new Guna.UI2.WinForms.Guna2Button();
+            this.btnEnable = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
+            this.txtBrandName = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.tblBrandList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnUncheckAll = new Guna.UI2.WinForms.Guna2Button();
-            this.btnDelete = new Guna.UI2.WinForms.Guna2Button();
-            this.btnCheckAll = new Guna.UI2.WinForms.Guna2Button();
-            this.btnDisable = new Guna.UI2.WinForms.Guna2Button();
-            this.btnAddBrand = new Guna.UI2.WinForms.Guna2Button();
-            this.btnEnable = new Guna.UI2.WinForms.Guna2Button();
-            this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.btnSearchToolTip = new Guna.UI2.WinForms.Guna2HtmlToolTip();
-            this.txtBrandName = new Guna.UI2.WinForms.Guna2TextBox();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblBrandList)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -73,6 +73,222 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1179, 525);
             this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 9;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 277F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel2.Controls.Add(this.btnUnselectAll, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnDelete, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnSelectAll, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnDisable, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnAddBrand, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnEnable, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnSearch, 8, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtBrandName, 7, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 63);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1173, 41);
+            this.tableLayoutPanel2.TabIndex = 8;
+            // 
+            // btnUnselectAll
+            // 
+            this.btnUnselectAll.BorderRadius = 6;
+            this.btnUnselectAll.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnUnselectAll.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnUnselectAll.DisabledState.FillColor = System.Drawing.Color.Transparent;
+            this.btnUnselectAll.DisabledState.ForeColor = System.Drawing.Color.Gray;
+            this.btnUnselectAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnUnselectAll.Enabled = false;
+            this.btnUnselectAll.FillColor = System.Drawing.Color.White;
+            this.btnUnselectAll.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUnselectAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnUnselectAll.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnUnselectAll.Image = global::AllOut.Desktop.Properties.Resources.icons8_indeterminate_checkbox_96;
+            this.btnUnselectAll.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnUnselectAll.ImageSize = new System.Drawing.Size(15, 15);
+            this.btnUnselectAll.Location = new System.Drawing.Point(188, 3);
+            this.btnUnselectAll.Name = "btnUnselectAll";
+            this.btnUnselectAll.Size = new System.Drawing.Size(114, 35);
+            this.btnUnselectAll.TabIndex = 9;
+            this.btnUnselectAll.Text = "Unselect All";
+            this.btnUnselectAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnUnselectAll.Click += new System.EventHandler(this.btnUnselectAll_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BorderRadius = 6;
+            this.btnDelete.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnDelete.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnDelete.DisabledState.FillColor = System.Drawing.Color.Transparent;
+            this.btnDelete.DisabledState.ForeColor = System.Drawing.Color.Gray;
+            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDelete.Enabled = false;
+            this.btnDelete.FillColor = System.Drawing.Color.White;
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDelete.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnDelete.Image = global::AllOut.Desktop.Properties.Resources.icons8_trash_90;
+            this.btnDelete.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnDelete.ImageSize = new System.Drawing.Size(15, 15);
+            this.btnDelete.Location = new System.Drawing.Point(488, 3);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(84, 35);
+            this.btnDelete.TabIndex = 8;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.BorderRadius = 6;
+            this.btnSelectAll.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSelectAll.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSelectAll.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSelectAll.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSelectAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSelectAll.FillColor = System.Drawing.Color.White;
+            this.btnSelectAll.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnSelectAll.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnSelectAll.Image = global::AllOut.Desktop.Properties.Resources.icons8_checkmark_90;
+            this.btnSelectAll.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSelectAll.ImageSize = new System.Drawing.Size(15, 15);
+            this.btnSelectAll.Location = new System.Drawing.Point(83, 3);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(99, 35);
+            this.btnSelectAll.TabIndex = 8;
+            this.btnSelectAll.Text = "Select All";
+            this.btnSelectAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
+            // btnDisable
+            // 
+            this.btnDisable.BorderRadius = 6;
+            this.btnDisable.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnDisable.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnDisable.DisabledState.FillColor = System.Drawing.Color.Transparent;
+            this.btnDisable.DisabledState.ForeColor = System.Drawing.Color.Gray;
+            this.btnDisable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDisable.Enabled = false;
+            this.btnDisable.FillColor = System.Drawing.Color.White;
+            this.btnDisable.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDisable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDisable.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnDisable.Image = global::AllOut.Desktop.Properties.Resources.icons8_disable_toggle_slider_isolated_in_white_background_96;
+            this.btnDisable.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnDisable.ImageSize = new System.Drawing.Size(15, 15);
+            this.btnDisable.Location = new System.Drawing.Point(398, 3);
+            this.btnDisable.Name = "btnDisable";
+            this.btnDisable.Size = new System.Drawing.Size(84, 35);
+            this.btnDisable.TabIndex = 6;
+            this.btnDisable.Text = "Disable";
+            this.btnDisable.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnDisable.Click += new System.EventHandler(this.btnDisable_Click);
+            // 
+            // btnAddBrand
+            // 
+            this.btnAddBrand.BorderRadius = 6;
+            this.btnAddBrand.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnAddBrand.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnAddBrand.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnAddBrand.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnAddBrand.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAddBrand.FillColor = System.Drawing.Color.White;
+            this.btnAddBrand.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAddBrand.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnAddBrand.Image = global::AllOut.Desktop.Properties.Resources.icons8_plus_math_90;
+            this.btnAddBrand.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAddBrand.ImageSize = new System.Drawing.Size(15, 15);
+            this.btnAddBrand.Location = new System.Drawing.Point(3, 3);
+            this.btnAddBrand.Name = "btnAddBrand";
+            this.btnAddBrand.Size = new System.Drawing.Size(74, 35);
+            this.btnAddBrand.TabIndex = 0;
+            this.btnAddBrand.Text = "Add";
+            this.btnAddBrand.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAddBrand.Click += new System.EventHandler(this.btnAddBrand_Click);
+            // 
+            // btnEnable
+            // 
+            this.btnEnable.BorderRadius = 6;
+            this.btnEnable.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnEnable.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnEnable.DisabledState.FillColor = System.Drawing.Color.Transparent;
+            this.btnEnable.DisabledState.ForeColor = System.Drawing.Color.Gray;
+            this.btnEnable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnEnable.Enabled = false;
+            this.btnEnable.FillColor = System.Drawing.Color.White;
+            this.btnEnable.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnEnable.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnEnable.Image = global::AllOut.Desktop.Properties.Resources.icons8_enable_toggle_slider_isolated_in_white_background_96;
+            this.btnEnable.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnEnable.ImageSize = new System.Drawing.Size(15, 15);
+            this.btnEnable.Location = new System.Drawing.Point(308, 3);
+            this.btnEnable.Name = "btnEnable";
+            this.btnEnable.Size = new System.Drawing.Size(84, 35);
+            this.btnEnable.TabIndex = 0;
+            this.btnEnable.Text = "Enable";
+            this.btnEnable.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnEnable.Click += new System.EventHandler(this.btnEnable_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BorderRadius = 6;
+            this.btnSearch.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSearch.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSearch.FillColor = System.Drawing.Color.White;
+            this.btnSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btnSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnSearch.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnSearch.Image = global::AllOut.Desktop.Properties.Resources.icons8_search_50;
+            this.btnSearch.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSearch.Location = new System.Drawing.Point(1130, 3);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(40, 35);
+            this.btnSearch.TabIndex = 10;
+            this.btnSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // txtBrandName
+            // 
+            this.txtBrandName.BorderColor = System.Drawing.Color.Silver;
+            this.txtBrandName.BorderRadius = 6;
+            this.txtBrandName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBrandName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBrandName.DefaultText = "";
+            this.txtBrandName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtBrandName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtBrandName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtBrandName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtBrandName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBrandName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtBrandName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBrandName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtBrandName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtBrandName.Location = new System.Drawing.Point(853, 3);
+            this.txtBrandName.MaxLength = 50;
+            this.txtBrandName.Name = "txtBrandName";
+            this.txtBrandName.PasswordChar = '\0';
+            this.txtBrandName.PlaceholderForeColor = System.Drawing.Color.Silver;
+            this.txtBrandName.PlaceholderText = "Search Brand";
+            this.txtBrandName.SelectedText = "";
+            this.txtBrandName.Size = new System.Drawing.Size(271, 35);
+            this.txtBrandName.TabIndex = 11;
             // 
             // guna2Panel1
             // 
@@ -184,222 +400,10 @@
             this.guna2PictureBox1.TabIndex = 3;
             this.guna2PictureBox1.TabStop = false;
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 9;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 277F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tableLayoutPanel2.Controls.Add(this.btnUncheckAll, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnDelete, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnCheckAll, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnDisable, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnAddBrand, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnEnable, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnSearch, 8, 0);
-            this.tableLayoutPanel2.Controls.Add(this.txtBrandName, 7, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 63);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1173, 41);
-            this.tableLayoutPanel2.TabIndex = 8;
-            // 
-            // btnUncheckAll
-            // 
-            this.btnUncheckAll.BorderRadius = 6;
-            this.btnUncheckAll.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnUncheckAll.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnUncheckAll.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnUncheckAll.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnUncheckAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUncheckAll.FillColor = System.Drawing.Color.White;
-            this.btnUncheckAll.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUncheckAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUncheckAll.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnUncheckAll.Image = global::AllOut.Desktop.Properties.Resources.icons8_indeterminate_checkbox_96;
-            this.btnUncheckAll.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnUncheckAll.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnUncheckAll.Location = new System.Drawing.Point(200, 3);
-            this.btnUncheckAll.Name = "btnUncheckAll";
-            this.btnUncheckAll.Size = new System.Drawing.Size(114, 35);
-            this.btnUncheckAll.TabIndex = 9;
-            this.btnUncheckAll.Text = "Uncheck All";
-            this.btnUncheckAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnUncheckAll.Click += new System.EventHandler(this.btnUncheckAll_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.BorderRadius = 6;
-            this.btnDelete.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDelete.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnDelete.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnDelete.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDelete.FillColor = System.Drawing.Color.White;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDelete.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnDelete.Image = global::AllOut.Desktop.Properties.Resources.icons8_trash_90;
-            this.btnDelete.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDelete.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnDelete.Location = new System.Drawing.Point(500, 3);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(94, 35);
-            this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnCheckAll
-            // 
-            this.btnCheckAll.BorderRadius = 6;
-            this.btnCheckAll.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnCheckAll.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnCheckAll.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnCheckAll.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnCheckAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCheckAll.FillColor = System.Drawing.Color.White;
-            this.btnCheckAll.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnCheckAll.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnCheckAll.Image = global::AllOut.Desktop.Properties.Resources.icons8_checkmark_90;
-            this.btnCheckAll.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCheckAll.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnCheckAll.Location = new System.Drawing.Point(93, 3);
-            this.btnCheckAll.Name = "btnCheckAll";
-            this.btnCheckAll.Size = new System.Drawing.Size(101, 35);
-            this.btnCheckAll.TabIndex = 8;
-            this.btnCheckAll.Text = "Check All";
-            this.btnCheckAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCheckAll.Click += new System.EventHandler(this.btnCheckAll_Click);
-            // 
-            // btnDisable
-            // 
-            this.btnDisable.BorderRadius = 6;
-            this.btnDisable.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDisable.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnDisable.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnDisable.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDisable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDisable.FillColor = System.Drawing.Color.White;
-            this.btnDisable.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDisable.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnDisable.Image = global::AllOut.Desktop.Properties.Resources.icons8_disable_toggle_slider_isolated_in_white_background_96;
-            this.btnDisable.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDisable.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnDisable.Location = new System.Drawing.Point(410, 3);
-            this.btnDisable.Name = "btnDisable";
-            this.btnDisable.Size = new System.Drawing.Size(84, 35);
-            this.btnDisable.TabIndex = 6;
-            this.btnDisable.Text = "Disable";
-            this.btnDisable.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDisable.Click += new System.EventHandler(this.btnDisable_Click);
-            // 
-            // btnAddBrand
-            // 
-            this.btnAddBrand.BorderRadius = 6;
-            this.btnAddBrand.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnAddBrand.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnAddBrand.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnAddBrand.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnAddBrand.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAddBrand.FillColor = System.Drawing.Color.White;
-            this.btnAddBrand.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAddBrand.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnAddBrand.Image = global::AllOut.Desktop.Properties.Resources.icons8_plus_math_90;
-            this.btnAddBrand.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAddBrand.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnAddBrand.Location = new System.Drawing.Point(3, 3);
-            this.btnAddBrand.Name = "btnAddBrand";
-            this.btnAddBrand.Size = new System.Drawing.Size(84, 35);
-            this.btnAddBrand.TabIndex = 0;
-            this.btnAddBrand.Text = "Add";
-            this.btnAddBrand.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAddBrand.Click += new System.EventHandler(this.btnAddBrand_Click);
-            // 
-            // btnEnable
-            // 
-            this.btnEnable.BorderRadius = 6;
-            this.btnEnable.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnEnable.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnEnable.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnEnable.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnEnable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnEnable.FillColor = System.Drawing.Color.White;
-            this.btnEnable.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnEnable.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnEnable.Image = global::AllOut.Desktop.Properties.Resources.icons8_enable_toggle_slider_isolated_in_white_background_96;
-            this.btnEnable.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnEnable.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnEnable.Location = new System.Drawing.Point(320, 3);
-            this.btnEnable.Name = "btnEnable";
-            this.btnEnable.Size = new System.Drawing.Size(84, 35);
-            this.btnEnable.TabIndex = 0;
-            this.btnEnable.Text = "Enable";
-            this.btnEnable.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnEnable.Click += new System.EventHandler(this.btnEnable_Click);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BorderRadius = 6;
-            this.btnSearch.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSearch.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSearch.FillColor = System.Drawing.Color.White;
-            this.btnSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSearch.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnSearch.Image = global::AllOut.Desktop.Properties.Resources.icons8_search_50;
-            this.btnSearch.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnSearch.Location = new System.Drawing.Point(1130, 3);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(40, 35);
-            this.btnSearch.TabIndex = 10;
-            this.btnSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
             // btnSearchToolTip
             // 
             this.btnSearchToolTip.AllowLinksHandling = true;
             this.btnSearchToolTip.MaximumSize = new System.Drawing.Size(0, 0);
-            // 
-            // txtBrandName
-            // 
-            this.txtBrandName.BorderColor = System.Drawing.Color.Silver;
-            this.txtBrandName.BorderRadius = 6;
-            this.txtBrandName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBrandName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtBrandName.DefaultText = "";
-            this.txtBrandName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtBrandName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtBrandName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtBrandName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtBrandName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBrandName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtBrandName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBrandName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtBrandName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtBrandName.Location = new System.Drawing.Point(853, 3);
-            this.txtBrandName.MaxLength = 50;
-            this.txtBrandName.Name = "txtBrandName";
-            this.txtBrandName.PasswordChar = '\0';
-            this.txtBrandName.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.txtBrandName.PlaceholderText = "Search Brand";
-            this.txtBrandName.SelectedText = "";
-            this.txtBrandName.Size = new System.Drawing.Size(271, 35);
-            this.txtBrandName.TabIndex = 11;
             // 
             // BrandListForm
             // 
@@ -412,12 +416,12 @@
             this.Name = "BrandListForm";
             this.Text = "BrandListForm";
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.guna2Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tblBrandList)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -432,9 +436,9 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2DataGridView tblBrandList;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private Guna.UI2.WinForms.Guna2Button btnUncheckAll;
+        private Guna.UI2.WinForms.Guna2Button btnUnselectAll;
         private Guna.UI2.WinForms.Guna2Button btnDelete;
-        private Guna.UI2.WinForms.Guna2Button btnCheckAll;
+        private Guna.UI2.WinForms.Guna2Button btnSelectAll;
         private Guna.UI2.WinForms.Guna2Button btnDisable;
         private Guna.UI2.WinForms.Guna2Button btnAddBrand;
         private Guna.UI2.WinForms.Guna2Button btnEnable;

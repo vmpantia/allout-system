@@ -26,9 +26,10 @@ namespace AllOut.Desktop.Views.BrandForms
             btnSearchToolTip.SetToolTip(btnSearch, "Search Brand");
         }
 
-        #region ASYNC METHODS
         private async void PopulateBrands()
         {
+            EnableOtherActionButtons(false);
+
             _brandIDs = new List<Guid>();
             tblBrandList.DataSource = null;
             tblBrandList.Rows.Clear();
@@ -82,14 +83,20 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private async void UpdateStatusByIDs(string functionID, int newStatus)
         {
-            if(_brandIDs.Count == 0)
-            {
-                MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_SELECT_INVALID, Constants.OBJECT_BRAND),
-                                Constants.TITLE_UPDATE_BRANDS,
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+            var action = string.Empty;
+            if (newStatus == Constants.INT_STATUS_ENABLED)
+                action = Constants.STRING_STATUS_ENABLE;
+            else if(newStatus == Constants.INT_STATUS_DISABLED)
+                action = Constants.STRING_STATUS_DISABLE;
+            else
+                action = Constants.STRING_STATUS_DELETE;
+
+            var dialogResult = MessageBox.Show(string.Format(Constants.MESSAGE_CONFIRMATION, action, _brandIDs.Count, Constants.OBJECT_BRAND),
+                                                Constants.TITLE_UPDATE_BRANDS,
+                                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if(dialogResult == DialogResult.No)
                 return;
-            }
 
             var request = new UpdateStatusByIDsRequest
             {
@@ -116,7 +123,6 @@ namespace AllOut.Desktop.Views.BrandForms
                             MessageBoxIcon.Information);
             PopulateBrands();
         }
-        #endregion
 
         private void SelectAll(bool isSelectAll)
         {
@@ -134,11 +140,21 @@ namespace AllOut.Desktop.Views.BrandForms
                 else
                     _brandIDs.Remove(id);
             }
+
+            EnableOtherActionButtons(_brandIDs.Count > 0);
         }
         
         private Guid ParseBrandIDByCellValue(object value)
         {
             return value == null ? Guid.Empty : Guid.Parse(value.ToString());
+        }
+
+        private void EnableOtherActionButtons(bool value)
+        {
+            btnUnselectAll.Enabled = value;
+            btnEnable.Enabled = value;
+            btnDisable.Enabled = value;
+            btnDelete.Enabled = value;
         }
 
         private void btnAddBrand_Click(object sender, EventArgs e)
@@ -148,12 +164,12 @@ namespace AllOut.Desktop.Views.BrandForms
             PopulateBrands();
         }
 
-        private void btnCheckAll_Click(object sender, EventArgs e)
+        private void btnSelectAll_Click(object sender, EventArgs e)
         {
             SelectAll(true);
         }
 
-        private void btnUncheckAll_Click(object sender, EventArgs e)
+        private void btnUnselectAll_Click(object sender, EventArgs e)
         {
             SelectAll(false);
         }
@@ -184,6 +200,8 @@ namespace AllOut.Desktop.Views.BrandForms
             //Check if Edit Button is Clicked
             if (e.ColumnIndex == BUTTON_COL_IDX)
             {
+                SelectAll(false);
+
                 //Show Brand Form
                 var form = new BrandForm(id);
                 form.ShowDialog();
@@ -197,6 +215,8 @@ namespace AllOut.Desktop.Views.BrandForms
                     _brandIDs.Remove(id);
                 else
                     _brandIDs.Add(id);
+
+                EnableOtherActionButtons(_brandIDs.Count > 0);
             }
         }
 

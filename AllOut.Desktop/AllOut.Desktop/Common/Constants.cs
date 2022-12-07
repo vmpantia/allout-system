@@ -18,8 +18,11 @@ namespace AllOut.Desktop.Common
 
         #region STATUS
         /*-----------------STRING STATUS-----------------*/
+        public const string STRING_STATUS_ENABLE = "Enable";
         public const string STRING_STATUS_ENABLED = "Enabled";
+        public const string STRING_STATUS_DISABLE = "Disable";
         public const string STRING_STATUS_DISABLED = "Disabled";
+        public const string STRING_STATUS_DELETE = "Delete";
         public const string STRING_STATUS_DELETION = "Deletion";
 
         /*-----------------INT STATUS-----------------*/
@@ -66,6 +69,7 @@ namespace AllOut.Desktop.Common
         public const string MESSAGE_OBJECT_UNABLE_EDIT = "Unable to Edit {0}.";
         public const string MESSAGE_EMPTY_CREDENTIAL = "Username or Password field is required.";
         public const string MESSAGE_INCORRECT_CREDENTIAL = "Incorrect Username or Password.";
+        public const string MESSAGE_CONFIRMATION = "Are you sure you want to {0} {1} {2}(s)?";
         #endregion
 
         #region OBJECT
