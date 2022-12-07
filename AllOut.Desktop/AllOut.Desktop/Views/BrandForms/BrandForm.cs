@@ -27,8 +27,10 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private async void PopulateBrand(Guid brandID)
         {
+            //Check if Add or Edit
             if(!_isAdd)
             {
+                //Get Brand based on the given ID
                 var response = await HttpController.GetBrandByID(brandID);
                 if (response.Result != ResponseResult.SUCCESS)
                 {
@@ -60,6 +62,7 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
+            //Check if Brand Name Field is Empty
             if (string.IsNullOrEmpty(txtBrandName.Text))
             {
                 MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_NAME_REQUIRED, Constants.OBJECT_BRAND),
@@ -69,10 +72,16 @@ namespace AllOut.Desktop.Views.BrandForms
                 return;
             }
 
+            //Disable Fields
+            EnableFields(false);
+
+            //Store new values in corresponding attribute
             _brandInfo.Name = txtBrandName.Text;
             _brandInfo.Description = txtBrandDescription.Text;
             _brandInfo.Status = Utility.ConvertBooleanToStatus(tglStatus.Checked);
 
+
+            //Prepare Request for SaveBrand
             var request = new BrandRequest
             {
                 UserID = Guid.NewGuid(),
@@ -82,8 +91,13 @@ namespace AllOut.Desktop.Views.BrandForms
                 inputBrand = _brandInfo,
             };
 
+            //Send Request for SaveBrand
             var response = await HttpController.PostSaveBrand(request);
 
+            //Enable Fields
+            EnableFields(true);
+
+            //Check Response Result
             if (response.Result != ResponseResult.SUCCESS)
             {
                 MessageBox.Show(response.Data.ToString(),

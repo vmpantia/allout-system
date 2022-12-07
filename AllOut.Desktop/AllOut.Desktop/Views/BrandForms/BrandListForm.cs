@@ -22,6 +22,8 @@ namespace AllOut.Desktop.Views.BrandForms
         {
             InitializeComponent();
             PopulateBrands();
+
+            btnSearchToolTip.SetToolTip(btnSearch, "Search Brand");
         }
 
         #region ASYNC METHODS
