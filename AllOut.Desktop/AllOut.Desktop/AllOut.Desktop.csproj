@@ -60,7 +60,7 @@
     <Compile Include="Models\enums\ResponseResult.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Requests\UpdateStatusByIDsRequest.cs" />
-    <Compile Include="Models\Requests\BrandRequest.cs" />
+    <Compile Include="Models\Requests\SaveBrandRequest.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

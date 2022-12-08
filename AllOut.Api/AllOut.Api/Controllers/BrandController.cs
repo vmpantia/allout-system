@@ -1,4 +1,6 @@
-﻿using AllOut.Api.Contractors;
+﻿using AllOut.Api.Commons;
+using AllOut.Api.Contractors;
+using AllOut.Api.Models.enums;
 using AllOut.Api.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Puregold.API.Exceptions;
@@ -9,80 +11,81 @@ namespace AllOut.Api.Controllers
     [ApiController]
     public class BrandController : ControllerBase
     {
-        private readonly IBrandService _Brand;
+        private readonly IBrandService _brand;
         public BrandController(IBrandService Brand)
-        {   
-            _Brand = Brand;
+        {
+            _brand = Brand;
         }
 
         [HttpGet("GetBrands")]
         public async Task<IActionResult> GetBrandsAsync()
         {
-            try
-            {
-                var response = await _Brand.GetBrandsAsync();
+            return await ProcessRequest(RequestType.GET_BRANDS);
+        }
 
-                if (response == null)
-                    return NotFound();
-
-                return Ok(response);
-            }
-            catch (ServiceException ex)
-            {
-                return Conflict(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+        [HttpGet("GetBrandsByQuery/{query}")]
+        public async Task<IActionResult> GetBrandsByQueryAsync(string query)
+        {
+            return await ProcessRequest(RequestType.GET_BRANDS_BY_QUERY, query);
         }
 
         [HttpGet("GetBrandByID/{id}")]
         public async Task<IActionResult> GetBrandIDAsync(Guid id)
         {
-            try
-            {
-                var response = await _Brand.GetBrandByIDAsync(id);
-
-                if (response == null)
-                    return NotFound();
-
-                return Ok(response);
-            }
-            catch (ServiceException ex)
-            {
-                return Conflict(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return await ProcessRequest(RequestType.GET_BRAND_BY_ID, id);
         }
 
         [HttpPost("SaveBrand")]
-        public async Task<IActionResult> SaveBrandAsync(BrandRequest request)
+        public async Task<IActionResult> SaveBrandAsync(SaveBrandRequest request)
         {
-            try
-            {
-                var response = await _Brand.SaveBrandAsync(request);
-                return Ok(response);
-            }
-            catch (ServiceException ex)
-            {
-                return Conflict(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return await ProcessRequest(RequestType.POST_SAVE_BRAND, request);
         }
 
         [HttpPost("UpdateStatusByIDs")]
         public async Task<IActionResult> UpdateStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
+            return await ProcessRequest(RequestType.POST_UPDATE_STATUS_BY_IDS, request);
+        }
+
+        private async Task<IActionResult> ProcessRequest(RequestType type, object? request = null)
+        {
             try
             {
-                var response = await _Brand.UpdateStatusByIDsAsync(request);
+                object? response = null;
+
+                if (type == RequestType.GET_BRANDS)
+                {
+                    response = await _brand.GetBrandsAsync();
+                }
+                else
+                {
+                    //Check if Request is NULL
+                    if (request == null)
+                        throw new ControllerException(string.Format(Constants.ERROR_OBJECT_REQUEST_NULL, Constants.OBJECT_BRAND));
+
+                    switch(type)
+                    {
+                        case RequestType.GET_BRANDS_BY_QUERY:
+                            response = await _brand.GetBrandsByQueryAsync((string)request);
+                            break;
+
+                        case RequestType.GET_BRAND_BY_ID:
+                            response = await _brand.GetBrandByIDAsync((Guid)request);
+                            break;
+
+                        case RequestType.POST_SAVE_BRAND:
+                            response = await _brand.SaveBrandAsync((SaveBrandRequest)request);
+                            break;
+
+                        case RequestType.POST_UPDATE_STATUS_BY_IDS:
+                            response = await _brand.UpdateStatusByIDsAsync((UpdateStatusByIDsRequest)request);
+                            break;
+                    }
+                }
+
+                if (response == null)
+                    return NotFound();
+
                 return Ok(response);
             }
             catch (ServiceException ex)

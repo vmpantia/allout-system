@@ -23,6 +23,13 @@ namespace AllOut.Api.Services
             return await _db.Brands.ToListAsync();
         }
 
+        public async Task<IEnumerable<Brand>> GetBrandsByQueryAsync(string query)
+        {
+            var brands = await _db.Brands.Where(data => data.Name.Contains(query) || data.Description.Contains(query)).ToListAsync();
+
+            return brands;
+        }
+
         public async Task<Brand> GetBrandByIDAsync(Guid BrandID)
         {
             var brand = await _db.Brands.FindAsync(BrandID);
@@ -33,12 +40,8 @@ namespace AllOut.Api.Services
             return brand;
         }
 
-        public async Task<string> SaveBrandAsync(BrandRequest request)
+        public async Task<string> SaveBrandAsync(SaveBrandRequest request)
         {
-            //Check if Request is NULL
-            if (request == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_REQUEST_NULL, Constants.OBJECT_BRAND));
-
             var requestID = await _request.InsertRequest(_db, request.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
@@ -69,10 +72,6 @@ namespace AllOut.Api.Services
 
         public async Task<string> UpdateStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
-            //Check if Request is NULL
-            if (request == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_REQUEST_NULL, Constants.OBJECT_BRAND));
-
             var requestID = await _request.InsertRequest(_db, request.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);

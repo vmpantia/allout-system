@@ -5,9 +5,10 @@ namespace AllOut.Api.Contractors
 {
     public interface IBrandService
     {
-        Task<Brand> GetBrandByIDAsync(Guid BrandID);
+        Task<IEnumerable<Brand>> GetBrandsByQueryAsync(string query);
         Task<IEnumerable<Brand>> GetBrandsAsync();
-        Task<string> SaveBrandAsync(BrandRequest request);
+        Task<Brand> GetBrandByIDAsync(Guid BrandID);
+        Task<string> SaveBrandAsync(SaveBrandRequest request);
         Task<string> UpdateStatusByIDsAsync(UpdateStatusByIDsRequest request);
     }
 }

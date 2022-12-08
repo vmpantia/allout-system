@@ -33,7 +33,7 @@ namespace AllOut.Api.Services
             return category;
         }
 
-        public async Task<string> SaveCategoryAsync(CategoryRequest request)
+        public async Task<string> SaveCategoryAsync(SaveCategoryRequest request)
         {
             //Check if Request is NULL
             if (request == null)

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AllOut.Desktop.Views.BrandForms
@@ -21,31 +22,44 @@ namespace AllOut.Desktop.Views.BrandForms
         public BrandListForm()
         {
             InitializeComponent();
-            PopulateBrands();
+            LoadPage();
+        }
 
+        private async void LoadPage()
+        {
+            var brands = await GetBrands();
+            PopulateBrands(brands);
             btnSearchToolTip.SetToolTip(btnSearch, "Search Brand");
         }
 
-        private async void PopulateBrands()
+        private async Task<List<Brand>> GetBrands(string query = null)
         {
-            EnableOtherActionButtons(false);
-
-            _brandIDs = new List<Guid>();
-            tblBrandList.DataSource = null;
-            tblBrandList.Rows.Clear();
-            tblBrandList.Columns.Clear();
-
-            var response = await HttpController.GetBrands();
+            Response response;
+            if(string.IsNullOrEmpty(query))
+                response = await HttpController.GetBrands();
+            else
+                response = await HttpController.GetBrandsByQuery(query);
 
             if (response.Result == ResponseResult.SYSTEM_ERROR ||
                 response.Result == ResponseResult.API_ERROR)
+            {
+                return null;
+            }
+
+            return response.Data as List<Brand>;
+        }
+
+        private void PopulateBrands(List<Brand> brands)
+        {
+            ResetTools();
+
+            if (brands == null)
             {
                 tblBrandList.Visible = false;
                 return;
             }
 
-            var brandList = response.Data as List<Brand>;
-            tblBrandList.DataSource = brandList.Select( data => new
+            tblBrandList.DataSource = brands.Select( data => new
             {
                 Id = data.BrandID,
                 Name = data.Name,
@@ -121,7 +135,7 @@ namespace AllOut.Desktop.Views.BrandForms
                             Constants.TITLE_UPDATE_BRANDS,
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
-            PopulateBrands();
+            LoadPage();
         }
 
         private void SelectAll(bool isSelectAll)
@@ -157,11 +171,22 @@ namespace AllOut.Desktop.Views.BrandForms
             btnDelete.Enabled = value;
         }
 
+        private void ResetTools()
+        {
+            EnableOtherActionButtons(false);
+
+            _brandIDs = new List<Guid>();
+            txtSearch.Text = string.Empty;
+            tblBrandList.DataSource = null;
+            tblBrandList.Rows.Clear();
+            tblBrandList.Columns.Clear();
+        }
+
         private void btnAddBrand_Click(object sender, EventArgs e)
         {
             var form = new BrandForm();
             form.ShowDialog();
-            PopulateBrands();
+            LoadPage();
         }
 
         private void btnSelectAll_Click(object sender, EventArgs e)
@@ -189,6 +214,12 @@ namespace AllOut.Desktop.Views.BrandForms
             UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.INT_STATUS_DELETION);
         }
 
+        private async void btnSearch_Click(object sender, EventArgs e)
+        {
+            var brands = await GetBrands(txtSearch.Text);
+            PopulateBrands(brands);
+        }
+
         private void tblBrandList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 && (e.ColumnIndex != BUTTON_COL_IDX || e.ColumnIndex != CHECKBOX_COL_IDX))
@@ -205,7 +236,7 @@ namespace AllOut.Desktop.Views.BrandForms
                 //Show Brand Form
                 var form = new BrandForm(id);
                 form.ShowDialog();
-                PopulateBrands();
+                LoadPage();
             }
             //Check if Select CheckBox is Clicked
             else if (e.ColumnIndex == CHECKBOX_COL_IDX)

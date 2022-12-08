@@ -2,14 +2,14 @@
 
 namespace AllOut.Api.Models.Requests
 {
-    public class InventoryRequest
+    public class SaveCategoryRequest
     {
         //Request Information
         public Guid UserID { get; set; }
         public string FunctionID { get; set; }
         public string RequestStatus { get; set; }
 
-        //Inventory Information
-        public Inventory inputInventory { get; set; }
+        //Category Information
+        public Category inputCategory { get; set; }
     }
 }

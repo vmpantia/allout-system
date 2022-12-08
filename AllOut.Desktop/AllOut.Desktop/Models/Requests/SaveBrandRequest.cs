@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AllOut.Desktop.Models.Requests
 {
-    public class BrandRequest
+    public class SaveBrandRequest
     {
         //Request Information
         public Guid UserID { get; set; }

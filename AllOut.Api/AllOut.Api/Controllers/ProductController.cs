@@ -60,7 +60,7 @@ namespace AllOut.Api.Controllers
         }
 
         [HttpPost("SaveProduct")]
-        public async Task<IActionResult> SaveProductAsync(ProductRequest request)
+        public async Task<IActionResult> SaveProductAsync(SaveProductRequest request)
         {
             try
             {

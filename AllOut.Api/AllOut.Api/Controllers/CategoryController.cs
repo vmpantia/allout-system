@@ -60,7 +60,7 @@ namespace AllOut.Api.Controllers
         }
 
         [HttpPost("SaveCategory")]
-        public async Task<IActionResult> SaveCategoryAsync(CategoryRequest request)
+        public async Task<IActionResult> SaveCategoryAsync(SaveCategoryRequest request)
         {
             try
             {

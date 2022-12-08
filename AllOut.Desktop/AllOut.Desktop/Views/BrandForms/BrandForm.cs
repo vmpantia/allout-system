@@ -82,7 +82,7 @@ namespace AllOut.Desktop.Views.BrandForms
 
 
             //Prepare Request for SaveBrand
-            var request = new BrandRequest
+            var request = new SaveBrandRequest
             {
                 UserID = Guid.NewGuid(),
                 FunctionID = _isAdd ? Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN : 

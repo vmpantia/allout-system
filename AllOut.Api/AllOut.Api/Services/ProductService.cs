@@ -33,7 +33,7 @@ namespace AllOut.Api.Services
             return product;
         }
 
-        public async Task<string> SaveProductAsync(ProductRequest request)
+        public async Task<string> SaveProductAsync(SaveProductRequest request)
         {
             //Check if Request is NULL
             if (request == null)

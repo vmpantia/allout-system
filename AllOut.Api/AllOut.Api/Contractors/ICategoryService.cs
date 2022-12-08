@@ -7,6 +7,6 @@ namespace AllOut.Api.Contractors
     {
         Task<Category> GetCategoryByIDAsync(Guid CategoryID);
         Task<IEnumerable<Category>> GetCategorysAsync();
-        Task<string> SaveCategoryAsync(CategoryRequest request);
+        Task<string> SaveCategoryAsync(SaveCategoryRequest request);
     }
 }

@@ -91,6 +91,43 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
+        public static async Task<Response> GetBrandsByQuery(string query)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Concat(APIBaseURL, "Brand/GetBrandsByQuery/", query);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<Brand>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.ToString();
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
         public static async Task<Response> GetBrandByID(Guid id)
         {
             var customResponse = new Response();
@@ -132,7 +169,7 @@ namespace AllOut.Desktop.Controllers
 
 
         #region POST METHODS    
-        public static async Task<Response> PostSaveBrand(BrandRequest request)
+        public static async Task<Response> PostSaveBrand(SaveBrandRequest request)
         {
             var customResponse = new Response();
             try

@@ -40,7 +40,7 @@
             this.btnAddBrand = new Guna.UI2.WinForms.Guna2Button();
             this.btnEnable = new Guna.UI2.WinForms.Guna2Button();
             this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
-            this.txtBrandName = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.tblBrandList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -93,7 +93,7 @@
             this.tableLayoutPanel2.Controls.Add(this.btnAddBrand, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnEnable, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnSearch, 8, 0);
-            this.tableLayoutPanel2.Controls.Add(this.txtBrandName, 7, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtSearch, 7, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 63);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -263,32 +263,33 @@
             this.btnSearch.Size = new System.Drawing.Size(40, 35);
             this.btnSearch.TabIndex = 10;
             this.btnSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // txtBrandName
+            // txtSearch
             // 
-            this.txtBrandName.BorderColor = System.Drawing.Color.Silver;
-            this.txtBrandName.BorderRadius = 6;
-            this.txtBrandName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBrandName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtBrandName.DefaultText = "";
-            this.txtBrandName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtBrandName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtBrandName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtBrandName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtBrandName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBrandName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtBrandName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBrandName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtBrandName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtBrandName.Location = new System.Drawing.Point(853, 3);
-            this.txtBrandName.MaxLength = 50;
-            this.txtBrandName.Name = "txtBrandName";
-            this.txtBrandName.PasswordChar = '\0';
-            this.txtBrandName.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.txtBrandName.PlaceholderText = "Search Brand";
-            this.txtBrandName.SelectedText = "";
-            this.txtBrandName.Size = new System.Drawing.Size(271, 35);
-            this.txtBrandName.TabIndex = 11;
+            this.txtSearch.BorderColor = System.Drawing.Color.Silver;
+            this.txtSearch.BorderRadius = 6;
+            this.txtSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSearch.DefaultText = "";
+            this.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearch.Location = new System.Drawing.Point(853, 3);
+            this.txtSearch.MaxLength = 50;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PasswordChar = '\0';
+            this.txtSearch.PlaceholderForeColor = System.Drawing.Color.Silver;
+            this.txtSearch.PlaceholderText = "Search Brand";
+            this.txtSearch.SelectedText = "";
+            this.txtSearch.Size = new System.Drawing.Size(271, 35);
+            this.txtSearch.TabIndex = 11;
             // 
             // guna2Panel1
             // 
@@ -444,6 +445,6 @@
         private Guna.UI2.WinForms.Guna2Button btnEnable;
         private Guna.UI2.WinForms.Guna2Button btnSearch;
         private Guna.UI2.WinForms.Guna2HtmlToolTip btnSearchToolTip;
-        private Guna.UI2.WinForms.Guna2TextBox txtBrandName;
+        private Guna.UI2.WinForms.Guna2TextBox txtSearch;
     }
 }
