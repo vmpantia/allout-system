@@ -46,9 +46,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTableDescription = new System.Windows.Forms.Label();
             this.tblBrandList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.btnSearchToolTip = new Guna.UI2.WinForms.Guna2HtmlToolTip();
-            this.lblTableDescription = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -155,11 +155,12 @@
             // btnSelectAll
             // 
             this.btnSelectAll.BorderRadius = 6;
-            this.btnSelectAll.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSelectAll.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSelectAll.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSelectAll.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSelectAll.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnSelectAll.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnSelectAll.DisabledState.FillColor = System.Drawing.Color.Transparent;
+            this.btnSelectAll.DisabledState.ForeColor = System.Drawing.Color.Gray;
             this.btnSelectAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSelectAll.Enabled = false;
             this.btnSelectAll.FillColor = System.Drawing.Color.White;
             this.btnSelectAll.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -202,10 +203,10 @@
             // btnAddBrand
             // 
             this.btnAddBrand.BorderRadius = 6;
-            this.btnAddBrand.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnAddBrand.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnAddBrand.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnAddBrand.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnAddBrand.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnAddBrand.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnAddBrand.DisabledState.FillColor = System.Drawing.Color.Transparent;
+            this.btnAddBrand.DisabledState.ForeColor = System.Drawing.Color.Gray;
             this.btnAddBrand.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddBrand.FillColor = System.Drawing.Color.White;
             this.btnAddBrand.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -347,6 +348,18 @@
             this.panel1.Size = new System.Drawing.Size(1173, 412);
             this.panel1.TabIndex = 9;
             // 
+            // lblTableDescription
+            // 
+            this.lblTableDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTableDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTableDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblTableDescription.Location = new System.Drawing.Point(0, 0);
+            this.lblTableDescription.Name = "lblTableDescription";
+            this.lblTableDescription.Size = new System.Drawing.Size(1173, 412);
+            this.lblTableDescription.TabIndex = 8;
+            this.lblTableDescription.Text = "No records found in the system.";
+            this.lblTableDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tblBrandList
             // 
             this.tblBrandList.AllowUserToAddRows = false;
@@ -400,23 +413,13 @@
             this.tblBrandList.ThemeStyle.RowsStyle.Height = 30;
             this.tblBrandList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Silver;
             this.tblBrandList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.tblBrandList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblBrandList_CellContentClick);
+            this.tblBrandList.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.tblBrandList_RowPrePaint);
             // 
             // btnSearchToolTip
             // 
             this.btnSearchToolTip.AllowLinksHandling = true;
             this.btnSearchToolTip.MaximumSize = new System.Drawing.Size(0, 0);
-            // 
-            // lblTableDescription
-            // 
-            this.lblTableDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTableDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTableDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTableDescription.Location = new System.Drawing.Point(0, 0);
-            this.lblTableDescription.Name = "lblTableDescription";
-            this.lblTableDescription.Size = new System.Drawing.Size(1173, 412);
-            this.lblTableDescription.TabIndex = 8;
-            this.lblTableDescription.Text = "No records found in the system.";
-            this.lblTableDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BrandListForm
             // 

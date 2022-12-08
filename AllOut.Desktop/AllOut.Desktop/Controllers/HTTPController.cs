@@ -16,7 +16,6 @@ namespace AllOut.Desktop.Controllers
     {
         private static readonly string APIBaseURL = "https://localhost:7252/api/";
 
-        #region GET METHODS
         public static async Task<Response> GetProducts()
         {
             var customResponse = new Response();
@@ -54,6 +53,8 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
+
+        #region BRAND
         public static async Task<Response> GetBrands()
         {
             var customResponse = new Response();
@@ -165,10 +166,6 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        #endregion
-
-
-        #region POST METHODS    
         public static async Task<Response> PostSaveBrand(SaveBrandRequest request)
         {
             var customResponse = new Response();
@@ -200,13 +197,13 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateStatusByIDs(UpdateStatusByIDsRequest request)
+        public static async Task<Response> PostUpdateBrandStatusByIDs(UpdateStatusByIDsRequest request)
         {
             var customResponse = new Response();
             try
             {
                 //Prepare Data and API URL
-                var url = string.Concat(APIBaseURL, "Brand/UpdateStatusByIDs");
+                var url = string.Concat(APIBaseURL, "Brand/UpdateBrandStatusByIDs");
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 

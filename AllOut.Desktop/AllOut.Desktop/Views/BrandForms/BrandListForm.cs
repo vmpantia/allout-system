@@ -76,7 +76,7 @@ namespace AllOut.Desktop.Views.BrandForms
                 newStatus = newStatus
             };
 
-            var response = await HttpController.PostUpdateStatusByIDs(request);
+            var response = await HttpController.PostUpdateBrandStatusByIDs(request);
 
             if (response.Result != ResponseResult.SUCCESS)
             {
@@ -99,11 +99,13 @@ namespace AllOut.Desktop.Views.BrandForms
 
             if (brands == null || brands.Count == 0)
             {
+                btnSelectAll.Enabled = false;
                 lblTableDescription.Visible = true;
                 tblBrandList.Visible = false;
                 return;
             }
 
+            btnSelectAll.Enabled = true;
             tblBrandList.Visible = true;
             lblTableDescription.Visible = false;
             tblBrandList.DataSource = brands.Select( data => new
