@@ -12,6 +12,7 @@ namespace AllOut.Desktop.Views.BrandForms
     {
         private bool _isAdd = true;
         private Brand _brandInfo = new Brand();
+
         public BrandForm(Guid brandID = new Guid())
         {
             InitializeComponent();

@@ -20,12 +20,13 @@ namespace AllOut.Api.Services
 
         public async Task<IEnumerable<Brand>> GetBrandsAsync()
         {
-            return await _db.Brands.ToListAsync();
+            return await _db.Brands.Where(data => data.Status != Constants.INT_STATUS_DELETION).ToListAsync();
         }
 
         public async Task<IEnumerable<Brand>> GetBrandsByQueryAsync(string query)
         {
-            var brands = await _db.Brands.Where(data => data.Name.Contains(query) || data.Description.Contains(query)).ToListAsync();
+            var brands = await _db.Brands.Where(data => data.Name.Contains(query) || data.Description.Contains(query))
+                                         .Where(data => data.Status != Constants.INT_STATUS_DELETION).ToListAsync();
 
             return brands;
         }

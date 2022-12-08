@@ -19,6 +19,7 @@ namespace AllOut.Desktop.Views.BrandForms
         private const int STATUS_COL_IDX = 5;
         private const int BUTTON_COL_IDX = 0;
         private const int CHECKBOX_COL_IDX = 1;
+
         public BrandListForm()
         {
             InitializeComponent();
@@ -49,16 +50,62 @@ namespace AllOut.Desktop.Views.BrandForms
             return response.Data as List<Brand>;
         }
 
+        private async void UpdateStatusByIDs(string functionID, int newStatus)
+        {
+            var action = string.Empty;
+            if (newStatus == Constants.INT_STATUS_ENABLED)
+                action = Constants.STRING_STATUS_ENABLE;
+            else if (newStatus == Constants.INT_STATUS_DISABLED)
+                action = Constants.STRING_STATUS_DISABLE;
+            else
+                action = Constants.STRING_STATUS_DELETE;
+
+            var dialogResult = MessageBox.Show(string.Format(Constants.MESSAGE_CONFIRMATION, action, _brandIDs.Count, Constants.OBJECT_BRAND),
+                                                Constants.TITLE_UPDATE_BRANDS,
+                                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.No)
+                return;
+
+            var request = new UpdateStatusByIDsRequest
+            {
+                UserID = Guid.NewGuid(),
+                FunctionID = functionID,
+                RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
+                IDs = _brandIDs,
+                newStatus = newStatus
+            };
+
+            var response = await HttpController.PostUpdateStatusByIDs(request);
+
+            if (response.Result != ResponseResult.SUCCESS)
+            {
+                MessageBox.Show(response.Data.ToString(),
+                                Constants.TITLE_UPDATE_BRANDS,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_UPDATE, Constants.OBJECT_BRANDS) + response.Data,
+                            Constants.TITLE_UPDATE_BRANDS,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            LoadPage();
+        }
+
         private void PopulateBrands(List<Brand> brands)
         {
             ResetTools();
 
-            if (brands == null)
+            if (brands == null || brands.Count == 0)
             {
+                lblTableDescription.Visible = true;
                 tblBrandList.Visible = false;
                 return;
             }
 
+            tblBrandList.Visible = true;
+            lblTableDescription.Visible = false;
             tblBrandList.DataSource = brands.Select( data => new
             {
                 Id = data.BrandID,
@@ -93,49 +140,6 @@ namespace AllOut.Desktop.Views.BrandForms
 
             //Hide Column 2nd Column
             tblBrandList.Columns[ID_COL_IDX].Visible = false;
-        }
-
-        private async void UpdateStatusByIDs(string functionID, int newStatus)
-        {
-            var action = string.Empty;
-            if (newStatus == Constants.INT_STATUS_ENABLED)
-                action = Constants.STRING_STATUS_ENABLE;
-            else if(newStatus == Constants.INT_STATUS_DISABLED)
-                action = Constants.STRING_STATUS_DISABLE;
-            else
-                action = Constants.STRING_STATUS_DELETE;
-
-            var dialogResult = MessageBox.Show(string.Format(Constants.MESSAGE_CONFIRMATION, action, _brandIDs.Count, Constants.OBJECT_BRAND),
-                                                Constants.TITLE_UPDATE_BRANDS,
-                                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if(dialogResult == DialogResult.No)
-                return;
-
-            var request = new UpdateStatusByIDsRequest
-            {
-                UserID = Guid.NewGuid(),
-                FunctionID = functionID,
-                RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
-                IDs = _brandIDs,
-                newStatus = newStatus
-            };
-
-            var response = await HttpController.PostUpdateStatusByIDs(request);
-
-            if (response.Result != ResponseResult.SUCCESS)
-            {
-                MessageBox.Show(response.Data.ToString(),
-                                Constants.TITLE_UPDATE_BRANDS,
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return;
-            }
-            MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_UPDATE, Constants.OBJECT_BRANDS) + response.Data,
-                            Constants.TITLE_UPDATE_BRANDS,
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-            LoadPage();
         }
 
         private void SelectAll(bool isSelectAll)
@@ -182,6 +186,12 @@ namespace AllOut.Desktop.Views.BrandForms
             tblBrandList.Columns.Clear();
         }
 
+        private async void btnSearch_Click(object sender, EventArgs e)
+        {
+            var brands = await GetBrands(txtSearch.Text);
+            PopulateBrands(brands);
+        }
+
         private void btnAddBrand_Click(object sender, EventArgs e)
         {
             var form = new BrandForm();
@@ -212,12 +222,6 @@ namespace AllOut.Desktop.Views.BrandForms
         private void btnDelete_Click(object sender, EventArgs e)
         {
             UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.INT_STATUS_DELETION);
-        }
-
-        private async void btnSearch_Click(object sender, EventArgs e)
-        {
-            var brands = await GetBrands(txtSearch.Text);
-            PopulateBrands(brands);
         }
 
         private void tblBrandList_CellContentClick(object sender, DataGridViewCellEventArgs e)

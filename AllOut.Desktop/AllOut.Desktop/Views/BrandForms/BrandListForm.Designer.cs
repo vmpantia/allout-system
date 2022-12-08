@@ -41,19 +41,20 @@
             this.btnEnable = new Guna.UI2.WinForms.Guna2Button();
             this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.tblBrandList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tblBrandList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.btnSearchToolTip = new Guna.UI2.WinForms.Guna2HtmlToolTip();
+            this.lblTableDescription = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.guna2Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblBrandList)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblBrandList)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -61,14 +62,15 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 948F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.guna2Panel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1179, 525);
@@ -291,72 +293,6 @@
             this.txtSearch.Size = new System.Drawing.Size(271, 35);
             this.txtSearch.TabIndex = 11;
             // 
-            // guna2Panel1
-            // 
-            this.guna2Panel1.Controls.Add(this.tblBrandList);
-            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Panel1.FillColor = System.Drawing.Color.White;
-            this.guna2Panel1.Location = new System.Drawing.Point(3, 110);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Size = new System.Drawing.Size(1173, 412);
-            this.guna2Panel1.TabIndex = 6;
-            // 
-            // tblBrandList
-            // 
-            this.tblBrandList.AllowUserToAddRows = false;
-            this.tblBrandList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tblBrandList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblBrandList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.tblBrandList.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tblBrandList.DefaultCellStyle = dataGridViewCellStyle3;
-            this.tblBrandList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblBrandList.GridColor = System.Drawing.SystemColors.Control;
-            this.tblBrandList.Location = new System.Drawing.Point(0, 0);
-            this.tblBrandList.Name = "tblBrandList";
-            this.tblBrandList.RowHeadersVisible = false;
-            this.tblBrandList.RowTemplate.Height = 30;
-            this.tblBrandList.Size = new System.Drawing.Size(1173, 412);
-            this.tblBrandList.TabIndex = 5;
-            this.tblBrandList.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.LightGrid;
-            this.tblBrandList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tblBrandList.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.tblBrandList.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.tblBrandList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.tblBrandList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.tblBrandList.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.tblBrandList.ThemeStyle.GridColor = System.Drawing.SystemColors.Control;
-            this.tblBrandList.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.White;
-            this.tblBrandList.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.tblBrandList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tblBrandList.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tblBrandList.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.tblBrandList.ThemeStyle.HeaderStyle.Height = 30;
-            this.tblBrandList.ThemeStyle.ReadOnly = false;
-            this.tblBrandList.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.tblBrandList.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.tblBrandList.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tblBrandList.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.tblBrandList.ThemeStyle.RowsStyle.Height = 30;
-            this.tblBrandList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Silver;
-            this.tblBrandList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.tblBrandList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblBrandList_CellContentClick);
-            this.tblBrandList.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.tblBrandList_RowPrePaint);
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.label2);
@@ -401,10 +337,86 @@
             this.guna2PictureBox1.TabIndex = 3;
             this.guna2PictureBox1.TabStop = false;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblTableDescription);
+            this.panel1.Controls.Add(this.tblBrandList);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 110);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1173, 412);
+            this.panel1.TabIndex = 9;
+            // 
+            // tblBrandList
+            // 
+            this.tblBrandList.AllowUserToAddRows = false;
+            this.tblBrandList.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tblBrandList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblBrandList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.tblBrandList.ColumnHeadersHeight = 30;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tblBrandList.DefaultCellStyle = dataGridViewCellStyle3;
+            this.tblBrandList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblBrandList.GridColor = System.Drawing.SystemColors.Control;
+            this.tblBrandList.Location = new System.Drawing.Point(0, 0);
+            this.tblBrandList.Name = "tblBrandList";
+            this.tblBrandList.RowHeadersVisible = false;
+            this.tblBrandList.RowTemplate.Height = 30;
+            this.tblBrandList.Size = new System.Drawing.Size(1173, 412);
+            this.tblBrandList.TabIndex = 7;
+            this.tblBrandList.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.LightGrid;
+            this.tblBrandList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tblBrandList.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.tblBrandList.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.tblBrandList.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.tblBrandList.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.tblBrandList.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.tblBrandList.ThemeStyle.GridColor = System.Drawing.SystemColors.Control;
+            this.tblBrandList.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.White;
+            this.tblBrandList.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.tblBrandList.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tblBrandList.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tblBrandList.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.tblBrandList.ThemeStyle.HeaderStyle.Height = 30;
+            this.tblBrandList.ThemeStyle.ReadOnly = false;
+            this.tblBrandList.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.tblBrandList.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.tblBrandList.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tblBrandList.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.tblBrandList.ThemeStyle.RowsStyle.Height = 30;
+            this.tblBrandList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Silver;
+            this.tblBrandList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            // 
             // btnSearchToolTip
             // 
             this.btnSearchToolTip.AllowLinksHandling = true;
             this.btnSearchToolTip.MaximumSize = new System.Drawing.Size(0, 0);
+            // 
+            // lblTableDescription
+            // 
+            this.lblTableDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTableDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTableDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblTableDescription.Location = new System.Drawing.Point(0, 0);
+            this.lblTableDescription.Name = "lblTableDescription";
+            this.lblTableDescription.Size = new System.Drawing.Size(1173, 412);
+            this.lblTableDescription.TabIndex = 8;
+            this.lblTableDescription.Text = "No records found in the system.";
+            this.lblTableDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BrandListForm
             // 
@@ -418,11 +430,11 @@
             this.Text = "BrandListForm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.guna2Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tblBrandList)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tblBrandList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -434,8 +446,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2DataGridView tblBrandList;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Guna.UI2.WinForms.Guna2Button btnUnselectAll;
         private Guna.UI2.WinForms.Guna2Button btnDelete;
@@ -446,5 +456,8 @@
         private Guna.UI2.WinForms.Guna2Button btnSearch;
         private Guna.UI2.WinForms.Guna2HtmlToolTip btnSearchToolTip;
         private Guna.UI2.WinForms.Guna2TextBox txtSearch;
+        private System.Windows.Forms.Panel panel1;
+        private Guna.UI2.WinForms.Guna2DataGridView tblBrandList;
+        private System.Windows.Forms.Label lblTableDescription;
     }
 }
