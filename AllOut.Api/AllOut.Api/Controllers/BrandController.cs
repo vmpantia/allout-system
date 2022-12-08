@@ -41,10 +41,10 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.POST_SAVE_BRAND, request);
         }
 
-        [HttpPost("UpdateStatusByIDs")]
-        public async Task<IActionResult> UpdateStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        [HttpPost("UpdateBrandStatusByIDs")]
+        public async Task<IActionResult> UpdateBrandStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
-            return await ProcessRequest(RequestType.POST_UPDATE_STATUS_BY_IDS, request);
+            return await ProcessRequest(RequestType.POST_UPDATE_BRAND_STATUS_BY_IDS, request);
         }
 
         private async Task<IActionResult> ProcessRequest(RequestType type, object? request = null)
@@ -77,8 +77,8 @@ namespace AllOut.Api.Controllers
                             response = await _brand.SaveBrandAsync((SaveBrandRequest)request);
                             break;
 
-                        case RequestType.POST_UPDATE_STATUS_BY_IDS:
-                            response = await _brand.UpdateStatusByIDsAsync((UpdateStatusByIDsRequest)request);
+                        case RequestType.POST_UPDATE_BRAND_STATUS_BY_IDS:
+                            response = await _brand.UpdateBrandStatusByIDsAsync((UpdateStatusByIDsRequest)request);
                             break;
                     }
                 }

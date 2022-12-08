@@ -5,8 +5,10 @@ namespace AllOut.Api.Contractors
 {
     public interface ICategoryService
     {
+        Task<IEnumerable<Category>> GetCategoriesAsync();
+        Task<IEnumerable<Category>> GetCategoriesByQueryAsync(string query);
         Task<Category> GetCategoryByIDAsync(Guid CategoryID);
-        Task<IEnumerable<Category>> GetCategorysAsync();
         Task<string> SaveCategoryAsync(SaveCategoryRequest request);
+        Task<string> UpdateCategoryStatusByIDsAsync(UpdateStatusByIDsRequest request);
     }
 }

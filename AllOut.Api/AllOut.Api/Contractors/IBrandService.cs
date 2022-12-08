@@ -9,6 +9,6 @@ namespace AllOut.Api.Contractors
         Task<IEnumerable<Brand>> GetBrandsAsync();
         Task<Brand> GetBrandByIDAsync(Guid BrandID);
         Task<string> SaveBrandAsync(SaveBrandRequest request);
-        Task<string> UpdateStatusByIDsAsync(UpdateStatusByIDsRequest request);
+        Task<string> UpdateBrandStatusByIDsAsync(UpdateStatusByIDsRequest request);
     }
 }

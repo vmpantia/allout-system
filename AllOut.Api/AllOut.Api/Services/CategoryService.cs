@@ -18,9 +18,17 @@ namespace AllOut.Api.Services
             _request = request;
         }
 
-        public async Task<IEnumerable<Category>> GetCategorysAsync()
+        public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
             return await _db.Categories.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Category>> GetCategoriesByQueryAsync(string query)
+        {
+            var categories = await _db.Categories.Where(data => data.Name.Contains(query) || data.Description.Contains(query))
+                                                 .Where(data => data.Status != Constants.INT_STATUS_DELETION).ToListAsync();
+
+            return categories;
         }
 
         public async Task<Category> GetCategoryByIDAsync(Guid CategoryID)
@@ -70,6 +78,29 @@ namespace AllOut.Api.Services
             return requestID;
         }
 
+        public async Task<string> UpdateCategoryStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        {
+            var requestID = await _request.InsertRequest(_db, request.UserID,
+                                                              request.FunctionID,
+                                                              request.RequestStatus);
+            var count = 0;
+            foreach (var id in request.IDs)
+            {
+                count++;
+                var category = await _db.Categories.FindAsync(id);
+                if (category != null)
+                {
+                    category.Status = request.newStatus;
+                    category.ModifiedDate = DateTime.Now;
+                    await InsertCategory_TRN(category, requestID.ToString(), count);
+                }
+            }
+
+            await _db.SaveChangesAsync();
+
+            return requestID;
+        }
+
         private async Task InsertCategory(Category inputCategory)
         {
             await _db.Categories.AddAsync(inputCategory);
@@ -100,11 +131,12 @@ namespace AllOut.Api.Services
             _db.Remove(currentCategory);
         }
 
-        private async Task InsertCategory_TRN(Category inputCategory, string requestID)
+        private async Task InsertCategory_TRN(Category inputCategory, string requestID, int number = 1)
         {
             var newTrn = new Category_TRN
             {
                 RequestID = requestID,
+                Number = number,
                 CategoryID = inputCategory.CategoryID,
                 Name = inputCategory.Name,
                 Description = inputCategory.Description,
