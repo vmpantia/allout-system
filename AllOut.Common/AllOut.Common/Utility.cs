@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AllOut.Desktop.Common
+namespace AllOut.Common
 {
-    internal class Utility
+    public class Utility
     {
         public static bool ConvertStatusToBoolean(int status)
         {
@@ -19,10 +19,10 @@ namespace AllOut.Desktop.Common
         }
         public static string ConvertStatusToString(int status)
         {
-            if(status == Constants.STATUS_ENABLED_INT)
+            if (status == Constants.STATUS_ENABLED_INT)
                 return Constants.STATUS_ENABLED_STRING;
 
-            else if(status == Constants.STATUS_DISABLED_INT)
+            else if (status == Constants.STATUS_DISABLED_INT)
                 return Constants.STATUS_DISABLED_STRING;
 
             else

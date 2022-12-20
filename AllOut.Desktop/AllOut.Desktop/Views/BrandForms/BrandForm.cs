@@ -4,6 +4,7 @@ using AllOut.Desktop.Models;
 using AllOut.Desktop.Models.enums;
 using AllOut.Desktop.Models.Requests;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace AllOut.Desktop.Views.BrandForms
@@ -20,8 +21,8 @@ namespace AllOut.Desktop.Views.BrandForms
             if(brandID != Guid.Empty)
                 _isAdd = false;
 
-            lblBrandFormTitle.Text = _isAdd ? Constants.TITLE_ADD_BRAND : Constants.TITLE_EDIT_BRAND;
-            lblBrandFormDescription.Text = _isAdd ? Constants.DESCRIPTION_ADD_BRAND : Constants.DESCRIPTION_EDIT_BRAND;
+            lblBrandFormTitle.Text = _isAdd ? string.Format(Constants.TITLE_ADD, Constants.OBJECT_BRAND) : string.Format(Constants.TITLE_EDIT, Constants.OBJECT_BRAND);
+            lblBrandFormDescription.Text = _isAdd ? string.Format(Constants.DESC_ADD, Constants.OBJECT_BRAND) : string.Format(Constants.DESC_EDIT, Constants.OBJECT_BRAND);
 
             PopulateBrand(brandID);
         }
@@ -35,8 +36,8 @@ namespace AllOut.Desktop.Views.BrandForms
                 var response = await HttpController.GetBrandByID(brandID);
                 if (response.Result != ResponseResult.SUCCESS)
                 {
-                    MessageBox.Show(response.Data.ToString(), 
-                                    Constants.TITLE_EDIT_BRAND, 
+                    MessageBox.Show(response.Data.ToString(),
+                                    string.Format((Constants.TITLE_EDIT), Constants.OBJECT_BRAND), 
                                     MessageBoxButtons.OK, 
                                     MessageBoxIcon.Error);
                     return;
@@ -45,7 +46,7 @@ namespace AllOut.Desktop.Views.BrandForms
             }
 
             PopulateFields(_brandInfo);
-            EnableFields(_brandInfo.Status == Constants.INT_STATUS_ENABLED);
+            EnableFields(_brandInfo.Status == Constants.STATUS_ENABLED_INT);
         }
 
         private void EnableFields(bool isEnabled)
@@ -66,8 +67,8 @@ namespace AllOut.Desktop.Views.BrandForms
             //Check if Brand Name Field is Empty
             if (string.IsNullOrEmpty(txtBrandName.Text))
             {
-                MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_NAME_REQUIRED, Constants.OBJECT_BRAND),
-                                Constants.TITLE_SAVE_BRAND,
+                MessageBox.Show(string.Format(Constants.ERROR_NAME_REQUIRED, Constants.OBJECT_BRAND),
+                                string.Format(Constants.TITLE_SAVE, Constants.OBJECT_BRAND),
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                 return;
@@ -102,13 +103,13 @@ namespace AllOut.Desktop.Views.BrandForms
             if (response.Result != ResponseResult.SUCCESS)
             {
                 MessageBox.Show(response.Data.ToString(),
-                                Constants.TITLE_SAVE_BRAND,
+                                string.Format(Constants.TITLE_SAVE, Constants.OBJECT_BRAND),
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_SAVED, Constants.OBJECT_BRAND) + response.Data,
-                            Constants.TITLE_SAVE_BRAND,
+            MessageBox.Show(string.Format(Constants.SUCCESS_SAVED, Constants.OBJECT_BRAND, response.Data),
+                            string.Format(Constants.TITLE_SAVE, Constants.OBJECT_BRAND),
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
             Close();
@@ -123,8 +124,8 @@ namespace AllOut.Desktop.Views.BrandForms
         private void tglStatus_CheckedChanged(object sender, EventArgs e)
         {
             EnableFields(tglStatus.Checked);
-            lblStatus.Text = (tglStatus.Checked ? Constants.STRING_STATUS_ENABLED : Constants.STRING_STATUS_DISABLED).ToUpper();
-            lblStatus.ForeColor = tglStatus.Checked ? Constants.COLOR_STATUS_ENABLED : Constants.COLOR_STATUS_DISABLED;
+            lblStatus.Text = (tglStatus.Checked ? Constants.STATUS_ENABLED_STRING : Constants.STATUS_DISABLED_STRING).ToUpper();
+            lblStatus.ForeColor = tglStatus.Checked ? Color.FromArgb(39, 174, 96) : Color.FromArgb(64, 64, 64);
         }
     }
 }

@@ -53,16 +53,16 @@ namespace AllOut.Desktop.Views.BrandForms
         private async void UpdateStatusByIDs(string functionID, int newStatus)
         {
             var action = string.Empty;
-            if (newStatus == Constants.INT_STATUS_ENABLED)
-                action = Constants.STRING_STATUS_ENABLE;
-            else if (newStatus == Constants.INT_STATUS_DISABLED)
-                action = Constants.STRING_STATUS_DISABLE;
+            if (newStatus == Constants.STATUS_ENABLED_INT)
+                action = Constants.STATUS_ENABLE_STRING;
+            else if (newStatus == Constants.STATUS_DISABLED_INT)
+                action = Constants.STATUS_DISABLE_STRING;
             else
-                action = Constants.STRING_STATUS_DELETE;
+                action = Constants.STATUS_DELETE_STRING;
 
             var dialogResult = MessageBox.Show(string.Format(Constants.MESSAGE_CONFIRMATION, action, _brandIDs.Count, Constants.OBJECT_BRAND),
-                                                Constants.TITLE_UPDATE_BRANDS,
-                                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                               string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_BRAND),
+                                               MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.No)
                 return;
@@ -81,13 +81,13 @@ namespace AllOut.Desktop.Views.BrandForms
             if (response.Result != ResponseResult.SUCCESS)
             {
                 MessageBox.Show(response.Data.ToString(),
-                                Constants.TITLE_UPDATE_BRANDS,
+                                string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_BRAND),
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show(string.Format(Constants.MESSAGE_OBJECT_UPDATE, Constants.OBJECT_BRANDS) + response.Data,
-                            Constants.TITLE_UPDATE_BRANDS,
+            MessageBox.Show(string.Format(Constants.SUCCESS_UPDATE, Constants.OBJECT_BRAND, response.Data),
+                            string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_BRAND),
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
             LoadPage();
@@ -213,17 +213,17 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private void btnEnable_Click(object sender, EventArgs e)
         {
-            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.INT_STATUS_ENABLED);
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.STATUS_ENABLED_INT);
         }
 
         private void btnDisable_Click(object sender, EventArgs e)
         {
-            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.INT_STATUS_DISABLED);
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.STATUS_DISABLED_INT);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.INT_STATUS_DELETION);
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.STATUS_DELETION_INT);
         }
 
         private void tblBrandList_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -264,16 +264,16 @@ namespace AllOut.Desktop.Views.BrandForms
             if (cell.Value != null)
             {
                 var val = cell.Value.ToString();
-                if (val == Constants.STRING_STATUS_ENABLED)
-                    cell.Style.ForeColor = Constants.COLOR_STATUS_ENABLED;
+                if (val == Constants.STATUS_ENABLED_STRING)
+                    cell.Style.ForeColor = Color.FromArgb(39, 174, 96);
 
-                else if (val == Constants.STRING_STATUS_DISABLED)
-                    cell.Style.ForeColor = Constants.COLOR_STATUS_DISABLED;
+                else if (val == Constants.STATUS_DISABLED_STRING)
+                    cell.Style.ForeColor = Color.FromArgb(64, 64, 64);
 
                 else
-                    cell.Style.ForeColor = Constants.COLOR_STATUS_DELETION;
+                    cell.Style.ForeColor = Color.FromArgb(192, 57, 43);
 
-                cell.Style.Font = Constants.FONT_STATUS;
+                cell.Style.Font = new Font("Segoe UI", 9, FontStyle.Bold);
             }
         }
     }
