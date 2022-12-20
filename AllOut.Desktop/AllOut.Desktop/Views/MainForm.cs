@@ -1,5 +1,6 @@
 ﻿using AllOut.Desktop.Common;
 using AllOut.Desktop.Views.BrandForms;
+using AllOut.Desktop.Views.CategoryForms;
 using AllOut.Desktop.Views.ProductForms;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,12 @@ namespace AllOut.Desktop.Views
             SetActiveForm(Constants.FORM_BRANDS);
         }
 
+        private void btnCategory_Click(object sender, EventArgs e)
+        {
+
+            SetActiveForm(Constants.FORM_CATEGORIES);
+        }
+
         private void SetActiveForm(string formName)
         {
             Form activeForm = null;
@@ -54,6 +61,9 @@ namespace AllOut.Desktop.Views
                     break;
                 case Constants.FORM_BRANDS:
                     activeForm = new BrandListForm();
+                    break;
+                case Constants.FORM_CATEGORIES:
+                    activeForm = new CategoryListForm();
                     break;
             }
 

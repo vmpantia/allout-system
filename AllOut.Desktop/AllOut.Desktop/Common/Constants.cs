@@ -14,6 +14,7 @@ namespace AllOut.Desktop.Common
         #region Forms
         public const string FORM_PRODUCTS = "Products";
         public const string FORM_BRANDS = "Brands";
+        public const string FORM_CATEGORIES = "Categories";
         #endregion
 
         #region Request Status

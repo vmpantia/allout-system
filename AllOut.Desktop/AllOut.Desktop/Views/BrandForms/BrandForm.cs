@@ -21,8 +21,8 @@ namespace AllOut.Desktop.Views.BrandForms
             if(brandID != Guid.Empty)
                 _isAdd = false;
 
-            lblBrandFormTitle.Text = _isAdd ? string.Format(Constants.TITLE_ADD, Constants.OBJECT_BRAND) : string.Format(Constants.TITLE_EDIT, Constants.OBJECT_BRAND);
-            lblBrandFormDescription.Text = _isAdd ? string.Format(Constants.DESC_ADD, Constants.OBJECT_BRAND) : string.Format(Constants.DESC_EDIT, Constants.OBJECT_BRAND);
+            lblFormTitle.Text = _isAdd ? string.Format(Constants.TITLE_ADD, Constants.OBJECT_BRAND) : string.Format(Constants.TITLE_EDIT, Constants.OBJECT_BRAND);
+            lblFormDescription.Text = _isAdd ? string.Format(Constants.DESC_ADD, Constants.OBJECT_BRAND) : string.Format(Constants.DESC_EDIT, Constants.OBJECT_BRAND);
 
             PopulateBrand(brandID);
         }
@@ -37,7 +37,7 @@ namespace AllOut.Desktop.Views.BrandForms
                 if (response.Result != ResponseResult.SUCCESS)
                 {
                     MessageBox.Show(response.Data.ToString(),
-                                    string.Format((Constants.TITLE_EDIT), Constants.OBJECT_BRAND), 
+                                    string.Format(Constants.TITLE_EDIT, Constants.OBJECT_BRAND), 
                                     MessageBoxButtons.OK, 
                                     MessageBoxIcon.Error);
                     return;

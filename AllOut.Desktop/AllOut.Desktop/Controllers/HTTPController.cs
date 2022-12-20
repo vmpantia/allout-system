@@ -54,7 +54,7 @@ namespace AllOut.Desktop.Controllers
             return customResponse;
         }
 
-        #region BRAND
+        #region Brand
         public static async Task<Response> GetBrands()
         {
             var customResponse = new Response();
@@ -204,6 +204,182 @@ namespace AllOut.Desktop.Controllers
             {
                 //Prepare Data and API URL
                 var url = string.Concat(APIBaseURL, "Brand/UpdateBrandStatusByIDs");
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.PostAsync(url, data);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.ToString();
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        #endregion
+
+        #region Category
+        public static async Task<Response> GetCategories()
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Concat(APIBaseURL, "Category/GetCategories");
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<Category>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.ToString();
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetCategoriesByQuery(string query)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Concat(APIBaseURL, "Category/GetCategoriesByQuery/", query);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<Category>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.ToString();
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetCategoryByID(Guid id)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Concat(APIBaseURL, "Category/GetCategoryByID/", id);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<Category>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.ToString();
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> PostSaveCategory(SaveCategoryRequest request)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare Data and API URL
+                var url = string.Concat(APIBaseURL, "Category/SaveCategory");
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.PostAsync(url, data);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.ToString();
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> PostUpdateCategoryStatusByIDs(UpdateStatusByIDsRequest request)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare Data and API URL
+                var url = string.Concat(APIBaseURL, "Category/UpdateCategoryStatusByIDs");
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 

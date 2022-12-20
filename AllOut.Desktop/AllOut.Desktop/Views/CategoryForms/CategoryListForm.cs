@@ -10,17 +10,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AllOut.Desktop.Views.BrandForms
+namespace AllOut.Desktop.Views.CategoryForms
 {
-    public partial class BrandListForm : Form
+    public partial class CategoryListForm : Form
     {
-        private List<Guid> _brandIDs = new List<Guid>();
+        private List<Guid> _categoryIDs = new List<Guid>();
         private const int ID_COL_IDX = 2;
         private const int STATUS_COL_IDX = 5;
         private const int BUTTON_COL_IDX = 0;
         private const int CHECKBOX_COL_IDX = 1;
 
-        public BrandListForm()
+        public CategoryListForm()
         {
             InitializeComponent();
             LoadPage();
@@ -28,18 +28,18 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private async void LoadPage()
         {
-            var brands = await GetBrands();
-            PopulateBrands(brands);
-            btnSearchToolTip.SetToolTip(btnSearch, "Search Brand");
+            var categories = await GetCategories();
+            PopulateCategories(categories);
+            btnSearchToolTip.SetToolTip(btnSearch, "Search Category");
         }
 
-        private async Task<List<Brand>> GetBrands(string query = null)
+        private async Task<List<Category>> GetCategories(string query = null)
         {
             Response response;
             if(string.IsNullOrEmpty(query))
-                response = await HttpController.GetBrands();
+                response = await HttpController.GetCategories();
             else
-                response = await HttpController.GetBrandsByQuery(query);
+                response = await HttpController.GetCategoriesByQuery(query);
 
             if (response.Result == ResponseResult.SYSTEM_ERROR ||
                 response.Result == ResponseResult.API_ERROR)
@@ -47,7 +47,7 @@ namespace AllOut.Desktop.Views.BrandForms
                 return null;
             }
 
-            return response.Data as List<Brand>;
+            return response.Data as List<Category>;
         }
 
         private async void UpdateStatusByIDs(string functionID, int newStatus)
@@ -60,8 +60,8 @@ namespace AllOut.Desktop.Views.BrandForms
             else
                 action = Constants.STATUS_DELETE_STRING;
 
-            var dialogResult = MessageBox.Show(string.Format(Constants.MESSAGE_CONFIRMATION, action, _brandIDs.Count, Constants.OBJECT_BRAND),
-                                               string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_BRAND),
+            var dialogResult = MessageBox.Show(string.Format(Constants.MESSAGE_CONFIRMATION, action, _categoryIDs.Count, Constants.OBJECT_CATEGORY),
+                                               string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_CATEGORY),
                                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.No)
@@ -72,32 +72,32 @@ namespace AllOut.Desktop.Views.BrandForms
                 UserID = Guid.NewGuid(),
                 FunctionID = functionID,
                 RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
-                IDs = _brandIDs,
+                IDs = _categoryIDs,
                 newStatus = newStatus
             };
 
-            var response = await HttpController.PostUpdateBrandStatusByIDs(request);
+            var response = await HttpController.PostUpdateCategoryStatusByIDs(request);
 
             if (response.Result != ResponseResult.SUCCESS)
             {
                 MessageBox.Show(response.Data.ToString(),
-                                string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_BRAND),
+                                string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_CATEGORY),
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show(string.Format(Constants.SUCCESS_UPDATE, Constants.OBJECT_BRAND, response.Data),
-                            string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_BRAND),
+            MessageBox.Show(string.Format(Constants.SUCCESS_UPDATE, Constants.OBJECT_CATEGORY, response.Data),
+                            string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_CATEGORY),
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
             LoadPage();
         }
 
-        private void PopulateBrands(List<Brand> brands)
+        private void PopulateCategories(List<Category> categories)
         {
             ResetTools();
 
-            if (brands == null || brands.Count == 0)
+            if (categories == null || categories.Count == 0)
             {
                 btnSelectAll.Enabled = false;
                 lblTableDescription.Visible = true;
@@ -108,9 +108,9 @@ namespace AllOut.Desktop.Views.BrandForms
             btnSelectAll.Enabled = true;
             tblObjectList.Visible = true;
             lblTableDescription.Visible = false;
-            tblObjectList.DataSource = brands.Select( data => new
+            tblObjectList.DataSource = categories.Select( data => new
             {
-                Id = data.BrandID,
+                Id = data.CategoryID,
                 Name = data.Name,
                 Description = data.Description,
                 Status = Utility.ConvertStatusToString(data.Status),
@@ -146,25 +146,25 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private void SelectAll(bool isSelectAll)
         {
-            //Reset BrandID's
-            _brandIDs = new List<Guid>();
+            //Reset CategoryID's
+            _categoryIDs = new List<Guid>();
             foreach (DataGridViewRow item in tblObjectList.Rows)
             {
                 //Change CheckBox Value
                 DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)item.Cells[CHECKBOX_COL_IDX];
                 cell.Value = isSelectAll;
 
-                var id = ParseBrandIDByCellValue(item.Cells[ID_COL_IDX].Value);
+                var id = ParseCategoryIDByCellValue(item.Cells[ID_COL_IDX].Value);
                 if (isSelectAll)
-                    _brandIDs.Add(id);
+                    _categoryIDs.Add(id);
                 else
-                    _brandIDs.Remove(id);
+                    _categoryIDs.Remove(id);
             }
 
-            EnableOtherActionButtons(_brandIDs.Count > 0);
+            EnableOtherActionButtons(_categoryIDs.Count > 0);
         }
         
-        private Guid ParseBrandIDByCellValue(object value)
+        private Guid ParseCategoryIDByCellValue(object value)
         {
             return value == null ? Guid.Empty : Guid.Parse(value.ToString());
         }
@@ -181,7 +181,7 @@ namespace AllOut.Desktop.Views.BrandForms
         {
             EnableOtherActionButtons(false);
 
-            _brandIDs = new List<Guid>();
+            _categoryIDs = new List<Guid>();
             txtSearch.Text = string.Empty;
             tblObjectList.DataSource = null;
             tblObjectList.Rows.Clear();
@@ -190,13 +190,13 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private async void btnSearch_Click(object sender, EventArgs e)
         {
-            var brands = await GetBrands(txtSearch.Text);
-            PopulateBrands(brands);
+            var categories = await GetCategories(txtSearch.Text);
+            PopulateCategories(categories);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var form = new BrandForm();
+            var form = new CategoryForm();
             form.ShowDialog();
             LoadPage();
         }
@@ -213,17 +213,17 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private void btnEnable_Click(object sender, EventArgs e)
         {
-            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.STATUS_ENABLED_INT);
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_CATEGORY_BY_ADMIN, Constants.STATUS_ENABLED_INT);
         }
 
         private void btnDisable_Click(object sender, EventArgs e)
         {
-            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.STATUS_DISABLED_INT);
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_CATEGORY_BY_ADMIN, Constants.STATUS_DISABLED_INT);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.STATUS_DELETION_INT);
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_CATEGORY_BY_ADMIN, Constants.STATUS_DELETION_INT);
         }
 
         private void tblObjectList_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -232,28 +232,28 @@ namespace AllOut.Desktop.Views.BrandForms
                 return;
 
             var row = tblObjectList.Rows[e.RowIndex];
-            var id = ParseBrandIDByCellValue(row.Cells[ID_COL_IDX].Value);
+            var id = ParseCategoryIDByCellValue(row.Cells[ID_COL_IDX].Value);
 
             //Check if Edit Button is Clicked
             if (e.ColumnIndex == BUTTON_COL_IDX)
             {
                 SelectAll(false);
 
-                //Show Brand Form
-                var form = new BrandForm(id);
+                //Show Category Form
+                var form = new CategoryForm(id);
                 form.ShowDialog();
                 LoadPage();
             }
             //Check if Select CheckBox is Clicked
             else if (e.ColumnIndex == CHECKBOX_COL_IDX)
             {
-                var isIDExist = _brandIDs.Exists(data => data == id);
+                var isIDExist = _categoryIDs.Exists(data => data == id);
                 if (isIDExist)
-                    _brandIDs.Remove(id);
+                    _categoryIDs.Remove(id);
                 else
-                    _brandIDs.Add(id);
+                    _categoryIDs.Add(id);
 
-                EnableOtherActionButtons(_brandIDs.Count > 0);
+                EnableOtherActionButtons(_categoryIDs.Count > 0);
             }
         }
 
