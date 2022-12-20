@@ -2,7 +2,7 @@
 using AllOut.Api.DataAccess;
 using AllOut.Api.DataAccess.Models;
 using AllOut.Api.Models.Requests;
-using AllOut.Common;
+using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
 
@@ -36,7 +36,7 @@ namespace AllOut.Api.Services
             var category = await _db.Categories.FindAsync(CategoryID);
 
             if (category == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND, Constants.OBJECT_CATEGORY));
+                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_CATEGORY));
 
             return category;
         }
@@ -45,14 +45,14 @@ namespace AllOut.Api.Services
         {
             //Check if Request is NULL
             if (request == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_REQUEST_NULL, Constants.OBJECT_CATEGORY));
+                throw new ServiceException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_CATEGORY));
 
             var requestID = await _request.InsertRequest(_db, request.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
 
             if (requestID == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_ID_NULL, Constants.OBJECT_CATEGORY));
+                throw new ServiceException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_CATEGORY));
 
             switch (request.FunctionID)
             {
@@ -111,7 +111,7 @@ namespace AllOut.Api.Services
             var currentCategory = await _db.Categories.FindAsync(inputCategory.CategoryID);
 
             if (currentCategory == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND_CHANGE, Constants.OBJECT_CATEGORY));
+                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_CATEGORY));
 
             //currentCategory.CategoryID = inputCategory.CategoryID;
             currentCategory.Name = inputCategory.Name;
@@ -126,7 +126,7 @@ namespace AllOut.Api.Services
             var currentCategory = await _db.Categories.FindAsync(CategoryID);
 
             if (currentCategory == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND_DELETE, Constants.OBJECT_CATEGORY));
+                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_CATEGORY));
 
             _db.Remove(currentCategory);
         }

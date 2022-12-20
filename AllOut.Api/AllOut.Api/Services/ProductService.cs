@@ -2,7 +2,7 @@
 using AllOut.Api.DataAccess;
 using AllOut.Api.DataAccess.Models;
 using AllOut.Api.Models.Requests;
-using AllOut.Common;
+using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
 
@@ -28,7 +28,7 @@ namespace AllOut.Api.Services
             var product = await _db.Products.FindAsync(productID);
 
             if (product == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND, Constants.OBJECT_PRODUCT));
+                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_PRODUCT));
 
             return product;
         }
@@ -37,14 +37,14 @@ namespace AllOut.Api.Services
         {
             //Check if Request is NULL
             if (request == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_REQUEST_NULL, Constants.OBJECT_PRODUCT));
+                throw new ServiceException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_PRODUCT));
 
             var requestID = await _request.InsertRequest(_db, request.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
 
             if (requestID == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_ID_NULL, Constants.OBJECT_PRODUCT));
+                throw new ServiceException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_PRODUCT));
 
             switch (request.FunctionID)
             {
@@ -80,7 +80,7 @@ namespace AllOut.Api.Services
             var currentProduct = await _db.Products.FindAsync(inputProduct.ProductID);
 
             if (currentProduct == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND_CHANGE, Constants.OBJECT_PRODUCT));
+                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_PRODUCT));
 
             //currentProduct.ProductID = inputProduct.ProductID;
             currentProduct.BrandID = inputProduct.BrandID;
@@ -98,7 +98,7 @@ namespace AllOut.Api.Services
             var currentProduct = await _db.Products.FindAsync(productID);
 
             if (currentProduct == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND_DELETE, Constants.OBJECT_PRODUCT));
+                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_PRODUCT));
 
             _db.Remove(currentProduct);
         }

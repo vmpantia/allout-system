@@ -29,10 +29,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="AllOut.Common">
-      <HintPath>..\..\AllOut.Common\AllOut.Common\bin\Debug\net6.0\AllOut.Common.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

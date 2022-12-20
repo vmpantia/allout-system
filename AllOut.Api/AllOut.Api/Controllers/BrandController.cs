@@ -1,7 +1,8 @@
-﻿using AllOut.Api.Contractors;
+﻿using AllOut.Api.Common;
+using AllOut.Api.Contractors;
 using AllOut.Api.Models.enums;
 using AllOut.Api.Models.Requests;
-using AllOut.Common;
+using AllOut.Api.Common;
 using Microsoft.AspNetCore.Mvc;
 using Puregold.API.Exceptions;
 
@@ -61,7 +62,7 @@ namespace AllOut.Api.Controllers
                 {
                     //Check if Request is NULL
                     if (request == null)
-                        throw new ControllerException(string.Format(Constants.ERROR_OBJECT_REQUEST_NULL, Constants.OBJECT_BRAND));
+                        throw new ControllerException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_BRAND));
 
                     switch(type)
                     {

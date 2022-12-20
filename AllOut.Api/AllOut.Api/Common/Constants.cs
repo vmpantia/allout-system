@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace AllOut.Common
+﻿namespace AllOut.Api.Common
 {
     public class Constants
     {
@@ -33,7 +31,7 @@ namespace AllOut.Common
         public const string STATUS_DISABLE_STRING = "Disable";
         public const string STATUS_DELETE_STRING = "Delete";
 
-        public const int STATUS_ENABLED_INT= 0;
+        public const int STATUS_ENABLED_INT = 0;
         public const int STATUS_DISABLED_INT = 1;
         public const int STATUS_DELETION_INT = 2;
         #endregion

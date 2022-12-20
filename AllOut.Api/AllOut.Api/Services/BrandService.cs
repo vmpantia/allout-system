@@ -2,7 +2,7 @@
 using AllOut.Api.DataAccess;
 using AllOut.Api.DataAccess.Models;
 using AllOut.Api.Models.Requests;
-using AllOut.Common;
+using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
 
@@ -36,7 +36,7 @@ namespace AllOut.Api.Services
             var brand = await _db.Brands.FindAsync(BrandID);
 
             if (brand == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND, Constants.OBJECT_BRAND));
+                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_BRAND));
 
             return brand;
         }
@@ -48,7 +48,7 @@ namespace AllOut.Api.Services
                                                               request.RequestStatus);
 
             if (requestID == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_ID_NULL, Constants.OBJECT_BRAND));
+                throw new ServiceException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_BRAND));
 
             switch (request.FunctionID)
             {
@@ -101,9 +101,9 @@ namespace AllOut.Api.Services
             if (duplicate.Count > 0)
             {
                 if (duplicate.First().Status != Constants.STATUS_ENABLED_INT)
-                    throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NAME_EXIST_DISABLED, Constants.OBJECT_BRAND));
+                    throw new ServiceException(string.Format(Constants.ERROR_NAME_EXIST_DISABLED, Constants.OBJECT_BRAND));
 
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NAME_EXIST, Constants.OBJECT_BRAND));
+                throw new ServiceException(string.Format(Constants.ERROR_NAME_EXIST, Constants.OBJECT_BRAND));
             }
 
             inputBrand.BrandID = Guid.NewGuid();
@@ -116,7 +116,7 @@ namespace AllOut.Api.Services
             var currentBrand = await _db.Brands.FindAsync(inputBrand.BrandID);
 
             if (currentBrand == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND_CHANGE, Constants.OBJECT_BRAND));
+                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_BRAND));
 
             //currentBrand.BrandID = inputBrand.BrandID;
             currentBrand.Name = inputBrand.Name;
@@ -131,7 +131,7 @@ namespace AllOut.Api.Services
             var currentBrand = await _db.Categories.FindAsync(BrandID);
 
             if (currentBrand == null)
-                throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NOT_FOUND_DELETE, Constants.OBJECT_BRAND));
+                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_BRAND));
 
             _db.Remove(currentBrand);
         }
