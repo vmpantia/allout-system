@@ -1,8 +1,8 @@
-﻿using AllOut.Api.Commons;
-using AllOut.Api.Contractors;
+﻿using AllOut.Api.Contractors;
 using AllOut.Api.DataAccess;
 using AllOut.Api.DataAccess.Models;
 using AllOut.Api.Models.Requests;
+using AllOut.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
 
@@ -20,13 +20,13 @@ namespace AllOut.Api.Services
 
         public async Task<IEnumerable<Brand>> GetBrandsAsync()
         {
-            return await _db.Brands.Where(data => data.Status != Constants.INT_STATUS_DELETION).ToListAsync();
+            return await _db.Brands.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
         }
 
         public async Task<IEnumerable<Brand>> GetBrandsByQueryAsync(string query)
         {
             var brands = await _db.Brands.Where(data => data.Name.Contains(query) || data.Description.Contains(query))
-                                         .Where(data => data.Status != Constants.INT_STATUS_DELETION).ToListAsync();
+                                         .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
 
             return brands;
         }
@@ -100,7 +100,7 @@ namespace AllOut.Api.Services
 
             if (duplicate.Count > 0)
             {
-                if (duplicate.First().Status != Constants.INT_STATUS_ENABLED)
+                if (duplicate.First().Status != Constants.STATUS_ENABLED_INT)
                     throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NAME_EXIST_DISABLED, Constants.OBJECT_BRAND));
 
                 throw new ServiceException(string.Format(Constants.ERROR_OBJECT_NAME_EXIST, Constants.OBJECT_BRAND));

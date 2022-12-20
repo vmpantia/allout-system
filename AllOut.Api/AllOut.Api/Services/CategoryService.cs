@@ -1,8 +1,8 @@
-﻿using AllOut.Api.Commons;
-using AllOut.Api.Contractors;
+﻿using AllOut.Api.Contractors;
 using AllOut.Api.DataAccess;
 using AllOut.Api.DataAccess.Models;
 using AllOut.Api.Models.Requests;
+using AllOut.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
 
@@ -26,7 +26,7 @@ namespace AllOut.Api.Services
         public async Task<IEnumerable<Category>> GetCategoriesByQueryAsync(string query)
         {
             var categories = await _db.Categories.Where(data => data.Name.Contains(query) || data.Description.Contains(query))
-                                                 .Where(data => data.Status != Constants.INT_STATUS_DELETION).ToListAsync();
+                                                 .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
 
             return categories;
         }
