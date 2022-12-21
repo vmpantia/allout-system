@@ -46,21 +46,20 @@ namespace AllOut.Desktop.Views.BrandForms
             }
 
             PopulateFields(_brandInfo);
-            EnableFields(_brandInfo.Status == Constants.STATUS_ENABLED_INT);
+            EnableFieldsAndButtons(_brandInfo.Status == Constants.STATUS_ENABLED_INT);
         }
 
-        private void EnableFields(bool isEnabled)
+        private void EnableFieldsAndButtons(bool isEnabled)
         {
             txtName.Enabled = isEnabled;
             txtDescription.Enabled = isEnabled;
-            tglStatus.Enabled = isEnabled;
+            btnSave.Enabled= isEnabled;
         }
 
         private void PopulateFields(Brand brand)
         {
             txtName.Text = brand.Name;
             txtDescription.Text = brand.Description;
-            tglStatus.Checked = Utility.ConvertStatusToBoolean(brand.Status);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -75,13 +74,13 @@ namespace AllOut.Desktop.Views.BrandForms
                 return;
             }
 
-            //Disable Fields
-            EnableFields(false);
+            //Disable Fields and Buttons
+            EnableFieldsAndButtons(false);
 
             //Store new values in corresponding attribute
             _brandInfo.Name = txtName.Text;
             _brandInfo.Description = txtDescription.Text;
-            _brandInfo.Status = Utility.ConvertBooleanToStatus(tglStatus.Checked);
+            _brandInfo.Status = Constants.STATUS_ENABLED_INT;
 
 
             //Prepare Request for SaveBrand
@@ -97,8 +96,8 @@ namespace AllOut.Desktop.Views.BrandForms
             //Send Request for SaveBrand
             var response = await HttpController.PostSaveBrand(request);
 
-            //Enable Fields
-            EnableFields(true);
+            //Enable Fields and Buttons
+            EnableFieldsAndButtons(true);
 
             //Check Response Result
             if (response.Result != ResponseResult.SUCCESS)
@@ -120,13 +119,6 @@ namespace AllOut.Desktop.Views.BrandForms
         {
             _brandInfo = null;
             Close();
-        }
-
-        private void tglStatus_CheckedChanged(object sender, EventArgs e)
-        {
-            EnableFields(tglStatus.Checked);
-            lblStatus.Text = (tglStatus.Checked ? Constants.STATUS_ENABLED_STRING : Constants.STATUS_DISABLED_STRING).ToUpper();
-            lblStatus.ForeColor = tglStatus.Checked ? Color.FromArgb(39, 174, 96) : Color.FromArgb(64, 64, 64);
         }
     }
 }

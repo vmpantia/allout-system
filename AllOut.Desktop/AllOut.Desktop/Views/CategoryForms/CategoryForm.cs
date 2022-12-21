@@ -46,21 +46,20 @@ namespace AllOut.Desktop.Views.CategoryForms
             }
 
             PopulateFields(_categoryInfo);
-            EnableFields(_categoryInfo.Status == Constants.STATUS_ENABLED_INT);
+            EnableFieldsAndButtons(_categoryInfo.Status == Constants.STATUS_ENABLED_INT);
         }
 
-        private void EnableFields(bool isEnabled)
+        private void EnableFieldsAndButtons(bool isEnabled)
         {
             txtName.Enabled = isEnabled;
             txtDescription.Enabled = isEnabled;
-            tglStatus.Enabled = isEnabled;
+            btnSave.Enabled = isEnabled;
         }
 
         private void PopulateFields(Category category)
         {
             txtName.Text = category.Name;
             txtDescription.Text = category.Description;
-            tglStatus.Checked = Utility.ConvertStatusToBoolean(category.Status);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -75,13 +74,13 @@ namespace AllOut.Desktop.Views.CategoryForms
                 return;
             }
 
-            //Disable Fields
-            EnableFields(false);
+            //Disable Fields and Buttons
+            EnableFieldsAndButtons(false);
 
             //Store new values in corresponding attribute
             _categoryInfo.Name = txtName.Text;
             _categoryInfo.Description = txtDescription.Text;
-            _categoryInfo.Status = Utility.ConvertBooleanToStatus(tglStatus.Checked);
+            _categoryInfo.Status = Constants.STATUS_ENABLED_INT;
 
 
             //Prepare Request for SaveCategory
@@ -97,8 +96,8 @@ namespace AllOut.Desktop.Views.CategoryForms
             //Send Request for SaveCategory
             var response = await HttpController.PostSaveCategory(request);
 
-            //Enable Fields
-            EnableFields(true);
+            //Enable Fields and Buttons
+            EnableFieldsAndButtons(true);
 
             //Check Response Result
             if (response.Result != ResponseResult.SUCCESS)
@@ -120,13 +119,6 @@ namespace AllOut.Desktop.Views.CategoryForms
         {
             _categoryInfo = null;
             Close();
-        }
-
-        private void tglStatus_CheckedChanged(object sender, EventArgs e)
-        {
-            EnableFields(tglStatus.Checked);
-            lblStatus.Text = (tglStatus.Checked ? Constants.STATUS_ENABLED_STRING : Constants.STATUS_DISABLED_STRING).ToUpper();
-            lblStatus.ForeColor = tglStatus.Checked ? Color.FromArgb(39, 174, 96) : Color.FromArgb(64, 64, 64);
         }
     }
 }
