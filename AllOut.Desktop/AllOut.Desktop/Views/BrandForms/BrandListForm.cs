@@ -50,7 +50,7 @@ namespace AllOut.Desktop.Views.BrandForms
             return response.Data as List<Brand>;
         }
 
-        private async void UpdateStatusByIDs(string functionID, int newStatus)
+        private async void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
         {
             var action = string.Empty;
             if (newStatus == Constants.STATUS_ENABLED_INT)
@@ -71,7 +71,7 @@ namespace AllOut.Desktop.Views.BrandForms
             {
                 UserID = Guid.NewGuid(),
                 FunctionID = functionID,
-                RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
+                RequestStatus = requestStatus,
                 IDs = _brandIDs,
                 newStatus = newStatus
             };
@@ -213,17 +213,17 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private void btnEnable_Click(object sender, EventArgs e)
         {
-            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.STATUS_ENABLED_INT);
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_ENABLED_INT);
         }
 
         private void btnDisable_Click(object sender, EventArgs e)
         {
-            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.STATUS_DISABLED_INT);
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_DISABLED_INT);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.STATUS_DELETION_INT);
+            UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_POST_DELETE, Constants.STATUS_DELETION_INT);
         }
 
         private void tblObjectList_CellContentClick(object sender, DataGridViewCellEventArgs e)
