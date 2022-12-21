@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AllOut.Desktop.Common
 {
-    internal class Constants
+    public class Constants
     {
         public const string NA = "N/A";
 
@@ -16,6 +16,14 @@ namespace AllOut.Desktop.Common
         public const string FORM_BRANDS = "Brands";
         public const string FORM_CATEGORIES = "Categories";
         #endregion
+
+        #region Request ID
+        public const string REQUEST_ID_FORMAT = "{0}{1}";
+        public const string REQUEST_ID_SUFFIX = "0001";
+        public const int REQUEST_ID_LENGTH = 12;
+        public const int REQUEST_ID_PREFIX_LENGTH = 8;
+        public const int REQUEST_ID_SUFFIX_LENGTH = 4;
+        #endregion 
 
         #region Request Status
         public const string REQUEST_STATUS_COMPLETED = "A2";
@@ -71,7 +79,7 @@ namespace AllOut.Desktop.Common
         public const string ERROR_NOT_FOUND_DELETE = "{0} not found, Deletion cannot be process.";
         public const string ERROR_NOT_FOUND = "{0} ID not found.";
         public const string ERROR_NAME_EXIST_DISABLED = "{0} Name already Exist in the System. It's currently Disabled.";
-        public const string ERROR_NAME_EXIST = "{0} Brand Name already Exist in the System.";
+        public const string ERROR_NAME_EXIST = "{0} Name already Exist in the System.";
         public const string ERROR_NO_SELECTED = "No {0}(s) selected.";
         public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
         public const string ERROR_UNABLE_EDIT = "Unable to Edit {0}.";

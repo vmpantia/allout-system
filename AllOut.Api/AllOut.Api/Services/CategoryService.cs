@@ -5,6 +5,7 @@ using AllOut.Api.Models.Requests;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
+using Azure.Core;
 
 namespace AllOut.Api.Services
 {
@@ -57,12 +58,9 @@ namespace AllOut.Api.Services
             switch (request.FunctionID)
             {
                 case Constants.FUNCTION_ID_ADD_CATEGORY_BY_ADMIN: //Add Category
-                    request.inputCategory.CategoryID = Guid.NewGuid();
-                    request.inputCategory.CreatedDate = Globals.EXEC_DATETIME;
                     await InsertCategory(request.inputCategory);
                     break;
                 case Constants.FUNCTION_ID_CHANGE_CATEGORY_BY_ADMIN: //Change Category
-                    request.inputCategory.ModifiedDate = Globals.EXEC_DATETIME;
                     await UpdateCategory(request.inputCategory);
                     break;
                 default: //Delete Category
@@ -103,6 +101,18 @@ namespace AllOut.Api.Services
 
         private async Task InsertCategory(Category inputCategory)
         {
+            var duplicate = await _db.Categories.Where(data => data.Name == inputCategory.Name).ToListAsync();
+
+            if (duplicate.Count > 0)
+            {
+                if (duplicate.First().Status != Constants.STATUS_ENABLED_INT)
+                    throw new ServiceException(string.Format(Constants.ERROR_NAME_EXIST_DISABLED, Constants.OBJECT_CATEGORY));
+
+                throw new ServiceException(string.Format(Constants.ERROR_NAME_EXIST, Constants.OBJECT_CATEGORY));
+            }
+
+            inputCategory.CategoryID = Guid.NewGuid();
+            inputCategory.CreatedDate = Globals.EXEC_DATETIME;
             await _db.Categories.AddAsync(inputCategory);
         }
 

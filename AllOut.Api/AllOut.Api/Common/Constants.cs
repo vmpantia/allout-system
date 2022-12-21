@@ -16,7 +16,7 @@
         public const int REQUEST_ID_LENGTH = 12;
         public const int REQUEST_ID_PREFIX_LENGTH = 8;
         public const int REQUEST_ID_SUFFIX_LENGTH = 4;
-        #endregion
+        #endregion 
 
         #region Request Status
         public const string REQUEST_STATUS_COMPLETED = "A2";
@@ -72,7 +72,7 @@
         public const string ERROR_NOT_FOUND_DELETE = "{0} not found, Deletion cannot be process.";
         public const string ERROR_NOT_FOUND = "{0} ID not found.";
         public const string ERROR_NAME_EXIST_DISABLED = "{0} Name already Exist in the System. It's currently Disabled.";
-        public const string ERROR_NAME_EXIST = "{0} Brand Name already Exist in the System.";
+        public const string ERROR_NAME_EXIST = "{0} Name already Exist in the System.";
         public const string ERROR_NO_SELECTED = "No {0}(s) selected.";
         public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
         public const string ERROR_UNABLE_EDIT = "Unable to Edit {0}.";
@@ -113,6 +113,10 @@
         public const string BUTTON_NAME_SELECTION = "Selection";
         public const string BUTTON_HEADER_ACTION = "Action";
         public const string BUTTON_HEADER_SELECT = "Select";
+        #endregion
+
+        #region ToolTip
+        public const string TOOLTIP_SEARCH = "Search {0}";
         #endregion
     }
 }
