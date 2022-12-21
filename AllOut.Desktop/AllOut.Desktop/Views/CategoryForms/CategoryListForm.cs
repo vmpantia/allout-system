@@ -30,7 +30,7 @@ namespace AllOut.Desktop.Views.CategoryForms
         {
             var categories = await GetCategories();
             PopulateCategories(categories);
-            btnSearchToolTip.SetToolTip(btnSearch, "Search Category");
+            btnSearchToolTip.SetToolTip(btnSearch, string.Format(Constants.TOOLTIP_SEARCH, Constants.OBJECT_CATEGORY));
         }
 
         private async Task<List<Category>> GetCategories(string query = null)

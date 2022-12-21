@@ -113,5 +113,9 @@ namespace AllOut.Desktop.Common
         public const string BUTTON_HEADER_ACTION = "Action";
         public const string BUTTON_HEADER_SELECT = "Select";
         #endregion
+
+        #region ToolTip
+        public const string TOOLTIP_SEARCH = "Search {0}";
+        #endregion
     }
 }

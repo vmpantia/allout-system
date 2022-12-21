@@ -30,7 +30,7 @@ namespace AllOut.Desktop.Views.BrandForms
         {
             var brands = await GetBrands();
             PopulateBrands(brands);
-            btnSearchToolTip.SetToolTip(btnSearch, "Search Brand");
+            btnSearchToolTip.SetToolTip(btnSearch, string.Format(Constants.TOOLTIP_SEARCH, Constants.OBJECT_BRAND));
         }
 
         private async Task<List<Brand>> GetBrands(string query = null)
