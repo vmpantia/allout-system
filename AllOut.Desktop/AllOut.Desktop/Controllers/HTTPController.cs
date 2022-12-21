@@ -48,7 +48,7 @@ namespace AllOut.Desktop.Controllers
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
-                customResponse.Data = ex.ToString();
+                customResponse.Data = ex.Message;
                 customResponse.StatusCode = Constants.NA;
             }
             return customResponse;
@@ -87,7 +87,7 @@ namespace AllOut.Desktop.Controllers
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
-                customResponse.Data = ex.ToString();
+                customResponse.Data = ex.Message;
                 customResponse.StatusCode = Constants.NA;
             }
             return customResponse;
@@ -124,7 +124,7 @@ namespace AllOut.Desktop.Controllers
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
-                customResponse.Data = ex.ToString();
+                customResponse.Data = ex.Message;
                 customResponse.StatusCode = Constants.NA;
             }
             return customResponse;
@@ -161,7 +161,7 @@ namespace AllOut.Desktop.Controllers
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
-                customResponse.Data = ex.ToString();
+                customResponse.Data = ex.Message;
                 customResponse.StatusCode = Constants.NA;
             }
             return customResponse;
@@ -192,7 +192,7 @@ namespace AllOut.Desktop.Controllers
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
-                customResponse.Data = ex.ToString();
+                customResponse.Data = ex.Message;
                 customResponse.StatusCode = Constants.NA;
             }
             return customResponse;
@@ -223,7 +223,7 @@ namespace AllOut.Desktop.Controllers
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
-                customResponse.Data = ex.ToString();
+                customResponse.Data = ex.Message;
                 customResponse.StatusCode = Constants.NA;
             }
             return customResponse;
@@ -263,7 +263,7 @@ namespace AllOut.Desktop.Controllers
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
-                customResponse.Data = ex.ToString();
+                customResponse.Data = ex.Message;
                 customResponse.StatusCode = Constants.NA;
             }
             return customResponse;
@@ -300,7 +300,7 @@ namespace AllOut.Desktop.Controllers
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
-                customResponse.Data = ex.ToString();
+                customResponse.Data = ex.Message;
                 customResponse.StatusCode = Constants.NA;
             }
             return customResponse;
@@ -337,7 +337,7 @@ namespace AllOut.Desktop.Controllers
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
-                customResponse.Data = ex.ToString();
+                customResponse.Data = ex.Message;
                 customResponse.StatusCode = Constants.NA;
             }
             return customResponse;
@@ -368,7 +368,7 @@ namespace AllOut.Desktop.Controllers
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
-                customResponse.Data = ex.ToString();
+                customResponse.Data = ex.Message;
                 customResponse.StatusCode = Constants.NA;
             }
             return customResponse;
@@ -399,7 +399,7 @@ namespace AllOut.Desktop.Controllers
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
-                customResponse.Data = ex.ToString();
+                customResponse.Data = ex.Message;
                 customResponse.StatusCode = Constants.NA;
             }
             return customResponse;

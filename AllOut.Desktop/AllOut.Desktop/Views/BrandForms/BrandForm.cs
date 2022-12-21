@@ -51,21 +51,22 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private void EnableFields(bool isEnabled)
         {
-            txtBrandName.Enabled = isEnabled;
-            txtBrandDescription.Enabled = isEnabled;
+            txtName.Enabled = isEnabled;
+            txtDescription.Enabled = isEnabled;
+            tglStatus.Enabled = isEnabled;
         }
 
         private void PopulateFields(Brand brand)
         {
-            txtBrandName.Text = brand.Name;
-            txtBrandDescription.Text = brand.Description;
+            txtName.Text = brand.Name;
+            txtDescription.Text = brand.Description;
             tglStatus.Checked = Utility.ConvertStatusToBoolean(brand.Status);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
             //Check if Brand Name Field is Empty
-            if (string.IsNullOrEmpty(txtBrandName.Text))
+            if (string.IsNullOrEmpty(txtName.Text))
             {
                 MessageBox.Show(string.Format(Constants.ERROR_NAME_REQUIRED, Constants.OBJECT_BRAND),
                                 string.Format(Constants.TITLE_SAVE, Constants.OBJECT_BRAND),
@@ -78,8 +79,8 @@ namespace AllOut.Desktop.Views.BrandForms
             EnableFields(false);
 
             //Store new values in corresponding attribute
-            _brandInfo.Name = txtBrandName.Text;
-            _brandInfo.Description = txtBrandDescription.Text;
+            _brandInfo.Name = txtName.Text;
+            _brandInfo.Description = txtDescription.Text;
             _brandInfo.Status = Utility.ConvertBooleanToStatus(tglStatus.Checked);
 
 

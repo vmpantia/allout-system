@@ -51,21 +51,22 @@ namespace AllOut.Desktop.Views.CategoryForms
 
         private void EnableFields(bool isEnabled)
         {
-            txtCategoryName.Enabled = isEnabled;
-            txtCategoryDescription.Enabled = isEnabled;
+            txtName.Enabled = isEnabled;
+            txtDescription.Enabled = isEnabled;
+            tglStatus.Enabled = isEnabled;
         }
 
         private void PopulateFields(Category category)
         {
-            txtCategoryName.Text = category.Name;
-            txtCategoryDescription.Text = category.Description;
+            txtName.Text = category.Name;
+            txtDescription.Text = category.Description;
             tglStatus.Checked = Utility.ConvertStatusToBoolean(category.Status);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
             //Check if Category Name Field is Empty
-            if (string.IsNullOrEmpty(txtCategoryName.Text))
+            if (string.IsNullOrEmpty(txtName.Text))
             {
                 MessageBox.Show(string.Format(Constants.ERROR_NAME_REQUIRED, Constants.OBJECT_CATEGORY),
                                 string.Format(Constants.TITLE_SAVE, Constants.OBJECT_CATEGORY),
@@ -78,8 +79,8 @@ namespace AllOut.Desktop.Views.CategoryForms
             EnableFields(false);
 
             //Store new values in corresponding attribute
-            _categoryInfo.Name = txtCategoryName.Text;
-            _categoryInfo.Description = txtCategoryDescription.Text;
+            _categoryInfo.Name = txtName.Text;
+            _categoryInfo.Description = txtDescription.Text;
             _categoryInfo.Status = Utility.ConvertBooleanToStatus(tglStatus.Checked);
 
 
