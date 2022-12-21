@@ -5,6 +5,8 @@ using AllOut.Api.Models.Requests;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
+using AllOut.Api.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AllOut.Api.Services
 {
@@ -12,15 +14,28 @@ namespace AllOut.Api.Services
     {
         private readonly AllOutDbContext _db;
         private readonly IRequestService _request;
-        public ProductService(AllOutDbContext context, IRequestService request)
+        private readonly IUtilityService _utility;
+        public ProductService(AllOutDbContext context, IRequestService request, IUtilityService utility)
         {
             _db = context;
             _request = request;
+            _utility = utility;
         }
 
-        public async Task<IEnumerable<Product>> GetProductsAsync()
+        public async Task<IEnumerable<ProductFullInformation>> GetProductsAsync()
         {
-            return await _db.Products.ToListAsync();
+            var result = await (from p in _db.Products
+                                 join b in _db.Brands on p.BrandID equals b.BrandID into bb from b in bb.DefaultIfEmpty()
+                                 join c in _db.Categories on p.CategoryID equals c.CategoryID into cc from c in cc.DefaultIfEmpty()
+                                where p.Status == 0
+                                select new ProductFullInformation
+                                 {
+                                     productInfo = p,
+                                     brandInfo = _utility.CheckBrandAvailablity(b) ? b : new Brand(),
+                                     categoryInfo = _utility.CheckCategoryAvailablity(c) ? c : new Category()
+                                }).ToListAsync();
+
+            return result;
         }
 
         public async Task<Product> GetProductByIDAsync(Guid productID)
