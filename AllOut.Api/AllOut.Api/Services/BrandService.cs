@@ -157,7 +157,7 @@ namespace AllOut.Api.Services
             await _db.Brand_TRN.AddAsync(newTrn);
         }
 
-        private async Task<string> ValidateBrand(Brand newData, Brand oldData = null)
+        private async Task<string> ValidateBrand(Brand newData, Brand? oldData = null)
         {
             bool isNew = true;
             bool isNameChanged = false;

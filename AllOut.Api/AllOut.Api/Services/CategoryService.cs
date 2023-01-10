@@ -101,14 +101,10 @@ namespace AllOut.Api.Services
 
         private async Task InsertCategory(Category inputCategory)
         {
-            var duplicate = await _db.Categories.Where(data => data.Name == inputCategory.Name).ToListAsync();
-
-            if (duplicate.Count > 0)
+            var errorMessage = await ValidateCategory(inputCategory);
+            if (!string.IsNullOrEmpty(errorMessage))
             {
-                if (duplicate.First().Status != Constants.STATUS_ENABLED_INT)
-                    throw new ServiceException(string.Format(Constants.ERROR_NAME_EXIST_DISABLED, Constants.OBJECT_CATEGORY));
-
-                throw new ServiceException(string.Format(Constants.ERROR_NAME_EXIST, Constants.OBJECT_CATEGORY));
+                throw new ServiceException(errorMessage);
             }
 
             inputCategory.CategoryID = Guid.NewGuid();
@@ -122,6 +118,12 @@ namespace AllOut.Api.Services
 
             if (currentCategory == null)
                 throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_CATEGORY));
+
+            var errorMessage = await ValidateCategory(inputCategory, currentCategory);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                throw new ServiceException(errorMessage);
+            }
 
             //currentCategory.CategoryID = inputCategory.CategoryID;
             currentCategory.Name = inputCategory.Name;
@@ -156,6 +158,52 @@ namespace AllOut.Api.Services
             };
 
             await _db.Category_TRN.AddAsync(newTrn);
+        }
+
+        private async Task<string> ValidateCategory(Category newData, Category? oldData = null)
+        {
+            bool isNew = true;
+            bool isNameChanged = false;
+
+            //Check Data if NULL
+            if (newData == null)
+                return string.Format(Constants.ERROR_NULL, Constants.OBJECT_CATEGORY);
+
+            //Check if Name have value
+            if (string.IsNullOrEmpty(newData.Name))
+                return string.Format(Constants.ERROR_NAME_REQUIRED, Constants.OBJECT_CATEGORY);
+
+
+            if (oldData != null)
+            {
+                isNew = false;
+
+                //Check if new data and old data changed
+                if (newData.Name == oldData.Name &&
+                    newData.Description == oldData.Description &&
+                    newData.Status == oldData.Status &&
+                    newData.CreatedDate == oldData.CreatedDate &&
+                    newData.ModifiedDate == oldData.ModifiedDate)
+                    return string.Format(Constants.ERROR_NO_CHANGES, Constants.OBJECT_CATEGORY);
+
+                isNameChanged = newData.Name != oldData.Name;
+            }
+
+            if (isNew || isNameChanged)
+            {
+                //Check Duplicate Name for New Data
+                var duplicate = await _db.Categories.Where(data => data.Name == newData.Name).ToListAsync();
+
+                if (duplicate.Count > 0)
+                {
+                    if (duplicate.First().Status != Constants.STATUS_ENABLED_INT)
+                        return string.Format(Constants.ERROR_NAME_EXIST_DISABLED, Constants.OBJECT_CATEGORY);
+
+                    return string.Format(Constants.ERROR_NAME_EXIST, Constants.OBJECT_CATEGORY);
+                }
+            }
+
+            return string.Empty;
         }
     }
 }
