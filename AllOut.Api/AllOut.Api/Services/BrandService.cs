@@ -5,6 +5,8 @@ using AllOut.Api.Models.Requests;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
+using AllOut.Api.Models.enums;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AllOut.Api.Services
 {
@@ -96,14 +98,10 @@ namespace AllOut.Api.Services
 
         private async Task InsertBrand(Brand inputBrand)
         {
-            var duplicate = await _db.Brands.Where(data => data.Name == inputBrand.Name).ToListAsync();
-
-            if (duplicate.Count > 0)
+            var errorMessage = await ValidateBrand(inputBrand);
+            if (!string.IsNullOrEmpty(errorMessage))
             {
-                if (duplicate.First().Status != Constants.STATUS_ENABLED_INT)
-                    throw new ServiceException(string.Format(Constants.ERROR_NAME_EXIST_DISABLED, Constants.OBJECT_BRAND));
-
-                throw new ServiceException(string.Format(Constants.ERROR_NAME_EXIST, Constants.OBJECT_BRAND));
+                throw new ServiceException(errorMessage);
             }
 
             inputBrand.BrandID = Guid.NewGuid();
@@ -117,6 +115,12 @@ namespace AllOut.Api.Services
 
             if (currentBrand == null)
                 throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_BRAND));
+
+            var errorMessage = await ValidateBrand(inputBrand, currentBrand);
+            if(!string.IsNullOrEmpty(errorMessage))
+            {
+                throw new ServiceException(errorMessage);
+            }
 
             //currentBrand.BrandID = inputBrand.BrandID;
             currentBrand.Name = inputBrand.Name;
@@ -151,6 +155,52 @@ namespace AllOut.Api.Services
             };
 
             await _db.Brand_TRN.AddAsync(newTrn);
+        }
+
+        private async Task<string> ValidateBrand(Brand newData, Brand oldData = null)
+        {
+            bool isNew = true;
+            bool isNameChanged = false;
+
+            //Check Data if NULL
+            if (newData == null)
+                return string.Format(Constants.ERROR_NULL, Constants.OBJECT_BRAND);
+
+            //Check if Name have value
+            if (string.IsNullOrEmpty(newData.Name))
+                return string.Format(Constants.ERROR_NAME_REQUIRED, Constants.OBJECT_BRAND);
+
+
+            if(oldData != null)
+            {
+                isNew = false;
+
+                //Check if new data and old data changed
+                if (newData.Name == oldData.Name &&
+                    newData.Description == oldData.Description &&
+                    newData.Status == oldData.Status &&
+                    newData.CreatedDate == oldData.CreatedDate &&
+                    newData.ModifiedDate == oldData.ModifiedDate)
+                    return string.Format(Constants.ERROR_NO_CHANGES, Constants.OBJECT_BRAND);
+
+                isNameChanged = newData.Name != oldData.Name;
+            }
+
+            if (isNew || isNameChanged)
+            {
+                //Check Duplicate Name for New Data
+                var duplicate = await _db.Brands.Where(data => data.Name == newData.Name).ToListAsync();
+
+                if (duplicate.Count > 0)
+                {
+                    if (duplicate.First().Status != Constants.STATUS_ENABLED_INT)
+                        return string.Format(Constants.ERROR_NAME_EXIST_DISABLED, Constants.OBJECT_BRAND);
+
+                    return string.Format(Constants.ERROR_NAME_EXIST, Constants.OBJECT_BRAND);
+                }
+            }
+
+            return string.Empty;
         }
     }
 }

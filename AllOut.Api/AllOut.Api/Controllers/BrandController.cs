@@ -2,7 +2,6 @@
 using AllOut.Api.Contractors;
 using AllOut.Api.Models.enums;
 using AllOut.Api.Models.Requests;
-using AllOut.Api.Common;
 using Microsoft.AspNetCore.Mvc;
 using Puregold.API.Exceptions;
 

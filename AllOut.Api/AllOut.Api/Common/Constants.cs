@@ -66,6 +66,7 @@
         #endregion
 
         #region Error Messages
+        public const string ERROR_NULL = "{0} cannot be NULL.";
         public const string ERROR_ID_NULL = "{0} ID cannot be NULL.";
         public const string ERROR_REQUEST_NULL = "{0} request cannot be NULL.";
         public const string ERROR_NOT_FOUND_CHANGE = "{0} not found, Changes cannot be process.";
@@ -73,6 +74,7 @@
         public const string ERROR_NOT_FOUND = "{0} ID not found.";
         public const string ERROR_NAME_EXIST_DISABLED = "{0} Name already Exist in the System. It's currently Disabled.";
         public const string ERROR_NAME_EXIST = "{0} Name already Exist in the System.";
+        public const string ERROR_NO_CHANGES = "No changes made in {0}.";
         public const string ERROR_NO_SELECTED = "No {0}(s) selected.";
         public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
         public const string ERROR_UNABLE_EDIT = "Unable to Edit {0}.";
