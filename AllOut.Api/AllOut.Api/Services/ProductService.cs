@@ -130,16 +130,10 @@ namespace AllOut.Api.Services
 
         private async Task InsertProduct(Product inputProduct)
         {
-            var duplicate = await _db.Products.Where(data => data.Name == inputProduct.Name && 
-                                                             data.BrandID == inputProduct.BrandID &&
-                                                             data.CategoryID == inputProduct.CategoryID).ToListAsync();
-
-            if (duplicate.Count > 0)
+            var errorMessage = await ValidateProduct(inputProduct);
+            if (!string.IsNullOrEmpty(errorMessage))
             {
-                if (duplicate.First().Status != Constants.STATUS_ENABLED_INT)
-                    throw new ServiceException(string.Format(Constants.ERROR_NAME_EXIST_DISABLED, Constants.OBJECT_PRODUCT));
-
-                throw new ServiceException(string.Format(Constants.ERROR_NAME_EXIST, Constants.OBJECT_PRODUCT));
+                throw new ServiceException(errorMessage);
             }
 
             inputProduct.ProductID = Guid.NewGuid();
@@ -153,6 +147,12 @@ namespace AllOut.Api.Services
 
             if (currentProduct == null)
                 throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_PRODUCT));
+
+            var errorMessage = await ValidateProduct(inputProduct, currentProduct);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                throw new ServiceException(errorMessage);
+            }
 
             //currentProduct.ProductID = inputProduct.ProductID;
             currentProduct.BrandID = inputProduct.BrandID;
@@ -192,6 +192,55 @@ namespace AllOut.Api.Services
             };
 
             await _db.Product_TRN.AddAsync(newTrn);
+        }
+
+        private async Task<string> ValidateProduct(Product newData, Product? oldData = null)
+        {
+            bool isNew = true;
+            bool isNameChanged = false;
+
+            //Check Data if NULL
+            if (newData == null)
+                return string.Format(Constants.ERROR_NULL, Constants.OBJECT_PRODUCT);
+
+            //Check if Name have value
+            if (string.IsNullOrEmpty(newData.Name))
+                return string.Format(Constants.ERROR_NAME_REQUIRED, Constants.OBJECT_PRODUCT);
+
+
+            if (oldData != null)
+            {
+                isNew = false;
+
+                //Check if new data and old data changed
+                if (newData.BrandID == oldData.BrandID &&
+                    newData.CategoryID == oldData.CategoryID &&
+                    newData.Name == oldData.Name &&
+                    newData.Description == oldData.Description &&
+                    newData.ReorderPoint == oldData.ReorderPoint &&
+                    newData.Status == oldData.Status &&
+                    newData.CreatedDate == oldData.CreatedDate &&
+                    newData.ModifiedDate == oldData.ModifiedDate)
+                    return string.Format(Constants.ERROR_NO_CHANGES, Constants.OBJECT_PRODUCT);
+
+                isNameChanged = newData.Name != oldData.Name;
+            }
+
+            if (isNew || isNameChanged)
+            {
+                //Check Duplicate Name for New Data
+                var duplicate = await _db.Categories.Where(data => data.Name == newData.Name).ToListAsync();
+
+                if (duplicate.Count > 0)
+                {
+                    if (duplicate.First().Status != Constants.STATUS_ENABLED_INT)
+                        return string.Format(Constants.ERROR_NAME_EXIST_DISABLED, Constants.OBJECT_PRODUCT);
+
+                    return string.Format(Constants.ERROR_NAME_EXIST, Constants.OBJECT_PRODUCT);
+                }
+            }
+
+            return string.Empty;
         }
     }
 }
