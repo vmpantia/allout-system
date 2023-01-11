@@ -2,13 +2,8 @@
 
 namespace AllOut.Api.Models.Requests
 {
-    public class SaveBrandRequest
+    public class SaveBrandRequest : RequestBase
     {
-        //Request Information
-        public Guid UserID { get; set; }
-        public string FunctionID { get; set; }
-        public string RequestStatus { get; set; }
-
         //Category Information
         public Brand inputBrand { get; set; }
     }

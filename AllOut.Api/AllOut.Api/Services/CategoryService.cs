@@ -48,7 +48,7 @@ namespace AllOut.Api.Services
             if (request == null)
                 throw new ServiceException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_CATEGORY));
 
-            var requestID = await _request.InsertRequest(_db, request.UserID,
+            var requestID = await _request.InsertRequest(_db, request.client.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
 
@@ -78,7 +78,7 @@ namespace AllOut.Api.Services
 
         public async Task<string> UpdateCategoryStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
-            var requestID = await _request.InsertRequest(_db, request.UserID,
+            var requestID = await _request.InsertRequest(_db, request.client.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
             var count = 0;

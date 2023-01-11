@@ -45,7 +45,7 @@ namespace AllOut.Api.Services
 
         public async Task<string> SaveBrandAsync(SaveBrandRequest request)
         {
-            var requestID = await _request.InsertRequest(_db, request.UserID,
+            var requestID = await _request.InsertRequest(_db, request.client.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
 
@@ -75,7 +75,7 @@ namespace AllOut.Api.Services
 
         public async Task<string> UpdateBrandStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
-            var requestID = await _request.InsertRequest(_db, request.UserID,
+            var requestID = await _request.InsertRequest(_db, request.client.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
             var count = 0;
