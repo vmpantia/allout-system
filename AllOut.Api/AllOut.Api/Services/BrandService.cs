@@ -54,13 +54,13 @@ namespace AllOut.Api.Services
 
             switch (request.FunctionID)
             {
-                case Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN: //Add Brand
+                case Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN: //Add
                     await InsertBrand(request.inputBrand);
                     break;
-                case Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN: //Change Brand
+                case Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN: //Change
                     await UpdateBrand(request.inputBrand);
                     break;
-                default: //Delete Brand
+                default: //Delete
                     await DeleteBrand(request.inputBrand.BrandID);
                     break;
             }
@@ -132,12 +132,12 @@ namespace AllOut.Api.Services
 
         private async Task DeleteBrand(Guid BrandID)
         {
-            var currentBrand = await _db.Categories.FindAsync(BrandID);
+            var currentBrand = await _db.Brands.FindAsync(BrandID);
 
             if (currentBrand == null)
                 throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_BRAND));
 
-            _db.Remove(currentBrand);
+            _db.Brands.Remove(currentBrand);
         }
 
         private async Task InsertBrand_TRN(Brand inputBrand, string requestID, int number = 1)

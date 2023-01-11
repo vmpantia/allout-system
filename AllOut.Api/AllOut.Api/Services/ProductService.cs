@@ -85,14 +85,13 @@ namespace AllOut.Api.Services
 
             switch (request.FunctionID)
             {
-                case Constants.FUNCTION_ID_ADD_PRODUCT_BY_ADMIN: //Add Product
+                case Constants.FUNCTION_ID_ADD_PRODUCT_BY_ADMIN: //Add
                     await InsertProduct(request.inputProduct);
                     break;
-                case Constants.FUNCTION_ID_CHANGE_PRODUCT_BY_ADMIN: //Change Product
-                    request.inputProduct.ModifiedDate = Globals.EXEC_DATETIME;
+                case Constants.FUNCTION_ID_CHANGE_PRODUCT_BY_ADMIN: //Change
                     await UpdateProduct(request.inputProduct);
                     break;
-                default: //Delete Product
+                default: //Delete
                     await DeleteProduct(request.inputProduct.ProductID);
                     break;
             }
@@ -173,7 +172,7 @@ namespace AllOut.Api.Services
             if (currentProduct == null)
                 throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_PRODUCT));
 
-            _db.Remove(currentProduct);
+            _db.Products.Remove(currentProduct);
         }
 
         private async Task InsertProduct_TRN(Product inputProduct, string requestID, int number = 1)
@@ -181,6 +180,7 @@ namespace AllOut.Api.Services
             var newTrn = new Product_TRN
             {
                 RequestID = requestID,
+                Number = number,
                 ProductID = inputProduct.ProductID,
                 BrandID = inputProduct.BrandID,
                 CategoryID = inputProduct.CategoryID,

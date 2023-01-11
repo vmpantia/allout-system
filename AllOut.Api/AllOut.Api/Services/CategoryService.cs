@@ -57,13 +57,13 @@ namespace AllOut.Api.Services
 
             switch (request.FunctionID)
             {
-                case Constants.FUNCTION_ID_ADD_CATEGORY_BY_ADMIN: //Add Category
+                case Constants.FUNCTION_ID_ADD_CATEGORY_BY_ADMIN: //Add
                     await InsertCategory(request.inputCategory);
                     break;
-                case Constants.FUNCTION_ID_CHANGE_CATEGORY_BY_ADMIN: //Change Category
+                case Constants.FUNCTION_ID_CHANGE_CATEGORY_BY_ADMIN: //Change
                     await UpdateCategory(request.inputCategory);
                     break;
-                default: //Delete Category
+                default: //Delete
                     await DeleteCategory(request.inputCategory.CategoryID);
                     break;
             }
@@ -140,7 +140,7 @@ namespace AllOut.Api.Services
             if (currentCategory == null)
                 throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_CATEGORY));
 
-            _db.Remove(currentCategory);
+            _db.Categories.Remove(currentCategory);
         }
 
         private async Task InsertCategory_TRN(Category inputCategory, string requestID, int number = 1)
