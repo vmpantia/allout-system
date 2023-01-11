@@ -2,7 +2,7 @@
 using AllOut.Api.Contractors;
 using AllOut.Api.DataAccess.Models;
 
-namespace AllOut.Api.Services
+namespace AllOut.Api.Services.Common
 {
     public class UtilityService : IUtilityService
     {

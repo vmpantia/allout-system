@@ -4,7 +4,7 @@ using AllOut.Api.DataAccess.Models;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace AllOut.Api.Services
+namespace AllOut.Api.Services.Common
 {
     public class RequestService : IRequestService
     {
@@ -35,7 +35,7 @@ namespace AllOut.Api.Services
             var createdRequestToday = await db.Requests.Where(data => data.RequestDate == DateTime.Parse(Globals.EXEC_DATE))
                                                        .OrderByDescending(data => data.RequestID).ToListAsync();
 
-            if(createdRequestToday == null || createdRequestToday.Count == 0)
+            if (createdRequestToday == null || createdRequestToday.Count == 0)
             {
                 return newRequestID;
             }
