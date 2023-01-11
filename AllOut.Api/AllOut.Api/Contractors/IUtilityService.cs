@@ -6,5 +6,7 @@ namespace AllOut.Api.Contractors
     {
         bool CheckBrandAvailablity(Brand brand);
         bool CheckCategoryAvailablity(Category category);
+        int GetCurrentStock(int inventories, int sales);
+        bool GetReorderState(int stock, int reorderpoint);
     }
 }

@@ -25,16 +25,22 @@ namespace AllOut.Api.Services
 
         public async Task<IEnumerable<ProductFullInformation>> GetProductsAsync()
         {
-            var products = await (from p in _db.Products
-                                  join b in _db.Brands on p.BrandID equals b.BrandID into bb from b in bb.DefaultIfEmpty()
-                                  join c in _db.Categories on p.CategoryID equals c.CategoryID into cc from c in cc.DefaultIfEmpty()
-                                  where p.Status == 0
+            //Initial Product Information
+            var products = await (from a in _db.Products
+                                  join b in _db.Brands on a.BrandID equals b.BrandID into bb from b in bb.DefaultIfEmpty()
+                                  join c in _db.Categories on a.CategoryID equals c.CategoryID into cc from c in cc.DefaultIfEmpty()
+                                  where a.Status == 0
                                   select new ProductFullInformation
                                   {
-                                       productInfo = p,
+                                       productInfo = a,
                                        brandInfo = _utility.CheckBrandAvailablity(b) ? b : null,
                                        categoryInfo = _utility.CheckCategoryAvailablity(c) ? c : null
                                   }).ToListAsync();
+
+            foreach(var product in products)
+            {
+                await ParseOtherInformation(product);
+            }
 
             return products;
         }
@@ -232,7 +238,7 @@ namespace AllOut.Api.Services
             if (isNew || isNameChanged)
             {
                 //Check Duplicate Name for New Data
-                var duplicate = await _db.Categories.Where(data => data.Name == newData.Name).ToListAsync();
+                var duplicate = await _db.Products.Where(data => data.Name == newData.Name).ToListAsync();
 
                 if (duplicate.Count > 0)
                 {
@@ -244,6 +250,19 @@ namespace AllOut.Api.Services
             }
 
             return string.Empty;
+        }
+
+        private async Task ParseOtherInformation(ProductFullInformation product)
+        {
+
+            var countInInventories = await _db.Inventories.Where(data => data.ProductID == product.productInfo.ProductID &&
+                                                                   data.Status == 0)
+                                                          .SumAsync(data => data.Quantity);
+
+            var countInSales = 0;
+
+            product.Stock = _utility.GetCurrentStock(countInInventories, countInSales);
+            product.ReorderState = _utility.GetReorderState(product.Stock, product.productInfo.ReorderPoint);
         }
     }
 }

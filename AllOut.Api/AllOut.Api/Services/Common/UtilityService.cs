@@ -21,5 +21,18 @@ namespace AllOut.Api.Services.Common
 
             return category.Status == Constants.STATUS_ENABLED_INT;
         }
+
+        public int GetCurrentStock(int inventories, int sales)
+        {
+            var result = inventories - sales;
+            if(result < 0)
+                return 0;
+            return result;
+        }
+
+        public bool GetReorderState(int stock, int reorderpoint)
+        {
+            return stock <= reorderpoint;
+        }
     }
 }
