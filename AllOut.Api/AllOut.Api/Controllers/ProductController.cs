@@ -8,7 +8,7 @@ using Puregold.API.Exceptions;
 
 namespace AllOut.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {

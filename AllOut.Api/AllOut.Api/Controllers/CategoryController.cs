@@ -7,8 +7,8 @@ using Puregold.API.Exceptions;
 
 namespace AllOut.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _category;

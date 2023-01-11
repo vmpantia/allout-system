@@ -18,6 +18,7 @@ builder.Services.AddDbContext<AllOutDbContext>(options => options.UseSqlServer(c
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
 builder.Services.AddScoped<IUtilityService, UtilityService>();
 

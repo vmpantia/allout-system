@@ -7,14 +7,14 @@ using Puregold.API.Exceptions;
 
 namespace AllOut.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class BrandController : ControllerBase
     {
         private readonly IBrandService _brand;
-        public BrandController(IBrandService Brand)
+        public BrandController(IBrandService brand)
         {
-            _brand = Brand;
+            _brand = brand;
         }
 
         [HttpGet("GetBrands")]

@@ -5,13 +5,10 @@ using AllOut.Api.Models.Requests;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
-using AllOut.Api.Models;
-using Microsoft.AspNetCore.Mvc;
-using Azure.Core;
 
 namespace AllOut.Api.Services
 {
-    public class InventoryService
+    public class InventoryService : IInventoryService
     {
         private readonly AllOutDbContext _db;
         private readonly IRequestService _request;
@@ -149,7 +146,7 @@ namespace AllOut.Api.Services
             }
 
             var isItemExist = _db.Products.Where(data => data.ProductID == newData.ProductID).ToList();
-            if (isItemExist.Any())
+            if (!isItemExist.Any())
             {
                 return Constants.ERROR_PRODUCT_NOT_EXIST;
             }
