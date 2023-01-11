@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AllOut.Api.Migrations
 {
     [DbContext(typeof(AllOutDbContext))]
-    [Migration("20221206141025_InitialTableCreation")]
-    partial class InitialTableCreation
+    [Migration("20230111003305_InitialTable")]
+    partial class InitialTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -171,6 +171,9 @@ namespace AllOut.Api.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.HasKey("InventoryID");
 
                     b.ToTable("Inventories");
@@ -200,7 +203,7 @@ namespace AllOut.Api.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("ReOrderPoint")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("RequestID", "Number");
@@ -235,6 +238,9 @@ namespace AllOut.Api.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ReorderPoint")
                         .HasColumnType("int");
@@ -275,6 +281,9 @@ namespace AllOut.Api.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("ProductID")
                         .HasColumnType("uniqueidentifier");

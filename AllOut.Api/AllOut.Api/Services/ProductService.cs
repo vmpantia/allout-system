@@ -160,6 +160,7 @@ namespace AllOut.Api.Services
             currentProduct.Name = inputProduct.Name;
             currentProduct.Description = inputProduct.Description;
             currentProduct.ReorderPoint = inputProduct.ReorderPoint;
+            currentProduct.Price = inputProduct.Price;
             currentProduct.Status = inputProduct.Status;
             //currentProduct.CreatedDate = inputProduct.CreatedDate;
             currentProduct.ModifiedDate = Globals.EXEC_DATETIME;
@@ -186,6 +187,7 @@ namespace AllOut.Api.Services
                 Name = inputProduct.Name,
                 Description = inputProduct.Description,
                 ReorderPoint = inputProduct.ReorderPoint,
+                Price = inputProduct.Price,
                 Status = inputProduct.Status,
                 CreatedDate = inputProduct.CreatedDate,
                 ModifiedDate = inputProduct.ModifiedDate
@@ -218,6 +220,7 @@ namespace AllOut.Api.Services
                     newData.Name == oldData.Name &&
                     newData.Description == oldData.Description &&
                     newData.ReorderPoint == oldData.ReorderPoint &&
+                    newData.Price == oldData.Price &&
                     newData.Status == oldData.Status &&
                     newData.CreatedDate == oldData.CreatedDate &&
                     newData.ModifiedDate == oldData.ModifiedDate)
