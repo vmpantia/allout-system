@@ -39,6 +39,16 @@
 
         #region Function ID
 
+        #region User
+        public const string FUNCTION_ID_ADD_USER_BY_ADMIN = "00A00";
+        public const string FUNCTION_ID_ADD_USER = "00A01";
+        public const string FUNCTION_ID_CHANGE_USER_BY_ADMIN = "01C00";
+        public const string FUNCTION_ID_CHANGE_USER = "01C01";
+        public const string FUNCTION_ID_BULK_CHANGE_USER_BY_ADMIN = "11C00";
+        public const string FUNCTION_ID_DELETE_USER_BY_ADMIN = "01D00";
+        public const string FUNCTION_ID_BULK_DELETE_USER_BY_ADMIN = "11D00";
+        #endregion
+
         #region Product
         public const string FUNCTION_ID_ADD_PRODUCT_BY_ADMIN = "01A00";
         public const string FUNCTION_ID_CHANGE_PRODUCT_BY_ADMIN = "01C00";
@@ -113,6 +123,7 @@
         #endregion
 
         #region Objects
+        public const string OBJECT_USER = "User";
         public const string OBJECT_PRODUCT = "Product";
         public const string OBJECT_BRAND = "Brand";
         public const string OBJECT_CATEGORY = "Category";
