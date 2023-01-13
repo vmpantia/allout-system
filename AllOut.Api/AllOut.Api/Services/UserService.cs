@@ -11,7 +11,7 @@ using Azure.Core;
 
 namespace AllOut.Api.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly AllOutDbContext _db;
         private readonly IRequestService _request;
@@ -28,7 +28,7 @@ namespace AllOut.Api.Services
 
         public async Task<IEnumerable<User>> GetUsersByQueryAsync(string query)
         {
-            return await _db.Users.Where(data => data.Email.Contains(query) || 
+            return await _db.Users.Where(data => data.Email.Contains(query) ||
                                                  data.Username.Contains(query) ||
                                                  data.FirstName.Contains(query) ||
                                                  data.MiddleName.Contains(query) ||
