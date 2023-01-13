@@ -22,6 +22,18 @@ builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
 builder.Services.AddScoped<IUtilityService, UtilityService>();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Policy",
+        policy =>
+        {
+            policy.WithOrigins("*")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -39,6 +51,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+app.UseCors("Policy");
 
 app.UseAuthorization();
 
