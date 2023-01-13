@@ -15,12 +15,10 @@ namespace AllOut.Api.Services
     {
         private readonly AllOutDbContext _db;
         private readonly IRequestService _request;
-        private readonly IUtilityService _utility;
-        public UserService(AllOutDbContext context, IRequestService request, IUtilityService utility)
+        public UserService(AllOutDbContext context, IRequestService request)
         {
             _db = context;
             _request = request;
-            _utility = utility;
         }
 
         public async Task<IEnumerable<User>> GetUsersAsync()
@@ -46,6 +44,65 @@ namespace AllOut.Api.Services
                 throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_USER));
 
             return user;
+        }
+
+        public async Task<string> SaveUserAsync(SaveUserRequest request)
+        {
+            //Check if Request is NULL
+            if (request == null)
+                throw new ServiceException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_USER));
+
+            var requestID = await _request.InsertRequest(_db, request.client.UserID,
+                                                              request.FunctionID,
+                                                              request.RequestStatus);
+
+            if (requestID == null)
+                throw new ServiceException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_USER));
+
+            switch (request.FunctionID)
+            {
+                case Constants.FUNCTION_ID_ADD_USER_BY_ADMIN: //Add
+                case Constants.FUNCTION_ID_ADD_USER: //Add
+                    await InsertUser(request.inputUser);
+                    break;
+                case Constants.FUNCTION_ID_CHANGE_USER_BY_ADMIN: //Change
+                case Constants.FUNCTION_ID_CHANGE_USER: //Change
+                    await UpdateUser(request.inputUser);
+                    break;
+                case Constants.FUNCTION_ID_DELETE_PRODUCT_BY_ADMIN: //Delete
+                    await DeleteUser(request.inputUser.UserID);
+                    break;
+            }
+
+            //Insert Transaction
+            await InsertUser_TRN(request.inputUser, requestID.ToString());
+            //Save Changes
+            await _db.SaveChangesAsync();
+
+            return requestID;
+        }
+
+        public async Task<string> UpdateUserStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        {
+            var requestID = await _request.InsertRequest(_db, request.client.UserID,
+                                                              request.FunctionID,
+                                                              request.RequestStatus);
+            var count = 0;
+            foreach (var id in request.IDs)
+            {
+                count++;
+                var user = await _db.Users.FindAsync(id);
+                if (user != null)
+                {
+                    user.Status = request.newStatus;
+                    user.ModifiedDate = DateTime.Now;
+                    await InsertUser_TRN(user, requestID.ToString(), count);
+                }
+            }
+
+            await _db.SaveChangesAsync();
+
+            return requestID;
         }
 
         private async Task InsertUser(User inputUser)
