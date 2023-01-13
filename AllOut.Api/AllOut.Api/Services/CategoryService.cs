@@ -63,7 +63,7 @@ namespace AllOut.Api.Services
                 case Constants.FUNCTION_ID_CHANGE_CATEGORY_BY_ADMIN: //Change
                     await UpdateCategory(request.inputCategory);
                     break;
-                default: //Delete
+                case Constants.FUNCTION_ID_DELETE_CATEGORY_BY_ADMIN: //Delete
                     await DeleteCategory(request.inputCategory.CategoryID);
                     break;
             }

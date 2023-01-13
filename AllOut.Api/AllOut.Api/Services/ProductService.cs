@@ -97,7 +97,7 @@ namespace AllOut.Api.Services
                 case Constants.FUNCTION_ID_CHANGE_PRODUCT_BY_ADMIN: //Change
                     await UpdateProduct(request.inputProduct);
                     break;
-                default: //Delete
+                case Constants.FUNCTION_ID_DELETE_PRODUCT_BY_ADMIN: //Delete
                     await DeleteProduct(request.inputProduct.ProductID);
                     break;
             }

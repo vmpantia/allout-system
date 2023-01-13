@@ -60,7 +60,7 @@ namespace AllOut.Api.Services
                 case Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN: //Change
                     await UpdateBrand(request.inputBrand);
                     break;
-                default: //Delete
+                case Constants.FUNCTION_ID_DELETE_BRAND_BY_ADMIN: //Delete
                     await DeleteBrand(request.inputBrand.BrandID);
                     break;
             }

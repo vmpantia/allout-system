@@ -54,7 +54,7 @@ namespace AllOut.Api.Services
                 case Constants.FUNCTION_ID_CHANGE_INVENTORY_BY_ADMIN: //Change
                     await UpdateInventory(request.inputInventory);
                     break;
-                default: //Delete
+                case Constants.FUNCTION_ID_DELETE_INVENTORY_BY_ADMIN: //Delete
                     await DeleteInventory(request.inputInventory.InventoryID);
                     break;
             }
