@@ -208,6 +208,45 @@ namespace AllOut.Api.Migrations
                     b.ToTable("Inventory_TRN");
                 });
 
+            modelBuilder.Entity("AllOut.Api.DataAccess.Models.OtherCharge", b =>
+                {
+                    b.Property<Guid>("SalesID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ChargeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SalesID");
+
+                    b.ToTable("OtherCharges");
+                });
+
+            modelBuilder.Entity("AllOut.Api.DataAccess.Models.OtherCharge_TRN", b =>
+                {
+                    b.Property<string>("RequestID")
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ChargeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RequestID", "Number");
+
+                    b.ToTable("OtherCharge_TRN");
+                });
+
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.Product", b =>
                 {
                     b.Property<Guid>("ProductID")
@@ -333,6 +372,117 @@ namespace AllOut.Api.Migrations
                     b.HasKey("RequestID");
 
                     b.ToTable("Requests");
+                });
+
+            modelBuilder.Entity("AllOut.Api.DataAccess.Models.Sales", b =>
+                {
+                    b.Property<Guid>("SalesID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Remarks")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SalesID");
+
+                    b.ToTable("Sales");
+                });
+
+            modelBuilder.Entity("AllOut.Api.DataAccess.Models.SalesItem", b =>
+                {
+                    b.Property<Guid>("SalesID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("SalesID", "ProductID");
+
+                    b.ToTable("SalesItems");
+                });
+
+            modelBuilder.Entity("AllOut.Api.DataAccess.Models.Sales_TRN", b =>
+                {
+                    b.Property<string>("RequestID")
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Remarks")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SalesID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("RequestID", "Number");
+
+                    b.ToTable("Sales_TRN");
+                });
+
+            modelBuilder.Entity("AllOut.Api.DataAccess.Models.Transaction.SalesItem_TRN", b =>
+                {
+                    b.Property<string>("RequestID")
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("ProductID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("SalesID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("RequestID", "Number");
+
+                    b.ToTable("SalesItem_TRN");
                 });
 
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.User", b =>

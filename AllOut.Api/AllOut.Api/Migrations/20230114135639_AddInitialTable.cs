@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AllOut.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialTable : Migration
+    public partial class AddInitialTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -114,6 +114,33 @@ namespace AllOut.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OtherCharge_TRN",
+                columns: table => new
+                {
+                    RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
+                    ChargeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OtherCharge_TRN", x => new { x.RequestID, x.Number });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OtherCharges",
+                columns: table => new
+                {
+                    SalesID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ChargeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OtherCharges", x => x.SalesID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Product_TRN",
                 columns: table => new
                 {
@@ -173,6 +200,118 @@ namespace AllOut.Api.Migrations
                 {
                     table.PrimaryKey("PK_Requests", x => x.RequestID);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Sales",
+                columns: table => new
+                {
+                    SalesID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Remarks = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales", x => x.SalesID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sales_TRN",
+                columns: table => new
+                {
+                    RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
+                    SalesID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Remarks = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales_TRN", x => new { x.RequestID, x.Number });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SalesItem_TRN",
+                columns: table => new
+                {
+                    RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
+                    SalesID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SalesItem_TRN", x => new { x.RequestID, x.Number });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SalesItems",
+                columns: table => new
+                {
+                    SalesID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SalesItems", x => new { x.SalesID, x.ProductID });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "User_TRN",
+                columns: table => new
+                {
+                    RequestID = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
+                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsEmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    Permission = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User_TRN", x => new { x.RequestID, x.Number });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    IsEmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    Permission = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.UserID);
+                });
         }
 
         /// <inheritdoc />
@@ -197,6 +336,12 @@ namespace AllOut.Api.Migrations
                 name: "Inventory_TRN");
 
             migrationBuilder.DropTable(
+                name: "OtherCharge_TRN");
+
+            migrationBuilder.DropTable(
+                name: "OtherCharges");
+
+            migrationBuilder.DropTable(
                 name: "Product_TRN");
 
             migrationBuilder.DropTable(
@@ -204,6 +349,24 @@ namespace AllOut.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Requests");
+
+            migrationBuilder.DropTable(
+                name: "Sales");
+
+            migrationBuilder.DropTable(
+                name: "Sales_TRN");
+
+            migrationBuilder.DropTable(
+                name: "SalesItem_TRN");
+
+            migrationBuilder.DropTable(
+                name: "SalesItems");
+
+            migrationBuilder.DropTable(
+                name: "User_TRN");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

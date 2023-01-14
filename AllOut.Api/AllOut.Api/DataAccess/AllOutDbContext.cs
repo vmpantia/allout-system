@@ -1,4 +1,5 @@
 ﻿using AllOut.Api.DataAccess.Models;
+using AllOut.Api.DataAccess.Models.Transaction;
 using Microsoft.EntityFrameworkCore;
 
 namespace AllOut.Api.DataAccess
@@ -14,6 +15,9 @@ namespace AllOut.Api.DataAccess
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Inventory> Inventories { get; set; }
+        public virtual DbSet<Sales> Sales { get; set; }
+        public virtual DbSet<SalesItem> SalesItems { get; set; }
+        public virtual DbSet<OtherCharge> OtherCharges { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
         #endregion
 
@@ -22,6 +26,9 @@ namespace AllOut.Api.DataAccess
         public virtual DbSet<Product_TRN> Product_TRN { get; set; }
         public virtual DbSet<Category_TRN> Category_TRN { get; set; }
         public virtual DbSet<Brand_TRN> Brand_TRN { get; set; }
+        public virtual DbSet<Sales_TRN> Sales_TRN { get; set; }
+        public virtual DbSet<SalesItem_TRN> SalesItem_TRN { get; set; }
+        public virtual DbSet<OtherCharge_TRN> OtherCharge_TRN { get; set; }
         public virtual DbSet<Inventory_TRN> Inventory_TRN { get; set; }
         #endregion
     }

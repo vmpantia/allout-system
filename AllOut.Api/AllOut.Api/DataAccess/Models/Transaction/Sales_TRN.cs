@@ -1,0 +1,20 @@
+﻿using Azure.Core;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+namespace AllOut.Api.DataAccess.Models
+{
+    [PrimaryKey(nameof(RequestID), nameof(Number))]
+    public class Sales_TRN
+    {
+        [MaxLength(12)]
+        public string RequestID { get; set; }
+        public int Number { get; set; }
+        public Guid SalesID { get; set; }
+        public Guid UserID { get; set; }
+        public string Remarks { get; set; }
+        public int Status { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+    }
+}
