@@ -88,17 +88,9 @@ namespace AllOut.Api.Controllers
 
                 return Ok(response);
             }
-            catch (ControllerException ex)
-            {
-                return Conflict(ex.Message);
-            }
-            catch (ServiceException ex)
-            {
-                return Conflict(ex.Message);
-            }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return Conflict(ex.Message);
             }
         }
 
