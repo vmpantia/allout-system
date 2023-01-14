@@ -254,12 +254,14 @@ namespace AllOut.Api.Services
 
         private async Task ParseOtherInformation(ProductFullInformation product)
         {
-
             var countInInventories = await _db.Inventories.Where(data => data.ProductID == product.productInfo.ProductID &&
                                                                    data.Status == 0)
                                                           .SumAsync(data => data.Quantity);
 
-            var countInSales = 0;
+            var countInSales = await (from a in _db.Sales
+                                      join b in _db.SalesItems on a.SalesID equals b.SalesID
+                                      where b.ProductID == product.productInfo.ProductID
+                                      select b).SumAsync(data => data.Quantity);
 
             product.Stock = _utility.GetCurrentStock(countInInventories, countInSales);
             product.ReorderState = _utility.GetReorderState(product.Stock, product.productInfo.ReorderPoint);
