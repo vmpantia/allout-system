@@ -107,6 +107,12 @@ namespace AllOut.Api.Services
 
         private async Task InsertUser(User inputUser)
         {
+            var errorMessage = ValidateUser(inputUser);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                throw new ServiceException(errorMessage);
+            }
+
             inputUser.UserID = Guid.NewGuid();
             inputUser.CreatedDate = Globals.EXEC_DATETIME;
             await _db.Users.AddAsync(inputUser);
@@ -118,6 +124,12 @@ namespace AllOut.Api.Services
 
             if (currentUser == null)
                 throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_USER));
+
+            var errorMessage = ValidateUser(inputUser, currentUser);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                throw new ServiceException(errorMessage);
+            }
 
             //currentUser.UserID = inputUser.UserID;
             currentUser.Email = inputUser.Email;
@@ -164,6 +176,41 @@ namespace AllOut.Api.Services
             };
 
             await _db.User_TRN.AddAsync(newTrn);
+        }
+
+        private string ValidateUser(User newData, User? oldData = null)
+        {
+            //Check Data if NULL
+            if (newData == null)
+                return string.Format(Constants.ERROR_NULL, Constants.OBJECT_USER);
+
+            //Check if Name have value
+            if (string.IsNullOrEmpty(newData.Email) ||
+                string.IsNullOrEmpty(newData.Username) ||
+                string.IsNullOrEmpty(newData.Password) ||
+                string.IsNullOrEmpty(newData.FirstName) ||
+                string.IsNullOrEmpty(newData.LastName))
+                return Constants.ERROR_REQUIRED_FIELDS;
+
+
+            if (oldData != null)
+            {
+                //Check if new data and old data changed
+                if (/*newData.Email == oldData.BrandID &&*/
+                    //newData.Username == oldData.CategoryID &&
+                    //newData.Password == oldData.Name &&
+                    newData.FirstName == oldData.FirstName &&
+                    newData.MiddleName == oldData.MiddleName &&
+                    newData.LastName == oldData.LastName &&
+                    //newData.IsEmailConfirmed == oldData.IsEmailConfirmed &&
+                    newData.Permission == oldData.Permission &&
+                    newData.Status == oldData.Status &&
+                    newData.CreatedDate == oldData.CreatedDate &&
+                    newData.ModifiedDate == oldData.ModifiedDate)
+                    return string.Format(Constants.ERROR_NO_CHANGES, Constants.OBJECT_USER);
+            }
+
+            return string.Empty;
         }
     }
 }

@@ -93,9 +93,10 @@
         public const string ERROR_NAME_EXIST_DISABLED = "{0} Name already Exist in the System. It's currently Disabled.";
         public const string ERROR_NAME_EXIST = "{0} Name already Exist in the System.";
         public const string ERROR_NO_CHANGES = "No changes made in {0}.";
+        public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
+        public const string ERROR_REQUIRED_FIELDS = "Required fields must have values.";
         public const string ERROR_PRODUCT_NOT_EXIST = "Product not Exist in the System";
         public const string ERROR_NO_SELECTED = "No {0}(s) selected.";
-        public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
         public const string ERROR_UNABLE_EDIT = "Unable to Edit {0}.";
         public const string ERROR_EMPTY_CREDENTIAL = "Username or Password field is required.";
         public const string ERROR_INCORRECT_CREDENTIAL = "Username or Password is incorrect.";
