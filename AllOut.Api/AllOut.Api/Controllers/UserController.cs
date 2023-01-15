@@ -16,6 +16,11 @@ namespace AllOut.Api.Controllers
         {
             _user = user;
         }
+        [HttpPost("LoginUser")]
+        public async Task<IActionResult> LoginUserAsync(LoginUserRequest request)
+        {
+            return await ProcessRequest(RequestType.POST_LOGIN_USER, request);
+        }
 
         [HttpGet("GetUsers")]
         public async Task<IActionResult> GetUsersAsync()
@@ -65,6 +70,10 @@ namespace AllOut.Api.Controllers
 
                     switch(type)
                     {
+                        case RequestType.POST_LOGIN_USER:
+                            response = await _user.LoginUserAsync((LoginUserRequest)request);
+                            break;
+
                         case RequestType.GET_USERS_BY_QUERY:
                             response = await _user.GetUsersByQueryAsync((string)request);
                             break;

@@ -8,6 +8,7 @@ using Puregold.API.Exceptions;
 using AllOut.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Azure.Core;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AllOut.Api.Services
 {
@@ -19,6 +20,28 @@ namespace AllOut.Api.Services
         {
             _db = context;
             _request = request;
+        }
+
+        public async Task<ClientInformation> LoginUserAsync(LoginUserRequest request)
+        {
+            if (string.IsNullOrEmpty(request.LogonName) || string.IsNullOrEmpty(request.Password))
+            {
+                throw new ServiceException(Constants.ERROR_EMPTY_CREDENTIAL);
+            }
+
+            var users = await _db.Users.Where(data => (data.Username == request.LogonName && data.Password == request.Password) ||
+                                                      (data.Email == request.LogonName && data.Password == request.Password)).ToListAsync();
+
+            if (users == null || !users.Any())
+            {
+                throw new ServiceException(Constants.ERROR_INCORRECT_CREDENTIAL);
+            }
+
+            return new ClientInformation()
+            {
+                UserID = users.First().UserID,
+                Name = string.Format(Constants.NAME_FORMAT, users.First().LastName, users.First().FirstName)
+            };
         }
 
         public async Task<IEnumerable<User>> GetUsersAsync()

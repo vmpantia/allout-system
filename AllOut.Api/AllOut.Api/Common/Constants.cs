@@ -3,6 +3,7 @@
     public class Constants
     {
         public const string NA = "N/A";
+        public const string NAME_FORMAT = "{0}, {1}";
 
         #region Forms
         public const string FORM_PRODUCTS = "Products";
@@ -98,8 +99,8 @@
         public const string ERROR_PRODUCT_NOT_EXIST = "Product not Exist in the System";
         public const string ERROR_NO_SELECTED = "No {0}(s) selected.";
         public const string ERROR_UNABLE_EDIT = "Unable to Edit {0}.";
-        public const string ERROR_EMPTY_CREDENTIAL = "Username or Password field is required.";
-        public const string ERROR_INCORRECT_CREDENTIAL = "Username or Password is incorrect.";
+        public const string ERROR_EMPTY_CREDENTIAL = "Username/Email or Password field is required.";
+        public const string ERROR_INCORRECT_CREDENTIAL = "Username/Email or Password is incorrect.";
         #endregion
 
         #region Success Message

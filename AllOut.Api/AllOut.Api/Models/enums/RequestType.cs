@@ -3,7 +3,8 @@
     public enum RequestType
     {
         //User Request
-        GET_USERS = 0,
+        POST_LOGIN_USER = 0,
+        GET_USERS,
         GET_USERS_BY_QUERY,
         GET_USER_BY_ID,
         POST_SAVE_USER,
