@@ -82,6 +82,16 @@
         public const string FUNCTION_ID_BULK_DELETE_INVENTORY_BY_ADMIN = "14D00";
         #endregion
 
+        #region Sales
+        public const string FUNCTION_ID_ADD_SALES_BY_ADMIN = "05A00";
+        public const string FUNCTION_ID_ADD_SALES = "05A01";
+        public const string FUNCTION_ID_CHANGE_SALES_BY_ADMIN = "05C00";
+        public const string FUNCTION_ID_CHANGE_SALES = "05C01";
+        public const string FUNCTION_ID_BULK_CHANGE_SALES_BY_ADMIN = "15C00";
+        public const string FUNCTION_ID_DELETE_SALES_BY_ADMIN = "05D00";
+        public const string FUNCTION_ID_BULK_DELETE_SALES_BY_ADMIN = "15D00";
+        #endregion
+
         #endregion
 
         #region Error Messages
@@ -130,6 +140,7 @@
         public const string OBJECT_BRAND = "Brand";
         public const string OBJECT_CATEGORY = "Category";
         public const string OBJECT_INVENTORY = "Inventory";
+        public const string OBJECT_SALES = "Sales";
         public const string OBJECT_REQUEST = "Request";
         #endregion
 

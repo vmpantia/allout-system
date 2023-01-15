@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace AllOut.Api.DataAccess.Models.Transaction
+namespace AllOut.Api.DataAccess.Models
 {
     [PrimaryKey(nameof(RequestID), nameof(Number))]
     public class SalesItem_TRN

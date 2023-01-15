@@ -1,0 +1,156 @@
+﻿using AllOut.Api.Contractors;
+using AllOut.Api.DataAccess;
+using AllOut.Api.DataAccess.Models;
+using AllOut.Api.Models.Requests;
+using AllOut.Api.Common;
+using Microsoft.EntityFrameworkCore;
+using Puregold.API.Exceptions;
+using AllOut.Api.Models;
+using Microsoft.AspNetCore.Mvc;
+using Azure.Core;
+using Microsoft.IdentityModel.Tokens;
+
+namespace AllOut.Api.Services
+{
+    public class SalesService
+    {
+        private readonly AllOutDbContext _db;
+        private readonly IRequestService _request;
+        public SalesService(AllOutDbContext context, IRequestService request)
+        {
+            _db = context;
+            _request = request;
+        }
+
+        public async Task<string> SaveSalesAsync(SaveSalesRequest request)
+        {
+            //Check if Request is NULL
+            if (request == null)
+                throw new ServiceException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_SALES));
+
+            var requestID = await _request.InsertRequest(_db, request.client.UserID,
+                                                              request.FunctionID,
+                                                              request.RequestStatus);
+
+            if (requestID == null)
+                throw new ServiceException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_SALES));
+
+            switch (request.FunctionID)
+            {
+                case Constants.FUNCTION_ID_ADD_SALES_BY_ADMIN: //Add
+                case Constants.FUNCTION_ID_ADD_SALES: //Add
+                    await InsertSales(request.inputSales);
+                    break;
+            }
+
+            await SaveSalesItems(request.inputSalesItems,
+                                 request.inputSales.SalesID,
+                                 requestID);
+            await SaveOtherCharges(request.inputOtherCharges,
+                                   request.inputSales.SalesID,
+                                   requestID);
+
+            //Insert Transaction
+            await InsertSales_TRN(request.inputSales, requestID.ToString());
+            //Save Changes
+            await _db.SaveChangesAsync();
+
+            return requestID;
+        }
+
+        private async Task InsertSales(Sales inputSales)
+        {
+            inputSales.SalesID = Guid.NewGuid();
+            inputSales.CreatedDate = Globals.EXEC_DATETIME;
+            await _db.Sales.AddAsync(inputSales);
+        }
+
+        private async Task SaveSalesItems(List<SalesItem> inputSalesItems, Guid salesID, string requestID)
+        {
+            await DeleteSalesItemsBySalesID(salesID);
+
+            int number = 1;
+            foreach(var salesItem in inputSalesItems)
+            {
+                //Insert SalesItem
+                salesItem.SalesID = salesID;
+                await _db.SalesItems.AddAsync(salesItem);
+
+                //Insert SalesItem_TRN
+                await _db.SalesItem_TRN.AddAsync(new SalesItem_TRN
+                {
+                    RequestID = requestID,
+                    Number = number,
+                    SalesID = salesItem.SalesID,
+                    ProductID = salesItem.ProductID,
+                    Quantity = salesItem.Quantity,
+                    Price = salesItem.Price,
+                    Total = salesItem.Total,
+                });
+
+                number++;
+            }
+        }
+
+        private async Task DeleteSalesItemsBySalesID(Guid salesID)
+        {
+            var salesItems = await _db.SalesItems.Where(data => data.SalesID == salesID).ToListAsync();
+
+            foreach (var salesItem in salesItems)
+            {
+                _db.SalesItems.Remove(salesItem);
+            }
+        }
+
+        private async Task SaveOtherCharges(List<OtherCharge> otherCharges, Guid salesID, string requestID)
+        {
+            await DeleteOtherChargesBySalesID(salesID);
+
+            int number = 1;
+            foreach (var otherCharge in otherCharges)
+            {
+                //Insert OtherCharge
+                otherCharge.SalesID = salesID;
+                await _db.OtherCharges.AddAsync(otherCharge);
+
+                //Insert OtherCharge_TRN
+                await _db.OtherCharge_TRN.AddAsync(new OtherCharge_TRN
+                {
+                    RequestID = requestID,
+                    Number = number,
+                    ChargeName = otherCharge.ChargeName,
+                    Amount = otherCharge.Amount,
+                });
+
+                number++;
+            }
+        }
+
+        private async Task DeleteOtherChargesBySalesID(Guid salesID)
+        {
+            var otherCharges = await _db.OtherCharges.Where(data => data.SalesID == salesID).ToListAsync();
+
+            foreach (var otherCharge in otherCharges)
+            {
+                _db.OtherCharges.Remove(otherCharge);
+            }
+        }
+
+        private async Task InsertSales_TRN(Sales inputSales, string requestID, int number = 1)
+        {
+            var newTrn = new Sales_TRN
+            {
+                RequestID = requestID,
+                Number = number,
+                SalesID = inputSales.SalesID,
+                UserID = inputSales.UserID,
+                Remarks = inputSales.Remarks,
+                Status = inputSales.Status,
+                CreatedDate = inputSales.CreatedDate,
+                ModifiedDate = inputSales.ModifiedDate
+            };
+
+            await _db.Sales_TRN.AddAsync(newTrn);
+        }
+    }
+}
