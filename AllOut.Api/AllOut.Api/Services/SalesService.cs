@@ -60,12 +60,12 @@ namespace AllOut.Api.Services
 
         private async Task InsertSales(Sales inputSales)
         {
-            inputSales.SalesID = Guid.NewGuid();
+            inputSales.SalesID = await GetNewSalesID(_db);
             inputSales.CreatedDate = Globals.EXEC_DATETIME;
             await _db.Sales.AddAsync(inputSales);
         }
 
-        private async Task SaveSalesItems(List<SalesItem> inputSalesItems, Guid salesID, string requestID)
+        private async Task SaveSalesItems(List<SalesItem> inputSalesItems, string salesID, string requestID)
         {
             await DeleteSalesItemsBySalesID(salesID);
 
@@ -92,7 +92,7 @@ namespace AllOut.Api.Services
             }
         }
 
-        private async Task DeleteSalesItemsBySalesID(Guid salesID)
+        private async Task DeleteSalesItemsBySalesID(string salesID)
         {
             var salesItems = await _db.SalesItems.Where(data => data.SalesID == salesID).ToListAsync();
 
@@ -102,7 +102,7 @@ namespace AllOut.Api.Services
             }
         }
 
-        private async Task SaveOtherCharges(List<OtherCharge> otherCharges, Guid salesID, string requestID)
+        private async Task SaveOtherCharges(List<OtherCharge> otherCharges, string salesID, string requestID)
         {
             await DeleteOtherChargesBySalesID(salesID);
 
@@ -126,7 +126,7 @@ namespace AllOut.Api.Services
             }
         }
 
-        private async Task DeleteOtherChargesBySalesID(Guid salesID)
+        private async Task DeleteOtherChargesBySalesID(string salesID)
         {
             var otherCharges = await _db.OtherCharges.Where(data => data.SalesID == salesID).ToListAsync();
 
@@ -151,6 +151,21 @@ namespace AllOut.Api.Services
             };
 
             await _db.Sales_TRN.AddAsync(newTrn);
+        }
+
+        private async Task<string> GetNewSalesID(AllOutDbContext db)
+        {
+            var salesToday = await db.Sales.Where(data => data.CreatedDate == DateTime.Parse(Globals.EXEC_DATE))
+                                           .OrderByDescending(data => data.SalesID).ToListAsync();
+
+            if (salesToday == null || !salesToday.Any())
+                return string.Format(Constants.SALES_ID_FORMAT, Globals.ID_PREFFIX, Constants.ID_DEFAULT_SUFFIX);
+
+            var latestSalesID = salesToday.First().SalesID;
+            var currentSuffix = latestSalesID.Substring(Constants.ID_PREFIX_LENGTH, Constants.ID_SUFFIX_LENGTH);
+            var newSuffix = (int.Parse(currentSuffix) + 1).ToString().PadLeft(Constants.ID_SUFFIX_LENGTH, Constants.ZERO);
+
+            return string.Format(Constants.SALES_ID_FORMAT, Globals.ID_PREFFIX, newSuffix);
         }
     }
 }

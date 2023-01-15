@@ -4,8 +4,8 @@ namespace AllOut.Api.DataAccess.Models
 {
     public class Sales
     {
-        [Key]
-        public Guid SalesID { get; set; }
+        [Key, MaxLength(15)]
+        public string SalesID { get; set; }
         public Guid UserID { get; set; }
         [Required, MaxLength(100)]
         public string Remarks { get; set; } = string.Empty;

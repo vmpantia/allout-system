@@ -10,7 +10,8 @@ namespace AllOut.Api.DataAccess.Models
         [MaxLength(12)]
         public string RequestID { get; set; }
         public int Number { get; set; }
-        public Guid SalesID { get; set; }
+        [MaxLength(15)]
+        public string SalesID { get; set; }
         public Guid UserID { get; set; }
         [Required, MaxLength(100)]
         public string Remarks { get; set; } = string.Empty;

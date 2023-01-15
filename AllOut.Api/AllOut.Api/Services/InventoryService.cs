@@ -101,7 +101,7 @@ namespace AllOut.Api.Services
                 throw new ServiceException(errorMessage);
             }
 
-            inputInventory.InventoryID = Guid.NewGuid();
+            inputInventory.InventoryID = await GetNewInventoryID(_db);
             inputInventory.CreatedDate = Globals.EXEC_DATETIME;
             await _db.Inventories.AddAsync(inputInventory);
         }
@@ -127,7 +127,7 @@ namespace AllOut.Api.Services
             currentInventory.ModifiedDate = Globals.EXEC_DATETIME;
         }
 
-        private async Task DeleteInventory(Guid InventoryID)
+        private async Task DeleteInventory(string InventoryID)
         {
             var currentInventory = await _db.Inventories.FindAsync(InventoryID);
 
@@ -178,6 +178,21 @@ namespace AllOut.Api.Services
             }
 
             return string.Empty;
+        }
+
+        private async Task<string> GetNewInventoryID(AllOutDbContext db)
+        {
+            var inventoriesToday = await db.Inventories.Where(data => data.CreatedDate == DateTime.Parse(Globals.EXEC_DATE))
+                                                       .OrderByDescending(data => data.InventoryID).ToListAsync();
+
+            if (inventoriesToday == null || !inventoriesToday.Any())
+                return string.Format(Constants.INVENTORY_ID_FORMAT, Globals.ID_PREFFIX, Constants.ID_DEFAULT_SUFFIX);
+
+            var latestInventoryID = inventoriesToday.First().InventoryID;
+            var currentSuffix = latestInventoryID.Substring(Constants.ID_PREFIX_LENGTH, Constants.ID_SUFFIX_LENGTH);
+            var newSuffix = (int.Parse(currentSuffix) + 1).ToString().PadLeft(Constants.ID_SUFFIX_LENGTH, Constants.ZERO);
+
+            return string.Format(Constants.INVENTORY_ID_FORMAT, Globals.ID_PREFFIX, newSuffix);
         }
     }
 }

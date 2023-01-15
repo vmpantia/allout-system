@@ -4,8 +4,8 @@ namespace AllOut.Api.DataAccess.Models
 {
     public class Inventory
     {
-        [Key]
-        public Guid InventoryID { get; set; }
+        [Key, MaxLength(15)]
+        public string InventoryID { get; set; }
         public Guid ProductID { get; set; }
         public int Quantity { get; set; }
         public int Status { get; set; }

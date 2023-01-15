@@ -30,23 +30,17 @@ namespace AllOut.Api.Services.Common
 
         private async Task<string> GetNewRequestID(AllOutDbContext db)
         {
-            var newRequestID = string.Format(Constants.REQUEST_ID_FORMAT, Globals.REQUEST_ID_PREFFIX, Constants.REQUEST_ID_SUFFIX);
+            var requestsToday = await db.Requests.Where(data => data.RequestDate == DateTime.Parse(Globals.EXEC_DATE))
+                                                 .OrderByDescending(data => data.RequestID).ToListAsync();
 
-            var createdRequestToday = await db.Requests.Where(data => data.RequestDate == DateTime.Parse(Globals.EXEC_DATE))
-                                                       .OrderByDescending(data => data.RequestID).ToListAsync();
+            if (requestsToday == null || !requestsToday.Any())
+                return string.Format(Constants.REQUEST_ID_FORMAT, Globals.ID_PREFFIX, Constants.ID_DEFAULT_SUFFIX);
 
-            if (createdRequestToday == null || createdRequestToday.Count == 0)
-            {
-                return newRequestID;
-            }
+            var latestRequestID = requestsToday.First().RequestID;
+            var currentSuffix = latestRequestID.Substring(Constants.ID_PREFIX_LENGTH, Constants.ID_SUFFIX_LENGTH);
+            var newSuffix = (int.Parse(currentSuffix) + 1).ToString().PadLeft(Constants.ID_SUFFIX_LENGTH, Constants.ZERO);
 
-            var latestRequestID = createdRequestToday.First().RequestID;
-            var currentSuffix = latestRequestID.Substring(Constants.REQUEST_ID_PREFIX_LENGTH, Constants.REQUEST_ID_SUFFIX_LENGTH);
-            var newSuffix = (int.Parse(currentSuffix) + 1).ToString().PadLeft(Constants.REQUEST_ID_SUFFIX_LENGTH, '0');
-
-            newRequestID = string.Format(Constants.REQUEST_ID_FORMAT, Globals.REQUEST_ID_PREFFIX, newSuffix);
-
-            return newRequestID;
+            return string.Format(Constants.REQUEST_ID_FORMAT, Globals.ID_PREFFIX, newSuffix);
         }
     }
 }

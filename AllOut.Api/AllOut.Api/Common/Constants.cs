@@ -4,6 +4,7 @@
     {
         public const string NA = "N/A";
         public const string NAME_FORMAT = "{0}, {1}";
+        public const char ZERO = '0';
 
         #region Forms
         public const string FORM_PRODUCTS = "Products";
@@ -11,13 +12,16 @@
         public const string FORM_CATEGORIES = "Categories";
         #endregion
 
-        #region Request ID
-        public const string REQUEST_ID_FORMAT = "{0}{1}";
-        public const string REQUEST_ID_SUFFIX = "0001";
-        public const int REQUEST_ID_LENGTH = 12;
-        public const int REQUEST_ID_PREFIX_LENGTH = 8;
-        public const int REQUEST_ID_SUFFIX_LENGTH = 4;
-        #endregion 
+        #region ID
+        public const string REQUEST_ID_FORMAT = "RE{0}{1}";
+        public const string INVENTORY_ID_FORMAT = "IN{0}{1}";
+        public const string SALES_ID_FORMAT = "SA{0}{1}";
+
+        public const string ID_DEFAULT_SUFFIX = "00001";
+        public const int ID_LENGTH = 15;
+        public const int ID_PREFIX_LENGTH = 8;
+        public const int ID_SUFFIX_LENGTH = 5;
+        #endregion
 
         #region Request Status
         public const string REQUEST_STATUS_COMPLETED = "A2";

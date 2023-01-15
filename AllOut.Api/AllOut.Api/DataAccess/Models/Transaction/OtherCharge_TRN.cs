@@ -9,7 +9,8 @@ namespace AllOut.Api.DataAccess.Models
         [MaxLength(12)]
         public string RequestID { get; set; }
         public int Number { get; set; }
-        public Guid SalesID { get; set; }
+        [MaxLength(15)]
+        public string SalesID { get; set; }
         [Required, MaxLength(50)]
         public string ChargeName { get; set; }
         public decimal Amount { get; set; }
