@@ -29,12 +29,21 @@ namespace AllOut.Api.Services
             var products = await (from a in _db.Products
                                   join b in _db.Brands on a.BrandID equals b.BrandID into bb from b in bb.DefaultIfEmpty()
                                   join c in _db.Categories on a.CategoryID equals c.CategoryID into cc from c in cc.DefaultIfEmpty()
-                                  where a.Status == 0
+                                  where a.Status != Constants.STATUS_DELETION_INT
                                   select new ProductFullInformation
                                   {
-                                       productInfo = a,
-                                       brandInfo = _utility.CheckBrandAvailablity(b) ? b : null,
-                                       categoryInfo = _utility.CheckCategoryAvailablity(c) ? c : null
+                                      ProductID = a.ProductID,
+                                      ProductName = a.Name,
+                                      ProductDescription = a.Description,
+                                      ReorderPoint = a.ReorderPoint,
+                                      Price = a.Price,
+                                      Status = a.Status,
+                                      CreatedDate = a.CreatedDate,
+                                      ModifiedDate = a.ModifiedDate,
+                                      BrandID = a.BrandID,
+                                      BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
+                                      CategoryID = a.CategoryID,
+                                      CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
                                   }).ToListAsync();
 
             foreach(var product in products)
@@ -47,21 +56,33 @@ namespace AllOut.Api.Services
 
         public async Task<IEnumerable<ProductFullInformation>> GetProductsByQueryAsync(string query)
         {
-            var products = await (from p in _db.Products
-                                  join b in _db.Brands on p.BrandID equals b.BrandID into bb
-                                  from b in bb.DefaultIfEmpty()
-                                  join c in _db.Categories on p.CategoryID equals c.CategoryID into cc
-                                  from c in cc.DefaultIfEmpty()
-                                  where p.Status == 0 &&
-                                        (p.Name.Contains(query) || p.Description.Contains(query) ||
+            var products = await (from a in _db.Products
+                                  join b in _db.Brands on a.BrandID equals b.BrandID into bb from b in bb.DefaultIfEmpty()
+                                  join c in _db.Categories on a.CategoryID equals c.CategoryID into cc from c in cc.DefaultIfEmpty()
+                                  where a.Status != Constants.STATUS_DELETION_INT &&
+                                        (a.Name.Contains(query) || a.Description.Contains(query) ||
                                          b.Name.Contains(query) ||
                                          c.Name.Contains(query))
                                   select new ProductFullInformation
                                   {
-                                      productInfo = p,
-                                      brandInfo = _utility.CheckBrandAvailablity(b) ? b : null,
-                                      categoryInfo = _utility.CheckCategoryAvailablity(c) ? c : null
+                                      ProductID = a.ProductID,
+                                      ProductName = a.Name,
+                                      ProductDescription = a.Description,
+                                      ReorderPoint = a.ReorderPoint,
+                                      Price = a.Price,
+                                      Status = a.Status,
+                                      CreatedDate = a.CreatedDate,
+                                      ModifiedDate = a.ModifiedDate,
+                                      BrandID = a.BrandID,
+                                      BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
+                                      CategoryID = a.CategoryID,
+                                      CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
                                   }).ToListAsync();
+
+            foreach (var product in products)
+            {
+                await ParseOtherInformation(product);
+            }
 
             return products;
         }
@@ -254,17 +275,17 @@ namespace AllOut.Api.Services
 
         private async Task ParseOtherInformation(ProductFullInformation product)
         {
-            var countInInventories = await _db.Inventories.Where(data => data.ProductID == product.productInfo.ProductID &&
+            var countInInventories = await _db.Inventories.Where(data => data.ProductID == product.ProductID &&
                                                                    data.Status == 0)
                                                           .SumAsync(data => data.Quantity);
 
             var countInSales = await (from a in _db.Sales
                                       join b in _db.SalesItems on a.SalesID equals b.SalesID
-                                      where b.ProductID == product.productInfo.ProductID
+                                      where b.ProductID == product.ProductID
                                       select b).SumAsync(data => data.Quantity);
 
             product.Stock = _utility.GetCurrentStock(countInInventories, countInSales);
-            product.ReorderState = _utility.GetReorderState(product.Stock, product.productInfo.ReorderPoint);
+            product.ReorderState = _utility.GetReorderState(product.Stock, product.ReorderPoint);
         }
     }
 }
