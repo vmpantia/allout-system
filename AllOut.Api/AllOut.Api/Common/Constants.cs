@@ -47,11 +47,11 @@
         #region User
         public const string FUNCTION_ID_ADD_USER_BY_ADMIN = "00A00";
         public const string FUNCTION_ID_ADD_USER = "00A01";
-        public const string FUNCTION_ID_CHANGE_USER_BY_ADMIN = "01C00";
-        public const string FUNCTION_ID_CHANGE_USER = "01C01";
-        public const string FUNCTION_ID_BULK_CHANGE_USER_BY_ADMIN = "11C00";
-        public const string FUNCTION_ID_DELETE_USER_BY_ADMIN = "01D00";
-        public const string FUNCTION_ID_BULK_DELETE_USER_BY_ADMIN = "11D00";
+        public const string FUNCTION_ID_CHANGE_USER_BY_ADMIN = "00C00";
+        public const string FUNCTION_ID_CHANGE_USER = "00C01";
+        public const string FUNCTION_ID_BULK_CHANGE_USER_BY_ADMIN = "10C00";
+        public const string FUNCTION_ID_DELETE_USER_BY_ADMIN = "00D00";
+        public const string FUNCTION_ID_BULK_DELETE_USER_BY_ADMIN = "10D00";
         #endregion
 
         #region Product
