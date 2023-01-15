@@ -16,7 +16,7 @@ namespace AllOut.Api.DataAccess.Models
         [Required, MaxLength(25)]
         public string FirstName { get; set; }
         [MaxLength(25)]
-        public string MiddleName { get; set; } = string.Empty;
+        public string? MiddleName { get; set; }
         [Required, MaxLength(25)]
         public string LastName { get; set; }
         public bool IsEmailConfirmed { get; set; }

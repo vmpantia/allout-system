@@ -6,7 +6,7 @@ namespace AllOut.Api.DataAccess.Models
     [PrimaryKey(nameof(RequestID), nameof(Number), nameof(InventoryID))]
     public class Inventory_TRN
     {
-        [MaxLength(12)]
+        [MaxLength(15)]
         public string RequestID { get; set; }
         public int Number { get; set; }
         [MaxLength(15)]

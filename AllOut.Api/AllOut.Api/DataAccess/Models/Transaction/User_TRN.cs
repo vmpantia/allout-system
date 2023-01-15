@@ -7,7 +7,7 @@ namespace AllOut.Api.DataAccess.Models
     [PrimaryKey(nameof(RequestID), nameof(Number), nameof(UserID))]
     public class User_TRN
     {
-        [MaxLength(12)]
+        [MaxLength(15)]
         public string RequestID { get; set; }
         public int Number { get; set; }
         public Guid UserID { get; set; }
@@ -20,7 +20,7 @@ namespace AllOut.Api.DataAccess.Models
         [Required, MaxLength(25)]
         public string FirstName { get; set; }
         [MaxLength(25)]
-        public string MiddleName { get; set; } = string.Empty;
+        public string? MiddleName { get; set; }
         [Required, MaxLength(25)]
         public string LastName { get; set; }
         public bool IsEmailConfirmed { get; set; }

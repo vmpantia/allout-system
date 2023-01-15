@@ -7,7 +7,7 @@ namespace AllOut.Api.DataAccess.Models
     [PrimaryKey(nameof(RequestID), nameof(Number))]
     public class SalesItem_TRN
     {
-        [MaxLength(12)]
+        [MaxLength(15)]
         public string RequestID { get; set; }
         public int Number { get; set; }
         [MaxLength(15)]

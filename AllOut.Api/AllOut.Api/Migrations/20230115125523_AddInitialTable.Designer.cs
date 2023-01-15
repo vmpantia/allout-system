@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AllOut.Api.Migrations
 {
     [DbContext(typeof(AllOutDbContext))]
-    [Migration("20230114135639_AddInitialTable")]
+    [Migration("20230115125523_AddInitialTable")]
     partial class AddInitialTable
     {
         /// <inheritdoc />
@@ -35,7 +35,6 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -58,8 +57,8 @@ namespace AllOut.Api.Migrations
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.Brand_TRN", b =>
                 {
                     b.Property<string>("RequestID")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
@@ -71,20 +70,21 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("RequestID", "Number");
+                    b.HasKey("RequestID", "Number", "BrandID");
 
                     b.ToTable("Brand_TRN");
                 });
@@ -99,7 +99,6 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -122,8 +121,8 @@ namespace AllOut.Api.Migrations
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.Category_TRN", b =>
                 {
                     b.Property<string>("RequestID")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
@@ -135,29 +134,30 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("RequestID", "Number");
+                    b.HasKey("RequestID", "Number", "CategoryID");
 
                     b.ToTable("Category_TRN");
                 });
 
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.Inventory", b =>
                 {
-                    b.Property<Guid>("InventoryID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("InventoryID")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -182,17 +182,18 @@ namespace AllOut.Api.Migrations
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.Inventory_TRN", b =>
                 {
                     b.Property<string>("RequestID")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
+                    b.Property<string>("InventoryID")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("InventoryID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -206,23 +207,24 @@ namespace AllOut.Api.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("RequestID", "Number");
+                    b.HasKey("RequestID", "Number", "InventoryID");
 
                     b.ToTable("Inventory_TRN");
                 });
 
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.OtherCharge", b =>
                 {
-                    b.Property<Guid>("SalesID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("SalesID")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ChargeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("SalesID");
 
@@ -232,20 +234,25 @@ namespace AllOut.Api.Migrations
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.OtherCharge_TRN", b =>
                 {
                     b.Property<string>("RequestID")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
+
+                    b.Property<string>("SalesID")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ChargeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("RequestID", "Number");
+                    b.HasKey("RequestID", "Number", "SalesID");
 
                     b.ToTable("OtherCharge_TRN");
                 });
@@ -266,7 +273,6 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -295,11 +301,14 @@ namespace AllOut.Api.Migrations
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.Product_TRN", b =>
                 {
                     b.Property<string>("RequestID")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("ProductID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BrandID")
                         .HasColumnType("uniqueidentifier");
@@ -311,21 +320,19 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("ProductID")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("ReorderPoint")
                         .HasColumnType("int");
@@ -333,7 +340,7 @@ namespace AllOut.Api.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("RequestID", "Number");
+                    b.HasKey("RequestID", "Number", "ProductID");
 
                     b.ToTable("Product_TRN");
                 });
@@ -341,8 +348,8 @@ namespace AllOut.Api.Migrations
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.Request", b =>
                 {
                     b.Property<string>("RequestID")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<Guid?>("ApprovedBy")
                         .HasColumnType("uniqueidentifier");
@@ -379,9 +386,9 @@ namespace AllOut.Api.Migrations
 
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.Sales", b =>
                 {
-                    b.Property<Guid>("SalesID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("SalesID")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -390,8 +397,8 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Remarks")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -406,8 +413,9 @@ namespace AllOut.Api.Migrations
 
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.SalesItem", b =>
                 {
-                    b.Property<Guid>("SalesID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("SalesID")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<Guid>("ProductID")
                         .HasColumnType("uniqueidentifier");
@@ -426,44 +434,11 @@ namespace AllOut.Api.Migrations
                     b.ToTable("SalesItems");
                 });
 
-            modelBuilder.Entity("AllOut.Api.DataAccess.Models.Sales_TRN", b =>
+            modelBuilder.Entity("AllOut.Api.DataAccess.Models.SalesItem_TRN", b =>
                 {
                     b.Property<string>("RequestID")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
-
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Remarks")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("SalesID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("UserID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("RequestID", "Number");
-
-                    b.ToTable("Sales_TRN");
-                });
-
-            modelBuilder.Entity("AllOut.Api.DataAccess.Models.Transaction.SalesItem_TRN", b =>
-                {
-                    b.Property<string>("RequestID")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
@@ -477,8 +452,10 @@ namespace AllOut.Api.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("SalesID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("SalesID")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
@@ -486,6 +463,40 @@ namespace AllOut.Api.Migrations
                     b.HasKey("RequestID", "Number");
 
                     b.ToTable("SalesItem_TRN");
+                });
+
+            modelBuilder.Entity("AllOut.Api.DataAccess.Models.Sales_TRN", b =>
+                {
+                    b.Property<string>("RequestID")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SalesID")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("RequestID", "Number", "SalesID");
+
+                    b.ToTable("Sales_TRN");
                 });
 
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.User", b =>
@@ -516,7 +527,6 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("MiddleName")
-                        .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
@@ -525,7 +535,8 @@ namespace AllOut.Api.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Permission")
                         .HasColumnType("int");
@@ -535,8 +546,8 @@ namespace AllOut.Api.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.HasKey("UserID");
 
@@ -546,40 +557,47 @@ namespace AllOut.Api.Migrations
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.User_TRN", b =>
                 {
                     b.Property<string>("RequestID")
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<bool>("IsEmailConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("MiddleName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Permission")
                         .HasColumnType("int");
@@ -587,14 +605,12 @@ namespace AllOut.Api.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
-                    b.HasKey("RequestID", "Number");
+                    b.HasKey("RequestID", "Number", "UserID");
 
                     b.ToTable("User_TRN");
                 });
