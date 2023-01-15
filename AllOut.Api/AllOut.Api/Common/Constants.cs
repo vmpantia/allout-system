@@ -19,7 +19,7 @@
 
         public const string ID_DEFAULT_SUFFIX = "00001";
         public const int ID_LENGTH = 15;
-        public const int ID_PREFIX_LENGTH = 8;
+        public const int ID_PREFIX_LENGTH = 10;
         public const int ID_SUFFIX_LENGTH = 5;
         #endregion
 
