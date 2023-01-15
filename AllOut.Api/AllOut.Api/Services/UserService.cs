@@ -107,7 +107,7 @@ namespace AllOut.Api.Services
 
         private async Task InsertUser(User inputUser)
         {
-            var errorMessage = ValidateUser(inputUser);
+            var errorMessage = await ValidateUser(inputUser);
             if (!string.IsNullOrEmpty(errorMessage))
             {
                 throw new ServiceException(errorMessage);
@@ -125,7 +125,7 @@ namespace AllOut.Api.Services
             if (currentUser == null)
                 throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_USER));
 
-            var errorMessage = ValidateUser(inputUser, currentUser);
+            var errorMessage = await ValidateUser(inputUser, currentUser);
             if (!string.IsNullOrEmpty(errorMessage))
             {
                 throw new ServiceException(errorMessage);
@@ -178,13 +178,17 @@ namespace AllOut.Api.Services
             await _db.User_TRN.AddAsync(newTrn);
         }
 
-        private string ValidateUser(User newData, User? oldData = null)
+        private async Task<string> ValidateUser(User newData, User? oldData = null)
         {
+            bool isNameChanged = false;
+            bool isEmailChanged = false;
+            bool isNew = true;
+
             //Check Data if NULL
             if (newData == null)
                 return string.Format(Constants.ERROR_NULL, Constants.OBJECT_USER);
 
-            //Check if Name have value
+            //Check if required fields have value
             if (string.IsNullOrEmpty(newData.Email) ||
                 string.IsNullOrEmpty(newData.Username) ||
                 string.IsNullOrEmpty(newData.Password) ||
@@ -195,6 +199,8 @@ namespace AllOut.Api.Services
 
             if (oldData != null)
             {
+                isNew = false;
+
                 //Check if new data and old data changed
                 if (/*newData.Email == oldData.BrandID &&*/
                     //newData.Username == oldData.CategoryID &&
@@ -208,6 +214,26 @@ namespace AllOut.Api.Services
                     newData.CreatedDate == oldData.CreatedDate &&
                     newData.ModifiedDate == oldData.ModifiedDate)
                     return string.Format(Constants.ERROR_NO_CHANGES, Constants.OBJECT_USER);
+
+                isNameChanged = newData.FirstName != oldData.FirstName ||
+                                newData.LastName != oldData.LastName;
+                isEmailChanged = newData.Email != oldData.Email;
+            }
+
+
+            if (isNew || isNameChanged || isEmailChanged)
+            {
+                //Check Duplicate Name or Email for New Data
+                var duplicate = await _db.Users.Where(data => (data.FirstName == newData.FirstName && data.LastName == newData.LastName) ||
+                                                              (data.Email == newData.Email)).ToListAsync();
+
+                if (duplicate.Count > 0)
+                {
+                    if (duplicate.First().Status != Constants.STATUS_ENABLED_INT)
+                        return string.Format(Constants.ERROR_NAME_EXIST_DISABLED, Constants.OBJECT_USER);
+
+                    return string.Format(Constants.ERROR_NAME_EXIST, Constants.OBJECT_USER);
+                }
             }
 
             return string.Empty;
