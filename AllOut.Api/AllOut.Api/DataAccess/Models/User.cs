@@ -9,14 +9,14 @@ namespace AllOut.Api.DataAccess.Models
         public Guid UserID { get; set; }
         [Required, MaxLength(50)]
         public string Email { get; set; }
-        [Required, MaxLength(50)]
+        [Required, MaxLength(60)]
         public string Username { get; set; }
-        [Required]
+        [Required, MaxLength(100)]
         public string Password { get; set; }
         [Required, MaxLength(25)]
         public string FirstName { get; set; }
         [MaxLength(25)]
-        public string MiddleName { get; set; }
+        public string MiddleName { get; set; } = string.Empty;
         [Required, MaxLength(25)]
         public string LastName { get; set; }
         public bool IsEmailConfirmed { get; set; }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AllOut.Api.DataAccess.Models
 {
-    [PrimaryKey(nameof(RequestID), nameof(Number))]
+    [PrimaryKey(nameof(RequestID), nameof(Number), nameof(SalesID))]
     public class Sales_TRN
     {
         [MaxLength(12)]
@@ -12,7 +12,8 @@ namespace AllOut.Api.DataAccess.Models
         public int Number { get; set; }
         public Guid SalesID { get; set; }
         public Guid UserID { get; set; }
-        public string Remarks { get; set; }
+        [Required, MaxLength(100)]
+        public string Remarks { get; set; } = string.Empty;
         public int Status { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }

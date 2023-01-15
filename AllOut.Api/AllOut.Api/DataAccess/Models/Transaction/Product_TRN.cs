@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AllOut.Api.DataAccess.Models
 {
-    [PrimaryKey(nameof(RequestID), nameof(Number))]
+    [PrimaryKey(nameof(RequestID), nameof(Number), nameof(ProductID))]
     public class Product_TRN
     {
         [MaxLength(12)]
@@ -12,8 +12,10 @@ namespace AllOut.Api.DataAccess.Models
         public Guid ProductID { get; set; }
         public Guid BrandID { get; set; }
         public Guid CategoryID { get; set; }
+        [Required, MaxLength(50)]
         public string Name { get; set; }
-        public string Description { get; set; }
+        [MaxLength(100)]
+        public string Description { get; set; } = string.Empty;
         public int ReorderPoint { get; set; }
         public decimal Price { get; set; }
         public int Status { get; set; }

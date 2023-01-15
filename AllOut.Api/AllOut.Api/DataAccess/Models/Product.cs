@@ -14,7 +14,7 @@ namespace AllOut.Api.DataAccess.Models
         [Required, MaxLength(50)]
         public string Name { get; set; }
         [MaxLength(100)]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
         public int ReorderPoint { get; set; }
         public decimal Price { get; set; }
         public int Status { get; set; } 
