@@ -6,6 +6,14 @@ namespace AllOut.Api.Services.Common
 {
     public class UtilityService : IUtilityService
     {
+        public bool CheckProductAvailablity(Product product)
+        {
+            if (null == product)
+                return false;
+
+            return product.Status == Constants.STATUS_ENABLED_INT;
+        }
+
         public bool CheckBrandAvailablity(Brand brand)
         {
             if (null == brand)

@@ -5,6 +5,7 @@ using AllOut.Api.Models.Requests;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
+using AllOut.Api.Models;
 
 namespace AllOut.Api.Services
 {
@@ -12,15 +13,40 @@ namespace AllOut.Api.Services
     {
         private readonly AllOutDbContext _db;
         private readonly IRequestService _request;
-        public InventoryService(AllOutDbContext context, IRequestService request)
+        private readonly IUtilityService _utility;
+        public InventoryService(AllOutDbContext context, IRequestService request, IUtilityService utility)
         {
             _db = context;
             _request = request;
+            _utility = utility;
         }
 
-        public async Task<IEnumerable<Inventory>> GetInventoriesAsync()
+        public async Task<IEnumerable<InventoryFullInformation>> GetInventoriesAsync()
         {
-            return await _db.Inventories.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
+            var inventories = await (from a in _db.Inventories
+                                     join b in _db.Products on a.ProductID equals b.ProductID into bb
+                                     from b in bb.DefaultIfEmpty()
+                                     join c in _db.Brands on b.BrandID equals c.BrandID into cc
+                                     from c in cc.DefaultIfEmpty()
+                                     join d in _db.Categories on b.CategoryID equals d.CategoryID into dd
+                                     from d in dd.DefaultIfEmpty()
+                                     where a.Status != Constants.STATUS_DELETION_INT
+                                     select new InventoryFullInformation
+                                     {
+                                         InventoryID = a.InventoryID,
+                                         Quantity = a.Quantity,
+                                         Status = a.Status,
+                                         CreatedDate = a.CreatedDate,
+                                         ModifiedDate = b.ModifiedDate,
+                                         ProductID = a.ProductID,
+                                         ProductName = _utility.CheckProductAvailablity(b) ? b.Name : Constants.NA,
+                                         BrandID = _utility.CheckBrandAvailablity(c) ? c.BrandID : Guid.Empty,
+                                         BrandName = _utility.CheckBrandAvailablity(c) ? c.Name : Constants.NA,
+                                         CategoryID = _utility.CheckCategoryAvailablity(d) ? d.CategoryID : Guid.Empty,
+                                         CategoryName = _utility.CheckCategoryAvailablity(d) ? d.Name : Constants.NA
+                                     }).ToListAsync();
+
+            return inventories;
         }
 
         public async Task<Inventory> GetInventoryByIDAsync(Guid InventoryID)

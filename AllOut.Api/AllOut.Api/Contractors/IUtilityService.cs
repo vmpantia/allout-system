@@ -4,6 +4,7 @@ namespace AllOut.Api.Contractors
 {
     public interface IUtilityService
     {
+        bool CheckProductAvailablity(Product product);
         bool CheckBrandAvailablity(Brand brand);
         bool CheckCategoryAvailablity(Category category);
         int GetCurrentStock(int inventories, int sales);
