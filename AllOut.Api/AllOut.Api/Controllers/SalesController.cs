@@ -9,10 +9,10 @@ namespace AllOut.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SaalesController : ControllerBase
+    public class SalesController : ControllerBase
     {
         private readonly ISalesService _sales;
-        public SaalesController(ISalesService sales)
+        public SalesController(ISalesService sales)
         {
             _sales = sales;
         }
