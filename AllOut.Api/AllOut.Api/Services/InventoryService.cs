@@ -49,7 +49,7 @@ namespace AllOut.Api.Services
             return inventories;
         }
 
-        public async Task<Inventory> GetInventoryByIDAsync(Guid InventoryID)
+        public async Task<Inventory> GetInventoryByIDAsync(string InventoryID)
         {
             var inventory = await _db.Inventories.FindAsync(InventoryID);
 

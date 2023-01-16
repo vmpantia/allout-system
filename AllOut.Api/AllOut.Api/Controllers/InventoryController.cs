@@ -24,7 +24,7 @@ namespace AllOut.Api.Controllers
         }
 
         [HttpGet("GetInventoryByID/{id}")]
-        public async Task<IActionResult> GetInventoryByIDAsync(Guid id)
+        public async Task<IActionResult> GetInventoryByIDAsync(string id)
         {
             return await ProcessRequest(RequestType.GET_INVENTORY_BY_ID, id);
         }
@@ -54,7 +54,7 @@ namespace AllOut.Api.Controllers
                     switch(type)
                     {
                         case RequestType.GET_INVENTORY_BY_ID:
-                            response = await _inventory.GetInventoryByIDAsync((Guid)request);
+                            response = await _inventory.GetInventoryByIDAsync((string)request);
                             break;
 
                         case RequestType.POST_SAVE_INVENTORY:
