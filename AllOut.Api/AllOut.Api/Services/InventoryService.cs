@@ -81,7 +81,7 @@ namespace AllOut.Api.Services
             var inventory = await _db.Inventories.FindAsync(InventoryID);
 
             if (inventory == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_INVENTORY));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_INVENTORY));
 
             return inventory;
         }
@@ -90,14 +90,14 @@ namespace AllOut.Api.Services
         {
             //Check if Request is NULL
             if (request == null)
-                throw new ServiceException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_INVENTORY));
+                throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_INVENTORY));
 
             var requestID = await _request.InsertRequest(_db, request.client.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
 
             if (requestID == null)
-                throw new ServiceException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_INVENTORY));
+                throw new APIException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_INVENTORY));
 
             switch (request.FunctionID)
             {
@@ -127,7 +127,7 @@ namespace AllOut.Api.Services
             var errorMessage = ValidateInventory(inputInventory);
             if (!string.IsNullOrEmpty(errorMessage))
             {
-                throw new ServiceException(errorMessage);
+                throw new APIException(errorMessage);
             }
 
             inputInventory.InventoryID = await GetNewInventoryID();
@@ -140,12 +140,12 @@ namespace AllOut.Api.Services
             var currentInventory = await _db.Inventories.FindAsync(inputInventory.InventoryID);
 
             if (currentInventory == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_INVENTORY));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_INVENTORY));
 
             var errorMessage = ValidateInventory(inputInventory, currentInventory);
             if (!string.IsNullOrEmpty(errorMessage))
             {
-                throw new ServiceException(errorMessage);
+                throw new APIException(errorMessage);
             }
 
             //currentInventory.InventoryID = inputInventory.InventoryID;
@@ -161,7 +161,7 @@ namespace AllOut.Api.Services
             var currentInventory = await _db.Inventories.FindAsync(InventoryID);
 
             if (currentInventory == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_CATEGORY));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_CATEGORY));
 
             _db.Inventories.Remove(currentInventory);
         }

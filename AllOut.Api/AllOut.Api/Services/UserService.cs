@@ -24,7 +24,7 @@ namespace AllOut.Api.Services
         {
             if (string.IsNullOrEmpty(request.LogonName) || string.IsNullOrEmpty(request.Password))
             {
-                throw new ServiceException(Constants.ERROR_EMPTY_CREDENTIAL);
+                throw new APIException(Constants.ERROR_EMPTY_CREDENTIAL);
             }
 
             var users = await _db.Users.Where(data => (data.Username == request.LogonName && data.Password == request.Password) ||
@@ -32,7 +32,7 @@ namespace AllOut.Api.Services
 
             if (users == null || !users.Any())
             {
-                throw new ServiceException(Constants.ERROR_INCORRECT_CREDENTIAL);
+                throw new APIException(Constants.ERROR_INCORRECT_CREDENTIAL);
             }
 
             return new ClientInformation()
@@ -62,7 +62,7 @@ namespace AllOut.Api.Services
             var user = await _db.Users.FindAsync(userID);
 
             if (user == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_USER));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_USER));
 
             return user;
         }
@@ -71,14 +71,14 @@ namespace AllOut.Api.Services
         {
             //Check if Request is NULL
             if (request == null)
-                throw new ServiceException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_USER));
+                throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_USER));
 
             var requestID = await _request.InsertRequest(_db, request.client.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
 
             if (requestID == null)
-                throw new ServiceException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_USER));
+                throw new APIException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_USER));
 
             switch (request.FunctionID)
             {
@@ -133,7 +133,7 @@ namespace AllOut.Api.Services
             var errorMessage = await ValidateUser(inputUser);
             if (!string.IsNullOrEmpty(errorMessage))
             {
-                throw new ServiceException(errorMessage);
+                throw new APIException(errorMessage);
             }
 
             inputUser.UserID = Guid.NewGuid();
@@ -146,12 +146,12 @@ namespace AllOut.Api.Services
             var currentUser = await _db.Users.FindAsync(inputUser.UserID);
 
             if (currentUser == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_USER));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_USER));
 
             var errorMessage = await ValidateUser(inputUser, currentUser);
             if (!string.IsNullOrEmpty(errorMessage))
             {
-                throw new ServiceException(errorMessage);
+                throw new APIException(errorMessage);
             }
 
             //currentUser.UserID = inputUser.UserID;
@@ -173,7 +173,7 @@ namespace AllOut.Api.Services
             var currentUser = await _db.Users.FindAsync(userID);
 
             if (currentUser == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_USER));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_USER));
 
             _db.Users.Remove(currentUser);
         }

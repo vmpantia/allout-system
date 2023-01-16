@@ -61,7 +61,7 @@ namespace AllOut.Api.Controllers
                 {
                     //Check if Request is NULL
                     if (request == null)
-                        throw new ControllerException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_CATEGORY));
+                        throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_CATEGORY));
 
                     switch (type)   
                     {

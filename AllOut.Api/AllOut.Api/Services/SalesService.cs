@@ -23,14 +23,14 @@ namespace AllOut.Api.Services
         {
             //Check if Request is NULL
             if (request == null)
-                throw new ServiceException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_SALES));
+                throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_SALES));
 
             var requestID = await _request.InsertRequest(_db, request.client.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
 
             if (requestID == null)
-                throw new ServiceException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_SALES));
+                throw new APIException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_SALES));
 
             switch (request.FunctionID)
             {

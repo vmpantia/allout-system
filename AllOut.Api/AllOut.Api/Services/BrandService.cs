@@ -37,7 +37,7 @@ namespace AllOut.Api.Services
             var brand = await _db.Brands.FindAsync(BrandID);
 
             if (brand == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_BRAND));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_BRAND));
 
             return brand;
         }
@@ -49,7 +49,7 @@ namespace AllOut.Api.Services
                                                               request.RequestStatus);
 
             if (requestID == null)
-                throw new ServiceException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_BRAND));
+                throw new APIException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_BRAND));
 
             switch (request.FunctionID)
             {
@@ -102,7 +102,7 @@ namespace AllOut.Api.Services
             var errorMessage = await ValidateBrand(inputBrand);
             if (!string.IsNullOrEmpty(errorMessage))
             {
-                throw new ServiceException(errorMessage);
+                throw new APIException(errorMessage);
             }
 
             inputBrand.BrandID = Guid.NewGuid();
@@ -115,12 +115,12 @@ namespace AllOut.Api.Services
             var currentBrand = await _db.Brands.FindAsync(inputBrand.BrandID);
 
             if (currentBrand == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_BRAND));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_BRAND));
 
             var errorMessage = await ValidateBrand(inputBrand, currentBrand);
             if(!string.IsNullOrEmpty(errorMessage))
             {
-                throw new ServiceException(errorMessage);
+                throw new APIException(errorMessage);
             }
 
             //currentBrand.BrandID = inputBrand.BrandID;
@@ -136,7 +136,7 @@ namespace AllOut.Api.Services
             var currentBrand = await _db.Brands.FindAsync(BrandID);
 
             if (currentBrand == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_BRAND));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_BRAND));
 
             _db.Brands.Remove(currentBrand);
         }

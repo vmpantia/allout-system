@@ -89,7 +89,7 @@ namespace AllOut.Api.Services
             var product = await _db.Products.FindAsync(productID);
 
             if (product == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_PRODUCT));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_PRODUCT));
 
             return product;
         }
@@ -98,14 +98,14 @@ namespace AllOut.Api.Services
         {
             //Check if Request is NULL
             if (request == null)
-                throw new ServiceException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_PRODUCT));
+                throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_PRODUCT));
 
             var requestID = await _request.InsertRequest(_db, request.client.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
 
             if (requestID == null)
-                throw new ServiceException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_PRODUCT));
+                throw new APIException(string.Format(Constants.ERROR_ID_NULL, Constants.OBJECT_PRODUCT));
 
             switch (request.FunctionID)
             {
@@ -158,7 +158,7 @@ namespace AllOut.Api.Services
             var errorMessage = await ValidateProduct(inputProduct);
             if (!string.IsNullOrEmpty(errorMessage))
             {
-                throw new ServiceException(errorMessage);
+                throw new APIException(errorMessage);
             }
 
             inputProduct.ProductID = Guid.NewGuid();
@@ -171,12 +171,12 @@ namespace AllOut.Api.Services
             var currentProduct = await _db.Products.FindAsync(inputProduct.ProductID);
 
             if (currentProduct == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_PRODUCT));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND_CHANGE, Constants.OBJECT_PRODUCT));
 
             var errorMessage = await ValidateProduct(inputProduct, currentProduct);
             if (!string.IsNullOrEmpty(errorMessage))
             {
-                throw new ServiceException(errorMessage);
+                throw new APIException(errorMessage);
             }
 
             //currentProduct.ProductID = inputProduct.ProductID;
@@ -196,7 +196,7 @@ namespace AllOut.Api.Services
             var currentProduct = await _db.Products.FindAsync(productID);
 
             if (currentProduct == null)
-                throw new ServiceException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_PRODUCT));
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND_DELETE, Constants.OBJECT_PRODUCT));
 
             _db.Products.Remove(currentProduct);
         }
