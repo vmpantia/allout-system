@@ -23,13 +23,13 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_BRANDS);
         }
 
-        [HttpGet("GetBrandsByQuery/{query}")]
+        [HttpGet("GetBrandsByQuery")]
         public async Task<IActionResult> GetBrandsByQueryAsync(string query)
         {
             return await ProcessRequest(RequestType.GET_BRANDS_BY_QUERY, query);
         }
 
-        [HttpGet("GetBrandByID/{id}")]
+        [HttpGet("GetBrandByID")]
         public async Task<IActionResult> GetBrandIDAsync(Guid id)
         {
             return await ProcessRequest(RequestType.GET_BRAND_BY_ID, id);

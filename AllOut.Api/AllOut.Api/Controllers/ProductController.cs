@@ -1,6 +1,5 @@
 ﻿using AllOut.Api.Common;
 using AllOut.Api.Contractors;
-using AllOut.Api.DataAccess.Models;
 using AllOut.Api.Models.enums;
 using AllOut.Api.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
@@ -24,13 +23,13 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_PRODUCTS);
         }
 
-        [HttpGet("GetProductsByQuery/{query}")]
+        [HttpGet("GetProductsByQuery")]
         public async Task<IActionResult> GetProductsByQueryAsync(string query)
         {
             return await ProcessRequest(RequestType.GET_PRODUCTS_BY_QUERY, query);
         }
 
-        [HttpGet("GetProductByID/{id}")]
+        [HttpGet("GetProductByID")]
         public async Task<IActionResult> GetProductIDAsync(Guid id)
         {
             return await ProcessRequest(RequestType.GET_PRODUCT_BY_ID, id);

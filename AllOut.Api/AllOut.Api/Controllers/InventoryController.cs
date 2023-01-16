@@ -23,7 +23,7 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_INVENTORIES);
         }
 
-        [HttpGet("GetInventoryByID/{id}")]
+        [HttpGet("GetInventoryByID")]
         public async Task<IActionResult> GetInventoryByIDAsync(string id)
         {
             return await ProcessRequest(RequestType.GET_INVENTORY_BY_ID, id);

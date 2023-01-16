@@ -6,6 +6,7 @@ namespace AllOut.Api.Services.Common
 {
     public class UtilityService : IUtilityService
     {
+        #region Public Methods
         public bool CheckProductAvailablity(Product product)
         {
             if (null == product)
@@ -33,7 +34,7 @@ namespace AllOut.Api.Services.Common
         public int GetCurrentStock(int inventories, int sales)
         {
             var result = inventories - sales;
-            if(result < 0)
+            if (result < 0)
                 return 0;
             return result;
         }
@@ -42,5 +43,6 @@ namespace AllOut.Api.Services.Common
         {
             return stock <= reorderpoint;
         }
+        #endregion
     }
 }

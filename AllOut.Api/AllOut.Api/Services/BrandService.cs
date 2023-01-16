@@ -5,8 +5,6 @@ using AllOut.Api.Models.Requests;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
-using AllOut.Api.Models.enums;
-using Microsoft.IdentityModel.Tokens;
 
 namespace AllOut.Api.Services
 {
@@ -20,6 +18,7 @@ namespace AllOut.Api.Services
             _request = request;
         }
 
+        #region Public Methods
         public async Task<IEnumerable<Brand>> GetBrandsAsync()
         {
             return await _db.Brands.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
@@ -95,7 +94,9 @@ namespace AllOut.Api.Services
 
             return requestID;
         }
+        #endregion
 
+        #region Private Methods
         private async Task InsertBrand(Brand inputBrand)
         {
             var errorMessage = await ValidateBrand(inputBrand);
@@ -202,5 +203,6 @@ namespace AllOut.Api.Services
 
             return string.Empty;
         }
+        #endregion
     }
 }

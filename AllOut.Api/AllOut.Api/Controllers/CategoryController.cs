@@ -23,13 +23,13 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_CATEGORIES);
         }
 
-        [HttpGet("GetCategoriesByQuery/{query}")]
+        [HttpGet("GetCategoriesByQuery")]
         public async Task<IActionResult> GetCategoriesByQueryAsync(string query)
         {
             return await ProcessRequest(RequestType.GET_CATEGORIES_BY_QUERY, query);
         }
 
-        [HttpGet("GetCategoryByID/{id}")]
+        [HttpGet("GetCategoryByID")]
         public async Task<IActionResult> GetCategoryIDAsync(Guid id)
         {
             return await ProcessRequest(RequestType.GET_CATEGORY_BY_ID, id);

@@ -21,6 +21,7 @@ namespace AllOut.Api.Services
             _utility = utility;
         }
 
+        #region Public Methods
         public async Task<IEnumerable<InventoryFullInformation>> GetInventoriesAsync()
         {
             var inventories = await (from a in _db.Inventories
@@ -118,7 +119,9 @@ namespace AllOut.Api.Services
 
             return requestID;
         }
+        #endregion
 
+        #region Private Methods
         private async Task InsertInventory(Inventory inputInventory)
         {
             var errorMessage = ValidateInventory(inputInventory);
@@ -127,7 +130,7 @@ namespace AllOut.Api.Services
                 throw new ServiceException(errorMessage);
             }
 
-            inputInventory.InventoryID = await GetNewInventoryID(_db);
+            inputInventory.InventoryID = await GetNewInventoryID();
             inputInventory.CreatedDate = Globals.EXEC_DATETIME;
             await _db.Inventories.AddAsync(inputInventory);
         }
@@ -204,9 +207,9 @@ namespace AllOut.Api.Services
             return string.Empty;
         }
 
-        private async Task<string> GetNewInventoryID(AllOutDbContext db)
+        private async Task<string> GetNewInventoryID()
         {
-            var inventoriesToday = await db.Inventories.Where(data => data.CreatedDate == DateTime.Parse(Globals.EXEC_DATE))
+            var inventoriesToday = await _db.Inventories.Where(data => data.CreatedDate == DateTime.Parse(Globals.EXEC_DATE))
                                                        .OrderByDescending(data => data.InventoryID).ToListAsync();
 
             if (inventoriesToday == null || !inventoriesToday.Any())
@@ -218,5 +221,6 @@ namespace AllOut.Api.Services
 
             return string.Format(Constants.INVENTORY_ID_FORMAT, Globals.ID_PREFFIX, newSuffix);
         }
+        #endregion
     }
 }

@@ -6,9 +6,6 @@ using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
 using AllOut.Api.Models;
-using Microsoft.AspNetCore.Mvc;
-using Azure.Core;
-using Microsoft.IdentityModel.Tokens;
 
 namespace AllOut.Api.Services
 {
@@ -22,6 +19,7 @@ namespace AllOut.Api.Services
             _request = request;
         }
 
+        #region Public Methods
         public async Task<ClientInformation> LoginUserAsync(LoginUserRequest request)
         {
             if (string.IsNullOrEmpty(request.LogonName) || string.IsNullOrEmpty(request.Password))
@@ -127,7 +125,9 @@ namespace AllOut.Api.Services
 
             return requestID;
         }
+        #endregion
 
+        #region Private Methods
         private async Task InsertUser(User inputUser)
         {
             var errorMessage = await ValidateUser(inputUser);
@@ -261,5 +261,6 @@ namespace AllOut.Api.Services
 
             return string.Empty;
         }
+        #endregion
     }
 }

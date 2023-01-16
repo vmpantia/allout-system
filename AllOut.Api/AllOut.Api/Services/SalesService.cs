@@ -5,10 +5,6 @@ using AllOut.Api.Models.Requests;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
-using AllOut.Api.Models;
-using Microsoft.AspNetCore.Mvc;
-using Azure.Core;
-using Microsoft.IdentityModel.Tokens;
 
 namespace AllOut.Api.Services
 {
@@ -22,6 +18,7 @@ namespace AllOut.Api.Services
             _request = request;
         }
 
+        #region Public Methods
         public async Task<string> SaveSalesAsync(SaveSalesRequest request)
         {
             //Check if Request is NULL
@@ -57,10 +54,12 @@ namespace AllOut.Api.Services
 
             return requestID;
         }
+        #endregion
 
+        #region Private Methods
         private async Task InsertSales(Sales inputSales)
         {
-            inputSales.SalesID = await GetNewSalesID(_db);
+            inputSales.SalesID = await GetNewSalesID();
             inputSales.CreatedDate = Globals.EXEC_DATETIME;
             await _db.Sales.AddAsync(inputSales);
         }
@@ -154,9 +153,9 @@ namespace AllOut.Api.Services
             await _db.Sales_TRN.AddAsync(newTrn);
         }
 
-        private async Task<string> GetNewSalesID(AllOutDbContext db)
+        private async Task<string> GetNewSalesID()
         {
-            var salesToday = await db.Sales.Where(data => data.CreatedDate == DateTime.Parse(Globals.EXEC_DATE))
+            var salesToday = await _db.Sales.Where(data => data.CreatedDate == DateTime.Parse(Globals.EXEC_DATE))
                                            .OrderByDescending(data => data.SalesID).ToListAsync();
 
             if (salesToday == null || !salesToday.Any())
@@ -168,5 +167,6 @@ namespace AllOut.Api.Services
 
             return string.Format(Constants.SALES_ID_FORMAT, Globals.ID_PREFFIX, newSuffix);
         }
+        #endregion
     }
 }

@@ -8,6 +8,7 @@ namespace AllOut.Api.Services.Common
 {
     public class RequestService : IRequestService
     {
+        #region Public Methods
         public async Task<string> InsertRequest(AllOutDbContext db, Guid userID, string functionID, string requestStatus)
         {
             var newRequest = new Request
@@ -27,7 +28,9 @@ namespace AllOut.Api.Services.Common
 
             return newRequest.RequestID;
         }
+        #endregion
 
+        #region Private Methods
         private async Task<string> GetNewRequestID(AllOutDbContext db)
         {
             var requestsToday = await db.Requests.Where(data => data.RequestDate == DateTime.Parse(Globals.EXEC_DATE))
@@ -42,5 +45,6 @@ namespace AllOut.Api.Services.Common
 
             return string.Format(Constants.REQUEST_ID_FORMAT, Globals.ID_PREFFIX, newSuffix);
         }
+        #endregion
     }
 }

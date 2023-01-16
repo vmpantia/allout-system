@@ -28,13 +28,13 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_USERS);
         }
 
-        [HttpGet("GetUsersByQuery/{query}")]
+        [HttpGet("GetUsersByQuery")]
         public async Task<IActionResult> GetUsersByQueryAsync(string query)
         {
             return await ProcessRequest(RequestType.GET_USERS_BY_QUERY, query);
         }
 
-        [HttpGet("GetUserByID/{id}")]
+        [HttpGet("GetUserByID")]
         public async Task<IActionResult> GetUserByIDAsync(Guid id)
         {
             return await ProcessRequest(RequestType.GET_USER_BY_ID, id);

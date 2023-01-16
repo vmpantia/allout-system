@@ -6,8 +6,6 @@ using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
 using AllOut.Api.Models;
-using Microsoft.AspNetCore.Mvc;
-using Azure.Core;
 
 namespace AllOut.Api.Services
 {
@@ -23,6 +21,7 @@ namespace AllOut.Api.Services
             _utility = utility;
         }
 
+        #region Public Methods
         public async Task<IEnumerable<ProductFullInformation>> GetProductsAsync()
         {
             //Initial Product Information
@@ -151,7 +150,9 @@ namespace AllOut.Api.Services
 
             return requestID;
         }
+        #endregion
 
+        #region Private Methods
         private async Task InsertProduct(Product inputProduct)
         {
             var errorMessage = await ValidateProduct(inputProduct);
@@ -286,5 +287,6 @@ namespace AllOut.Api.Services
             product.Stock = _utility.GetCurrentStock(countInInventories, countInSales);
             product.ReorderState = _utility.GetReorderState(product.Stock, product.ReorderPoint);
         }
+        #endregion
     }
 }

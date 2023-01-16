@@ -5,7 +5,6 @@ using AllOut.Api.Models.Requests;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
-using Azure.Core;
 
 namespace AllOut.Api.Services
 {
@@ -19,6 +18,7 @@ namespace AllOut.Api.Services
             _request = request;
         }
 
+        #region Public Methods
         public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
             return await _db.Categories.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
@@ -98,7 +98,9 @@ namespace AllOut.Api.Services
 
             return requestID;
         }
+        #endregion
 
+        #region Private Methods
         private async Task InsertCategory(Category inputCategory)
         {
             var errorMessage = await ValidateCategory(inputCategory);
@@ -205,5 +207,6 @@ namespace AllOut.Api.Services
 
             return string.Empty;
         }
+        #endregion
     }
 }
