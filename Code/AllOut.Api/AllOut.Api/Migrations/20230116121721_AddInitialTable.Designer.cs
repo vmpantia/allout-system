@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AllOut.Api.Migrations
 {
     [DbContext(typeof(AllOutDbContext))]
-    [Migration("20230116043206_AddInitialTable")]
+    [Migration("20230116121721_AddInitialTable")]
     partial class AddInitialTable
     {
         /// <inheritdoc />
@@ -151,6 +151,63 @@ namespace AllOut.Api.Migrations
                     b.HasKey("RequestID", "Number", "CategoryID");
 
                     b.ToTable("Category_TRN");
+                });
+
+            modelBuilder.Entity("AllOut.Api.DataAccess.Models.Client", b =>
+                {
+                    b.Property<Guid>("ClientID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Browser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IPAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("WindowsVersion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ClientID");
+
+                    b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("AllOut.Api.DataAccess.Models.ClientRequest", b =>
+                {
+                    b.Property<Guid>("ClientID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Response")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ClientID", "Number");
+
+                    b.ToTable("ClientRequests");
                 });
 
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.Inventory", b =>
@@ -423,11 +480,11 @@ namespace AllOut.Api.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<Guid>("ProductID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("ProductID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -435,7 +492,7 @@ namespace AllOut.Api.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("SalesID", "ProductID");
+                    b.HasKey("SalesID");
 
                     b.ToTable("SalesItems");
                 });

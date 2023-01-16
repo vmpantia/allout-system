@@ -12,46 +12,52 @@ namespace AllOut.Api.Controllers
     public class BrandController : ControllerBase
     {
         private readonly IBrandService _brand;
-        public BrandController(IBrandService brand)
+        private readonly IUtilityService _utility;
+        public BrandController(IBrandService brand, IUtilityService utility)
         {
             _brand = brand;
+            _utility = utility;
         }
 
         [HttpGet("GetBrands")]
-        public async Task<IActionResult> GetBrandsAsync()
+        public async Task<IActionResult> GetBrandsAsync(Guid clientID)
         {
-            return await ProcessRequest(RequestType.GET_BRANDS);
+            return await ProcessRequest(RequestType.GET_BRANDS, clientID);
         }
 
         [HttpGet("GetBrandsByQuery")]
-        public async Task<IActionResult> GetBrandsByQueryAsync(string query)
+        public async Task<IActionResult> GetBrandsByQueryAsync(Guid clientID, string query)
         {
-            return await ProcessRequest(RequestType.GET_BRANDS_BY_QUERY, query);
+            return await ProcessRequest(RequestType.GET_BRANDS_BY_QUERY, clientID, query);
         }
 
         [HttpGet("GetBrandByID")]
-        public async Task<IActionResult> GetBrandIDAsync(Guid id)
+        public async Task<IActionResult> GetBrandIDAsync(Guid clientID, Guid id)
         {
-            return await ProcessRequest(RequestType.GET_BRAND_BY_ID, id);
+            return await ProcessRequest(RequestType.GET_BRAND_BY_ID, clientID, id);
         }
 
         [HttpPost("SaveBrand")]
         public async Task<IActionResult> SaveBrandAsync(SaveBrandRequest request)
         {
-            return await ProcessRequest(RequestType.POST_SAVE_BRAND, request);
+            return await ProcessRequest(RequestType.POST_SAVE_BRAND, request.client.ClientID, request);
         }
 
         [HttpPost("UpdateBrandStatusByIDs")]
         public async Task<IActionResult> UpdateBrandStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
-            return await ProcessRequest(RequestType.POST_UPDATE_BRAND_STATUS_BY_IDS, request);
+            return await ProcessRequest(RequestType.POST_UPDATE_BRAND_STATUS_BY_IDS, request.client.ClientID, request);
         }
 
-        private async Task<IActionResult> ProcessRequest(RequestType type, object? request = null)
+        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID,  object? request = null)
         {
             try
             {
                 object? response = null;
+
+                var errorMessage = await _utility.ValidateClientID(clientID);
+                if(!string.IsNullOrEmpty(errorMessage))
+                    return Unauthorized(errorMessage);
 
                 if (type == RequestType.GET_BRANDS)
                 {
@@ -84,12 +90,17 @@ namespace AllOut.Api.Controllers
                 }
 
                 if (response == null)
+                {
+                    await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_NOTFOUND);
                     return NotFound();
+                }
 
+                await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_OK);
                 return Ok(response);
             }
             catch (Exception ex)
             {
+                await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_CONFLICT);
                 return Conflict(ex.Message);
             }
         }

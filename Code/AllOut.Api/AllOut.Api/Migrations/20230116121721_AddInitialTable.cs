@@ -80,6 +80,38 @@ namespace AllOut.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ClientRequests",
+                columns: table => new
+                {
+                    ClientID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Number = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Response = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientRequests", x => new { x.ClientID, x.Number });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Clients",
+                columns: table => new
+                {
+                    ClientID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Browser = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IPAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WindowsVersion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clients", x => x.ClientID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Inventories",
                 columns: table => new
                 {
@@ -267,7 +299,7 @@ namespace AllOut.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SalesItems", x => new { x.SalesID, x.ProductID });
+                    table.PrimaryKey("PK_SalesItems", x => x.SalesID);
                 });
 
             migrationBuilder.CreateTable(
@@ -331,6 +363,12 @@ namespace AllOut.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Category_TRN");
+
+            migrationBuilder.DropTable(
+                name: "ClientRequests");
+
+            migrationBuilder.DropTable(
+                name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "Inventories");

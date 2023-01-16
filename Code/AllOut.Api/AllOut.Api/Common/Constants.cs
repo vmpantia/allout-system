@@ -28,9 +28,50 @@
         public const int ID_SUFFIX_LENGTH = 5;
         #endregion
 
+        #region Status Codes
+        public const string STATUS_CODE_OK = "OK | 200";
+        public const string STATUS_CODE_NOTFOUND = "NOT FOUND | 404";
+        public const string STATUS_CODE_CONFLICT = "CONFLICT | 409";
+        public const string STATUS_CODE_UNAUTHORIZED = "UNAUTHORIZED | 401";
+        #endregion
+
         #region Request Status
         public const string REQUEST_STATUS_COMPLETED = "A2";
         public const string REQUEST_STATUS_POST_DELETE = "96";
+        #endregion
+
+        #region Request Types
+        public const string POST_LOGIN_USER = "POST_LOGIN_USER";
+        public const string GET_USERS = "GET_USERS";
+        public const string GET_USERS_BY_QUERY = "GET_USERS_BY_QUERY";
+        public const string GET_USER_BY_ID = "GET_USER_BY_ID";
+        public const string POST_SAVE_USER = "POST_SAVE_USER";
+        public const string POST_UPDATE_USER_STATUS_BY_IDS = "POST_UPDATE_USER_STATUS_BY_IDS";
+
+        public const string GET_PRODUCTS = "GET_PRODUCTS";
+        public const string GET_PRODUCTS_BY_QUERY = "GET_PRODUCTS_BY_QUERY";
+        public const string GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
+        public const string POST_SAVE_PRODUCT = "POST_SAVE_PRODUCT";
+        public const string POST_UPDATE_PRODUCT_STATUS_BY_IDS = "POST_UPDATE_PRODUCT_STATUS_BY_IDS";
+
+        public const string GET_BRANDS = "GET_BRANDS";
+        public const string GET_BRANDS_BY_QUERY = "GET_BRANDS_BY_QUERY";
+        public const string GET_BRAND_BY_ID = "GET_BRAND_BY_ID";
+        public const string POST_SAVE_BRAND = "POST_SAVE_BRAND";
+        public const string POST_UPDATE_BRAND_STATUS_BY_IDS = "POST_UPDATE_BRAND_STATUS_BY_IDS";
+
+        public const string GET_CATEGORIES = "GET_CATEGORIES";
+        public const string GET_CATEGORIES_BY_QUERY = "GET_CATEGORIES_BY_QUERY";
+        public const string GET_CATEGORY_BY_ID = "GET_CATEGORY_BY_ID";
+        public const string POST_SAVE_CATEGORY = "POST_SAVE_CATEGORY";
+        public const string POST_UPDATE_CATEGORY_STATUS_BY_IDS = "POST_UPDATE_CATEGORY_STATUS_BY_IDS";
+
+        public const string GET_INVENTORIES = "GET_INVENTORIES";
+        public const string GET_INVENTORIES_BY_QUERY = "GET_INVENTORIES_BY_QUERY";
+        public const string GET_INVENTORY_BY_ID = "GET_INVENTORY_BY_ID";
+        public const string POST_SAVE_INVENTORY = "POST_SAVE_INVENTORY";
+
+        public const string POST_SAVE_SALES = "POST_SAVE_SALES";
         #endregion
 
         #region Status
@@ -120,6 +161,12 @@
         public const string ERROR_UNABLE_EDIT = "Unable to Edit {0}.";
         public const string ERROR_EMPTY_CREDENTIAL = "Username/Email or Password field is required.";
         public const string ERROR_INCORRECT_CREDENTIAL = "Username/Email or Password is incorrect.";
+        public const string ERROR_GENERATE_CLIENT = "Error in generating user client.";
+        public const string ERROR_CLIENT_EMPTY = "ClientID/Key must have Values, Please login again.";
+        public const string ERROR_CLIENT_NOT_EXIST = "ClientID/Key is NOT exist in the System, Please login again.";
+        public const string ERROR_CLIENT_NOT_VALID = "ClientID/Key is NOT valid already, Please login again.";
+        public const string ERROR_CLIENT_EXCEED_REQUEST = "ClientID/Key is already exceed in the number of request threshold, Please login again.";
+        public const string ERROR_CLIENT_EXCEED_ACTIVE_HOURS = "ClientID/Key is already exceed in the number of hours active threshold, Please login again.";
         #endregion
 
         #region Success Message

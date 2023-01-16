@@ -23,23 +23,19 @@ namespace AllOut.Api.Services
         public async Task<Client> LoginUserAsync(LoginUserRequest request)
         {
             if (string.IsNullOrEmpty(request.LogonName) || string.IsNullOrEmpty(request.Password))
-            {
                 throw new APIException(Constants.ERROR_EMPTY_CREDENTIAL);
-            }
 
             var users = await _db.Users.Where(data => (data.Username == request.LogonName && data.Password == request.Password) ||
                                                       (data.Email == request.LogonName && data.Password == request.Password)).ToListAsync();
 
             if (users == null || !users.Any())
-            {
                 throw new APIException(Constants.ERROR_INCORRECT_CREDENTIAL);
-            }
 
-            return new Client()
-            {
-                UserID = users.First().UserID,
-                Name = string.Format(Constants.NAME_FORMAT, users.First().LastName, users.First().FirstName)
-            };
+            var client = await GenerateNewClient(users.First(), request);
+            if (client == null)
+                throw new APIException(Constants.ERROR_GENERATE_CLIENT);
+
+            return client;
         }
 
         public async Task<IEnumerable<User>> GetUsersAsync()
@@ -260,6 +256,34 @@ namespace AllOut.Api.Services
             }
 
             return string.Empty;
+        }
+
+        private async Task<Client> GenerateNewClient(User user, LoginUserRequest request)
+        {
+            var client = new Client
+            {
+                UserID = user.UserID,
+                Name = string.Format(Constants.NAME_FORMAT, user.LastName, user.FirstName),
+                Browser = request.Browser,
+                IPAddress = request.IPAddress,
+                WindowsVersion = request.WindowsVersion,
+                Status = Constants.STATUS_ENABLED_INT
+            };
+
+            //Disable all active clients of User
+            var clients = await _db.Clients.Where(data => data.UserID == user.UserID).ToListAsync();
+            if (clients.Any())
+            {
+                foreach (var currClient in clients)
+                {
+                    currClient.Status = Constants.STATUS_DISABLED_INT;
+                }
+            }
+
+            await _db.Clients.AddAsync(client);
+            await _db.SaveChangesAsync();
+
+            return client;
         }
         #endregion
     }

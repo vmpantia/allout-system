@@ -186,17 +186,13 @@ namespace AllOut.Api.Migrations
             modelBuilder.Entity("AllOut.Api.DataAccess.Models.ClientRequest", b =>
                 {
                     b.Property<Guid>("ClientID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Response")
                         .IsRequired()
@@ -206,7 +202,7 @@ namespace AllOut.Api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ClientID");
+                    b.HasKey("ClientID", "Number");
 
                     b.ToTable("ClientRequests");
                 });

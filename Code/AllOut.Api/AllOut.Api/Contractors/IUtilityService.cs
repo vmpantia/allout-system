@@ -1,4 +1,5 @@
 ﻿using AllOut.Api.DataAccess.Models;
+using AllOut.Api.Models.enums;
 
 namespace AllOut.Api.Contractors
 {
@@ -9,5 +10,7 @@ namespace AllOut.Api.Contractors
         bool CheckCategoryAvailablity(Category category);
         int GetCurrentStock(int inventories, int sales);
         bool GetReorderState(int stock, int reorderpoint);
+        Task<string> ValidateClientID(Guid ClientID);
+        Task LogClientRequest(Guid ClientID, RequestType type, string statusCode);
     }
 }
