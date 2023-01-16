@@ -20,6 +20,7 @@ namespace AllOut.Api.Controllers
             _user = user;
             _utility = utility;
         }
+
         [HttpPost("LoginUser")]
         public async Task<IActionResult> LoginUserAsync(LoginUserRequest request)
         {
