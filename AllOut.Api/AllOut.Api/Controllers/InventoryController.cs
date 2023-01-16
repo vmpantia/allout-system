@@ -23,6 +23,12 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_INVENTORIES);
         }
 
+        [HttpGet("GetInventoriesByQuery")]
+        public async Task<IActionResult> GetInventoriesByQueryAsync(string query)
+        {
+            return await ProcessRequest(RequestType.GET_INVENTORIES_BY_QUERY, query);
+        }
+
         [HttpGet("GetInventoryByID")]
         public async Task<IActionResult> GetInventoryByIDAsync(string id)
         {
@@ -53,6 +59,10 @@ namespace AllOut.Api.Controllers
 
                     switch(type)
                     {
+                        case RequestType.GET_INVENTORIES_BY_QUERY:
+                            response = await _inventory.GetInventoriesByQueryAsync((string)request);
+                            break;
+
                         case RequestType.GET_INVENTORY_BY_ID:
                             response = await _inventory.GetInventoryByIDAsync((string)request);
                             break;

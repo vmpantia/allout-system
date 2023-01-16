@@ -29,6 +29,7 @@
         POST_UPDATE_CATEGORY_STATUS_BY_IDS,
         //Inventory Request
         GET_INVENTORIES,
+        GET_INVENTORIES_BY_QUERY,
         GET_INVENTORY_BY_ID,
         POST_SAVE_INVENTORY,
         //Sales Request
