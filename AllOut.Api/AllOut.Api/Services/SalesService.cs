@@ -12,7 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace AllOut.Api.Services
 {
-    public class SalesService
+    public class SalesService : ISalesService
     {
         private readonly AllOutDbContext _db;
         private readonly IRequestService _request;
@@ -70,7 +70,7 @@ namespace AllOut.Api.Services
             await DeleteSalesItemsBySalesID(salesID);
 
             int number = 1;
-            foreach(var salesItem in inputSalesItems)
+            foreach (var salesItem in inputSalesItems)
             {
                 //Insert SalesItem
                 salesItem.SalesID = salesID;

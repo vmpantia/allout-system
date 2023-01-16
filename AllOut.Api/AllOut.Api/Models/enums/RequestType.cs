@@ -31,5 +31,7 @@
         GET_INVENTORIES,
         GET_INVENTORY_BY_ID,
         POST_SAVE_INVENTORY,
+        //Sales Request
+        POST_SAVE_SALES,
     }
 }
