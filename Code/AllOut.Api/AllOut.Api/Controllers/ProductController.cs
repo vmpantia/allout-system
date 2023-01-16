@@ -12,46 +12,52 @@ namespace AllOut.Api.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _product;
-        public ProductController(IProductService product)
+        private readonly IUtilityService _utility;
+        public ProductController(IProductService product, IUtilityService utility)
         {
             _product = product;
+            _utility = utility;
         }
 
         [HttpGet("GetProducts")]
-        public async Task<IActionResult> GetProductsAsync()
+        public async Task<IActionResult> GetProductsAsync(Guid clientID)
         {
-            return await ProcessRequest(RequestType.GET_PRODUCTS);
+            return await ProcessRequest(RequestType.GET_PRODUCTS, clientID);
         }
 
         [HttpGet("GetProductsByQuery")]
-        public async Task<IActionResult> GetProductsByQueryAsync(string query)
+        public async Task<IActionResult> GetProductsByQueryAsync(Guid clientID, string query)
         {
-            return await ProcessRequest(RequestType.GET_PRODUCTS_BY_QUERY, query);
+            return await ProcessRequest(RequestType.GET_PRODUCTS_BY_QUERY, clientID, query);
         }
 
         [HttpGet("GetProductByID")]
-        public async Task<IActionResult> GetProductIDAsync(Guid id)
+        public async Task<IActionResult> GetProductIDAsync(Guid clientID, Guid id)
         {
-            return await ProcessRequest(RequestType.GET_PRODUCT_BY_ID, id);
+            return await ProcessRequest(RequestType.GET_PRODUCT_BY_ID, clientID, id);
         }
 
         [HttpPost("SaveProduct")]
         public async Task<IActionResult> SaveProductAsync(SaveProductRequest request)
         {
-            return await ProcessRequest(RequestType.POST_SAVE_PRODUCT, request);
+            return await ProcessRequest(RequestType.POST_SAVE_PRODUCT, request.client.ClientID, request);
         }
 
         [HttpPost("UpdateProductStatusByIDs")]
         public async Task<IActionResult> UpdateProductStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
-            return await ProcessRequest(RequestType.POST_UPDATE_PRODUCT_STATUS_BY_IDS, request);
+            return await ProcessRequest(RequestType.POST_UPDATE_PRODUCT_STATUS_BY_IDS, request.client.ClientID, request);
         }
 
-        private async Task<IActionResult> ProcessRequest(RequestType type, object? request = null)
+        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object? request = null)
         {
             try
             {
                 object? response = null;
+
+                var errorMessage = await _utility.ValidateClientID(clientID);
+                if (!string.IsNullOrEmpty(errorMessage))
+                    return Unauthorized(errorMessage);
 
                 if (type == RequestType.GET_PRODUCTS)
                 {
@@ -84,12 +90,17 @@ namespace AllOut.Api.Controllers
                 }
 
                 if (response == null)
+                {
+                    await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_NOTFOUND);
                     return NotFound();
+                }
 
+                await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_OK);
                 return Ok(response);
             }
             catch (Exception ex)
             {
+                await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_CONFLICT);
                 return Conflict(ex.Message);
             }
         }
