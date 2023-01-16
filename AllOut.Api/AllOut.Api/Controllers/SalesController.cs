@@ -29,12 +29,6 @@ namespace AllOut.Api.Controllers
             {
                 object? response = null;
 
-                //if (type == RequestType.GET_INVENTORIES)
-                //{
-                //    response = await _inventory.GetInventoriesAsync();
-                //}
-                //else
-                //{
                 //Check if Request is NULL
                 if (request == null)
                     throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_BRAND));
@@ -45,20 +39,15 @@ namespace AllOut.Api.Controllers
                         response = await _sales.SaveSalesAsync((SaveSalesRequest)request);
                         break;
                 }
-                //}
 
                 if (response == null)
                     return NotFound();
 
                 return Ok(response);
             }
-            catch (APIException ex)
-            {
-                return Conflict(ex.Message);
-            }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return Conflict(ex.Message);
             }
         }
 
