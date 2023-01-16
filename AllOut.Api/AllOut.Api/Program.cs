@@ -1,3 +1,4 @@
+#define PROD
 using AllOut.Api.Contractors;
 using AllOut.Api.DataAccess;
 using AllOut.Api.Services;
