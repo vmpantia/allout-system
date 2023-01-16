@@ -18,6 +18,8 @@ namespace AllOut.Api.DataAccess
         public virtual DbSet<SalesItem> SalesItems { get; set; }
         public virtual DbSet<OtherCharge> OtherCharges { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<ClientRequest> ClientRequests { get; set; }
         #endregion
 
         #region TRANSACTION TABLES

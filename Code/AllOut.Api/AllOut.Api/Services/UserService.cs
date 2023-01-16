@@ -20,7 +20,7 @@ namespace AllOut.Api.Services
         }
 
         #region Public Methods
-        public async Task<ClientInformation> LoginUserAsync(LoginUserRequest request)
+        public async Task<Client> LoginUserAsync(LoginUserRequest request)
         {
             if (string.IsNullOrEmpty(request.LogonName) || string.IsNullOrEmpty(request.Password))
             {
@@ -35,7 +35,7 @@ namespace AllOut.Api.Services
                 throw new APIException(Constants.ERROR_INCORRECT_CREDENTIAL);
             }
 
-            return new ClientInformation()
+            return new Client()
             {
                 UserID = users.First().UserID,
                 Name = string.Format(Constants.NAME_FORMAT, users.First().LastName, users.First().FirstName)

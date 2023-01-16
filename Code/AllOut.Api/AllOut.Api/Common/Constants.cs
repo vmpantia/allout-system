@@ -6,6 +6,11 @@
         public const string NAME_FORMAT = "{0}, {1}";
         public const char ZERO = '0';
 
+        #region Client Thresholds
+        public const int NO_REQUEST_THRESHOLD = 100;
+        public const int NO_HOURS_ACTIVE_THRESHOLD = 2;
+        #endregion
+
         #region Forms
         public const string FORM_PRODUCTS = "Products";
         public const string FORM_BRANDS = "Brands";

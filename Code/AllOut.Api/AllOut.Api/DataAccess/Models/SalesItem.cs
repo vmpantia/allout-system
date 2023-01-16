@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AllOut.Api.DataAccess.Models
 {
-    [PrimaryKey(nameof(SalesID), nameof(ProductID))]
     public class SalesItem
     {
         [Key, MaxLength(15)]
