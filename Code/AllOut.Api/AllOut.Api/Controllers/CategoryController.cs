@@ -1,8 +1,10 @@
 ﻿using AllOut.Api.Common;
 using AllOut.Api.Contractors;
+using AllOut.Api.DataAccess.Models;
 using AllOut.Api.Models.enums;
 using AllOut.Api.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Puregold.API.Exceptions;
 
 namespace AllOut.Api.Controllers
@@ -12,46 +14,52 @@ namespace AllOut.Api.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _category;
-        public CategoryController(ICategoryService category)
+        private readonly IUtilityService _utility;
+        public CategoryController(ICategoryService category, IUtilityService utility)
         {
             _category = category;
+            _utility = utility;
         }
 
         [HttpGet("GetCategories")]
-        public async Task<IActionResult> GetCategoriesAsync()
+        public async Task<IActionResult> GetCategoriesAsync(Guid clientID)
         {
-            return await ProcessRequest(RequestType.GET_CATEGORIES);
+            return await ProcessRequest(RequestType.GET_CATEGORIES, clientID);
         }
 
         [HttpGet("GetCategoriesByQuery")]
-        public async Task<IActionResult> GetCategoriesByQueryAsync(string query)
+        public async Task<IActionResult> GetCategoriesByQueryAsync(Guid clientID, string query)
         {
-            return await ProcessRequest(RequestType.GET_CATEGORIES_BY_QUERY, query);
+            return await ProcessRequest(RequestType.GET_CATEGORIES_BY_QUERY, clientID, query);
         }
 
         [HttpGet("GetCategoryByID")]
-        public async Task<IActionResult> GetCategoryIDAsync(Guid id)
+        public async Task<IActionResult> GetCategoryIDAsync(Guid clientID, Guid id)
         {
-            return await ProcessRequest(RequestType.GET_CATEGORY_BY_ID, id);
+            return await ProcessRequest(RequestType.GET_CATEGORY_BY_ID, clientID, id);
         }
 
         [HttpPost("SaveCategory")]
         public async Task<IActionResult> SaveCategoryAsync(SaveCategoryRequest request)
         {
-            return await ProcessRequest(RequestType.POST_SAVE_CATEGORY, request);
+            return await ProcessRequest(RequestType.POST_SAVE_CATEGORY, request.client.ClientID, request);
         }
 
         [HttpPost("UpdateCategoryStatusByIDs")]
         public async Task<IActionResult> UpdateCategoryStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
-            return await ProcessRequest(RequestType.POST_UPDATE_CATEGORY_STATUS_BY_IDS, request);
+            return await ProcessRequest(RequestType.POST_UPDATE_CATEGORY_STATUS_BY_IDS, request.client.ClientID, request);
         }
 
-        private async Task<IActionResult> ProcessRequest(RequestType type, object? request = null)
+        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object? request = null)
         {
             try
             {
                 object? response = null;
+
+                var errorMessage = await _utility.ValidateClientID(clientID);
+                if (!string.IsNullOrEmpty(errorMessage))
+                    return Unauthorized(errorMessage);
 
                 if (type == RequestType.GET_CATEGORIES)
                 {
@@ -84,12 +92,17 @@ namespace AllOut.Api.Controllers
                 }
 
                 if (response == null)
+                {
+                    await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_NOTFOUND);
                     return NotFound();
+                }
 
+                await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_OK);
                 return Ok(response);
             }
             catch (Exception ex)
             {
+                await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_CONFLICT);
                 return Conflict(ex.Message);
             }
         }
