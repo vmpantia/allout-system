@@ -7,6 +7,7 @@ namespace AllOut.Api.Contractors
     public interface IInventoryService
     {
         Task<IEnumerable<InventoryFullInformation>> GetInventoriesAsync();
+        Task<IEnumerable<InventoryFullInformation>> GetInventoriesByQueryAsync(string query);
         Task<Inventory> GetInventoryByIDAsync(string InventoryID);
         Task<string> SaveInventoryAsync(SaveInventoryRequest request);
     }

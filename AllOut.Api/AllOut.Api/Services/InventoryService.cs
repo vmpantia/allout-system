@@ -49,6 +49,32 @@ namespace AllOut.Api.Services
             return inventories;
         }
 
+        public async Task<IEnumerable<InventoryFullInformation>> GetInventoriesByQueryAsync(string query)
+        {
+            var inventories = await (from a in _db.Inventories
+                                     join b in _db.Products on a.ProductID equals b.ProductID into bb from b in bb.DefaultIfEmpty()
+                                     join c in _db.Brands on b.BrandID equals c.BrandID into cc from c in cc.DefaultIfEmpty()
+                                     join d in _db.Categories on b.CategoryID equals d.CategoryID into dd from d in dd.DefaultIfEmpty()
+                                     where a.Status != Constants.STATUS_DELETION_INT &&
+                                           (a.InventoryID.Contains(query) || b.Name.Contains(query) || c.Name.Contains(query) || d.Name.Contains(query))
+                                     select new InventoryFullInformation
+                                     {
+                                         InventoryID = a.InventoryID,
+                                         Quantity = a.Quantity,
+                                         Status = a.Status,
+                                         CreatedDate = a.CreatedDate,
+                                         ModifiedDate = b.ModifiedDate,
+                                         ProductID = a.ProductID,
+                                         ProductName = _utility.CheckProductAvailablity(b) ? b.Name : Constants.NA,
+                                         BrandID = _utility.CheckBrandAvailablity(c) ? c.BrandID : Guid.Empty,
+                                         BrandName = _utility.CheckBrandAvailablity(c) ? c.Name : Constants.NA,
+                                         CategoryID = _utility.CheckCategoryAvailablity(d) ? d.CategoryID : Guid.Empty,
+                                         CategoryName = _utility.CheckCategoryAvailablity(d) ? d.Name : Constants.NA
+                                     }).ToListAsync();
+
+            return inventories;
+        }
+
         public async Task<Inventory> GetInventoryByIDAsync(string InventoryID)
         {
             var inventory = await _db.Inventories.FindAsync(InventoryID);
@@ -173,9 +199,7 @@ namespace AllOut.Api.Services
 
             var isItemExist = _db.Products.Where(data => data.ProductID == newData.ProductID).ToList();
             if (!isItemExist.Any())
-            {
                 return Constants.ERROR_PRODUCT_NOT_EXIST;
-            }
 
             return string.Empty;
         }

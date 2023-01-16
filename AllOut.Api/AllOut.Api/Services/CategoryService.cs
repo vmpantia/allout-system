@@ -26,7 +26,7 @@ namespace AllOut.Api.Services
 
         public async Task<IEnumerable<Category>> GetCategoriesByQueryAsync(string query)
         {
-            var categories = await _db.Categories.Where(data => data.Name.Contains(query) || data.Description.Contains(query))
+            var categories = await _db.Categories.Where(data => data.Name.Contains(query))
                                                  .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
 
             return categories;
