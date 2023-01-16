@@ -118,6 +118,7 @@ namespace AllOut.Api.Services
                 {
                     RequestID = requestID,
                     Number = number,
+                    SalesID = salesID,
                     ChargeName = otherCharge.ChargeName,
                     Amount = otherCharge.Amount,
                 });

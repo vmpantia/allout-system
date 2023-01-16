@@ -41,7 +41,7 @@ namespace AllOut.Api.Controllers
 
                 switch (type)
                 {
-                    case RequestType.POST_SAVE_INVENTORY:
+                    case RequestType.POST_SAVE_SALES:
                         response = await _sales.SaveSalesAsync((SaveSalesRequest)request);
                         break;
                 }
