@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AllOut.Api.Migrations
 {
     [DbContext(typeof(AllOutDbContext))]
-    [Migration("20230115125523_AddInitialTable")]
+    [Migration("20230116043206_AddInitialTable")]
     partial class AddInitialTable
     {
         /// <inheritdoc />
@@ -389,6 +389,12 @@ namespace AllOut.Api.Migrations
                     b.Property<string>("SalesID")
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
+
+                    b.Property<decimal>("AmountPaid")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Change")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");

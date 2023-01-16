@@ -208,6 +208,8 @@ namespace AllOut.Api.Migrations
                 {
                     SalesID = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     UserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AmountPaid = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Change = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Remarks = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
