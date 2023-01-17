@@ -31,6 +31,7 @@ namespace AllOut.Desktop.Views
                                 string.Format(Constants.TITLE_REGISTER, Constants.OBJECT_USER),
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
+                return;
             }
 
 
