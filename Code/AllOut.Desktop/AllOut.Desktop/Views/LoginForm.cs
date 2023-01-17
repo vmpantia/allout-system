@@ -1,12 +1,8 @@
 ﻿using AllOut.Desktop.Common;
+using AllOut.Desktop.Controllers;
+using AllOut.Desktop.Models.enums;
+using AllOut.Desktop.Models.Requests;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AllOut.Desktop.Views
@@ -19,25 +15,27 @@ namespace AllOut.Desktop.Views
             ResetError();
         }
 
-        private void ResetError()
-        {
-            lblLoginError.Text = string.Empty;
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
             ResetError();
+            EnableButtonsAndFields(false);
 
-            if(string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text))
+            var loginUerRequest = new LoginUserRequest
             {
-                lblLoginError.Text = Constants.ERROR_EMPTY_CREDENTIAL;
-                return;
-            }
+                LogonName = txtLogonName.Text,
+                Password = txtPassword.Text,
+                Browser = Constants.NA,
+                IPAddress = Constants.NA,
+                WindowsVersion = Constants.NA
+            };
 
-            if(txtUsername.Text.ToUpper() != "ADMIN" &&
-                txtPassword.Text.ToUpper() != "ADMIN")
+            var response = await HttpController.PostLoginUserAsync(loginUerRequest);
+
+            EnableButtonsAndFields(true);
+
+            if (response.Result == ResponseResult.API_ERROR)
             {
-                lblLoginError.Text = Constants.ERROR_INCORRECT_CREDENTIAL;
+                lblLoginError.Text = (string)response.Data;
                 return;
             }
 
@@ -48,6 +46,19 @@ namespace AllOut.Desktop.Views
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ResetError()
+        {
+            lblLoginError.Text = string.Empty;
+        }
+
+        private void EnableButtonsAndFields(bool enable)
+        {
+            btnLogin.Enabled = enable;
+            btnClose.Enabled = enable;
+            txtLogonName.Enabled = enable;
+            txtPassword.Enabled = enable;
         }
     }
 }

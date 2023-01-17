@@ -14,7 +14,38 @@ namespace AllOut.Desktop.Controllers
 {
     public class HttpController 
     {
-        private static readonly string APIBaseURL = "https://localhost:7252/api/";
+        #region User
+        public static async Task<Response> PostLoginUserAsync(LoginUserRequest request)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare Data and API URL
+                var url = Globals.POST_LOGIN_USER;
+                var data = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.PostAsync(url, data);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        #endregion
 
         public static async Task<Response> GetProducts()
         {
@@ -22,7 +53,7 @@ namespace AllOut.Desktop.Controllers
             try
             {
                 //Prepare API URL
-                var url = string.Concat(APIBaseURL, "Product/GetProducts");
+                var url = string.Concat(Constants.API_BASE, "Product/GetProducts");
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
@@ -61,7 +92,7 @@ namespace AllOut.Desktop.Controllers
             try
             {
                 //Prepare API URL
-                var url = string.Concat(APIBaseURL, "Brand/GetBrands");
+                var url = string.Concat(Constants.API_BASE, "Brand/GetBrands");
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
@@ -98,7 +129,7 @@ namespace AllOut.Desktop.Controllers
             try
             {
                 //Prepare API URL
-                var url = string.Concat(APIBaseURL, "Brand/GetBrandsByQuery/", query);
+                var url = string.Concat(Constants.API_BASE, "Brand/GetBrandsByQuery/", query);
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
@@ -135,7 +166,7 @@ namespace AllOut.Desktop.Controllers
             try
             {
                 //Prepare API URL
-                var url = string.Concat(APIBaseURL, "Brand/GetBrandByID/", id);
+                var url = string.Concat(Constants.API_BASE, "Brand/GetBrandByID/", id);
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
@@ -172,7 +203,7 @@ namespace AllOut.Desktop.Controllers
             try
             {
                 //Prepare Data and API URL
-                var url = string.Concat(APIBaseURL, "Brand/SaveBrand");
+                var url = string.Concat(Constants.API_BASE, "Brand/SaveBrand");
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -203,7 +234,7 @@ namespace AllOut.Desktop.Controllers
             try
             {
                 //Prepare Data and API URL
-                var url = string.Concat(APIBaseURL, "Brand/UpdateBrandStatusByIDs");
+                var url = string.Concat(Constants.API_BASE, "Brand/UpdateBrandStatusByIDs");
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -237,7 +268,7 @@ namespace AllOut.Desktop.Controllers
             try
             {
                 //Prepare API URL
-                var url = string.Concat(APIBaseURL, "Category/GetCategories");
+                var url = string.Concat(Constants.API_BASE, "Category/GetCategories");
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
@@ -274,7 +305,7 @@ namespace AllOut.Desktop.Controllers
             try
             {
                 //Prepare API URL
-                var url = string.Concat(APIBaseURL, "Category/GetCategoriesByQuery/", query);
+                var url = string.Concat(Constants.API_BASE, "Category/GetCategoriesByQuery/", query);
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
@@ -311,7 +342,7 @@ namespace AllOut.Desktop.Controllers
             try
             {
                 //Prepare API URL
-                var url = string.Concat(APIBaseURL, "Category/GetCategoryByID/", id);
+                var url = string.Concat(Constants.API_BASE, "Category/GetCategoryByID/", id);
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
@@ -348,7 +379,7 @@ namespace AllOut.Desktop.Controllers
             try
             {
                 //Prepare Data and API URL
-                var url = string.Concat(APIBaseURL, "Category/SaveCategory");
+                var url = string.Concat(Constants.API_BASE, "Category/SaveCategory");
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -379,7 +410,7 @@ namespace AllOut.Desktop.Controllers
             try
             {
                 //Prepare Data and API URL
-                var url = string.Concat(APIBaseURL, "Category/UpdateCategoryStatusByIDs");
+                var url = string.Concat(Constants.API_BASE, "Category/UpdateCategoryStatusByIDs");
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 
