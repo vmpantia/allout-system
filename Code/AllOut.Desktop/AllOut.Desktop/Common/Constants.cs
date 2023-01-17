@@ -101,8 +101,6 @@ namespace AllOut.Desktop.Common
 
         #region Error Messages
         public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
-        public const string ERROR_EMPTY_CREDENTIAL = "Username or Password field is required.";
-        public const string ERROR_INCORRECT_CREDENTIAL = "Username or Password is incorrect.";
         public const string ERROR_PASSWORD_NOT_MATCH = "Password doesn't match in Confirm Password.";
         public const string ERROR_NO_RECORDS = "No records found in the system.";
         #endregion
