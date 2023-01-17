@@ -267,7 +267,8 @@ namespace AllOut.Api.Services
                 Browser = request.Browser,
                 IPAddress = request.IPAddress,
                 WindowsVersion = request.WindowsVersion,
-                Status = Constants.STATUS_ENABLED_INT
+                Status = Constants.STATUS_ENABLED_INT,
+                CreatedDate = Globals.EXEC_DATETIME
             };
 
             //Disable all active clients of User
