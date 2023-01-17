@@ -29,8 +29,7 @@ namespace AllOut.Desktop.Views
                 Password = Utility.EncryptPassowrd(txtPassword.Text),
                 Browser = Constants.NA,
                 IPAddress = Constants.NA,
-                WindowsVersion = Constants.NA,
-                create
+                WindowsVersion = Constants.NA
             };
 
             var response = await HttpController.PostLoginUserAsync(loginUerRequest);
