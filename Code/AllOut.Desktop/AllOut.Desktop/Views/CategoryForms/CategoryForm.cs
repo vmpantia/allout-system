@@ -86,7 +86,6 @@ namespace AllOut.Desktop.Views.CategoryForms
             //Prepare Request for SaveCategory
             var request = new SaveCategoryRequest
             {
-                UserID = Guid.NewGuid(),
                 FunctionID = _isAdd ? Constants.FUNCTION_ID_ADD_CATEGORY_BY_ADMIN : 
                                       Constants.FUNCTION_ID_CHANGE_CATEGORY_BY_ADMIN,
                 RequestStatus = Constants.REQUEST_STATUS_COMPLETED,

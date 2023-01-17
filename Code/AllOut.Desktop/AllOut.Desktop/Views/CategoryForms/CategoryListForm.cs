@@ -69,7 +69,6 @@ namespace AllOut.Desktop.Views.CategoryForms
 
             var request = new UpdateStatusByIDsRequest
             {
-                UserID = Guid.NewGuid(),
                 FunctionID = functionID,
                 RequestStatus = requestStatus,
                 IDs = _categoryIDs,

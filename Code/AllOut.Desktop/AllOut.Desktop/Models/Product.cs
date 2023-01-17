@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AllOut.Desktop.Models
 {
@@ -14,7 +10,8 @@ namespace AllOut.Desktop.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public int ReorderPoint { get; set; }
-        public int Status { get; set; }
+        public decimal Price { get; set; }
+        public int Status { get; set; } 
         public DateTime? CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
     }
