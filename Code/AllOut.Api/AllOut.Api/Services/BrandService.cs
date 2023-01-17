@@ -44,6 +44,10 @@ namespace AllOut.Api.Services
 
         public async Task<string> SaveBrandAsync(SaveBrandRequest request)
         {
+            //Check if Request is NULL
+            if (request == null)
+                throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_CATEGORY));
+
             var requestID = await _request.InsertRequest(_db, request.client.UserID,
                                                               request.FunctionID,
                                                               request.RequestStatus);
