@@ -154,11 +154,7 @@
         public const string ERROR_EMPTY_CREDENTIAL = "Username/Email or Password field is required.";
         public const string ERROR_INCORRECT_CREDENTIAL = "Username/Email or Password is incorrect.";
         public const string ERROR_GENERATE_CLIENT = "Error in generating user client.";
-        public const string ERROR_CLIENT_EMPTY = "ClientID/Key must have Values, Please login again.";
-        public const string ERROR_CLIENT_NOT_EXIST = "ClientID/Key is NOT exist in the System, Please login again.";
-        public const string ERROR_CLIENT_NOT_VALID = "ClientID/Key is NOT valid already, Please login again.";
-        public const string ERROR_CLIENT_EXCEED_REQUEST = "ClientID/Key is already exceed in the number of request threshold, Please login again.";
-        public const string ERROR_CLIENT_EXCEED_ACTIVE_HOURS = "ClientID/Key is already exceed in the number of hours active threshold, Please login again.";
+        public const string ERROR_CLIENT_NOT_VALID = "Your Client ID is NOT authorized to process this request.";
         #endregion
 
         #region Objects

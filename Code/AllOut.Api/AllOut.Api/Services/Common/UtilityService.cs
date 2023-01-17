@@ -63,12 +63,12 @@ namespace AllOut.Api.Services.Common
 
             //Check if ClientID is Empty
             if (ClientID == Guid.Empty)
-                return Constants.ERROR_CLIENT_EMPTY;
+                return Constants.ERROR_CLIENT_NOT_VALID;
 
             //Check if ClientID is existing
             var client = await _db.Clients.FindAsync(ClientID);
             if (client == null)
-                return Constants.ERROR_CLIENT_NOT_EXIST;
+                return Constants.ERROR_CLIENT_NOT_VALID;
 
             //Check if Client is Active
             if (client.Status != Constants.STATUS_ENABLED_INT)
@@ -78,7 +78,7 @@ namespace AllOut.Api.Services.Common
             var firstClientCreated = client.CreatedDate;
             var noofHours = (DateTime.Now - firstClientCreated).TotalHours;
             if (noofHours > Constants.NO_HOURS_ACTIVE_THRESHOLD)
-                return Constants.ERROR_CLIENT_EXCEED_ACTIVE_HOURS;
+                return Constants.ERROR_CLIENT_NOT_VALID;
 
             return string.Empty;
         }

@@ -18,7 +18,7 @@ namespace AllOut.Desktop.Views
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private async void btnRegister_Click(object sender, EventArgs e)
@@ -80,6 +80,7 @@ namespace AllOut.Desktop.Views
                             string.Format(Constants.TITLE_REGISTER, Constants.OBJECT_USER),
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+            Close();
 
         }
 

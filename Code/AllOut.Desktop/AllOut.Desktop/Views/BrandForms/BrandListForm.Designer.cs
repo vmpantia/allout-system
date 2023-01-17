@@ -351,7 +351,7 @@
             // lblTableDescription
             // 
             this.lblTableDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTableDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTableDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTableDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTableDescription.Location = new System.Drawing.Point(0, 0);
             this.lblTableDescription.Name = "lblTableDescription";

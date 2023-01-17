@@ -104,7 +104,8 @@ namespace AllOut.Desktop.Common
         public const string ERROR_EMPTY_CREDENTIAL = "Username or Password field is required.";
         public const string ERROR_INCORRECT_CREDENTIAL = "Username or Password is incorrect.";
         public const string ERROR_PASSWORD_NOT_MATCH = "Password doesn't match in Confirm Password.";
-        #endregion  
+        public const string ERROR_NO_RECORDS = "No records found in the system.";
+        #endregion
 
         #region Success Message
         public const string SUCCESS_SAVED = "{0} has been Saved Successfully!\n{1}";
