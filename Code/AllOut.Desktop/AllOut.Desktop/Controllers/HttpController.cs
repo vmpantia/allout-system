@@ -4,6 +4,7 @@ using AllOut.Desktop.Models.enums;
 using AllOut.Desktop.Models.Requests;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -83,6 +84,7 @@ namespace AllOut.Desktop.Controllers
         }
         #endregion
 
+        #region Product
         public static async Task<Response> GetProducts()
         {
             var customResponse = new Response();
@@ -120,15 +122,16 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
+        #endregion
 
         #region Brand
-        public static async Task<Response> GetBrands()
+        public static async Task<Response> GetBrandsAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
             {
                 //Prepare API URL
-                var url = string.Concat(Constants.API_BASE, "Brand/GetBrands");
+                var url = string.Format(Globals.GET_BRANDS, clientID);
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
@@ -159,13 +162,13 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetBrandsByQuery(string query)
+        public static async Task<Response> GetBrandsByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
             {
                 //Prepare API URL
-                var url = string.Concat(Constants.API_BASE, "Brand/GetBrandsByQuery/", query);
+                var url = string.Format(Globals.GET_BRANDS_BY_QUERY, clientID, query);
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
@@ -196,13 +199,13 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetBrandByID(Guid id)
+        public static async Task<Response> GetBrandByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
             {
                 //Prepare API URL
-                var url = string.Concat(Constants.API_BASE, "Brand/GetBrandByID/", id);
+                var url = string.Format(Globals.GET_BRAND_BY_ID, clientID, id);
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
@@ -233,13 +236,13 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostSaveBrand(SaveBrandRequest request)
+        public static async Task<Response> PostSaveBrandAsync(SaveBrandRequest request)
         {
             var customResponse = new Response();
             try
             {
                 //Prepare Data and API URL
-                var url = string.Concat(Constants.API_BASE, "Brand/SaveBrand");
+                var url = Globals.POST_SAVE_BRAND;
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -264,13 +267,13 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateBrandStatusByIDs(UpdateStatusByIDsRequest request)
+        public static async Task<Response> PostUpdateBrandStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
             var customResponse = new Response();
             try
             {
                 //Prepare Data and API URL
-                var url = string.Concat(Constants.API_BASE, "Brand/UpdateBrandStatusByIDs");
+                var url = Globals.POST_UPDATE_BRAND_STATUS_BY_IDS;
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 

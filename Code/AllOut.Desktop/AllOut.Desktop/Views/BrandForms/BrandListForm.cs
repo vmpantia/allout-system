@@ -121,29 +121,32 @@ namespace AllOut.Desktop.Views.BrandForms
         {
             Response response;
             if (string.IsNullOrEmpty(query))
-                response = await HttpController.GetBrands();
+                response = await HttpController.GetBrandsAsync(Globals.ClientInformation.ClientID);
             else
-                response = await HttpController.GetBrandsByQuery(query);
+                response = await HttpController.GetBrandsByQueryAsync(Globals.ClientInformation.ClientID, query);
+
+            btnSelectAll.Enabled = false;
+            tblObjectList.Visible = false;
+            lblTableDescription.Visible = true;
 
             if (response.Result != ResponseResult.SUCCESS)
             {
-                btnSelectAll.Enabled = false;
-                tblObjectList.Visible = false;
-                lblTableDescription.Visible = true;
                 lblTableDescription.Text = (string)response.Data;
                 return;
             }
 
             var brands = (List<Brand>)response.Data;
-            if (brands != null && brands.Count == 0)
+            if (brands == null || brands.Count == 0)
             {
-                btnSelectAll.Enabled = true;
-                tblObjectList.Visible = true;
-                lblTableDescription.Visible = false;
                 lblTableDescription.Text = Constants.ERROR_NO_RECORDS;
-                PopulateBrands(brands);
                 return;
             }
+
+            btnSelectAll.Enabled = true;
+            tblObjectList.Visible = true;
+            lblTableDescription.Visible = false;
+            PopulateBrands(brands);
+            return;
         }
 
         private void PopulateBrands(List<Brand> brands)
@@ -207,11 +210,12 @@ namespace AllOut.Desktop.Views.BrandForms
             {
                 FunctionID = functionID,
                 RequestStatus = requestStatus,
+                client = Globals.ClientInformation,
                 IDs = _brandIDs,
                 newStatus = newStatus
             };
 
-            var response = await HttpController.PostUpdateBrandStatusByIDs(request);
+            var response = await HttpController.PostUpdateBrandStatusByIDsAsync(request);
 
             if (response.Result != ResponseResult.SUCCESS)
             {

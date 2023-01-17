@@ -27,41 +27,6 @@ namespace AllOut.Desktop.Views.BrandForms
             PopulateBrand(brandID);
         }
 
-        private async void PopulateBrand(Guid brandID)
-        {
-            //Check if Add or Edit
-            if(!_isAdd)
-            {
-                //Get Brand based on the given ID
-                var response = await HttpController.GetBrandByID(brandID);
-                if (response.Result != ResponseResult.SUCCESS)
-                {
-                    MessageBox.Show(response.Data.ToString(),
-                                    string.Format(Constants.TITLE_EDIT, Constants.OBJECT_BRAND), 
-                                    MessageBoxButtons.OK, 
-                                    MessageBoxIcon.Error);
-                    return;
-                }
-                _brandInfo = response.Data as Brand;
-            }
-
-            PopulateFields(_brandInfo);
-            EnableFieldsAndButtons(_brandInfo.Status == Constants.STATUS_ENABLED_INT);
-        }
-
-        private void EnableFieldsAndButtons(bool isEnabled)
-        {
-            txtName.Enabled = isEnabled;
-            txtDescription.Enabled = isEnabled;
-            btnSave.Enabled= isEnabled;
-        }
-
-        private void PopulateFields(Brand brand)
-        {
-            txtName.Text = brand.Name;
-            txtDescription.Text = brand.Description;
-        }
-
         private async void btnSave_Click(object sender, EventArgs e)
         {
             //Check if Brand Name Field is Empty
@@ -89,11 +54,12 @@ namespace AllOut.Desktop.Views.BrandForms
                 FunctionID = _isAdd ? Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN : 
                                       Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN,
                 RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
-                inputBrand = _brandInfo,
+                client = Globals.ClientInformation,
+                inputBrand = _brandInfo
             };
 
             //Send Request for SaveBrand
-            var response = await HttpController.PostSaveBrand(request);
+            var response = await HttpController.PostSaveBrandAsync(request);
 
             //Enable Fields and Buttons
             EnableFieldsAndButtons(true);
@@ -118,6 +84,41 @@ namespace AllOut.Desktop.Views.BrandForms
         {
             _brandInfo = null;
             Close();
+        }
+
+        private async void PopulateBrand(Guid brandID)
+        {
+            //Check if Add or Edit
+            if (!_isAdd)
+            {
+                //Get Brand based on the given ID
+                var response = await HttpController.GetBrandByIDAsync(Globals.ClientInformation.ClientID, brandID);
+                if (response.Result != ResponseResult.SUCCESS)
+                {
+                    MessageBox.Show(response.Data.ToString(),
+                                    string.Format(Constants.TITLE_EDIT, Constants.OBJECT_BRAND),
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    return;
+                }
+                _brandInfo = response.Data as Brand;
+            }
+
+            PopulateFields(_brandInfo);
+            EnableFieldsAndButtons(_brandInfo.Status == Constants.STATUS_ENABLED_INT);
+        }
+
+        private void EnableFieldsAndButtons(bool isEnabled)
+        {
+            txtName.Enabled = isEnabled;
+            txtDescription.Enabled = isEnabled;
+            btnSave.Enabled = isEnabled;
+        }
+
+        private void PopulateFields(Brand brand)
+        {
+            txtName.Text = brand.Name;
+            txtDescription.Text = brand.Description;
         }
     }
 }
