@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace AllOut.Desktop.Models.Requests
-{
+{ 
     public class SaveSalesRequest : RequestBase
     {
         //Sales Information

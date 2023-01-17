@@ -14,7 +14,7 @@ namespace AllOut.Desktop.Models
         public bool IsEmailConfirmed { get; set; }
         public int Permission { get; set; }
         public int Status { get; set; } 
-        public DateTime? CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
     }
 }

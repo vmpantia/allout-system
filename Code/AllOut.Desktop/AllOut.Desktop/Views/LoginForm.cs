@@ -3,7 +3,9 @@ using AllOut.Desktop.Controllers;
 using AllOut.Desktop.Models;
 using AllOut.Desktop.Models.enums;
 using AllOut.Desktop.Models.Requests;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AllOut.Desktop.Views
@@ -27,7 +29,8 @@ namespace AllOut.Desktop.Views
                 Password = Utility.EncryptPassowrd(txtPassword.Text),
                 Browser = Constants.NA,
                 IPAddress = Constants.NA,
-                WindowsVersion = Constants.NA
+                WindowsVersion = Constants.NA,
+                create
             };
 
             var response = await HttpController.PostLoginUserAsync(loginUerRequest);

@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace AllOut.Desktop.Models
-{
+{ 
     public class ProductFullInformation
     {
         public Guid ProductID { get; set; }

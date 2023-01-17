@@ -24,6 +24,16 @@ namespace AllOut.Desktop.Views
         private async void btnRegister_Click(object sender, EventArgs e)
         {
             EnableButtonsAndFields(false);
+
+            if(txtPassword.Text != txtConfirmPassword.Text)
+            {
+                MessageBox.Show(Constants.ERROR_PASSWORD_NOT_MATCH,
+                                string.Format(Constants.TITLE_REGISTER, Constants.OBJECT_USER),
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+
+
             var request = new SaveUserRequest
             {
                 FunctionID = Constants.FUNCTION_ID_ADD_USER,
@@ -60,10 +70,16 @@ namespace AllOut.Desktop.Views
 
             if (response.Result == ResponseResult.API_ERROR)
             {
-                MessageBox.Show((string)response.Data, "Register User", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show((string)response.Data, 
+                                string.Format(Constants.TITLE_REGISTER, Constants.OBJECT_USER), 
+                                MessageBoxButtons.OK, 
+                                MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show((string)response.Data, "Register User", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(string.Format(Constants.SUCCESS_SAVED, Constants.OBJECT_USER, (string)response.Data),
+                            string.Format(Constants.TITLE_REGISTER, Constants.OBJECT_USER),
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
 
         }
 

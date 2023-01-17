@@ -103,6 +103,7 @@ namespace AllOut.Desktop.Common
         public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
         public const string ERROR_EMPTY_CREDENTIAL = "Username or Password field is required.";
         public const string ERROR_INCORRECT_CREDENTIAL = "Username or Password is incorrect.";
+        public const string ERROR_PASSWORD_NOT_MATCH = "Password doesn't match in Confirm Password.";
         #endregion  
 
         #region Success Message
@@ -118,6 +119,7 @@ namespace AllOut.Desktop.Common
         public const string TITLE_ADD = "Add {0}";
         public const string TITLE_EDIT = "Edit {0}";
         public const string TITLE_SAVE = "Save {0}";
+        public const string TITLE_REGISTER = "Register {0}";
         public const string TITLE_UPDATE_STATUS = "Update {0}(s) Status";
         #endregion
 
@@ -127,9 +129,12 @@ namespace AllOut.Desktop.Common
         #endregion
 
         #region Objects
+        public const string OBJECT_USER = "User";
         public const string OBJECT_PRODUCT = "Product";
         public const string OBJECT_BRAND = "Brand";
         public const string OBJECT_CATEGORY = "Category";
+        public const string OBJECT_INVENTORY = "Inventory";
+        public const string OBJECT_SALES = "Sales";
         public const string OBJECT_REQUEST = "Request";
         #endregion
 

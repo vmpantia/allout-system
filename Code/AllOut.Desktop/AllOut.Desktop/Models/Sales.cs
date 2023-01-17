@@ -10,7 +10,7 @@ namespace AllOut.Desktop.Models
         public decimal Change { get; set; }
         public string Remarks { get; set; }
         public int Status { get; set; }
-        public DateTime? CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
     }
 }

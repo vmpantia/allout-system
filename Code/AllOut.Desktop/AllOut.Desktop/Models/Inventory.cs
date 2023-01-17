@@ -8,7 +8,7 @@ namespace AllOut.Desktop.Models
         public Guid ProductID { get; set; }
         public int Quantity { get; set; }
         public int Status { get; set; }
-        public DateTime? CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
     }
 }

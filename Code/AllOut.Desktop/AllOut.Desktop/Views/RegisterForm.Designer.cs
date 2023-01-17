@@ -83,7 +83,7 @@
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(21, 72);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(46, 19);
-            this.guna2HtmlLabel1.TabIndex = 3;
+            this.guna2HtmlLabel1.TabIndex = 11;
             this.guna2HtmlLabel1.Text = "EMAIL:";
             // 
             // lblFormDescription
@@ -94,7 +94,7 @@
             this.lblFormDescription.Location = new System.Drawing.Point(68, 39);
             this.lblFormDescription.Name = "lblFormDescription";
             this.lblFormDescription.Size = new System.Drawing.Size(333, 17);
-            this.lblFormDescription.TabIndex = 13;
+            this.lblFormDescription.TabIndex = 10;
             this.lblFormDescription.Text = "In this page you can register a new user for this system.";
             // 
             // lblFormTitle
@@ -105,7 +105,7 @@
             this.lblFormTitle.Location = new System.Drawing.Point(67, 18);
             this.lblFormTitle.Name = "lblFormTitle";
             this.lblFormTitle.Size = new System.Drawing.Size(72, 21);
-            this.lblFormTitle.TabIndex = 12;
+            this.lblFormTitle.TabIndex = 9;
             this.lblFormTitle.Text = "Register";
             // 
             // guna2PictureBox1
@@ -169,7 +169,7 @@
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(365, 72);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             this.guna2HtmlLabel2.Size = new System.Drawing.Size(76, 19);
-            this.guna2HtmlLabel2.TabIndex = 15;
+            this.guna2HtmlLabel2.TabIndex = 12;
             this.guna2HtmlLabel2.Text = "USERNAME:";
             // 
             // txtUsername
@@ -231,7 +231,7 @@
             this.guna2HtmlLabel3.Location = new System.Drawing.Point(21, 159);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             this.guna2HtmlLabel3.Size = new System.Drawing.Size(83, 19);
-            this.guna2HtmlLabel3.TabIndex = 15;
+            this.guna2HtmlLabel3.TabIndex = 13;
             this.guna2HtmlLabel3.Text = "FIRST NAME:";
             // 
             // txtMiddleName
@@ -267,7 +267,7 @@
             this.guna2HtmlLabel4.Location = new System.Drawing.Point(249, 159);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             this.guna2HtmlLabel4.Size = new System.Drawing.Size(99, 19);
-            this.guna2HtmlLabel4.TabIndex = 15;
+            this.guna2HtmlLabel4.TabIndex = 14;
             this.guna2HtmlLabel4.Text = "MIDDLE NAME:";
             // 
             // txtLastName
@@ -315,14 +315,13 @@
             this.guna2HtmlLabel6.Location = new System.Drawing.Point(365, 246);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             this.guna2HtmlLabel6.Size = new System.Drawing.Size(142, 19);
-            this.guna2HtmlLabel6.TabIndex = 19;
+            this.guna2HtmlLabel6.TabIndex = 17;
             this.guna2HtmlLabel6.Text = "CONFIRM PASSWORD:";
             // 
             // txtConfirmPassword
             // 
             this.txtConfirmPassword.BorderColor = System.Drawing.Color.Silver;
             this.txtConfirmPassword.BorderRadius = 6;
-            this.txtConfirmPassword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtConfirmPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtConfirmPassword.DefaultText = "";
             this.txtConfirmPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -336,7 +335,7 @@
             this.txtConfirmPassword.Location = new System.Drawing.Point(365, 271);
             this.txtConfirmPassword.MaxLength = 50;
             this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.PasswordChar = '\0';
+            this.txtConfirmPassword.PasswordChar = '*';
             this.txtConfirmPassword.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.txtConfirmPassword.PlaceholderText = "";
             this.txtConfirmPassword.SelectedText = "";
@@ -351,14 +350,13 @@
             this.guna2HtmlLabel7.Location = new System.Drawing.Point(21, 246);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
             this.guna2HtmlLabel7.Size = new System.Drawing.Size(79, 19);
-            this.guna2HtmlLabel7.TabIndex = 17;
+            this.guna2HtmlLabel7.TabIndex = 16;
             this.guna2HtmlLabel7.Text = "PASSWORD:";
             // 
             // txtPassword
             // 
             this.txtPassword.BorderColor = System.Drawing.Color.Silver;
             this.txtPassword.BorderRadius = 6;
-            this.txtPassword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPassword.DefaultText = "";
             this.txtPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -372,7 +370,7 @@
             this.txtPassword.Location = new System.Drawing.Point(21, 271);
             this.txtPassword.MaxLength = 50;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '\0';
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.txtPassword.PlaceholderText = "";
             this.txtPassword.SelectedText = "";

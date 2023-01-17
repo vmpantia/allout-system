@@ -11,7 +11,7 @@ namespace AllOut.Desktop.Models
         public DateTime? ApprovedDate { get; set; }
         public Guid? ApprovedBy { get; set; }
         public string Status { get; set; }
-        public DateTime? CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
     }
 }

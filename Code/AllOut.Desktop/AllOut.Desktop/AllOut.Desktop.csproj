@@ -60,7 +60,6 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\ClientRequest.cs" />
     <Compile Include="Models\enums\ResponseResult.cs" />
     <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\InventoryFullInformation.cs" />

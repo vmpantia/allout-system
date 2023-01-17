@@ -34,7 +34,7 @@ namespace AllOut.Desktop.Controllers
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
                 customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
-                customResponse.Data = content;
+                customResponse.Data = JsonConvert.DeserializeObject(content);
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace AllOut.Desktop.Controllers
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
                 customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
-                customResponse.Data = content;
+                customResponse.Data = JsonConvert.DeserializeObject(content);
             }
             catch (Exception ex)
             {
