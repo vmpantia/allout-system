@@ -42,53 +42,46 @@ namespace AllOut.Api.Controllers
         [HttpPost("SaveCategory")]
         public async Task<IActionResult> SaveCategoryAsync(SaveCategoryRequest request)
         {
-            return await ProcessRequest(RequestType.POST_SAVE_CATEGORY, request.client.ClientID, request);
+            return await ProcessRequest(RequestType.POST_SAVE_CATEGORY, request.client.ClientID, request, request.FunctionID);
         }
 
         [HttpPost("UpdateCategoryStatusByIDs")]
         public async Task<IActionResult> UpdateCategoryStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
-            return await ProcessRequest(RequestType.POST_UPDATE_CATEGORY_STATUS_BY_IDS, request.client.ClientID, request);
+            return await ProcessRequest(RequestType.POST_UPDATE_CATEGORY_STATUS_BY_IDS, request.client.ClientID, request, request.FunctionID);
         }
 
-        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object? request = null)
+        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object data = null, string functionID = null)
         {
             try
             {
                 object? response = null;
 
-                var errorMessage = await _utility.ValidateClientID(clientID);
+                var errorMessage = await _utility.ValidateClientID(clientID, type, functionID);
                 if (!string.IsNullOrEmpty(errorMessage))
                     return Unauthorized(errorMessage);
 
-                if (type == RequestType.GET_CATEGORIES)
+                switch (type)
                 {
-                    response = await _category.GetCategoriesAsync();
-                }
-                else
-                {
-                    //Check if Request is NULL
-                    if (request == null)
-                        throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_CATEGORY));
+                    case RequestType.GET_CATEGORIES:
+                        response = await _category.GetCategoriesAsync();
+                        break;
 
-                    switch (type)   
-                    {
-                        case RequestType.GET_CATEGORIES_BY_QUERY:
-                            response = await _category.GetCategoriesByQueryAsync((string)request);
-                            break;
+                    case RequestType.GET_CATEGORIES_BY_QUERY:
+                        response = await _category.GetCategoriesByQueryAsync((string)data);
+                        break;
 
-                        case RequestType.GET_CATEGORY_BY_ID:
-                            response = await _category.GetCategoryByIDAsync((Guid)request);
-                            break;
+                    case RequestType.GET_CATEGORY_BY_ID:
+                        response = await _category.GetCategoryByIDAsync((Guid)data);
+                        break;
 
-                        case RequestType.POST_SAVE_CATEGORY:
-                            response = await _category.SaveCategoryAsync((SaveCategoryRequest)request);
-                            break;
+                    case RequestType.POST_SAVE_CATEGORY:
+                        response = await _category.SaveCategoryAsync((SaveCategoryRequest)data);
+                        break;
 
-                        case RequestType.POST_UPDATE_CATEGORY_STATUS_BY_IDS:
-                            response = await _category.UpdateCategoryStatusByIDsAsync((UpdateStatusByIDsRequest)request);
-                            break;
-                    }
+                    case RequestType.POST_UPDATE_CATEGORY_STATUS_BY_IDS:
+                        response = await _category.UpdateCategoryStatusByIDsAsync((UpdateStatusByIDsRequest)data);
+                        break;
                 }
 
                 if (response == null)

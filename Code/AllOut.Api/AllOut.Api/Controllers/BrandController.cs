@@ -40,53 +40,46 @@ namespace AllOut.Api.Controllers
         [HttpPost("SaveBrand")]
         public async Task<IActionResult> SaveBrandAsync(SaveBrandRequest request)
         {
-            return await ProcessRequest(RequestType.POST_SAVE_BRAND, request.client.ClientID, request);
+            return await ProcessRequest(RequestType.POST_SAVE_BRAND, request.client.ClientID, request, request.FunctionID);
         }
 
         [HttpPost("UpdateBrandStatusByIDs")]
         public async Task<IActionResult> UpdateBrandStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
-            return await ProcessRequest(RequestType.POST_UPDATE_BRAND_STATUS_BY_IDS, request.client.ClientID, request);
+            return await ProcessRequest(RequestType.POST_UPDATE_BRAND_STATUS_BY_IDS, request.client.ClientID, request, request.FunctionID);
         }
 
-        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID,  object? request = null)
+        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object data = null, string functionID = null)
         {
             try
             {
                 object? response = null;
 
-                var errorMessage = await _utility.ValidateClientID(clientID);
-                if(!string.IsNullOrEmpty(errorMessage))
+                var errorMessage = await _utility.ValidateClientID(clientID, type, functionID);
+                if (!string.IsNullOrEmpty(errorMessage))
                     return Unauthorized(errorMessage);
 
-                if (type == RequestType.GET_BRANDS)
+                switch (type)
                 {
-                    response = await _brand.GetBrandsAsync();
-                }
-                else
-                {
-                    //Check if Request is NULL
-                    if (request == null)
-                        throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_BRAND));
+                    case RequestType.GET_BRANDS:
+                        response = await _brand.GetBrandsAsync();
+                        break;
 
-                    switch(type)
-                    {
-                        case RequestType.GET_BRANDS_BY_QUERY:
-                            response = await _brand.GetBrandsByQueryAsync((string)request);
-                            break;
+                    case RequestType.GET_BRANDS_BY_QUERY:
+                        response = await _brand.GetBrandsByQueryAsync((string)data);
+                        break;
 
-                        case RequestType.GET_BRAND_BY_ID:
-                            response = await _brand.GetBrandByIDAsync((Guid)request);
-                            break;
+                    case RequestType.GET_BRAND_BY_ID:
+                        response = await _brand.GetBrandByIDAsync((Guid)data);
+                        break;
 
-                        case RequestType.POST_SAVE_BRAND:
-                            response = await _brand.SaveBrandAsync((SaveBrandRequest)request);
-                            break;
+                    case RequestType.POST_SAVE_BRAND:
+                        response = await _brand.SaveBrandAsync((SaveBrandRequest)data);
+                        break;
 
-                        case RequestType.POST_UPDATE_BRAND_STATUS_BY_IDS:
-                            response = await _brand.UpdateBrandStatusByIDsAsync((UpdateStatusByIDsRequest)request);
-                            break;
-                    }
+                    case RequestType.POST_UPDATE_BRAND_STATUS_BY_IDS:
+                        response = await _brand.UpdateBrandStatusByIDsAsync((UpdateStatusByIDsRequest)data);
+                        break;
                 }
 
                 if (response == null)

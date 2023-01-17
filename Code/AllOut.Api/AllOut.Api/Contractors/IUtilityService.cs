@@ -10,6 +10,6 @@ namespace AllOut.Api.Contractors
         bool CheckCategoryAvailablity(Category category);
         int GetCurrentStock(int inventories, int sales);
         bool GetReorderState(int stock, int reorderpoint);
-        Task<string> ValidateClientID(Guid ClientID);
+        Task<string> ValidateClientID(Guid ClientID, RequestType requestType, string functionID);
     }
 }

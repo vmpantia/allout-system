@@ -23,34 +23,29 @@ namespace AllOut.Api.Controllers
         [HttpPost("SaveSales")]
         public async Task<IActionResult> SaveSalesAsync(SaveSalesRequest request)
         {
-            return await ProcessRequest(RequestType.POST_SAVE_SALES, request.client.ClientID, request);
+            return await ProcessRequest(RequestType.POST_SAVE_SALES, request.client.ClientID, request, request.FunctionID);
         }
 
-        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object? request = null)
+        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object data = null, string functionID = null)
         {
             try
             {
                 object? response = null;
 
-                var errorMessage = await _utility.ValidateClientID(clientID);
+                var errorMessage = await _utility.ValidateClientID(clientID, type, functionID);
                 if (!string.IsNullOrEmpty(errorMessage))
                     return Unauthorized(errorMessage);
-
-                //Check if Request is NULL
-                if (request == null)
-                    throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_BRAND));
 
                 switch (type)
                 {
                     case RequestType.POST_SAVE_SALES:
-                        response = await _sales.SaveSalesAsync((SaveSalesRequest)request);
+                        response = await _sales.SaveSalesAsync((SaveSalesRequest)data);
                         break;
                 }
 
                 if (response == null)
-                {
                     return NotFound();
-                }
+
                 return Ok(response);
             }
             catch (Exception ex)

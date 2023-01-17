@@ -40,53 +40,46 @@ namespace AllOut.Api.Controllers
         [HttpPost("SaveProduct")]
         public async Task<IActionResult> SaveProductAsync(SaveProductRequest request)
         {
-            return await ProcessRequest(RequestType.POST_SAVE_PRODUCT, request.client.ClientID, request);
+            return await ProcessRequest(RequestType.POST_SAVE_PRODUCT, request.client.ClientID, request, request.FunctionID);
         }
 
         [HttpPost("UpdateProductStatusByIDs")]
         public async Task<IActionResult> UpdateProductStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
-            return await ProcessRequest(RequestType.POST_UPDATE_PRODUCT_STATUS_BY_IDS, request.client.ClientID, request);
+            return await ProcessRequest(RequestType.POST_UPDATE_PRODUCT_STATUS_BY_IDS, request.client.ClientID, request, request.FunctionID);
         }
 
-        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object? request = null)
+        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object data = null, string functionID = null)
         {
             try
             {
                 object? response = null;
 
-                var errorMessage = await _utility.ValidateClientID(clientID);
+                var errorMessage = await _utility.ValidateClientID(clientID, type, functionID);
                 if (!string.IsNullOrEmpty(errorMessage))
                     return Unauthorized(errorMessage);
 
-                if (type == RequestType.GET_PRODUCTS)
+                switch (type)
                 {
-                    response = await _product.GetProductsAsync();
-                }
-                else
-                {
-                    //Check if Request is NULL
-                    if (request == null)
-                        throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_PRODUCT));
+                    case RequestType.GET_PRODUCTS:
+                        response = await _product.GetProductsAsync();
+                        break;
 
-                    switch (type)
-                    {
-                        case RequestType.GET_PRODUCTS_BY_QUERY:
-                            response = await _product.GetProductsByQueryAsync((string)request);
-                            break;
+                    case RequestType.GET_PRODUCTS_BY_QUERY:
+                        response = await _product.GetProductsByQueryAsync((string)data);
+                        break;
 
-                        case RequestType.GET_PRODUCT_BY_ID:
-                            response = await _product.GetProductByIDAsync((Guid)request);
-                            break;
+                    case RequestType.GET_PRODUCT_BY_ID:
+                        response = await _product.GetProductByIDAsync((Guid)data);
+                        break;
 
-                        case RequestType.POST_SAVE_PRODUCT:
-                            response = await _product.SaveProductAsync((SaveProductRequest)request);
-                            break;
+                    case RequestType.POST_SAVE_PRODUCT:
+                        response = await _product.SaveProductAsync((SaveProductRequest)data);
+                        break;
 
-                        case RequestType.POST_UPDATE_PRODUCT_STATUS_BY_IDS:
-                            response = await _product.UpdateProductStatusByIDsAsync((UpdateStatusByIDsRequest)request);
-                            break;
-                    }
+                    case RequestType.POST_UPDATE_PRODUCT_STATUS_BY_IDS:
+                        response = await _product.UpdateProductStatusByIDsAsync((UpdateStatusByIDsRequest)data);
+                        break;
                 }
 
                 if (response == null)

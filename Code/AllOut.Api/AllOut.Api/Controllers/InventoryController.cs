@@ -41,43 +41,36 @@ namespace AllOut.Api.Controllers
         [HttpPost("SaveInventory")]
         public async Task<IActionResult> SaveInventoryAsync(SaveInventoryRequest request)
         {
-            return await ProcessRequest(RequestType.POST_SAVE_INVENTORY, request.client.ClientID, request);
+            return await ProcessRequest(RequestType.POST_SAVE_INVENTORY, request.client.ClientID, request, request.FunctionID);
         }
 
-        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object? request = null)
+        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object data = null, string functionID = null)
         {
             try
             {
                 object? response = null;
 
-                var errorMessage = await _utility.ValidateClientID(clientID);
+                var errorMessage = await _utility.ValidateClientID(clientID, type, functionID);
                 if (!string.IsNullOrEmpty(errorMessage))
                     return Unauthorized(errorMessage);
 
-                if (type == RequestType.GET_INVENTORIES)
+                switch (type)
                 {
-                    response = await _inventory.GetInventoriesAsync();
-                }
-                else
-                {
-                    //Check if Request is NULL
-                    if (request == null)
-                        throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_BRAND));
+                    case RequestType.GET_INVENTORIES:
+                        response = await _inventory.GetInventoriesAsync();
+                        break;
 
-                    switch(type)
-                    {
-                        case RequestType.GET_INVENTORIES_BY_QUERY:
-                            response = await _inventory.GetInventoriesByQueryAsync((string)request);
-                            break;
+                    case RequestType.GET_INVENTORIES_BY_QUERY:
+                        response = await _inventory.GetInventoriesByQueryAsync((string)data);
+                        break;
 
-                        case RequestType.GET_INVENTORY_BY_ID:
-                            response = await _inventory.GetInventoryByIDAsync((string)request);
-                            break;
+                    case RequestType.GET_INVENTORY_BY_ID:
+                        response = await _inventory.GetInventoryByIDAsync((string)data);
+                        break;
 
-                        case RequestType.POST_SAVE_INVENTORY:
-                            response = await _inventory.SaveInventoryAsync((SaveInventoryRequest)request);
-                            break;
-                    }
+                    case RequestType.POST_SAVE_INVENTORY:
+                        response = await _inventory.SaveInventoryAsync((SaveInventoryRequest)data);
+                        break;
                 }
 
                 if (response == null)

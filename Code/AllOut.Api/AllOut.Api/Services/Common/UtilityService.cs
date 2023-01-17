@@ -54,8 +54,13 @@ namespace AllOut.Api.Services.Common
             return stock <= reorderpoint;
         }
 
-        public async Task<string> ValidateClientID(Guid ClientID)
+        public async Task<string> ValidateClientID(Guid ClientID, RequestType requestType, string functionID)
         {
+            if ((requestType == RequestType.POST_LOGIN_USER) || /*Not Required for ClientID Validation if the Request is Login*/
+                (requestType == RequestType.POST_SAVE_USER && 
+                 functionID != null && functionID == Constants.FUNCTION_ID_ADD_USER)) /*Not Required for ClientID Validation if the Request is User Registration*/
+                return string.Empty;
+
             //Check if ClientID is Empty
             if (ClientID == Guid.Empty)
                 return Constants.ERROR_CLIENT_EMPTY;
