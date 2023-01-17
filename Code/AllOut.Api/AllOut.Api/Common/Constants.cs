@@ -5,9 +5,15 @@
         public const string NA = "N/A";
         public const string NAME_FORMAT = "{0}, {1}";
         public const char ZERO = '0';
+        public const string HASH = "@l10uTxK@lr0T1r35";
+
+        #region Regex Pattern
+        public const string REGEX_EMAIL_PATTERN = "^[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*$";
+        public const string REGEX_NAME_PATTERN = "^[A-Z][-a-zA-Z]+$";
+        public const string REGEX_PASSWORD_PATTERN = "^^(?=.*[a-z].*[a-z])(?=.*[!\"#...\\d].*[!\"#...\\d]).{8,15}$";
+        #endregion
 
         #region Client Thresholds
-        public const int NO_REQUEST_THRESHOLD = 100;
         public const int NO_HOURS_ACTIVE_THRESHOLD = 2;
         #endregion
 
@@ -155,6 +161,9 @@
         public const string ERROR_INCORRECT_CREDENTIAL = "Username/Email or Password is incorrect.";
         public const string ERROR_GENERATE_CLIENT = "Error in generating user client.";
         public const string ERROR_CLIENT_NOT_VALID = "Your Client ID is NOT authorized to process this request.";
+        public const string ERROR_EMAIL_NOT_VALID = "{0} is not a valid email.";
+        public const string ERROR_NAME_NOT_VALID = "First Name or Last Name is not a valid name.";
+        public const string ERROR_PASSWORD_NOT_VALID = "Password is not a valid password for the system.";
         #endregion
 
         #region Objects

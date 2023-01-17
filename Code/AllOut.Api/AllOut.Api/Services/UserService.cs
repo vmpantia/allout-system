@@ -13,10 +13,12 @@ namespace AllOut.Api.Services
     {
         private readonly AllOutDbContext _db;
         private readonly IRequestService _request;
-        public UserService(AllOutDbContext context, IRequestService request)
+        private readonly IUtilityService _utility;
+        public UserService(AllOutDbContext context, IRequestService request, IUtilityService utility)
         {
             _db = context;
             _request = request;
+            _utility = utility;
         }
 
         #region Public Methods
@@ -203,7 +205,7 @@ namespace AllOut.Api.Services
             bool isEmailChanged = false;
             bool isNew = true;
 
-            //Check Data if NULL
+            //Check newData if NULL
             if (newData == null)
                 return string.Format(Constants.ERROR_NULL, Constants.OBJECT_USER);
 
@@ -215,6 +217,15 @@ namespace AllOut.Api.Services
                 string.IsNullOrEmpty(newData.LastName))
                 return Constants.ERROR_REQUIRED_FIELDS;
 
+            if(!_utility.IsValidEmail(newData.Email))
+                return string.Format(Constants.ERROR_EMAIL_NOT_VALID, newData.Email);
+
+            if (!_utility.IsValidName(newData.FirstName) ||
+                !_utility.IsValidName(newData.LastName))
+                return Constants.ERROR_NAME_NOT_VALID;
+
+            if (!_utility.IsValidPassword(newData.Password))
+                return Constants.ERROR_PASSWORD_NOT_VALID;
 
             if (oldData != null)
             {

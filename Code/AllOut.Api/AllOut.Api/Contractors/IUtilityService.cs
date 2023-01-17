@@ -11,5 +11,10 @@ namespace AllOut.Api.Contractors
         int GetCurrentStock(int inventories, int sales);
         bool GetReorderState(int stock, int reorderpoint);
         Task<string> ValidateClientID(Guid ClientID, RequestType requestType, string functionID);
+        bool IsValidName(string name);
+        bool IsValidEmail(string email);
+        bool IsValidPassword(string password);
+        string EncryptPassowrd(string password);
+        string DescryptPassowrd(string password);
     }
 }
