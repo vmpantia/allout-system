@@ -14,7 +14,7 @@ namespace AllOut.Api.DataAccess.Models
         public Guid? ApprovedBy { get; set; }
         [Required, MaxLength(2)]
         public string Status { get; set; }
-        public DateTime? CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
     }
 }

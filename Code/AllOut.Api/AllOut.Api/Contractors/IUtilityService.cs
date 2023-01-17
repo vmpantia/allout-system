@@ -11,6 +11,5 @@ namespace AllOut.Api.Contractors
         int GetCurrentStock(int inventories, int sales);
         bool GetReorderState(int stock, int reorderpoint);
         Task<string> ValidateClientID(Guid ClientID);
-        Task LogClientRequest(Guid ClientID, RequestType type, string statusCode);
     }
 }

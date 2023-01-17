@@ -3,6 +3,7 @@ using AllOut.Api.Contractors;
 using AllOut.Api.DataAccess.Models;
 using AllOut.Api.Models.enums;
 using AllOut.Api.Models.Requests;
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Puregold.API.Exceptions;
@@ -24,100 +25,141 @@ namespace AllOut.Api.Controllers
         [HttpPost("LoginUser")]
         public async Task<IActionResult> LoginUserAsync(LoginUserRequest request)
         {
-            return await ProcessRequest(RequestType.POST_LOGIN_USER, Guid.Empty, request);
+            var type = RequestType.POST_LOGIN_USER;
+            try
+            {
+                //Check if Request is NULL
+                if (request == null)
+                    throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_USER));
+
+                var response = await _user.LoginUserAsync(request);
+                if (response == null)
+                    return NotFound();
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Conflict(ex.Message);
+            }
         }
 
         [HttpGet("GetUsers")]
         public async Task<IActionResult> GetUsersAsync(Guid clientID)
         {
-            return await ProcessRequest(RequestType.GET_USERS, clientID);
+            var type = RequestType.GET_USERS;
+            try
+            {
+                var errorMessage = await _utility.ValidateClientID(clientID);
+                if (!string.IsNullOrEmpty(errorMessage))
+                    return Unauthorized(errorMessage);
+
+                var response = await _user.GetUsersAsync();
+                if (response == null)
+                    return NotFound();
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Conflict(ex.Message);
+            }
         }
 
         [HttpGet("GetUsersByQuery")]
         public async Task<IActionResult> GetUsersByQueryAsync(Guid clientID, string query)
         {
-            return await ProcessRequest(RequestType.GET_USERS_BY_QUERY, clientID, query);
+            var type = RequestType.GET_USERS_BY_QUERY;
+            try
+            {
+                var errorMessage = await _utility.ValidateClientID(clientID);
+                if (!string.IsNullOrEmpty(errorMessage))
+                    return Unauthorized(errorMessage);
+
+                var response = await _user.GetUsersAsync();
+                if (response == null)
+                    return NotFound();
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Conflict(ex.Message);
+            }
         }
 
         [HttpGet("GetUserByID")]
         public async Task<IActionResult> GetUserByIDAsync(Guid clientID, Guid id)
         {
-            return await ProcessRequest(RequestType.GET_USER_BY_ID, clientID, id);
+            var type = RequestType.GET_USER_BY_ID;
+            try
+            {
+                var errorMessage = await _utility.ValidateClientID(clientID);
+                if (!string.IsNullOrEmpty(errorMessage))
+                    return Unauthorized(errorMessage);
+
+                var response = await _user.GetUserByIDAsync(id);
+                if (response == null)
+                    return NotFound();
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Conflict(ex.Message);
+            }
         }
 
         [HttpPost("SaveUser")]
         public async Task<IActionResult> SaveUserAsync(SaveUserRequest request)
         {
-            return await ProcessRequest(RequestType.POST_SAVE_USER, request.client.ClientID, request);
+            var type = RequestType.POST_SAVE_USER;
+            try
+            {
+                //Check if Request is NULL
+                if (request == null)
+                    throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_USER));
+
+                if(request.FunctionID != Constants.FUNCTION_ID_ADD_USER)
+                {
+                    var errorMessage = await _utility.ValidateClientID(request.client.ClientID);
+                    if (!string.IsNullOrEmpty(errorMessage))
+                        return Unauthorized(errorMessage);
+                }
+
+                var response = await _user.SaveUserAsync(request);
+                if (response == null)
+                    return NotFound();
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Conflict(ex.Message);
+            }
         }
 
         [HttpPost("UpdateUserStatusByIDs")]
         public async Task<IActionResult> UpdateUserStatusByIDsAsync(UpdateStatusByIDsRequest request)
         {
-            return await ProcessRequest(RequestType.POST_UPDATE_USER_STATUS_BY_IDS, request.client.ClientID, request);
-        }
-
-        private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object? request = null)
-        {
             try
             {
-                object? response = null;
+                //Check if Request is NULL
+                if (request == null)
+                    throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_USER));
 
-                if(type != RequestType.POST_LOGIN_USER)
-                {
-                    var errorMessage = await _utility.ValidateClientID(clientID);
-                    if (!string.IsNullOrEmpty(errorMessage))
-                        return Unauthorized(errorMessage);
-                }
+                var errorMessage = await _utility.ValidateClientID(request.client.ClientID);
+                if (!string.IsNullOrEmpty(errorMessage))
+                    return Unauthorized(errorMessage);
 
-                if (type == RequestType.GET_USERS)
-                {
-                    response = await _user.GetUsersAsync();
-                }
-                else
-                {
-                    //Check if Request is NULL
-                    if (request == null)
-                        throw new APIException(string.Format(Constants.ERROR_REQUEST_NULL, Constants.OBJECT_BRAND));
-
-                    switch(type)
-                    {
-                        case RequestType.POST_LOGIN_USER:
-                            response = await _user.LoginUserAsync((LoginUserRequest)request);
-                            if (response != null)
-                                clientID = ((Client)response).ClientID;
-                            break;
-
-                        case RequestType.GET_USERS_BY_QUERY:
-                            response = await _user.GetUsersByQueryAsync((string)request);
-                            break;
-
-                        case RequestType.GET_USER_BY_ID:
-                            response = await _user.GetUserByIDAsync((Guid)request);
-                            break;
-
-                        case RequestType.POST_SAVE_USER:
-                            response = await _user.SaveUserAsync((SaveUserRequest)request);
-                            break;
-
-                        case RequestType.POST_UPDATE_USER_STATUS_BY_IDS:
-                            response = await _user.UpdateUserStatusByIDsAsync((UpdateStatusByIDsRequest)request);
-                            break;
-                    }
-                }
-
+                var response = await _user.UpdateUserStatusByIDsAsync(request);
                 if (response == null)
-                {
-                    await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_NOTFOUND);
                     return NotFound();
-                }
 
-                await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_OK);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_CONFLICT);
                 return Conflict(ex.Message);
             }
         }

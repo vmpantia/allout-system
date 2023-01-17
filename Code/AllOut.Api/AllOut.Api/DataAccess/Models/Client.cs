@@ -14,5 +14,6 @@ namespace AllOut.Api.DataAccess.Models
         public string IPAddress { get; set; }
         public string WindowsVersion { get; set; }
         public int Status { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

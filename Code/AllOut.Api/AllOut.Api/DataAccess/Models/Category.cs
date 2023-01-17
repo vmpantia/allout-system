@@ -11,7 +11,7 @@ namespace AllOut.Api.DataAccess.Models
         [MaxLength(100)]
         public string? Description { get; set; }
         public int Status { get; set; } 
-        public DateTime? CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
     }
 }

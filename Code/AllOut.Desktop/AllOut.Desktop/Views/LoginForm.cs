@@ -1,5 +1,6 @@
 ﻿using AllOut.Desktop.Common;
 using AllOut.Desktop.Controllers;
+using AllOut.Desktop.Models;
 using AllOut.Desktop.Models.enums;
 using AllOut.Desktop.Models.Requests;
 using System;
@@ -39,6 +40,7 @@ namespace AllOut.Desktop.Views
                 return;
             }
 
+            Globals.ClientInformation = (Client)response.Data;
             var mainForm = new MainForm();
             mainForm.ShowDialog();
         }

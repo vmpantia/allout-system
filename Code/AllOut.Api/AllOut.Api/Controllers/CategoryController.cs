@@ -92,17 +92,12 @@ namespace AllOut.Api.Controllers
                 }
 
                 if (response == null)
-                {
-                    await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_NOTFOUND);
                     return NotFound();
-                }
 
-                await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_OK);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                await _utility.LogClientRequest(clientID, type, Constants.STATUS_CODE_CONFLICT);
                 return Conflict(ex.Message);
             }
         }

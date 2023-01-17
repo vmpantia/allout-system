@@ -15,7 +15,8 @@ namespace AllOut.Desktop.Common
         public const string USERNAME_FORMAT = "{0}.{1}";
         public const char ZERO = '0';
         public const string HASH = "@l10uTxK@lr0T1r35";
-        public const string API_BASE = "http://www.allout.api.com/";
+        //public const string API_BASE = "http://www.allout.api.com/";
+        public const string API_BASE = "https://localhost:7252/";
 
         #region Forms
         public const string FORM_PRODUCTS = "Products";
@@ -102,7 +103,7 @@ namespace AllOut.Desktop.Common
         public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
         public const string ERROR_EMPTY_CREDENTIAL = "Username or Password field is required.";
         public const string ERROR_INCORRECT_CREDENTIAL = "Username or Password is incorrect.";
-        #endregion
+        #endregion  
 
         #region Success Message
         public const string SUCCESS_SAVED = "{0} has been Saved Successfully!\n{1}";

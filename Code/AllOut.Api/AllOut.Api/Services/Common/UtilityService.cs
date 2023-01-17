@@ -69,45 +69,13 @@ namespace AllOut.Api.Services.Common
             if (client.Status != Constants.STATUS_ENABLED_INT)
                 return Constants.ERROR_CLIENT_NOT_VALID;
 
-            //Check Number of Request Threshold
-            var clientRequests = await _db.ClientRequests.Where(data => data.ClientID == ClientID)
-                                                         .OrderBy(data => data.CreatedDate)
-                                                         .ToListAsync();
-            if (clientRequests.Any() && clientRequests.Count > Constants.NO_REQUEST_THRESHOLD)
-                return Constants.ERROR_CLIENT_EXCEED_REQUEST;
-
             //Check Number of Hours Active Threshold
-            var firstClientRequest = clientRequests.First().CreatedDate;
-            if (firstClientRequest != null)
-            {
-                var noofHours = (DateTime.Now - firstClientRequest).Value.TotalHours;
-                if (noofHours > Constants.NO_HOURS_ACTIVE_THRESHOLD)
-                    return Constants.ERROR_CLIENT_EXCEED_ACTIVE_HOURS;
-            }
+            var firstClientCreated = client.CreatedDate;
+            var noofHours = (DateTime.Now - firstClientCreated).TotalHours;
+            if (noofHours > Constants.NO_HOURS_ACTIVE_THRESHOLD)
+                return Constants.ERROR_CLIENT_EXCEED_ACTIVE_HOURS;
 
             return string.Empty;
-        }
-
-        public async Task LogClientRequest(Guid ClientID, RequestType type, string statusCode)
-        {
-            int number = 0;
-            var clientRequest = await _db.ClientRequests.Where(data => data.ClientID == ClientID)
-                                                         .OrderBy(data => data.CreatedDate)
-                                                         .ToListAsync();
-            if(clientRequest.Any())
-                number = clientRequest.Count();
-
-            var newClientRequest = new ClientRequest
-            {
-                ClientID = ClientID,
-                Number = number,
-                Type = ConvertRequestTypeToString(type),
-                Response = statusCode,
-                CreatedDate = Globals.EXEC_DATETIME
-            };
-
-            await _db.ClientRequests.AddAsync(newClientRequest);
-            await _db.SaveChangesAsync();
         }
         #endregion
 
