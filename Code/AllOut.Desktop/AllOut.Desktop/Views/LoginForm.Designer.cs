@@ -38,6 +38,7 @@
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtLogonName = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnRegister = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -186,12 +187,25 @@
             this.txtLogonName.Size = new System.Drawing.Size(284, 41);
             this.txtLogonName.TabIndex = 2;
             // 
+            // btnRegister
+            // 
+            this.btnRegister.AutoSize = true;
+            this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegister.Location = new System.Drawing.Point(285, 441);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(63, 21);
+            this.btnRegister.TabIndex = 11;
+            this.btnRegister.TabStop = true;
+            this.btnRegister.Text = "Sign up";
+            this.btnRegister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnRegister_LinkClicked);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(412, 514);
+            this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.guna2CircleButton1);
             this.Controls.Add(this.guna2PictureBox1);
             this.Controls.Add(this.btnClose);
@@ -221,5 +235,6 @@
         private Guna.UI2.WinForms.Guna2ShadowForm shdwLoginForm;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton1;
+        private System.Windows.Forms.LinkLabel btnRegister;
     }
 }

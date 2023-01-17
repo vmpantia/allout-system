@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AllOut.Desktop.Common
 {
     public class Globals
     {
+        public static Regex letterFormat = new Regex("[a-zA-Z]");
+
         public static string POST_LOGIN_USER = string.Concat(Constants.API_BASE, "User/LoginUser");
         public static string GET_USERS = string.Concat(Constants.API_BASE, "User/GetUsers?clientID={0}");
         public static string GET_USERS_BY_QUERY = string.Concat(Constants.API_BASE, "User/GetUsersByQuery?clientID={0}&query={1}");

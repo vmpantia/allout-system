@@ -66,5 +66,10 @@ namespace AllOut.Desktop.Common
                 }
             }
         }
+
+        public static bool IsLetter(string value)
+        {
+            return Globals.letterFormat.IsMatch(value);
+        }
     }
 }

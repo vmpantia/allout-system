@@ -45,6 +45,36 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
+        public static async Task<Response> PostSaveUserAsync(SaveUserRequest request)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare Data and API URL
+                var url = Globals.POST_SAVE_USER;
+                var data = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.PostAsync(url, data);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
         #endregion
 
         public static async Task<Response> GetProducts()

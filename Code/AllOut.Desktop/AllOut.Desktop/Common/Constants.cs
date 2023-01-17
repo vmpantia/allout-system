@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AllOut.Desktop.Common
@@ -11,6 +12,7 @@ namespace AllOut.Desktop.Common
     {
         public const string NA = "N/A";
         public const string NAME_FORMAT = "{0}, {1}";
+        public const string USERNAME_FORMAT = "{0}.{1}";
         public const char ZERO = '0';
         public const string HASH = "@l10uTxK@lr0T1r35";
         public const string API_BASE = "http://www.allout.api.com/";

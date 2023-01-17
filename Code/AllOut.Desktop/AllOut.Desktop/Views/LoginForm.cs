@@ -48,6 +48,12 @@ namespace AllOut.Desktop.Views
             this.Close();
         }
 
+        private void btnRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var regForm = new RegisterForm();
+            regForm.ShowDialog();
+        }
+
         private void ResetError()
         {
             lblLoginError.Text = string.Empty;
