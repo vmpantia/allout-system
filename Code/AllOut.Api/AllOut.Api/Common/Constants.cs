@@ -11,12 +11,6 @@
         public const int NO_HOURS_ACTIVE_THRESHOLD = 2;
         #endregion
 
-        #region Forms
-        public const string FORM_PRODUCTS = "Products";
-        public const string FORM_BRANDS = "Brands";
-        public const string FORM_CATEGORIES = "Categories";
-        #endregion
-
         #region ID
         public const string REQUEST_ID_FORMAT = "RE{0}{1}";
         public const string INVENTORY_ID_FORMAT = "IN{0}{1}";
@@ -157,8 +151,6 @@
         public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
         public const string ERROR_REQUIRED_FIELDS = "Required fields must have values.";
         public const string ERROR_PRODUCT_NOT_EXIST = "Product not Exist in the System";
-        public const string ERROR_NO_SELECTED = "No {0}(s) selected.";
-        public const string ERROR_UNABLE_EDIT = "Unable to Edit {0}.";
         public const string ERROR_EMPTY_CREDENTIAL = "Username/Email or Password field is required.";
         public const string ERROR_INCORRECT_CREDENTIAL = "Username/Email or Password is incorrect.";
         public const string ERROR_GENERATE_CLIENT = "Error in generating user client.";
@@ -169,27 +161,6 @@
         public const string ERROR_CLIENT_EXCEED_ACTIVE_HOURS = "ClientID/Key is already exceed in the number of hours active threshold, Please login again.";
         #endregion
 
-        #region Success Message
-        public const string SUCCESS_SAVED = "{0} has been Saved Successfully!\n{1}";
-        public const string SUCCESS_UPDATE = "Update {0}(s) Status Successfully!\n{1}";
-        #endregion
-
-        #region Confirmation Message
-        public const string MESSAGE_CONFIRMATION = "Are you sure you want to {0} {1} {2}(s)?";
-        #endregion
-
-        #region Titles
-        public const string TITLE_ADD = "Add {0}";
-        public const string TITLE_EDIT = "Edit {0}";
-        public const string TITLE_SAVE = "Save {0}";
-        public const string TITLE_UPDATE_STATUS = "Update {0}(s) Status";
-        #endregion
-
-        #region Descriptions
-        public const string DESC_ADD = "In this page you can add {0}.";
-        public const string DESC_EDIT = "In this page you can edit {0}.";
-        #endregion
-
         #region Objects
         public const string OBJECT_USER = "User";
         public const string OBJECT_PRODUCT = "Product";
@@ -198,17 +169,6 @@
         public const string OBJECT_INVENTORY = "Inventory";
         public const string OBJECT_SALES = "Sales";
         public const string OBJECT_REQUEST = "Request";
-        #endregion
-
-        #region Action Buttons
-        public const string BUTTON_NAME_EDIT = "Edit";
-        public const string BUTTON_NAME_SELECTION = "Selection";
-        public const string BUTTON_HEADER_ACTION = "Action";
-        public const string BUTTON_HEADER_SELECT = "Select";
-        #endregion
-
-        #region ToolTip
-        public const string TOOLTIP_SEARCH = "Search {0}";
         #endregion
     }
 }
