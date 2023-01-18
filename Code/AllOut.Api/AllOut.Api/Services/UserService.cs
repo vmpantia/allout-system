@@ -209,13 +209,21 @@ namespace AllOut.Api.Services
             if (newData == null)
                 return string.Format(Constants.ERROR_NULL, Constants.OBJECT_USER);
 
-            //Check if required fields have value
-            if (string.IsNullOrEmpty(newData.Email) ||
-                string.IsNullOrEmpty(newData.Username) ||
-                string.IsNullOrEmpty(newData.Password) ||
-                string.IsNullOrEmpty(newData.FirstName) ||
-                string.IsNullOrEmpty(newData.LastName))
-                return Constants.ERROR_REQUIRED_FIELDS;
+            //Validate Required Fields for User
+            if (string.IsNullOrEmpty(newData.Email))
+                return string.Concat(Constants.ERROR_OBJECT_REQUIRED, Constants.OBJECT_EMAIL);
+
+            if (string.IsNullOrEmpty(newData.Username))
+                return string.Concat(Constants.ERROR_OBJECT_REQUIRED, Constants.OBJECT_UNAME);
+
+            if (string.IsNullOrEmpty(newData.FirstName))
+                return string.Concat(Constants.ERROR_OBJECT_REQUIRED, Constants.OBJECT_FNAME);
+
+            if (string.IsNullOrEmpty(newData.LastName))
+                return string.Concat(Constants.ERROR_OBJECT_REQUIRED, Constants.OBJECT_LNAME);
+
+            if (string.IsNullOrEmpty(newData.Password))
+                return string.Concat(Constants.ERROR_OBJECT_REQUIRED, Constants.OBJECT_PASS);
 
             if(!_utility.IsValidEmail(newData.Email))
                 return string.Format(Constants.ERROR_EMAIL_NOT_VALID, newData.Email);

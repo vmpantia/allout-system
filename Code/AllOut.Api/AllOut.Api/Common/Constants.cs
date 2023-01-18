@@ -155,15 +155,19 @@
         public const string ERROR_NAME_EXIST = "{0} Name already Exist in the System.";
         public const string ERROR_NO_CHANGES = "No changes made in {0}.";
         public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
-        public const string ERROR_REQUIRED_FIELDS = "Required fields must have values.";
-        public const string ERROR_PRODUCT_NOT_EXIST = "Product not Exist in the System";
-        public const string ERROR_EMPTY_CREDENTIAL = "Username/Email or Password field is required.";
-        public const string ERROR_INCORRECT_CREDENTIAL = "Username/Email or Password is incorrect.";
+        public const string ERROR_OBJECT_REQUIRED = "{0} field is Required.";
+
+        public const string ERROR_EMAIL_NOT_VALID = "{0} is not a valid Email.";
+        public const string ERROR_NAME_NOT_VALID = "{0} is not a valid Name.";
+        public const string ERROR_PASSWORD_NOT_VALID = "Password is not a valid password for the system.";
+
+        public const string ERROR_EMPTY_CREDENTIAL = "LogonName or Password field is required.";
+        public const string ERROR_INCORRECT_CREDENTIAL = "LogonName or Password is incorrect.";
         public const string ERROR_GENERATE_CLIENT = "Error in generating user client.";
         public const string ERROR_CLIENT_NOT_VALID = "Your Client ID is NOT authorized to process this request.";
-        public const string ERROR_EMAIL_NOT_VALID = "{0} is not a valid email.";
-        public const string ERROR_NAME_NOT_VALID = "First Name or Last Name is not a valid name.";
-        public const string ERROR_PASSWORD_NOT_VALID = "Password is not a valid password for the system.";
+
+
+        public const string ERROR_PRODUCT_NOT_EXIST = "Product not Exist in the System";
         #endregion
 
         #region Objects
@@ -174,6 +178,12 @@
         public const string OBJECT_INVENTORY = "Inventory";
         public const string OBJECT_SALES = "Sales";
         public const string OBJECT_REQUEST = "Request";
+
+        public const string OBJECT_EMAIL = "Email";
+        public const string OBJECT_UNAME = "Username";
+        public const string OBJECT_FNAME = "First Name";
+        public const string OBJECT_LNAME = "Last Name";
+        public const string OBJECT_PASS = "Password";
         #endregion
     }
 }

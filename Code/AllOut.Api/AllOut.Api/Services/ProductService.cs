@@ -231,10 +231,18 @@ namespace AllOut.Api.Services
             if (newData == null)
                 return string.Format(Constants.ERROR_NULL, Constants.OBJECT_PRODUCT);
 
+            //Validate Required Fields for Product
             //Check if Name have value
             if (string.IsNullOrEmpty(newData.Name))
                 return string.Format(Constants.ERROR_NAME_REQUIRED, Constants.OBJECT_PRODUCT);
 
+            //Check if BrandID have value
+            if (newData.BrandID == Guid.Empty)
+                return string.Format(Constants.ERROR_OBJECT_REQUIRED, Constants.OBJECT_BRAND);
+
+            //Check if CategoryID have value
+            if (newData.CategoryID == Guid.Empty)
+                return string.Format(Constants.ERROR_OBJECT_REQUIRED, Constants.OBJECT_CATEGORY);
 
             if (oldData != null)
             {

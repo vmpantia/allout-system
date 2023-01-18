@@ -189,6 +189,10 @@ namespace AllOut.Api.Services
             if (newData == null)
                 return string.Format(Constants.ERROR_NULL, Constants.OBJECT_INVENTORY);
 
+            var isItemExist = _db.Products.Where(data => data.ProductID == newData.ProductID).ToList();
+            if (!isItemExist.Any())
+                return Constants.ERROR_PRODUCT_NOT_EXIST;
+
             if (oldData != null)
             {
                 //Check if new data and old data changed
@@ -199,10 +203,6 @@ namespace AllOut.Api.Services
                     newData.ModifiedDate == oldData.ModifiedDate)
                     return string.Format(Constants.ERROR_NO_CHANGES, Constants.OBJECT_PRODUCT);
             }
-
-            var isItemExist = _db.Products.Where(data => data.ProductID == newData.ProductID).ToList();
-            if (!isItemExist.Any())
-                return Constants.ERROR_PRODUCT_NOT_EXIST;
 
             return string.Empty;
         }

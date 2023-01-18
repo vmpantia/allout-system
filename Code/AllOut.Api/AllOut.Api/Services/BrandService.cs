@@ -175,7 +175,6 @@ namespace AllOut.Api.Services
             if (string.IsNullOrEmpty(newData.Name))
                 return string.Format(Constants.ERROR_NAME_REQUIRED, Constants.OBJECT_BRAND);
 
-
             if(oldData != null)
             {
                 isNew = false;
