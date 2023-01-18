@@ -17,7 +17,7 @@ namespace AllOut.Desktop.Views.ProductForms
         private const int BUTTON_COL_IDX = 0;
         private const int CHECKBOX_COL_IDX = 1;
         private const int ID_COL_IDX = 2;
-        private const int STATUS_COL_IDX = 5;
+        private const int STATUS_COL_IDX = 11;
 
         public ProductListForm()
         {
