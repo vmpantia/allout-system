@@ -67,9 +67,9 @@ namespace AllOut.Desktop.Common
             }
         }
 
-        public static bool IsLetter(string value)
+        public static Guid GetIDByCellValue(object value)
         {
-            return Globals.letterFormat.IsMatch(value);
+            return value == null ? Guid.Empty : Guid.Parse(value.ToString());
         }
     }
 }

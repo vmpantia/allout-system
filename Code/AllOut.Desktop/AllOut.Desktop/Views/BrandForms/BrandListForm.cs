@@ -24,31 +24,31 @@ namespace AllOut.Desktop.Views.BrandForms
         public BrandListForm()
         {
             InitializeComponent();
-            ReloadFormData();
+            PopulateBrands();
 
             btnSearchToolTip.SetToolTip(btnSearch, string.Format(Constants.TOOLTIP_SEARCH, Constants.OBJECT_BRAND));
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            ReloadFormData(txtSearch.Text);
+            PopulateBrands(txtSearch.Text);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var form = new BrandForm();
             form.ShowDialog();
-            ReloadFormData();
+            PopulateBrands();
         }
 
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
-            SelectAll(true);
+            IsSelectAll(true);
         }
 
         private void btnUnselectAll_Click(object sender, EventArgs e)
         {
-            SelectAll(false);
+            IsSelectAll(false);
         }
 
         private void btnEnable_Click(object sender, EventArgs e)
@@ -71,19 +71,19 @@ namespace AllOut.Desktop.Views.BrandForms
             if (e.RowIndex < 0 && (e.ColumnIndex != BUTTON_COL_IDX || e.ColumnIndex != CHECKBOX_COL_IDX))
                 return;
 
-            var row = tblObjectList.Rows[e.RowIndex];
-            var id = ParseBrandIDByCellValue(row.Cells[ID_COL_IDX].Value);
+            var id = Utility.GetIDByCellValue(tblObjectList.Rows[e.RowIndex].Cells[ID_COL_IDX].Value);
 
             //Check if Edit Button is Clicked
             if (e.ColumnIndex == BUTTON_COL_IDX)
             {
-                SelectAll(false);
+                IsSelectAll(false);
 
-                //Show Brand Form
+                //Show Form
                 var form = new BrandForm(id);
                 form.ShowDialog();
-                ReloadFormData();
+                PopulateBrands();
             }
+
             //Check if Select CheckBox is Clicked
             else if (e.ColumnIndex == CHECKBOX_COL_IDX)
             {
@@ -93,7 +93,7 @@ namespace AllOut.Desktop.Views.BrandForms
                 else
                     _brandIDs.Add(id);
 
-                EnableOtherActionButtons(_brandIDs.Count > 0);
+                EnableOtherControls(_brandIDs.Count > 0);
             }
         }
 
@@ -117,7 +117,7 @@ namespace AllOut.Desktop.Views.BrandForms
             }
         }
 
-        private async void ReloadFormData(string query = null)
+        private async void PopulateBrands(string query = null)
         {
             Response response;
             if (string.IsNullOrEmpty(query))
@@ -145,13 +145,16 @@ namespace AllOut.Desktop.Views.BrandForms
             btnSelectAll.Enabled = true;
             tblObjectList.Visible = true;
             lblTableDescription.Visible = false;
-            PopulateBrands(brands);
+            PopulateTable(brands);
             return;
         }
 
-        private void PopulateBrands(List<Brand> brands)
+        private void PopulateTable(List<Brand> brands)
         {
-            ResetTools();
+            _brandIDs = new List<Guid>();
+            tblObjectList.DataSource = null;
+            tblObjectList.Rows.Clear();
+            tblObjectList.Columns.Clear();
 
             tblObjectList.DataSource = brands.Select(data => new
             {
@@ -159,8 +162,8 @@ namespace AllOut.Desktop.Views.BrandForms
                 Name = data.Name,
                 Description = data.Description,
                 Status = Utility.ConvertStatusToString(data.Status),
-                CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToShortDateString(),
-                ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToShortDateString(),
+                CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),
+                ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),
             }).ToList();
 
 
@@ -191,7 +194,7 @@ namespace AllOut.Desktop.Views.BrandForms
 
         private async void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
         {
-            var action = string.Empty;
+            string action;
             if (newStatus == Constants.STATUS_ENABLED_INT)
                 action = Constants.STATUS_ENABLE_STRING;
             else if (newStatus == Constants.STATUS_DISABLED_INT)
@@ -229,51 +232,36 @@ namespace AllOut.Desktop.Views.BrandForms
                             string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_BRAND),
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
-            ReloadFormData();
+            PopulateBrands();
         }
 
-        private void SelectAll(bool isSelectAll)
+        private void IsSelectAll(bool value)
         {
-            //Reset BrandID's
+            //Reset BrandIDs
             _brandIDs = new List<Guid>();
+
             foreach (DataGridViewRow item in tblObjectList.Rows)
             {
                 //Change CheckBox Value
                 DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)item.Cells[CHECKBOX_COL_IDX];
-                cell.Value = isSelectAll;
+                cell.Value = value;
 
-                var id = ParseBrandIDByCellValue(item.Cells[ID_COL_IDX].Value);
-                if (isSelectAll)
+                var id = Utility.GetIDByCellValue(item.Cells[ID_COL_IDX].Value);
+                if (value)
                     _brandIDs.Add(id);
                 else
                     _brandIDs.Remove(id);
             }
 
-            EnableOtherActionButtons(_brandIDs.Count > 0);
+            EnableOtherControls(_brandIDs.Count > 0);
         }
 
-        private Guid ParseBrandIDByCellValue(object value)
-        {
-            return value == null ? Guid.Empty : Guid.Parse(value.ToString());
-        }
-
-        private void EnableOtherActionButtons(bool value)
+        private void EnableOtherControls(bool value)
         {
             btnUnselectAll.Enabled = value;
             btnEnable.Enabled = value;
             btnDisable.Enabled = value;
             btnDelete.Enabled = value;
-        }
-
-        private void ResetTools()
-        {
-            EnableOtherActionButtons(false);
-
-            _brandIDs = new List<Guid>();
-            txtSearch.Text = string.Empty;
-            tblObjectList.DataSource = null;
-            tblObjectList.Rows.Clear();
-            tblObjectList.Columns.Clear();
         }
     }
 }

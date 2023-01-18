@@ -10,6 +10,7 @@ namespace AllOut.Desktop.Common
 {
     public class Constants
     {
+        public const string DATE_FORMAT = "yyyy/MM/dd";
         public const string NA = "N/A";
         public const string NAME_FORMAT = "{0}, {1}";
         public const string USERNAME_FORMAT = "{0}.{1}";
