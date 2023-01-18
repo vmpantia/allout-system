@@ -34,6 +34,9 @@ namespace AllOut.Api.Services
             if (users == null || !users.Any())
                 throw new APIException(Constants.ERROR_INCORRECT_CREDENTIAL);
 
+            if (users.First().Status != Constants.STATUS_ENABLED_INT)
+                throw new APIException(Constants.ERROR_USER_NOT_ACTIVE);
+
             var client = await GenerateNewClient(users.First(), request);
             if (client == null)
                 throw new APIException(Constants.ERROR_GENERATE_CLIENT);
@@ -158,8 +161,8 @@ namespace AllOut.Api.Services
 
             //currentUser.UserID = inputUser.UserID;
             currentUser.Email = inputUser.Email;
-            currentUser.Username = inputUser.Username;
-            currentUser.Password = inputUser.Password;
+            //currentUser.Username = inputUser.Username;
+            //currentUser.Password = inputUser.Password;
             currentUser.FirstName = inputUser.FirstName;
             currentUser.MiddleName = inputUser.MiddleName;
             currentUser.LastName = inputUser.LastName;

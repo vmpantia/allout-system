@@ -164,6 +164,7 @@
 
         public const string ERROR_EMPTY_CREDENTIAL = "LogonName or Password field is required.";
         public const string ERROR_INCORRECT_CREDENTIAL = "LogonName or Password is incorrect.";
+        public const string ERROR_USER_NOT_ACTIVE = "Your account is disabled or for deletion.";
         public const string ERROR_GENERATE_CLIENT = "Error in generating user client.";
         public const string ERROR_CLIENT_NOT_VALID = "Your Client ID is NOT authorized to process this request.";
 
