@@ -238,7 +238,7 @@ namespace AllOut.Desktop.Views.CategoryForms
 
         private void IsSelectAll(bool value)
         {
-            //Reset BrandIDs
+            //Reset CategoryIDs
             _categoryIDs = new List<Guid>();
 
             foreach (DataGridViewRow item in tblObjectList.Rows)

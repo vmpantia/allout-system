@@ -206,8 +206,8 @@ namespace AllOut.Desktop.Views.ProductForms
             else
                 action = Constants.STATUS_DELETE_STRING;
 
-            var dialogResult = MessageBox.Show(string.Format(Constants.MESSAGE_CONFIRMATION, action, _productIDs.Count, Constants.OBJECT_BRAND),
-                                               string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_BRAND),
+            var dialogResult = MessageBox.Show(string.Format(Constants.MESSAGE_CONFIRMATION, action, _productIDs.Count, Constants.OBJECT_PRODUCT),
+                                               string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_PRODUCT),
                                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.No)
@@ -222,18 +222,18 @@ namespace AllOut.Desktop.Views.ProductForms
                 newStatus = newStatus
             };
 
-            var response = await HttpController.PostUpdateBrandStatusByIDsAsync(request);
+            var response = await HttpController.PostUpdateProductStatusByIDsAsync(request);
 
             if (response.Result != ResponseResult.SUCCESS)
             {
                 MessageBox.Show(response.Data.ToString(),
-                                string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_BRAND),
+                                string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_PRODUCT),
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
                 return;
             }
-            MessageBox.Show(string.Format(Constants.SUCCESS_UPDATE, Constants.OBJECT_BRAND, response.Data),
-                            string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_BRAND),
+            MessageBox.Show(string.Format(Constants.SUCCESS_UPDATE, Constants.OBJECT_PRODUCT, response.Data),
+                            string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_PRODUCT),
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
             PopulateProducts();
@@ -241,7 +241,7 @@ namespace AllOut.Desktop.Views.ProductForms
 
         private void IsSelectAll(bool value)
         {
-            //Reset BrandIDs
+            //Reset ProductIDs
             _productIDs = new List<Guid>();
 
             foreach (DataGridViewRow item in tblObjectList.Rows)
