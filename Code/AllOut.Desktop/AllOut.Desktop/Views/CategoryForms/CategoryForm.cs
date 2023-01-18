@@ -14,89 +14,42 @@ namespace AllOut.Desktop.Views.CategoryForms
         private bool _isAdd = true;
         private Category _categoryInfo = new Category();
 
-        public CategoryForm(Guid categoryID = new Guid())
+        public CategoryForm(Guid brandID = new Guid())
         {
             InitializeComponent();
 
-            if(categoryID != Guid.Empty)
-                _isAdd = false;
-
+            _isAdd = brandID == Guid.Empty;
             lblFormTitle.Text = _isAdd ? string.Format(Constants.TITLE_ADD, Constants.OBJECT_CATEGORY) : string.Format(Constants.TITLE_EDIT, Constants.OBJECT_CATEGORY);
             lblFormDescription.Text = _isAdd ? string.Format(Constants.DESC_ADD, Constants.OBJECT_CATEGORY) : string.Format(Constants.DESC_EDIT, Constants.OBJECT_CATEGORY);
 
-            PopulateCategory(categoryID);
-        }
-
-        private async void PopulateCategory(Guid categoryID)
-        {
-            //Check if Add or Edit
-            if(!_isAdd)
-            {
-                //Get Category based on the given ID
-                var response = await HttpController.GetCategoryByID(categoryID);
-                if (response.Result != ResponseResult.SUCCESS)
-                {
-                    MessageBox.Show(response.Data.ToString(),
-                                    string.Format(Constants.TITLE_EDIT, Constants.OBJECT_CATEGORY), 
-                                    MessageBoxButtons.OK, 
-                                    MessageBoxIcon.Error);
-                    return;
-                }
-                _categoryInfo = response.Data as Category;
-            }
-
-            PopulateFields(_categoryInfo);
-            EnableFieldsAndButtons(_categoryInfo.Status == Constants.STATUS_ENABLED_INT);
-        }
-
-        private void EnableFieldsAndButtons(bool isEnabled)
-        {
-            txtName.Enabled = isEnabled;
-            txtDescription.Enabled = isEnabled;
-            btnSave.Enabled = isEnabled;
-        }
-
-        private void PopulateFields(Category category)
-        {
-            txtName.Text = category.Name;
-            txtDescription.Text = category.Description;
+            PopulateCategory(brandID);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            //Check if Category Name Field is Empty
-            if (string.IsNullOrEmpty(txtName.Text))
-            {
-                MessageBox.Show(string.Format(Constants.ERROR_NAME_REQUIRED, Constants.OBJECT_CATEGORY),
-                                string.Format(Constants.TITLE_SAVE, Constants.OBJECT_CATEGORY),
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return;
-            }
+            //Disable Controls
+            EnableControls(false);
 
-            //Disable Fields and Buttons
-            EnableFieldsAndButtons(false);
-
-            //Store new values in corresponding attribute
+            //Populate Text Fields in Data
             _categoryInfo.Name = txtName.Text;
             _categoryInfo.Description = txtDescription.Text;
             _categoryInfo.Status = Constants.STATUS_ENABLED_INT;
 
-
-            //Prepare Request for SaveCategory
+            //Prepare Request for Save
             var request = new SaveCategoryRequest
             {
                 FunctionID = _isAdd ? Constants.FUNCTION_ID_ADD_CATEGORY_BY_ADMIN : 
                                       Constants.FUNCTION_ID_CHANGE_CATEGORY_BY_ADMIN,
                 RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
-                inputCategory = _categoryInfo,
+                client = Globals.ClientInformation,
+                inputCategory = _categoryInfo
             };
 
-            //Send Request for SaveCategory
-            var response = await HttpController.PostSaveCategory(request);
+            //Send Request for Save
+            var response = await HttpController.PostSaveCategoryAsync(request);
 
-            //Enable Fields and Buttons
-            EnableFieldsAndButtons(true);
+            //Enable Controls
+            EnableControls(true);
 
             //Check Response Result
             if (response.Result != ResponseResult.SUCCESS)
@@ -118,6 +71,38 @@ namespace AllOut.Desktop.Views.CategoryForms
         {
             _categoryInfo = null;
             Close();
+        }
+
+        private async void PopulateCategory(Guid brandID)
+        {
+            //Check if Add or Edit
+            if (!_isAdd)
+            {
+                //Get Category based on the given ID
+                var response = await HttpController.GetCategoryByIDAsync(Globals.ClientInformation.ClientID, brandID);
+                if (response.Result != ResponseResult.SUCCESS)
+                {
+                    MessageBox.Show((string)response.Data,
+                                    string.Format(Constants.TITLE_EDIT, Constants.OBJECT_CATEGORY),
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    return;
+                }
+                _categoryInfo = response.Data as Category;
+            }
+            
+            //Populate Data in Text Fields
+            txtName.Text = _categoryInfo.Name;
+            txtDescription.Text = _categoryInfo.Description;
+
+            EnableControls(_categoryInfo.Status == Constants.STATUS_ENABLED_INT);
+        }
+
+        private void EnableControls(bool isEnabled)
+        {
+            txtName.Enabled = isEnabled;
+            txtDescription.Enabled = isEnabled;
+            btnSave.Enabled = isEnabled;
         }
     }
 }

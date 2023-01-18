@@ -128,9 +128,9 @@
             this.lblFormDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblFormDescription.Location = new System.Drawing.Point(68, 39);
             this.lblFormDescription.Name = "lblFormDescription";
-            this.lblFormDescription.Size = new System.Drawing.Size(237, 17);
+            this.lblFormDescription.Size = new System.Drawing.Size(248, 17);
             this.lblFormDescription.TabIndex = 13;
-            this.lblFormDescription.Text = "In this page you can add or edit brand.";
+            this.lblFormDescription.Text = "In this page you can add or edit product.";
             // 
             // lblFormTitle
             // 

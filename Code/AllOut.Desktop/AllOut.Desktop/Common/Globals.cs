@@ -36,7 +36,7 @@ namespace AllOut.Desktop.Common
         public static string GET_CATEGORIES_BY_QUERY = string.Concat(Constants.API_BASE, "Category/GetCategoriesByQuery?clientID={0}&query={1}");
         public static string GET_CATEGORY_BY_ID = string.Concat(Constants.API_BASE, "Category/GetCategoryByID?clientID={0}&id={1}");
         public static string POST_SAVE_CATEGORY = string.Concat(Constants.API_BASE, "Category/SaveCategory");
-        public static string POST_UPDATE_CATEGORY_STATUS_BY_IDS = string.Concat(Constants.API_BASE, "Category/UpdateCategoriestatusByIDs");
+        public static string POST_UPDATE_CATEGORY_STATUS_BY_IDS = string.Concat(Constants.API_BASE, "Category/UpdateCategoryStatusByIDs");
 
         public static string GET_INVENTORIES = string.Concat(Constants.API_BASE, "Inventory/GetInventories?clientID={0}");
         public static string GET_INVENTORIES_BY_QUERY = string.Concat(Constants.API_BASE, "Inventory/GetInventoriesByQuery?clientID={0}&query={1}");

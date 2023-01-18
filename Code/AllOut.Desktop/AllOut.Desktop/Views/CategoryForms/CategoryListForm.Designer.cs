@@ -103,7 +103,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1173, 41);
             this.tableLayoutPanel2.TabIndex = 8;
-            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // btnUnselectAll
             // 
@@ -290,7 +289,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
             this.txtSearch.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.txtSearch.PlaceholderText = "Search Category";
+            this.txtSearch.PlaceholderText = "Search Brand";
             this.txtSearch.SelectedText = "";
             this.txtSearch.Size = new System.Drawing.Size(271, 35);
             this.txtSearch.TabIndex = 11;
@@ -313,9 +312,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(54, 29);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(451, 17);
+            this.label2.Size = new System.Drawing.Size(429, 17);
             this.label2.TabIndex = 5;
-            this.label2.Text = "In this page you will see the list of all Categories that is saved on the system";
+            this.label2.Text = "In this page you will see the list of all brands that is saved on the system";
             // 
             // label1
             // 
@@ -324,9 +323,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(53, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 21);
+            this.label1.Size = new System.Drawing.Size(62, 21);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Caregories";
+            this.label1.Text = "Brands";
             // 
             // guna2PictureBox1
             // 
@@ -352,7 +351,7 @@
             // lblTableDescription
             // 
             this.lblTableDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTableDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTableDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTableDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTableDescription.Location = new System.Drawing.Point(0, 0);
             this.lblTableDescription.Name = "lblTableDescription";
@@ -422,7 +421,7 @@
             this.btnSearchToolTip.AllowLinksHandling = true;
             this.btnSearchToolTip.MaximumSize = new System.Drawing.Size(0, 0);
             // 
-            // CategoryListForm
+            // BrandListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -430,7 +429,7 @@
             this.ClientSize = new System.Drawing.Size(1179, 525);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "CategoryListForm";
+            this.Name = "BrandListForm";
             this.Text = "BrandListForm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

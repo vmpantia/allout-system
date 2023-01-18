@@ -120,9 +120,9 @@
             this.lblFormDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblFormDescription.Location = new System.Drawing.Point(68, 39);
             this.lblFormDescription.Name = "lblFormDescription";
-            this.lblFormDescription.Size = new System.Drawing.Size(237, 17);
+            this.lblFormDescription.Size = new System.Drawing.Size(253, 17);
             this.lblFormDescription.TabIndex = 13;
-            this.lblFormDescription.Text = "In this page you can add or edit brand.";
+            this.lblFormDescription.Text = "In this page you can add or edit category.";
             // 
             // lblFormTitle
             // 
@@ -131,9 +131,9 @@
             this.lblFormTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblFormTitle.Location = new System.Drawing.Point(67, 18);
             this.lblFormTitle.Name = "lblFormTitle";
-            this.lblFormTitle.Size = new System.Drawing.Size(144, 21);
+            this.lblFormTitle.Size = new System.Drawing.Size(169, 21);
             this.lblFormTitle.TabIndex = 12;
-            this.lblFormTitle.Text = "Add or Edit Brand";
+            this.lblFormTitle.Text = "Add or Edit Category";
             // 
             // guna2PictureBox1
             // 
