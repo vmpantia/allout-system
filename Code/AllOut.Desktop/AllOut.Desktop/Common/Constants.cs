@@ -23,6 +23,7 @@ namespace AllOut.Desktop.Common
         public const string FORM_PRODUCTS = "Products";
         public const string FORM_BRANDS = "Brands";
         public const string FORM_CATEGORIES = "Categories";
+        public const string FORM_USERS = "Users";
         #endregion
 
         #region Request Status

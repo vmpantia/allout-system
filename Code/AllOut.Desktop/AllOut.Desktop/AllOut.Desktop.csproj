@@ -94,6 +94,18 @@
     <Compile Include="Views\CategoryForms\CategoryListForm.Designer.cs">
       <DependentUpon>CategoryListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserForms\UserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UserForms\UserForm.Designer.cs">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserForms\UserListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UserForms\UserListForm.Designer.cs">
+      <DependentUpon>UserListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProductForms\ProductForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CategoryForms\CategoryListForm.resx">
       <DependentUpon>CategoryListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserForms\UserForm.resx">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserForms\UserListForm.resx">
+      <DependentUpon>UserListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProductForms\ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
@@ -210,6 +228,8 @@
     <None Include="Images\icons8-checkmark-90.png" />
     <None Include="Images\icons8-indeterminate-checkbox-96.png" />
     <None Include="Images\icons8-add-user-male-96.png" />
+    <None Include="Images\icons8-people-100.png" />
+    <None Include="Images\icons8-user-100.png" />
     <Content Include="Images\icons8-user-96.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

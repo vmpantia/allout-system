@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AllOut.Desktop.Views.UserForms;
 
 namespace AllOut.Desktop.Views
 {
@@ -46,6 +47,11 @@ namespace AllOut.Desktop.Views
             SetActiveForm(Constants.FORM_CATEGORIES);
         }
 
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            SetActiveForm(Constants.FORM_USERS);
+        }
+
         private void SetActiveForm(string formName)
         {
             Form activeForm = null;
@@ -63,6 +69,9 @@ namespace AllOut.Desktop.Views
                     break;
                 case Constants.FORM_CATEGORIES:
                     activeForm = new CategoryListForm();
+                    break;
+                case Constants.FORM_USERS:
+                    activeForm = new UserListForm();
                     break;
             }
 

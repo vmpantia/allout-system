@@ -124,20 +124,26 @@
   <data name="icons8-password-key-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-password-key-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-enable-toggle-slider-isolated-in-white-background-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-enable-toggle-slider-isolated-in-white-background-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8-logout-rounded-down-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-logout-rounded-down-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-active-58" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-active-58.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="alloutlogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\alloutlogo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-add-user-male-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-add-user-male-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-save-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-save-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-dashboard-layout-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-dashboard-layout-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-people-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-people-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-close-90" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-close-90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,8 +178,8 @@
   <data name="icons8-search-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-search-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="alloutlogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\alloutlogo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-enable-toggle-slider-isolated-in-white-background-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-enable-toggle-slider-isolated-in-white-background-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-category-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-category-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,7 +187,7 @@
   <data name="icons8-shipping-product-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-shipping-product-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-add-user-male-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-add-user-male-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-user-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-user-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

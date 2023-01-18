@@ -36,7 +36,7 @@ namespace AllOut.Desktop.Views
 
             EnableButtonsAndFields(true);
 
-            if (response.Result == ResponseResult.API_ERROR)
+            if (response.Result != ResponseResult.SUCCESS)
             {
                 lblLoginError.Text = (string)response.Data;
                 return;

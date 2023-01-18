@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
             this.pnlContent = new System.Windows.Forms.Panel();
+            this.btnUser = new Guna.UI2.WinForms.Guna2Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -51,6 +52,7 @@
             this.panel2.Controls.Add(this.lblUserEmail);
             this.panel2.Controls.Add(this.btnBrand);
             this.panel2.Controls.Add(this.guna2PictureBox1);
+            this.panel2.Controls.Add(this.btnUser);
             this.panel2.Controls.Add(this.btnCategory);
             this.panel2.Controls.Add(this.btnProduct);
             this.panel2.Controls.Add(this.btnDashboard);
@@ -227,6 +229,27 @@
             this.pnlContent.Size = new System.Drawing.Size(1365, 761);
             this.pnlContent.TabIndex = 5;
             // 
+            // btnUser
+            // 
+            this.btnUser.BorderRadius = 6;
+            this.btnUser.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnUser.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnUser.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnUser.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnUser.FillColor = System.Drawing.Color.Transparent;
+            this.btnUser.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnUser.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnUser.Image = global::AllOut.Desktop.Properties.Resources.icons8_people_100;
+            this.btnUser.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnUser.Location = new System.Drawing.Point(15, 315);
+            this.btnUser.Name = "btnUser";
+            this.btnUser.Size = new System.Drawing.Size(194, 37);
+            this.btnUser.TabIndex = 2;
+            this.btnUser.Text = "User";
+            this.btnUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -260,5 +283,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblUserEmail;
+        private Guna.UI2.WinForms.Guna2Button btnUser;
     }
 }
