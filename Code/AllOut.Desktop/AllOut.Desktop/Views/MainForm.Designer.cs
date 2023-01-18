@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.lblUserEmail = new System.Windows.Forms.Label();
             this.btnBrand = new Guna.UI2.WinForms.Guna2Button();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.btnCategory = new Guna.UI2.WinForms.Guna2Button();
@@ -47,8 +47,8 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.lblUsername);
+            this.panel2.Controls.Add(this.lblUserEmail);
             this.panel2.Controls.Add(this.btnBrand);
             this.panel2.Controls.Add(this.guna2PictureBox1);
             this.panel2.Controls.Add(this.btnCategory);
@@ -61,27 +61,25 @@
             this.panel2.Size = new System.Drawing.Size(219, 761);
             this.panel2.TabIndex = 2;
             // 
-            // label3
+            // lblUsername
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(26, 112);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 17);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "ADMIN";
+            this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblUsername.Location = new System.Drawing.Point(26, 112);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(166, 17);
+            this.lblUsername.TabIndex = 9;
+            this.lblUsername.Text = "ADMIN";
             // 
-            // label2
+            // lblUserEmail
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(26, 93);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 17);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "vincent.pantia";
+            this.lblUserEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblUserEmail.Location = new System.Drawing.Point(26, 93);
+            this.lblUserEmail.Name = "lblUserEmail";
+            this.lblUserEmail.Size = new System.Drawing.Size(166, 17);
+            this.lblUserEmail.TabIndex = 8;
+            this.lblUserEmail.Text = "vincent.pantia";
             // 
             // btnBrand
             // 
@@ -242,7 +240,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -261,7 +258,7 @@
         private Guna.UI2.WinForms.Guna2Button btnLogout;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.Label lblUserEmail;
     }
 }

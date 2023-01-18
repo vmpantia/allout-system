@@ -52,6 +52,117 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
+        public static async Task<Response> GetUsersAsync(Guid clientID)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_USERS, clientID);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<User>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetUsersByQueryAsync(Guid clientID, string query)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_USERS_BY_QUERY, clientID, query);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<User>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetUserByIDAsync(Guid clientID, Guid id)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_USER_BY_ID, clientID, id);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<User>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
         public static async Task<Response> PostSaveUserAsync(SaveUserRequest request)
         {
             var customResponse = new Response();
@@ -60,6 +171,37 @@ namespace AllOut.Desktop.Controllers
                 //Prepare Data and API URL
                 var url = Globals.POST_SAVE_USER;
                 var data = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.PostAsync(url, data);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> PostUpdateUserStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare Data and API URL
+                var url = Globals.POST_UPDATE_USER_STATUS_BY_IDS;
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
 
                 //Send POST request to API
                 var httpClient = new HttpClient();

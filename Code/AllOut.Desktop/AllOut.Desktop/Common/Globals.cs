@@ -16,7 +16,7 @@ namespace AllOut.Desktop.Common
         public static string POST_LOGIN_USER = string.Concat(Constants.API_BASE, "User/LoginUser");
         public static string GET_USERS = string.Concat(Constants.API_BASE, "User/GetUsers?clientID={0}");
         public static string GET_USERS_BY_QUERY = string.Concat(Constants.API_BASE, "User/GetUsersByQuery?clientID={0}&query={1}");
-        public static string GET_USER_BY_ID = string.Concat(Constants.API_BASE, "User/GetUserByIDclientID={0}&id={1}");
+        public static string GET_USER_BY_ID = string.Concat(Constants.API_BASE, "User/GetUserByID?clientID={0}&id={1}");
         public static string POST_SAVE_USER = string.Concat(Constants.API_BASE, "User/SaveUser");
         public static string POST_UPDATE_USER_STATUS_BY_IDS = string.Concat(Constants.API_BASE, "User/UpdateUserStatusByIDs");
 

@@ -1,4 +1,7 @@
 ﻿using AllOut.Desktop.Common;
+using AllOut.Desktop.Controllers;
+using AllOut.Desktop.Models.enums;
+using AllOut.Desktop.Models;
 using AllOut.Desktop.Views.BrandForms;
 using AllOut.Desktop.Views.CategoryForms;
 using AllOut.Desktop.Views.ProductForms;
@@ -19,16 +22,12 @@ namespace AllOut.Desktop.Views
         public MainForm()
         {
             InitializeComponent();
+            SetUserInfo(Globals.ClientInformation);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnProduct_Click(object sender, EventArgs e)
@@ -75,6 +74,28 @@ namespace AllOut.Desktop.Views
 
             //Change Title
             this.Text = formName;
+        }
+
+        private async void SetUserInfo(Client client)
+        {
+            if (client == null)
+            {
+                lblUserEmail.Text = Constants.NA;
+                lblUsername.Text = Constants.NA;
+                return;
+            }
+
+            var response = await HttpController.GetUserByIDAsync(client.ClientID, client.UserID);
+            //Get Product based on the given ID
+            if (response.Result != ResponseResult.SUCCESS)
+            {
+                lblUserEmail.Text = Constants.NA;
+                lblUsername.Text = Constants.NA;
+                return;
+            }
+            var user = response.Data as User;
+            lblUserEmail.Text = user.Email.ToLower();
+            lblUsername.Text = user.Username;
         }
     }
 }
