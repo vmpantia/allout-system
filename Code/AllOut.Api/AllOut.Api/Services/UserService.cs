@@ -6,6 +6,7 @@ using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
 using AllOut.Api.Models;
+using System.Text.RegularExpressions;
 
 namespace AllOut.Api.Services
 {
@@ -42,27 +43,30 @@ namespace AllOut.Api.Services
 
         public async Task<IEnumerable<User>> GetUsersAsync()
         {
-            return await _db.Users.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
+            var list = await GetUsers();
+            return list.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToList();
         }
 
         public async Task<IEnumerable<User>> GetUsersByQueryAsync(string query)
         {
-            return await _db.Users.Where(data => data.Email.Contains(query) ||
-                                                 data.Username.Contains(query) ||
-                                                 data.FirstName.Contains(query) ||
-                                                 data.MiddleName.Contains(query) ||
-                                                 data.LastName.Contains(query))
-                                  .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
+            var list = await GetUsers();
+            return list.Where(data => data.Email.Contains(query) ||
+                                      data.Username.Contains(query) ||
+                                      data.FirstName.Contains(query) ||
+                                      data.MiddleName.Contains(query) ||
+                                      data.LastName.Contains(query))
+                       .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToList();
         }
 
         public async Task<User> GetUserByIDAsync(Guid userID)
         {
-            var user = await _db.Users.FindAsync(userID);
+            var list = await GetUsers();
+            var users = list.Where(data => data.UserID == userID).ToList();
 
-            if (user == null)
+            if (users == null || users.Count() == 0)
                 throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_USER));
 
-            return user;
+            return users.First();
         }
 
         public async Task<string> SaveUserAsync(SaveUserRequest request)
@@ -304,6 +308,25 @@ namespace AllOut.Api.Services
             await _db.SaveChangesAsync();
 
             return client;
+        }
+
+        private async Task<IEnumerable<User>> GetUsers()
+        {
+            return await _db.Users.Select(data => new User
+            {
+                UserID = data.UserID,
+                Email = data.Email,
+                Username = data.Username,
+                Password = Constants.HIDE_PASSWORD,
+                FirstName = data.FirstName,
+                MiddleName = data.MiddleName,
+                LastName = data.LastName,
+                IsEmailConfirmed = data.IsEmailConfirmed,
+                Permission = data.Permission,
+                Status = data.Status,
+                CreatedDate = data.CreatedDate,
+                ModifiedDate = data.ModifiedDate
+            }).ToListAsync();
         }
         #endregion
     }
