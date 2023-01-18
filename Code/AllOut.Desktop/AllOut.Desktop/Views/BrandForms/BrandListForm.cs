@@ -155,6 +155,7 @@ namespace AllOut.Desktop.Views.BrandForms
             tblObjectList.DataSource = null;
             tblObjectList.Rows.Clear();
             tblObjectList.Columns.Clear();
+            EnableOtherControls(false);
 
             tblObjectList.DataSource = brands.Select(data => new
             {

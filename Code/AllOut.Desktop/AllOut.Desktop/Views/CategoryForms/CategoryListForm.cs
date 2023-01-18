@@ -155,6 +155,7 @@ namespace AllOut.Desktop.Views.CategoryForms
             tblObjectList.DataSource = null;
             tblObjectList.Rows.Clear();
             tblObjectList.Columns.Clear();
+            EnableOtherControls(false);
 
             tblObjectList.DataSource = categories.Select(data => new
             {

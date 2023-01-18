@@ -153,6 +153,7 @@ namespace AllOut.Desktop.Views.ProductForms
             tblObjectList.DataSource = null;
             tblObjectList.Rows.Clear();
             tblObjectList.Columns.Clear();
+            EnableOtherControls(false);
 
             tblObjectList.DataSource = products.Select(data => new
             {
