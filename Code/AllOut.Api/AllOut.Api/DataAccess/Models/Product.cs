@@ -11,7 +11,7 @@ namespace AllOut.Api.DataAccess.Models
         public Guid ProductID { get; set; }
         public Guid BrandID { get; set; }
         public Guid CategoryID { get; set; }
-        [Required, MaxLength(50)]
+        [MaxLength(50)]
         public string Name { get; set; }
         [MaxLength(100)]
         public string? Description { get; set; }

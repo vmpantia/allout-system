@@ -7,17 +7,17 @@ namespace AllOut.Api.DataAccess.Models
     {
         [Key]
         public Guid UserID { get; set; }
-        [Required, MaxLength(50)]
+        [MaxLength(50)]
         public string Email { get; set; }
-        [Required, MaxLength(60)]
+        [MaxLength(60)]
         public string Username { get; set; }
-        [Required, MaxLength(100)]
+        [MaxLength(100)]
         public string Password { get; set; }
-        [Required, MaxLength(25)]
+        [MaxLength(25)]
         public string FirstName { get; set; }
         [MaxLength(25)]
         public string? MiddleName { get; set; }
-        [Required, MaxLength(25)]
+        [MaxLength(25)]
         public string LastName { get; set; }
         public bool IsEmailConfirmed { get; set; }
         public int Permission { get; set; }

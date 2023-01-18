@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AllOut.Api.Migrations
 {
     [DbContext(typeof(AllOutDbContext))]
-    [Migration("20230117110531_AddInitialTable")]
+    [Migration("20230118060500_AddInitialTable")]
     partial class AddInitialTable
     {
         /// <inheritdoc />
