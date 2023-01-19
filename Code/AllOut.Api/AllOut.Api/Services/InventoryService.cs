@@ -25,12 +25,9 @@ namespace AllOut.Api.Services
         public async Task<IEnumerable<InventoryFullInformation>> GetInventoriesAsync()
         {
             var inventories = await (from a in _db.Inventories
-                                     join b in _db.Products on a.ProductID equals b.ProductID into bb
-                                     from b in bb.DefaultIfEmpty()
-                                     join c in _db.Brands on b.BrandID equals c.BrandID into cc
-                                     from c in cc.DefaultIfEmpty()
-                                     join d in _db.Categories on b.CategoryID equals d.CategoryID into dd
-                                     from d in dd.DefaultIfEmpty()
+                                     join b in _db.Products on a.ProductID equals b.ProductID into bb from b in bb.DefaultIfEmpty()
+                                     join c in _db.Brands on b.BrandID equals c.BrandID into cc from c in cc.DefaultIfEmpty()
+                                     join d in _db.Categories on b.CategoryID equals d.CategoryID into dd from d in dd.DefaultIfEmpty()
                                      where a.Status != Constants.STATUS_DELETION_INT
                                      select new InventoryFullInformation
                                      {
@@ -46,7 +43,6 @@ namespace AllOut.Api.Services
                                          CategoryID = _utility.CheckCategoryAvailablity(d) ? d.CategoryID : Guid.Empty,
                                          CategoryName = _utility.CheckCategoryAvailablity(d) ? d.Name : Constants.NA
                                      }).ToListAsync();
-
             return inventories;
         }
 
@@ -76,6 +72,30 @@ namespace AllOut.Api.Services
             return inventories;
         }
 
+        public async Task<IEnumerable<InventoryFullInformation>> GetInventoriesByStatusAsync(int status)
+        {
+            var inventories = await (from a in _db.Inventories
+                                     join b in _db.Products on a.ProductID equals b.ProductID into bb from b in bb.DefaultIfEmpty()
+                                     join c in _db.Brands on b.BrandID equals c.BrandID into cc from c in cc.DefaultIfEmpty()
+                                     join d in _db.Categories on b.CategoryID equals d.CategoryID into dd from d in dd.DefaultIfEmpty()
+                                     where a.Status == status
+                                     select new InventoryFullInformation
+                                     {
+                                         InventoryID = a.InventoryID,
+                                         Quantity = a.Quantity,
+                                         Status = a.Status,
+                                         CreatedDate = a.CreatedDate,
+                                         ModifiedDate = b.ModifiedDate,
+                                         ProductID = a.ProductID,
+                                         ProductName = _utility.CheckProductAvailablity(b) ? b.Name : Constants.NA,
+                                         BrandID = _utility.CheckBrandAvailablity(c) ? c.BrandID : Guid.Empty,
+                                         BrandName = _utility.CheckBrandAvailablity(c) ? c.Name : Constants.NA,
+                                         CategoryID = _utility.CheckCategoryAvailablity(d) ? d.CategoryID : Guid.Empty,
+                                         CategoryName = _utility.CheckCategoryAvailablity(d) ? d.Name : Constants.NA
+                                     }).ToListAsync();
+            return inventories;
+        }
+
         public async Task<Inventory> GetInventoryByIDAsync(string InventoryID)
         {
             var inventory = await _db.Inventories.FindAsync(InventoryID);
@@ -84,6 +104,18 @@ namespace AllOut.Api.Services
                 throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_INVENTORY));
 
             return inventory;
+        }
+
+        public async Task<int> GetCountInventoriesAsync()
+        {
+            var count = await _db.Inventories.Where(data => data.Status != Constants.STATUS_DELETION_INT).CountAsync();
+            return count;
+        }
+
+        public async Task<int> GetCountInventoriesByStatusAsync(int status)
+        {
+            var count = await _db.Inventories.Where(data => data.Status == status).CountAsync();
+            return count;
         }
 
         public async Task<string> SaveInventoryAsync(SaveInventoryRequest request)

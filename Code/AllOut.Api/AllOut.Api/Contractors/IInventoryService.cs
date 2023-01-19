@@ -8,7 +8,10 @@ namespace AllOut.Api.Contractors
     {
         Task<IEnumerable<InventoryFullInformation>> GetInventoriesAsync();
         Task<IEnumerable<InventoryFullInformation>> GetInventoriesByQueryAsync(string query);
+        Task<IEnumerable<InventoryFullInformation>> GetInventoriesByStatusAsync(int status);
         Task<Inventory> GetInventoryByIDAsync(string InventoryID);
+        Task<int> GetCountInventoriesAsync();
+        Task<int> GetCountInventoriesByStatusAsync(int status);
         Task<string> SaveInventoryAsync(SaveInventoryRequest request);
     }
 }

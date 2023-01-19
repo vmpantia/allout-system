@@ -32,10 +32,28 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_INVENTORIES_BY_QUERY, clientID, query);
         }
 
+        [HttpGet("GetInventoriesByStatus")]
+        public async Task<IActionResult> GetInventoriesByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_INVENTORIES_BY_STATUS, clientID, status);
+        }
+
         [HttpGet("GetInventoryByID")]
         public async Task<IActionResult> GetInventoryByIDAsync(Guid clientID, string id)
         {
             return await ProcessRequest(RequestType.GET_INVENTORY_BY_ID, clientID, id);
+        }
+
+        [HttpGet("GetCountInventories")]
+        public async Task<IActionResult> GetCountInventoriesAsync(Guid clientID)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_INVENTORIES, clientID);
+        }
+
+        [HttpGet("GetCountInventoriesByStatus")]
+        public async Task<IActionResult> GetCountInventoriesByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_INVENTORIES_BY_STATUS, clientID, status);
         }
 
         [HttpPost("SaveInventory")]
@@ -64,8 +82,20 @@ namespace AllOut.Api.Controllers
                         response = await _inventory.GetInventoriesByQueryAsync((string)data);
                         break;
 
+                    case RequestType.GET_INVENTORIES_BY_STATUS:
+                        response = await _inventory.GetInventoriesByStatusAsync((int)data);
+                        break;
+
                     case RequestType.GET_INVENTORY_BY_ID:
                         response = await _inventory.GetInventoryByIDAsync((string)data);
+                        break;
+
+                    case RequestType.GET_COUNT_INVENTORIES:
+                        response = await _inventory.GetCountInventoriesAsync();
+                        break;
+
+                    case RequestType.GET_COUNT_INVENTORIES_BY_STATUS:
+                        response = await _inventory.GetCountInventoriesByStatusAsync((int)data);
                         break;
 
                     case RequestType.POST_SAVE_INVENTORY:

@@ -42,7 +42,10 @@
         //Inventory Request
         GET_INVENTORIES,
         GET_INVENTORIES_BY_QUERY,
+        GET_INVENTORIES_BY_STATUS,
         GET_INVENTORY_BY_ID,
+        GET_COUNT_INVENTORIES,
+        GET_COUNT_INVENTORIES_BY_STATUS,
         POST_SAVE_INVENTORY,
         //Sales Request
         POST_SAVE_SALES,
