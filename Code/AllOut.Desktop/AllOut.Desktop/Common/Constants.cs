@@ -150,5 +150,12 @@ namespace AllOut.Desktop.Common
         #region ToolTip
         public const string TOOLTIP_SEARCH = "Search {0}";
         #endregion
+
+        #region Combobox Configuration
+        public const string CMB_PLACEHOLDER = "Select {0}";
+        public const string CMB_DISPLAY_NAME = "Name";
+        public const string CMB_VALUE_BRAND_ID = "BrandID";
+        public const string CMB_VALUE_CATEGORY_ID = "CategoryID"; 
+        #endregion
     }
 }

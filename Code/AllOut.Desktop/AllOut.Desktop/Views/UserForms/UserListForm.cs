@@ -155,19 +155,20 @@ namespace AllOut.Desktop.Views.UserForms
             tblObjectList.Columns.Clear();
             EnableOtherControls(false);
 
-            tblObjectList.DataSource = users.Select(data => new
-            {
-                Id = data.UserID,
-                Name = string.Format(Constants.NAME_FORMAT, data.LastName, data.FirstName),
-                Email = data.Email,
-                Username = data.Username,
-                Password = data.Password,
-                EmailConfirmed = data.IsEmailConfirmed,
-                Permission = data.Permission,
-                Status = Utility.ConvertStatusToString(data.Status),
-                CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),
-                ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),
-            }).ToList();
+            tblObjectList.DataSource = users.OrderBy(data => data.Username)
+                                            .Select(data => new
+                                            {
+                                                Id = data.UserID,
+                                                Name = string.Format(Constants.NAME_FORMAT, data.LastName, data.FirstName),
+                                                Email = data.Email,
+                                                Username = data.Username,
+                                                Password = data.Password,
+                                                EmailConfirmed = data.IsEmailConfirmed,
+                                                Permission = data.Permission,
+                                                Status = Utility.ConvertStatusToString(data.Status),
+                                                CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),
+                                                ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),
+                                            }).ToList();
 
             //Add Edit Button on 1st Column
             DataGridViewButtonColumn editButton = new DataGridViewButtonColumn

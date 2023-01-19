@@ -6,6 +6,7 @@ using AllOut.Desktop.Models.Requests;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AllOut.Desktop.Views.ProductForms
@@ -112,39 +113,39 @@ namespace AllOut.Desktop.Views.ProductForms
         private async void PopulateBrands()
         {
             var brands = new List<Brand>();
-            var response = await HttpController.GetBrandsAsync(Globals.ClientInformation.ClientID);
+            var response = await HttpController.GetBrandsByStatusAsync(Globals.ClientInformation.ClientID, Constants.STATUS_ENABLED_INT);
 
             if (response.Result == ResponseResult.SUCCESS)
-                brands = (List<Brand>)response.Data;
+                brands = ((List<Brand>)response.Data).OrderBy(data => data.Name).ToList();
 
             brands.Insert(0, new Brand
             {
                 BrandID = Guid.Empty,
-                Name = "Select Brand",
+                Name = string.Format(Constants.CMB_PLACEHOLDER, Constants.OBJECT_BRAND),
             });
 
             cmbBrand.DataSource = brands;
-            cmbBrand.DisplayMember = "Name";
-            cmbBrand.ValueMember = "BrandID";
+            cmbBrand.DisplayMember = Constants.CMB_DISPLAY_NAME;
+            cmbBrand.ValueMember = Constants.CMB_VALUE_BRAND_ID;
         }
 
         private async void PopulateCategories()
         {
             var categories = new List<Category>();
-            var response = await HttpController.GetCategoriesAsync(Globals.ClientInformation.ClientID);
+            var response = await HttpController.GetCategoriesByStatusAsync(Globals.ClientInformation.ClientID, Constants.STATUS_ENABLED_INT);
 
             if (response.Result == ResponseResult.SUCCESS)
-                categories = (List<Category>)response.Data;
+                categories = ((List<Category>)response.Data).OrderBy(data => data.Name).ToList();
 
             categories.Insert(0, new Category
             {
                 CategoryID = Guid.Empty,
-                Name = "Select Category",
+                Name = string.Format(Constants.CMB_PLACEHOLDER, Constants.OBJECT_CATEGORY),
             });
 
             cmbCategory.DataSource = categories;
-            cmbCategory.DisplayMember = "Name";
-            cmbCategory.ValueMember = "CategoryID";
+            cmbCategory.DisplayMember = Constants.CMB_DISPLAY_NAME;
+            cmbCategory.ValueMember = Constants.CMB_VALUE_CATEGORY_ID;
         }
 
         private void EnableControls(bool isEnabled)

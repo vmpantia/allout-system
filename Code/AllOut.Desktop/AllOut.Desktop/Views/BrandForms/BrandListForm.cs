@@ -157,15 +157,16 @@ namespace AllOut.Desktop.Views.BrandForms
             tblObjectList.Columns.Clear();
             EnableOtherControls(false);
 
-            tblObjectList.DataSource = brands.Select(data => new
-            {
-                Id = data.BrandID,
-                Name = data.Name,
-                Description = data.Description,
-                Status = Utility.ConvertStatusToString(data.Status),
-                CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),
-                ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),
-            }).ToList();
+            tblObjectList.DataSource = brands.OrderBy(data => data.Name)
+                                             .Select(data => new
+                                             {
+                                                 Id = data.BrandID,
+                                                 Name = data.Name,
+                                                 Description = data.Description,
+                                                 Status = Utility.ConvertStatusToString(data.Status),
+                                                 CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),
+                                                 ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),
+                                             }).ToList();
 
 
             //Add Edit Button on 1st Column

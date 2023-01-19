@@ -155,21 +155,22 @@ namespace AllOut.Desktop.Views.ProductForms
             tblObjectList.Columns.Clear();
             EnableOtherControls(false);
 
-            tblObjectList.DataSource = products.Select(data => new
-            {
-                Id = data.ProductID,
-                Name = data.ProductName,
-                Brand = data.BrandName,
-                Category = data.CategoryName,
-                Description = data.ProductDescription,
-                data.Price,
-                data.Stock,
-                data.ReorderPoint,
-                data.ReorderState,
-                Status = Utility.ConvertStatusToString(data.Status),
-                CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),
-                ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),
-            }).ToList();
+            tblObjectList.DataSource = products.OrderBy(data => data.ProductName)
+                                               .Select(data => new
+                                               {
+                                                    Id = data.ProductID,
+                                                    Name = data.ProductName,
+                                                    Brand = data.BrandName,
+                                                    Category = data.CategoryName,
+                                                    Description = data.ProductDescription,
+                                                    data.Price,
+                                                    data.Stock,
+                                                    data.ReorderPoint,
+                                                    data.ReorderState,
+                                                    Status = Utility.ConvertStatusToString(data.Status),
+                                                    CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),
+                                                    ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),
+                                                }).ToList();
 
             //Add Edit Button on 1st Column
             DataGridViewButtonColumn editButton = new DataGridViewButtonColumn

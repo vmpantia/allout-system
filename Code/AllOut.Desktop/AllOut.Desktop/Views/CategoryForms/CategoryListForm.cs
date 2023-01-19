@@ -157,15 +157,16 @@ namespace AllOut.Desktop.Views.CategoryForms
             tblObjectList.Columns.Clear();
             EnableOtherControls(false);
 
-            tblObjectList.DataSource = categories.Select(data => new
-            {
-                Id = data.CategoryID,
-                Name = data.Name,
-                Description = data.Description,
-                Status = Utility.ConvertStatusToString(data.Status),
-                CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),
-                ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),
-            }).ToList();
+            tblObjectList.DataSource = categories.OrderBy(data => data.Name)
+                                                 .Select(data => new
+                                                 {
+                                                     Id = data.CategoryID,
+                                                     Name = data.Name,
+                                                     Description = data.Description,
+                                                     Status = Utility.ConvertStatusToString(data.Status),
+                                                     CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),
+                                                     ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),
+                                                 }).ToList();
 
 
             //Add Edit Button on 1st Column

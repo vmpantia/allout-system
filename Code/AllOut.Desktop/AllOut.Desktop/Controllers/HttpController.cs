@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AllOut.Desktop.Controllers
 {
-    public class HttpController 
+    public class HttpController
     {
         #region User
         public static async Task<Response> PostLoginUserAsync(LoginUserRequest request)
@@ -34,7 +34,7 @@ namespace AllOut.Desktop.Controllers
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
-                if(httpResponse.StatusCode == HttpStatusCode.OK)
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
                 {
                     customResponse.Result = ResponseResult.SUCCESS;
                     customResponse.Data = JsonConvert.DeserializeObject<Client>(content);
@@ -126,6 +126,43 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
+        public static async Task<Response> GetUsersByStatusAsync(Guid clientID, int status)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_USERS_BY_STATUS, clientID, status);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<User>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
         public static async Task<Response> GetUserByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
@@ -152,6 +189,64 @@ namespace AllOut.Desktop.Controllers
                 }
                 //API Error Response
                 customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetCountUsersAsync(Guid clientID)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_COUNT_USERS, clientID);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetCountUsersByStatusAsync(Guid clientID, int status)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_COUNT_USERS_BY_STATUS, clientID, status);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
                 customResponse.Data = content;
             }
             catch (Exception ex)
@@ -301,6 +396,43 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
+        public static async Task<Response> GetProductsByStatusAsync(Guid clientID, int status)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_PRODUCTS_BY_STATUS, clientID, status);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<ProductFullInformation>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
         public static async Task<Response> GetProductByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
@@ -327,6 +459,64 @@ namespace AllOut.Desktop.Controllers
                 }
                 //API Error Response
                 customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetCountProductsAsync(Guid clientID)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_COUNT_PRODUCTS, clientID);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetCountProductsByStatusAsync(Guid clientID, int status)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_COUNT_PRODUCTS_BY_STATUS, clientID, status);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
                 customResponse.Data = content;
             }
             catch (Exception ex)
@@ -431,7 +621,7 @@ namespace AllOut.Desktop.Controllers
                 customResponse.Result = ResponseResult.API_ERROR;
                 customResponse.Data = content;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //System Error Response
                 customResponse.Result = ResponseResult.SYSTEM_ERROR;
@@ -447,6 +637,43 @@ namespace AllOut.Desktop.Controllers
             {
                 //Prepare API URL
                 var url = string.Format(Globals.GET_BRANDS_BY_QUERY, clientID, query);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<Brand>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetBrandsByStatusAsync(Guid clientID, int status)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_BRANDS_BY_STATUS, clientID, status);
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
@@ -503,6 +730,64 @@ namespace AllOut.Desktop.Controllers
                 }
                 //API Error Response
                 customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetCountBrandsAsync(Guid clientID)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_COUNT_BRANDS, clientID);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetCountBrandsByStatusAsync(Guid clientID, int status)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_COUNT_BRANDS_BY_STATUS, clientID, status);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
                 customResponse.Data = content;
             }
             catch (Exception ex)
@@ -653,6 +938,43 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
+        public static async Task<Response> GetCategoriesByStatusAsync(Guid clientID, int status)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_CATEGORIES_BY_STATUS, clientID, status);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<Category>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
         public static async Task<Response> GetCategoryByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
@@ -679,6 +1001,64 @@ namespace AllOut.Desktop.Controllers
                 }
                 //API Error Response
                 customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetCountCategoriesAsync(Guid clientID)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_COUNT_CATEGORIES, clientID);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> GetCountCategoriesByStatusAsync(Guid clientID, int status)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_COUNT_CATEGORIES_BY_STATUS, clientID, status);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.GetAsync(url);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
                 customResponse.Data = content;
             }
             catch (Exception ex)
