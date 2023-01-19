@@ -130,14 +130,11 @@
   <data name="icons8-people-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-people-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-category-100-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-category-100-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8-branding-90" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-branding-90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-close-90" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-close-90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-new-copy-90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-new-copy-90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-save-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-save-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,11 +145,8 @@
   <data name="icons8-indeterminate-checkbox-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-indeterminate-checkbox-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-enable-toggle-slider-isolated-in-white-background-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-enable-toggle-slider-isolated-in-white-background-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-user-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-user-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-trash-90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-trash-90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-active-58" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-active-58.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,14 +154,23 @@
   <data name="icons8-category-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-category-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-user-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-user-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-branding-96-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-branding-96-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-search-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-search-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-new-copy-90" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-new-copy-90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-category-96-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-category-96-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-facebook-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-facebook-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-close-90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-close-90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-plus-math-90" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-plus-math-90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,8 +178,8 @@
   <data name="icons8-disabled-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-disabled-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-trash-90" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-trash-90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-enable-toggle-slider-isolated-in-white-background-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-enable-toggle-slider-isolated-in-white-background-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-logout-rounded-down-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-logout-rounded-down-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -189,9 +192,6 @@
   </data>
   <data name="icons8-add-user-male-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-add-user-male-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8-branding-90-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-branding-90-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-shipping-product-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-shipping-product-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
