@@ -31,10 +31,28 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_PRODUCTS_BY_QUERY, clientID, query);
         }
 
+        [HttpGet("GetProductsByStatus")]
+        public async Task<IActionResult> GetProductsByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_PRODUCTS_BY_STATUS, clientID, status);
+        }
+
         [HttpGet("GetProductByID")]
         public async Task<IActionResult> GetProductIDAsync(Guid clientID, Guid id)
         {
             return await ProcessRequest(RequestType.GET_PRODUCT_BY_ID, clientID, id);
+        }
+
+        [HttpGet("GetCountProducts")]
+        public async Task<IActionResult> GetCountProductsAsync(Guid clientID)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_PRODUCTS, clientID);
+        }
+
+        [HttpGet("GetCountProductsByStatus")]
+        public async Task<IActionResult> GetCountProductsByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_PRODUCTS_BY_STATUS, clientID, status);
         }
 
         [HttpPost("SaveProduct")]
@@ -69,8 +87,20 @@ namespace AllOut.Api.Controllers
                         response = await _product.GetProductsByQueryAsync((string)data);
                         break;
 
+                    case RequestType.GET_PRODUCTS_BY_STATUS:
+                        response = await _product.GetProductsByStatusAsync((int)data);
+                        break;
+
                     case RequestType.GET_PRODUCT_BY_ID:
                         response = await _product.GetProductByIDAsync((Guid)data);
+                        break;
+
+                    case RequestType.GET_COUNT_PRODUCTS:
+                        response = await _product.GetCountProductsAsync();
+                        break;
+
+                    case RequestType.GET_COUNT_PRODUCTS_BY_STATUS:
+                        response = await _product.GetCountProductsByStatusAsync((int)data);
                         break;
 
                     case RequestType.POST_SAVE_PRODUCT:

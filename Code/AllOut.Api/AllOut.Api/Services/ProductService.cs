@@ -26,8 +26,10 @@ namespace AllOut.Api.Services
         {
             //Initial Product Information
             var products = await (from a in _db.Products
-                                  join b in _db.Brands on a.BrandID equals b.BrandID into bb from b in bb.DefaultIfEmpty()
-                                  join c in _db.Categories on a.CategoryID equals c.CategoryID into cc from c in cc.DefaultIfEmpty()
+                                  join b in _db.Brands on a.BrandID equals b.BrandID into bb
+                                  from b in bb.DefaultIfEmpty()
+                                  join c in _db.Categories on a.CategoryID equals c.CategoryID into cc
+                                  from c in cc.DefaultIfEmpty()
                                   where a.Status != Constants.STATUS_DELETION_INT
                                   select new ProductFullInformation
                                   {
@@ -45,7 +47,7 @@ namespace AllOut.Api.Services
                                       CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
                                   }).ToListAsync();
 
-            foreach(var product in products)
+            foreach (var product in products)
             {
                 await ParseOtherInformation(product);
             }
@@ -55,11 +57,43 @@ namespace AllOut.Api.Services
 
         public async Task<IEnumerable<ProductFullInformation>> GetProductsByQueryAsync(string query)
         {
+            //Initial Product Information
             var products = await (from a in _db.Products
                                   join b in _db.Brands on a.BrandID equals b.BrandID into bb from b in bb.DefaultIfEmpty()
                                   join c in _db.Categories on a.CategoryID equals c.CategoryID into cc from c in cc.DefaultIfEmpty()
                                   where a.Status != Constants.STATUS_DELETION_INT &&
                                         (a.Name.Contains(query) || b.Name.Contains(query) ||c.Name.Contains(query))
+                                  select new ProductFullInformation
+                                  {
+                                      ProductID = a.ProductID,
+                                      ProductName = a.Name,
+                                      ProductDescription = a.Description,
+                                      ReorderPoint = a.ReorderPoint,
+                                      Price = a.Price,
+                                      Status = a.Status,
+                                      CreatedDate = a.CreatedDate,
+                                      ModifiedDate = a.ModifiedDate,
+                                      BrandID = a.BrandID,
+                                      BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
+                                      CategoryID = a.CategoryID,
+                                      CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
+                                  }).ToListAsync();
+
+            foreach (var product in products)
+            {
+                await ParseOtherInformation(product);
+            }
+
+            return products;
+        }
+
+        public async Task<IEnumerable<ProductFullInformation>> GetProductsByStatusAsync(int status)
+        {
+            //Initial Product Information
+            var products = await (from a in _db.Products
+                                  join b in _db.Brands on a.BrandID equals b.BrandID into bb from b in bb.DefaultIfEmpty()
+                                  join c in _db.Categories on a.CategoryID equals c.CategoryID into cc from c in cc.DefaultIfEmpty()
+                                  where a.Status == status
                                   select new ProductFullInformation
                                   {
                                       ProductID = a.ProductID,
@@ -92,6 +126,18 @@ namespace AllOut.Api.Services
                 throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_PRODUCT));
 
             return product;
+        }
+
+        public async Task<int> GetCountProductsAsync()
+        {
+            var count = await _db.Products.Where(data => data.Status != Constants.STATUS_DELETION_INT).CountAsync();
+            return count;
+        }
+
+        public async Task<int> GetCountProductsByStatusAsync(int status)
+        {
+            var count = await _db.Products.Where(data => data.Status == status).CountAsync();
+            return count;
         }
 
         public async Task<string> SaveProductAsync(SaveProductRequest request)

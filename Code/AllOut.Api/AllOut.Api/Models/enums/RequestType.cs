@@ -12,7 +12,10 @@
         //Product Request
         GET_PRODUCTS,
         GET_PRODUCTS_BY_QUERY,
+        GET_PRODUCTS_BY_STATUS,
         GET_PRODUCT_BY_ID,
+        GET_COUNT_PRODUCTS,
+        GET_COUNT_PRODUCTS_BY_STATUS,
         POST_SAVE_PRODUCT,
         POST_UPDATE_PRODUCT_STATUS_BY_IDS,
         //Brand Request
