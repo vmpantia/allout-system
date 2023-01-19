@@ -21,14 +21,20 @@ namespace AllOut.Api.Services
         #region Public Methods
         public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
-            return await _db.Categories.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
+            var categories = await _db.Categories.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
+            return categories;
         }
 
         public async Task<IEnumerable<Category>> GetCategoriesByQueryAsync(string query)
         {
             var categories = await _db.Categories.Where(data => data.Name.Contains(query))
                                                  .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
+            return categories;
+        }
 
+        public async Task<IEnumerable<Category>> GetCategoriesByStatusAsync(int status)
+        {
+            var categories = await _db.Categories.Where(data => data.Status == status).ToListAsync();
             return categories;
         }
 
@@ -40,6 +46,18 @@ namespace AllOut.Api.Services
                 throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_CATEGORY));
 
             return category;
+        }
+
+        public async Task<int> GetCountCategoriesAsync()
+        {
+            var count = await _db.Categories.Where(data => data.Status != Constants.STATUS_DELETION_INT).CountAsync();
+            return count;
+        }
+
+        public async Task<int> GetCountCategoriesByStatusAsync(int status)
+        {
+            var count = await _db.Categories.Where(data => data.Status == status).CountAsync();
+            return count;
         }
 
         public async Task<string> SaveCategoryAsync(SaveCategoryRequest request)

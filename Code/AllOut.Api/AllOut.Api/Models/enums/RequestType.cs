@@ -27,7 +27,10 @@
         //Category Request
         GET_CATEGORIES,
         GET_CATEGORIES_BY_QUERY,
+        GET_CATEGORIES_BY_STATUS,
         GET_CATEGORY_BY_ID,
+        GET_COUNT_CATEGORIES,
+        GET_COUNT_CATEGORIES_BY_STATUS,
         POST_SAVE_CATEGORY,
         POST_UPDATE_CATEGORY_STATUS_BY_IDS,
         //Inventory Request

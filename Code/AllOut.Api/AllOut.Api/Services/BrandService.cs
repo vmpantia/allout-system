@@ -29,7 +29,6 @@ namespace AllOut.Api.Services
         {
             var brands = await _db.Brands.Where(data => data.Name.Contains(query))
                                          .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
-
             return brands;
         }
 
@@ -57,8 +56,8 @@ namespace AllOut.Api.Services
 
         public async Task<int> GetCountBrandsByStatusAsync(int status)
         {
-            var brands = await _db.Brands.Where(data => data.Status == status).CountAsync();
-            return brands;
+            var count = await _db.Brands.Where(data => data.Status == status).CountAsync();
+            return count;
         }
 
         public async Task<string> SaveBrandAsync(SaveBrandRequest request)

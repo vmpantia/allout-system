@@ -28,15 +28,33 @@ namespace AllOut.Api.Controllers
         }
 
         [HttpGet("GetCategoriesByQuery")]
-        public async Task<IActionResult> GetCategoriesByQueryAsync(Guid clientID, string query)
+        public async Task<IActionResult> GetBrandsByQueryAsync(Guid clientID, string query)
         {
             return await ProcessRequest(RequestType.GET_CATEGORIES_BY_QUERY, clientID, query);
+        }
+
+        [HttpGet("GetCategoriesByStatus")]
+        public async Task<IActionResult> GetCategoriesByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_CATEGORIES_BY_STATUS, clientID, status);
         }
 
         [HttpGet("GetCategoryByID")]
         public async Task<IActionResult> GetCategoryIDAsync(Guid clientID, Guid id)
         {
             return await ProcessRequest(RequestType.GET_CATEGORY_BY_ID, clientID, id);
+        }
+
+        [HttpGet("GetCountCategories")]
+        public async Task<IActionResult> GetCountCategoriesAsync(Guid clientID)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_CATEGORIES, clientID);
+        }
+
+        [HttpGet("GetCountCategoriesByStatus")]
+        public async Task<IActionResult> GetCountCategoriesByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_CATEGORIES_BY_STATUS, clientID, status);
         }
 
         [HttpPost("SaveCategory")]
@@ -71,8 +89,20 @@ namespace AllOut.Api.Controllers
                         response = await _category.GetCategoriesByQueryAsync((string)data);
                         break;
 
+                    case RequestType.GET_CATEGORIES_BY_STATUS:
+                        response = await _category.GetCategoriesByStatusAsync((int)data);
+                        break;
+
                     case RequestType.GET_CATEGORY_BY_ID:
                         response = await _category.GetCategoryByIDAsync((Guid)data);
+                        break;
+
+                    case RequestType.GET_COUNT_CATEGORIES:
+                        response = await _category.GetCountCategoriesAsync();
+                        break;
+
+                    case RequestType.GET_COUNT_CATEGORIES_BY_STATUS:
+                        response = await _category.GetCountCategoriesByStatusAsync((int)data);
                         break;
 
                     case RequestType.POST_SAVE_CATEGORY:
