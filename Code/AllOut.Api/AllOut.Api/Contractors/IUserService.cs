@@ -9,7 +9,10 @@ namespace AllOut.Api.Contractors
         Task<Client> LoginUserAsync(LoginUserRequest request);
         Task<IEnumerable<User>> GetUsersAsync();
         Task<IEnumerable<User>> GetUsersByQueryAsync(string query);
+        Task<IEnumerable<User>> GetUsersByStatusAsync(int status);
         Task<User> GetUserByIDAsync(Guid userID);
+        Task<int> GetCountUsersAsync();
+        Task<int> GetCountUsersByStatusAsync(int status);
         Task<string> SaveUserAsync(SaveUserRequest request);
         Task<string> UpdateUserStatusByIDsAsync(UpdateStatusByIDsRequest request);
     }

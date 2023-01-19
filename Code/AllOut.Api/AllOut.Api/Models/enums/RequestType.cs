@@ -6,7 +6,10 @@
         POST_LOGIN_USER = 0,
         GET_USERS,
         GET_USERS_BY_QUERY,
+        GET_USERS_BY_STATUS,
         GET_USER_BY_ID,
+        GET_COUNT_USERS,
+        GET_COUNT_USERS_BY_STATUS,
         POST_SAVE_USER,
         POST_UPDATE_USER_STATUS_BY_IDS,
         //Product Request

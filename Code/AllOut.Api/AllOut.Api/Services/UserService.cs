@@ -5,8 +5,6 @@ using AllOut.Api.Models.Requests;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
-using AllOut.Api.Models;
-using System.Text.RegularExpressions;
 
 namespace AllOut.Api.Services
 {
@@ -56,9 +54,14 @@ namespace AllOut.Api.Services
             return list.Where(data => data.Email.Contains(query) ||
                                       data.Username.Contains(query) ||
                                       data.FirstName.Contains(query) ||
-                                      data.MiddleName.Contains(query) ||
                                       data.LastName.Contains(query))
                        .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToList();
+        }
+
+        public async Task<IEnumerable<User>> GetUsersByStatusAsync(int status)
+        {
+            var list = await GetUsers();
+            return list.Where(data => data.Status == status).ToList();
         }
 
         public async Task<User> GetUserByIDAsync(Guid userID)
@@ -70,6 +73,18 @@ namespace AllOut.Api.Services
                 throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_USER));
 
             return users.First();
+        }
+
+        public async Task<int> GetCountUsersAsync()
+        {
+            var count = await _db.Users.Where(data => data.Status != Constants.STATUS_DELETION_INT).CountAsync();
+            return count;
+        }
+
+        public async Task<int> GetCountUsersByStatusAsync(int status)
+        {
+            var count = await _db.Users.Where(data => data.Status == status).CountAsync();
+            return count;
         }
 
         public async Task<string> SaveUserAsync(SaveUserRequest request)

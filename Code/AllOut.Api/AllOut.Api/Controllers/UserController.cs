@@ -1,13 +1,7 @@
-﻿using AllOut.Api.Common;
-using AllOut.Api.Contractors;
-using AllOut.Api.DataAccess.Models;
+﻿using AllOut.Api.Contractors;
 using AllOut.Api.Models.enums;
 using AllOut.Api.Models.Requests;
-using Azure;
-using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using Puregold.API.Exceptions;
 
 namespace AllOut.Api.Controllers
 {
@@ -47,11 +41,29 @@ namespace AllOut.Api.Controllers
                                         query);
         }
 
+        [HttpGet("GetUsersByStatus")]
+        public async Task<IActionResult> GetUsersByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_USERS_BY_STATUS, clientID, status);
+        }
+
         [HttpGet("GetUserByID")]
         public async Task<IActionResult> GetUserByIDAsync(Guid clientID, Guid id)
         {
             return await ProcessRequest(RequestType.GET_USER_BY_ID, 
                                         clientID, id);
+        }
+
+        [HttpGet("GetCountUsers")]
+        public async Task<IActionResult> GetCountUsersAsync(Guid clientID)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_USERS, clientID);
+        }
+
+        [HttpGet("GetCountUsersByStatus")]
+        public async Task<IActionResult> GetCountUsersByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_USERS_BY_STATUS, clientID, status);
         }
 
         [HttpPost("SaveUser")]
@@ -87,18 +99,35 @@ namespace AllOut.Api.Controllers
                     case RequestType.POST_LOGIN_USER:
                         response = await _user.LoginUserAsync((LoginUserRequest)data);
                         break;
+
                     case RequestType.GET_USERS:
                         response = await _user.GetUsersAsync();
                         break;
+
                     case RequestType.GET_USERS_BY_QUERY:
                         response = await _user.GetUsersByQueryAsync((string)data);
                         break;
+
+                    case RequestType.GET_USERS_BY_STATUS:
+                        response = await _user.GetUsersByStatusAsync((int)data);
+                        break;
+
                     case RequestType.GET_USER_BY_ID:
                         response = await _user.GetUserByIDAsync((Guid)data);
                         break;
+
+                    case RequestType.GET_COUNT_USERS:
+                        response = await _user.GetCountUsersAsync();
+                        break;
+
+                    case RequestType.GET_COUNT_USERS_BY_STATUS:
+                        response = await _user.GetCountUsersByStatusAsync((int)data);
+                        break;
+
                     case RequestType.POST_SAVE_USER:
                         response = await _user.SaveUserAsync((SaveUserRequest)data);
                         break;
+
                     case RequestType.POST_UPDATE_USER_STATUS_BY_IDS:
                         response = await _user.UpdateUserStatusByIDsAsync((UpdateStatusByIDsRequest)data);
                         break;
