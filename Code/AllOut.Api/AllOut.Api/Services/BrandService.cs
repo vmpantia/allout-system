@@ -21,7 +21,8 @@ namespace AllOut.Api.Services
         #region Public Methods
         public async Task<IEnumerable<Brand>> GetBrandsAsync()
         {
-            return await _db.Brands.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
+            var brands = await _db.Brands.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
+            return brands;
         }
 
         public async Task<IEnumerable<Brand>> GetBrandsByQueryAsync(string query)
@@ -29,6 +30,12 @@ namespace AllOut.Api.Services
             var brands = await _db.Brands.Where(data => data.Name.Contains(query))
                                          .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToListAsync();
 
+            return brands;
+        }
+
+        public async Task<IEnumerable<Brand>> GetBrandsByStatusAsync(int status)
+        {
+            var brands = await _db.Brands.Where(data => data.Status == status).ToListAsync();
             return brands;
         }
 
@@ -40,6 +47,18 @@ namespace AllOut.Api.Services
                 throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_BRAND));
 
             return brand;
+        }
+
+        public async Task<int> GetCountBrandsAsync()
+        {
+            var count = await _db.Brands.Where(data => data.Status != Constants.STATUS_DELETION_INT).CountAsync();
+            return count;
+        }
+
+        public async Task<int> GetCountBrandsByStatusAsync(int status)
+        {
+            var brands = await _db.Brands.Where(data => data.Status == status).CountAsync();
+            return brands;
         }
 
         public async Task<string> SaveBrandAsync(SaveBrandRequest request)

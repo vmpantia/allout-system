@@ -31,10 +31,28 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_BRANDS_BY_QUERY, clientID, query);
         }
 
+        [HttpGet("GetBrandsByStatus")]
+        public async Task<IActionResult> GetBrandsByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_BRANDS_BY_STATUS, clientID, status);
+        }
+
         [HttpGet("GetBrandByID")]
         public async Task<IActionResult> GetBrandIDAsync(Guid clientID, Guid id)
         {
             return await ProcessRequest(RequestType.GET_BRAND_BY_ID, clientID, id);
+        }
+
+        [HttpGet("GetCountBrands")]
+        public async Task<IActionResult> GetCountBrandsAsync(Guid clientID)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_BRANDS, clientID);
+        }
+
+        [HttpGet("GetCountBrandsByStatus")]
+        public async Task<IActionResult> GetCountBrandsByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_BRANDS_BY_STATUS, clientID, status);
         }
 
         [HttpPost("SaveBrand")]
@@ -69,8 +87,20 @@ namespace AllOut.Api.Controllers
                         response = await _brand.GetBrandsByQueryAsync((string)data);
                         break;
 
+                    case RequestType.GET_BRANDS_BY_STATUS:
+                        response = await _brand.GetBrandsByStatusAsync((int)data);
+                        break;
+
                     case RequestType.GET_BRAND_BY_ID:
                         response = await _brand.GetBrandByIDAsync((Guid)data);
+                        break;
+
+                    case RequestType.GET_COUNT_BRANDS:
+                        response = await _brand.GetCountBrandsAsync();
+                        break;
+
+                    case RequestType.GET_COUNT_BRANDS_BY_STATUS:
+                        response = await _brand.GetCountBrandsByStatusAsync((int)data);
                         break;
 
                     case RequestType.POST_SAVE_BRAND:

@@ -18,7 +18,10 @@
         //Brand Request
         GET_BRANDS,
         GET_BRANDS_BY_QUERY,
+        GET_BRANDS_BY_STATUS,
         GET_BRAND_BY_ID,
+        GET_COUNT_BRANDS,
+        GET_COUNT_BRANDS_BY_STATUS,
         POST_SAVE_BRAND,
         POST_UPDATE_BRAND_STATUS_BY_IDS,
         //Category Request
