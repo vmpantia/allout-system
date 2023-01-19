@@ -20,6 +20,7 @@ namespace AllOut.Desktop.Common
         public const string API_BASE = "https://localhost:7252/";
 
         #region Forms
+        public const string FORM_DASHBOARDS = "Dashboards";
         public const string FORM_PRODUCTS = "Products";
         public const string FORM_BRANDS = "Brands";
         public const string FORM_CATEGORIES = "Categories";

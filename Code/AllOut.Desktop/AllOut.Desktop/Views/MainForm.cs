@@ -31,6 +31,11 @@ namespace AllOut.Desktop.Views
             this.Close();
         }
 
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            SetActiveForm(Constants.FORM_DASHBOARDS);
+        }
+
         private void btnProduct_Click(object sender, EventArgs e)
         {
             SetActiveForm(Constants.FORM_PRODUCTS);
@@ -61,6 +66,9 @@ namespace AllOut.Desktop.Views
 
             switch(formName)
             {
+                case Constants.FORM_DASHBOARDS:
+                    activeForm = new DashboardForm();
+                    break;
                 case Constants.FORM_PRODUCTS:
                     activeForm = new ProductListForm();
                     break;

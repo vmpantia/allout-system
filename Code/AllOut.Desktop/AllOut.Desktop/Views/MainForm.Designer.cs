@@ -33,6 +33,7 @@
             this.lblUserEmail = new System.Windows.Forms.Label();
             this.btnBrand = new Guna.UI2.WinForms.Guna2Button();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.btnUser = new Guna.UI2.WinForms.Guna2Button();
             this.btnCategory = new Guna.UI2.WinForms.Guna2Button();
             this.btnProduct = new Guna.UI2.WinForms.Guna2Button();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2Button();
@@ -40,7 +41,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.btnUser = new Guna.UI2.WinForms.Guna2Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -67,7 +67,7 @@
             // 
             this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblUsername.Location = new System.Drawing.Point(26, 112);
+            this.lblUsername.Location = new System.Drawing.Point(26, 93);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(166, 17);
             this.lblUsername.TabIndex = 9;
@@ -77,9 +77,9 @@
             // 
             this.lblUserEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblUserEmail.Location = new System.Drawing.Point(26, 93);
+            this.lblUserEmail.Location = new System.Drawing.Point(26, 110);
             this.lblUserEmail.Name = "lblUserEmail";
-            this.lblUserEmail.Size = new System.Drawing.Size(166, 17);
+            this.lblUserEmail.Size = new System.Drawing.Size(166, 34);
             this.lblUserEmail.TabIndex = 8;
             this.lblUserEmail.Text = "vincent.pantia";
             // 
@@ -96,7 +96,7 @@
             this.btnBrand.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnBrand.Image = global::AllOut.Desktop.Properties.Resources.icons8_branding_90;
             this.btnBrand.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnBrand.Location = new System.Drawing.Point(15, 229);
+            this.btnBrand.Location = new System.Drawing.Point(15, 244);
             this.btnBrand.Name = "btnBrand";
             this.btnBrand.Size = new System.Drawing.Size(194, 37);
             this.btnBrand.TabIndex = 3;
@@ -115,6 +115,27 @@
             this.guna2PictureBox1.TabIndex = 4;
             this.guna2PictureBox1.TabStop = false;
             // 
+            // btnUser
+            // 
+            this.btnUser.BorderRadius = 6;
+            this.btnUser.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnUser.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnUser.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnUser.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnUser.FillColor = System.Drawing.Color.Transparent;
+            this.btnUser.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnUser.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnUser.Image = global::AllOut.Desktop.Properties.Resources.icons8_people_100;
+            this.btnUser.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnUser.Location = new System.Drawing.Point(15, 330);
+            this.btnUser.Name = "btnUser";
+            this.btnUser.Size = new System.Drawing.Size(194, 37);
+            this.btnUser.TabIndex = 2;
+            this.btnUser.Text = "User";
+            this.btnUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
+            // 
             // btnCategory
             // 
             this.btnCategory.BorderRadius = 6;
@@ -128,7 +149,7 @@
             this.btnCategory.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnCategory.Image = global::AllOut.Desktop.Properties.Resources.icons8_category_96;
             this.btnCategory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCategory.Location = new System.Drawing.Point(15, 272);
+            this.btnCategory.Location = new System.Drawing.Point(15, 287);
             this.btnCategory.Name = "btnCategory";
             this.btnCategory.Size = new System.Drawing.Size(194, 37);
             this.btnCategory.TabIndex = 2;
@@ -149,7 +170,7 @@
             this.btnProduct.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnProduct.Image = global::AllOut.Desktop.Properties.Resources.icons8_shipping_product_96;
             this.btnProduct.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnProduct.Location = new System.Drawing.Point(15, 186);
+            this.btnProduct.Location = new System.Drawing.Point(15, 201);
             this.btnProduct.Name = "btnProduct";
             this.btnProduct.Size = new System.Drawing.Size(194, 37);
             this.btnProduct.TabIndex = 1;
@@ -170,12 +191,13 @@
             this.btnDashboard.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnDashboard.Image = global::AllOut.Desktop.Properties.Resources.icons8_dashboard_layout_96;
             this.btnDashboard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDashboard.Location = new System.Drawing.Point(15, 143);
+            this.btnDashboard.Location = new System.Drawing.Point(15, 158);
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Size = new System.Drawing.Size(194, 37);
             this.btnDashboard.TabIndex = 0;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // panel3
             // 
@@ -196,7 +218,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 17);
             this.label1.TabIndex = 6;
-            this.label1.Text = "AllOut.Version 2022.01";
+            this.label1.Text = "AllOut.Version 2023.01";
             // 
             // btnLogout
             // 
@@ -228,27 +250,6 @@
             this.pnlContent.Padding = new System.Windows.Forms.Padding(15);
             this.pnlContent.Size = new System.Drawing.Size(1365, 761);
             this.pnlContent.TabIndex = 5;
-            // 
-            // btnUser
-            // 
-            this.btnUser.BorderRadius = 6;
-            this.btnUser.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnUser.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnUser.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnUser.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnUser.FillColor = System.Drawing.Color.Transparent;
-            this.btnUser.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUser.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnUser.Image = global::AllOut.Desktop.Properties.Resources.icons8_people_100;
-            this.btnUser.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnUser.Location = new System.Drawing.Point(15, 315);
-            this.btnUser.Name = "btnUser";
-            this.btnUser.Size = new System.Drawing.Size(194, 37);
-            this.btnUser.TabIndex = 2;
-            this.btnUser.Text = "User";
-            this.btnUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
             // MainForm
             // 

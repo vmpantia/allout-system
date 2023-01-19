@@ -103,6 +103,26 @@ namespace AllOut.Desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_branding_90_white {
+            get {
+                object obj = ResourceManager.GetObject("icons8-branding-90-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_category_100_white {
+            get {
+                object obj = ResourceManager.GetObject("icons8-category-100-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_category_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-category-96", resourceCulture);
@@ -233,6 +253,16 @@ namespace AllOut.Desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_people_100_white {
+            get {
+                object obj = ResourceManager.GetObject("icons8-people-100-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_plus_math_90 {
             get {
                 object obj = ResourceManager.GetObject("icons8-plus-math-90", resourceCulture);
@@ -266,6 +296,16 @@ namespace AllOut.Desktop.Properties {
         internal static System.Drawing.Bitmap icons8_shipping_product_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-shipping-product-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_shipping_product_96_white {
+            get {
+                object obj = ResourceManager.GetObject("icons8-shipping-product-96-white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
