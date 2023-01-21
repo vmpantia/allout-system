@@ -20,6 +20,18 @@ namespace AllOut.Api.Controllers
             _utility = utility;
         }
 
+        [HttpGet("GetSalesReportByYear")]
+        public async Task<IActionResult> GetSalesReportByYearAsync(Guid clientID)
+        {
+            return await ProcessRequest(RequestType.GET_SALES_REPORT_BY_YEAR, clientID);
+        }
+
+        [HttpGet("GetSalesReportByMonth")]
+        public async Task<IActionResult> GetSalesReportByMonthAsync(Guid clientID, int year)
+        {
+            return await ProcessRequest(RequestType.GET_SALES_REPORT_BY_MONTH, clientID, year);
+        }
+
         [HttpPost("SaveSales")]
         public async Task<IActionResult> SaveSalesAsync(SaveSalesRequest request)
         {
@@ -38,6 +50,14 @@ namespace AllOut.Api.Controllers
 
                 switch (type)
                 {
+                    case RequestType.GET_SALES_REPORT_BY_YEAR:
+                        response = await _sales.GetSalesReportByYearAsync();
+                        break;
+
+                    case RequestType.GET_SALES_REPORT_BY_MONTH:
+                        response = await _sales.GetSalesReportByMonthAsync((int)data);
+                        break;
+
                     case RequestType.POST_SAVE_SALES:
                         response = await _sales.SaveSalesAsync((SaveSalesRequest)data);
                         break;

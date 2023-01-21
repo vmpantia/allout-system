@@ -48,6 +48,8 @@
         GET_COUNT_INVENTORIES_BY_STATUS,
         POST_SAVE_INVENTORY,
         //Sales Request
+        GET_SALES_REPORT_BY_YEAR,
+        GET_SALES_REPORT_BY_MONTH,
         POST_SAVE_SALES,
     }
 }

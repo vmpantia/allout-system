@@ -5,6 +5,7 @@ using AllOut.Api.Models.Requests;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
+using AllOut.Api.Models;
 
 namespace AllOut.Api.Services
 {
@@ -19,6 +20,63 @@ namespace AllOut.Api.Services
         }
 
         #region Public Methods
+        public async Task<IEnumerable<SalesReportInformation>> GetSalesReportByYearAsync()
+        {
+            var sales = await (from a in _db.Sales
+                               join b in _db.SalesItems on a.SalesID equals b.SalesID
+                               where a.Status == Constants.STATUS_ENABLED_INT
+                               select new
+                               {
+                                   Year = a.CreatedDate.Year.ToString(),
+                                   Quantity = b.Quantity,
+                                   Total = b.Total,
+                                   AmountPaid = a.AmountPaid,
+                                   Change = a.Change
+                               }).ToListAsync();
+
+            var report = (from a in sales
+                          group a by a.Year into g
+                          select new SalesReportInformation
+                          {
+                              Year = g.First().Year,
+                              Quantity = g.Sum(g => g.Quantity),
+                              Total = g.Sum(g => g.Total),
+                              AmountPaid = g.Sum(g => g.AmountPaid),
+                              Change = g.Sum(g => g.Change)
+                          }).ToList();
+
+            return report;
+        }
+
+        public async Task<IEnumerable<SalesReportInformation>> GetSalesReportByMonthAsync(int year)
+        {
+            var sales = await (from a in _db.Sales
+                               join b in _db.SalesItems on a.SalesID equals b.SalesID
+                               where a.Status == Constants.STATUS_ENABLED_INT &&
+                                     a.CreatedDate.Year == year
+                               select new
+                               {
+                                   Month = a.CreatedDate.Month.ToString(),
+                                   Quantity = b.Quantity,
+                                   Total = b.Total,
+                                   AmountPaid = a.AmountPaid,
+                                   Change = a.Change
+                               }).ToListAsync();
+
+            var report = (from a in sales
+                          group a by a.Month into g
+                          select new SalesReportInformation
+                          {
+                              Month = g.First().Month,
+                              Quantity = g.Sum(g => g.Quantity),
+                              Total = g.Sum(g => g.Total),
+                              AmountPaid = g.Sum(g => g.AmountPaid),
+                              Change = g.Sum(g => g.Change)
+                          }).ToList();
+
+            return report;
+        }
+
         public async Task<string> SaveSalesAsync(SaveSalesRequest request)
         {
             //Check if Request is NULL
