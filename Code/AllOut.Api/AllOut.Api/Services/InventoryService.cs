@@ -241,8 +241,8 @@ namespace AllOut.Api.Services
 
         private async Task<string> GetNewInventoryID()
         {
-            var inventoriesToday = await _db.Inventories.Where(data => data.CreatedDate == DateTime.Parse(Globals.EXEC_DATE))
-                                                       .OrderByDescending(data => data.InventoryID).ToListAsync();
+            var inventoriesToday = await _db.Inventories.Where(data => DateTime.Parse(data.CreatedDate.ToString(Constants.DATE_FORMAT)) == DateTime.Parse(Globals.EXEC_DATE))
+                                                        .OrderByDescending(data => data.InventoryID).ToListAsync();
 
             if (inventoriesToday == null || !inventoriesToday.Any())
                 return string.Format(Constants.INVENTORY_ID_FORMAT, Globals.ID_PREFFIX, Constants.ID_DEFAULT_SUFFIX);

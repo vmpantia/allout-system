@@ -2,6 +2,8 @@
 {
     public class Constants
     {
+        public const string DATE_FORMAT = "yyyy/MM/dd";
+        public const string ID_PREFFIX_FORMAT = "yyyyMMdd";
         public const string NA = "N/A";
         public const string NAME_FORMAT = "{0}, {1}";
         public const char ZERO = '0';

@@ -213,8 +213,8 @@ namespace AllOut.Api.Services
 
         private async Task<string> GetNewSalesID()
         {
-            var salesToday = await _db.Sales.Where(data => data.CreatedDate == DateTime.Parse(Globals.EXEC_DATE))
-                                           .OrderByDescending(data => data.SalesID).ToListAsync();
+            var salesToday = await _db.Sales.Where(data => DateTime.Parse(data.CreatedDate.ToString(Constants.DATE_FORMAT)) == DateTime.Parse(Globals.EXEC_DATE))
+                                            .OrderByDescending(data => data.SalesID).ToListAsync();
 
             if (salesToday == null || !salesToday.Any())
                 return string.Format(Constants.SALES_ID_FORMAT, Globals.ID_PREFFIX, Constants.ID_DEFAULT_SUFFIX);
