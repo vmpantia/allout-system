@@ -13,10 +13,12 @@ namespace AllOut.Api.Services
     {
         private readonly AllOutDbContext _db;
         private readonly IRequestService _request;
-        public SalesService(AllOutDbContext context, IRequestService request)
+        private readonly IUtilityService _utility;
+        public SalesService(AllOutDbContext context, IRequestService request, IUtilityService utility)
         {
             _db = context;
             _request = request;
+            _utility = utility;
         }
 
         #region Public Methods
@@ -40,9 +42,7 @@ namespace AllOut.Api.Services
                           {
                               Year = g.First().Year,
                               Quantity = g.Sum(g => g.Quantity),
-                              Total = g.Sum(g => g.Total),
-                              AmountPaid = g.Sum(g => g.AmountPaid),
-                              Change = g.Sum(g => g.Change)
+                              Total = g.Sum(g => g.Total)
                           }).ToList();
 
             return report;
@@ -69,12 +69,93 @@ namespace AllOut.Api.Services
                           {
                               Month = g.First().Month,
                               Quantity = g.Sum(g => g.Quantity),
-                              Total = g.Sum(g => g.Total),
-                              AmountPaid = g.Sum(g => g.AmountPaid),
-                              Change = g.Sum(g => g.Change)
+                              Total = g.Sum(g => g.Total)
                           }).ToList();
 
             return report;
+        }
+
+        public async Task<IEnumerable<SalesFullInformation>> GetSales()
+        {
+            var salesList = await (from a in _db.Sales
+                                   join b in _db.Users on a.UserID equals b.UserID into bb from b in bb.DefaultIfEmpty()
+                                   where a.Status != Constants.STATUS_DELETION_INT
+                                   select new SalesFullInformation
+                                   {
+                                       SalesID = a.SalesID,
+                                       UserID = a.UserID,
+                                       Name = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
+                                       AmountPaid = a.AmountPaid,
+                                       Change = a.Change,
+                                       Remarks = a.Remarks,
+                                       Status = a.Status,
+                                       CreatedDate = a.CreatedDate,
+                                       ModifiedDate = a.ModifiedDate
+                                   }).ToListAsync();
+
+            foreach (var sales in salesList)
+            {
+                sales.salesItems = await GetSalesItemsByID(sales.SalesID);
+                sales.otherCharges = await GetOtherChargesByID(sales.SalesID);
+            }
+
+            return salesList;
+        }
+
+        public async Task<IEnumerable<SalesFullInformation>> GetSalesByQuery(string query)
+        {
+            var salesList = await (from a in _db.Sales
+                                   join b in _db.Users on a.UserID equals b.UserID into bb from b in bb.DefaultIfEmpty()
+                                   where a.Status != Constants.STATUS_DELETION_INT &&
+                                         (a.SalesID.Contains(query) || b.FirstName.Contains(query) || b.LastName.Contains(query))
+                                   select new SalesFullInformation
+                                   {
+                                       SalesID = a.SalesID,
+                                       UserID = a.UserID,
+                                       Name = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
+                                       AmountPaid = a.AmountPaid,
+                                       Change = a.Change,
+                                       Remarks = a.Remarks,
+                                       Status = a.Status,
+                                       CreatedDate = a.CreatedDate,
+                                       ModifiedDate = a.ModifiedDate
+                                   }).ToListAsync();
+
+            foreach (var sales in salesList)
+            {
+                sales.salesItems = await GetSalesItemsByID(sales.SalesID);
+                sales.otherCharges = await GetOtherChargesByID(sales.SalesID);
+            }
+
+            return salesList;
+        }
+
+        public async Task<IEnumerable<SalesFullInformation>> GetSalesByID(string id)
+        {
+            var salesList = await (from a in _db.Sales
+                                   join b in _db.Users on a.UserID equals b.UserID into bb
+                                   from b in bb.DefaultIfEmpty()
+                                   where a.Status != Constants.STATUS_DELETION_INT && a.SalesID == id
+                                   select new SalesFullInformation
+                                   {
+                                       SalesID = a.SalesID,
+                                       UserID = a.UserID,
+                                       Name = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
+                                       AmountPaid = a.AmountPaid,
+                                       Change = a.Change,
+                                       Remarks = a.Remarks,
+                                       Status = a.Status,
+                                       CreatedDate = a.CreatedDate,
+                                       ModifiedDate = a.ModifiedDate
+                                   }).ToListAsync();
+
+            foreach (var sales in salesList)
+            {
+                sales.salesItems = await GetSalesItemsByID(sales.SalesID);
+                sales.otherCharges = await GetOtherChargesByID(sales.SalesID);
+            }
+
+            return salesList;
         }
 
         public async Task<string> SaveSalesAsync(SaveSalesRequest request)
@@ -226,6 +307,29 @@ namespace AllOut.Api.Services
             var newSuffix = (int.Parse(currentSuffix) + 1).ToString().PadLeft(Constants.ID_SUFFIX_LENGTH, Constants.ZERO);
 
             return string.Format(Constants.SALES_ID_FORMAT, Globals.ID_PREFFIX, newSuffix);
+        }
+
+        private async Task<IEnumerable<SalesItemFullInformation>> GetSalesItemsByID(string salesID)
+        {
+            var salesItems = await (from a in _db.SalesItems
+                                    join b in _db.Products on a.ProductID equals b.ProductID into bb from b in bb.DefaultIfEmpty()
+                                    where a.SalesID == salesID
+                                    select new SalesItemFullInformation
+                                    {
+                                        SalesID = a.SalesID,
+                                        ProductID= a.ProductID,
+                                        ProductName = _utility.CheckProductAvailablity(b) ? b.Name : Constants.NA,
+                                        Quantity = a.Quantity,
+                                        Price = a.Price,
+                                        Total = a.Total
+                                    }).ToListAsync();
+
+            return salesItems;
+        }
+
+        private async Task<IEnumerable<OtherCharge>> GetOtherChargesByID(string salesID)
+        {
+            return await _db.OtherCharges.Where(data => data.SalesID == salesID).ToListAsync();
         }
         #endregion
     }

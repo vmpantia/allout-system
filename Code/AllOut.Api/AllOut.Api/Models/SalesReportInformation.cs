@@ -10,8 +10,5 @@ namespace AllOut.Api.Models
         public string Day { get; set; }
         public int Quantity { get; set; }
         public decimal Total { get; set; }
-        public decimal AmountPaid { get; set; }
-        public decimal Change { get; set; }
-
     }
 }

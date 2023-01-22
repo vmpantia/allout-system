@@ -8,6 +8,7 @@ namespace AllOut.Api.Contractors
         bool CheckProductAvailablity(Product product);
         bool CheckBrandAvailablity(Brand brand);
         bool CheckCategoryAvailablity(Category category);
+        bool CheckUserAvailability(User user);
         int GetCurrentStock(int inventories, int sales);
         bool GetReorderState(int stock, int reorderpoint);
         Task<string> ValidateClientID(Guid ClientID, RequestType requestType, string functionID);

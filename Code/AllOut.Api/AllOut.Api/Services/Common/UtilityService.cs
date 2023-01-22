@@ -44,6 +44,14 @@ namespace AllOut.Api.Services.Common
             return category.Status == Constants.STATUS_ENABLED_INT;
         }
 
+        public bool CheckUserAvailability(User user)
+        {
+            if (null == user)
+                return false;
+
+            return user.Status == Constants.STATUS_ENABLED_INT;
+        }
+
         public int GetCurrentStock(int inventories, int sales)
         {
             var result = inventories - sales;

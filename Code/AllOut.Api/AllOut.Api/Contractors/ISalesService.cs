@@ -7,6 +7,9 @@ namespace AllOut.Api.Contractors
     {
         Task<IEnumerable<SalesReportInformation>> GetSalesReportByYearAsync();
         Task<IEnumerable<SalesReportInformation>> GetSalesReportByMonthAsync(int year);
+        Task<IEnumerable<SalesFullInformation>> GetSales();
+        Task<IEnumerable<SalesFullInformation>> GetSalesByQuery(string query);
+        Task<IEnumerable<SalesFullInformation>> GetSalesByID(string id);
         Task<string> SaveSalesAsync(SaveSalesRequest request);
 
     }
