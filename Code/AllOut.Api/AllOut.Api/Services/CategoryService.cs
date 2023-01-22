@@ -128,7 +128,7 @@ namespace AllOut.Api.Services
             }
 
             inputCategory.CategoryID = Guid.NewGuid();
-            inputCategory.CreatedDate = Globals.EXEC_DATETIME;
+            inputCategory.CreatedDate = DateTime.Now;
             await _db.Categories.AddAsync(inputCategory);
         }
 
@@ -150,7 +150,7 @@ namespace AllOut.Api.Services
             currentCategory.Description = inputCategory.Description;
             currentCategory.Status = inputCategory.Status;
             //currentCategory.CreatedDate = inputCategory.CreatedDate;
-            currentCategory.ModifiedDate = Globals.EXEC_DATETIME;
+            currentCategory.ModifiedDate = DateTime.Now;
         }
 
         private async Task DeleteCategory(Guid CategoryID)

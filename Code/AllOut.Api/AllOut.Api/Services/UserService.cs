@@ -157,7 +157,7 @@ namespace AllOut.Api.Services
             }
 
             inputUser.UserID = Guid.NewGuid();
-            inputUser.CreatedDate = Globals.EXEC_DATETIME;
+            inputUser.CreatedDate = DateTime.Now;
             await _db.Users.AddAsync(inputUser);
         }
 
@@ -185,7 +185,7 @@ namespace AllOut.Api.Services
             currentUser.Permission = inputUser.Permission;
             currentUser.Status = inputUser.Status;
             //currentUser.CreatedDate = inputUser.CreatedDate;
-            currentUser.ModifiedDate = Globals.EXEC_DATETIME;
+            currentUser.ModifiedDate = DateTime.Now;
         }
 
         private async Task DeleteUser(Guid userID)
@@ -306,11 +306,12 @@ namespace AllOut.Api.Services
                 IPAddress = request.IPAddress,
                 WindowsVersion = request.WindowsVersion,
                 Status = Constants.STATUS_ENABLED_INT,
-                CreatedDate = Globals.EXEC_DATETIME
+                CreatedDate = DateTime.Now
             };
 
             //Disable all active clients of User
-            var clients = await _db.Clients.Where(data => data.UserID == user.UserID).ToListAsync();
+            var clients = await _db.Clients.Where(data => data.UserID == user.UserID && 
+                                                          data.Status == Constants.STATUS_ENABLED_INT).ToListAsync();
             if (clients.Any())
             {
                 foreach (var currClient in clients)

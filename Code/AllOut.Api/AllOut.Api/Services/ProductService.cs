@@ -208,7 +208,7 @@ namespace AllOut.Api.Services
             }
 
             inputProduct.ProductID = Guid.NewGuid();
-            inputProduct.CreatedDate = Globals.EXEC_DATETIME;
+            inputProduct.CreatedDate = DateTime.Now;
             await _db.Products.AddAsync(inputProduct);
         }
 
@@ -234,7 +234,7 @@ namespace AllOut.Api.Services
             currentProduct.Price = inputProduct.Price;
             currentProduct.Status = inputProduct.Status;
             //currentProduct.CreatedDate = inputProduct.CreatedDate;
-            currentProduct.ModifiedDate = Globals.EXEC_DATETIME;
+            currentProduct.ModifiedDate = DateTime.Now;
         }
 
         private async Task DeleteProduct(Guid productID)

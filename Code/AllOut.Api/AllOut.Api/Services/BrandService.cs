@@ -128,7 +128,7 @@ namespace AllOut.Api.Services
             }
 
             inputBrand.BrandID = Guid.NewGuid();
-            inputBrand.CreatedDate = Globals.EXEC_DATETIME;
+            inputBrand.CreatedDate = DateTime.Now;
             await _db.Brands.AddAsync(inputBrand);
         }
 
@@ -150,7 +150,7 @@ namespace AllOut.Api.Services
             currentBrand.Description = inputBrand.Description;
             currentBrand.Status = inputBrand.Status;
             //currentBrand.CreatedDate = inputBrand.CreatedDate;
-            currentBrand.ModifiedDate = Globals.EXEC_DATETIME;
+            currentBrand.ModifiedDate = DateTime.Now;
         }
 
         private async Task DeleteBrand(Guid BrandID)

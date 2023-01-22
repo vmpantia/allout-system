@@ -118,7 +118,7 @@ namespace AllOut.Api.Services
         private async Task InsertSales(Sales inputSales)
         {
             inputSales.SalesID = await GetNewSalesID();
-            inputSales.CreatedDate = Globals.EXEC_DATETIME;
+            inputSales.CreatedDate = DateTime.Now;
             await _db.Sales.AddAsync(inputSales);
         }
 

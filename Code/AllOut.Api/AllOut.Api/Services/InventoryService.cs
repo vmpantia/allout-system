@@ -163,7 +163,7 @@ namespace AllOut.Api.Services
             }
 
             inputInventory.InventoryID = await GetNewInventoryID();
-            inputInventory.CreatedDate = Globals.EXEC_DATETIME;
+            inputInventory.CreatedDate = DateTime.Now;
             await _db.Inventories.AddAsync(inputInventory);
         }
 
@@ -185,7 +185,7 @@ namespace AllOut.Api.Services
             currentInventory.Quantity = inputInventory.Quantity;
             currentInventory.Status = inputInventory.Status;
             //currentInventory.CreatedDate = inputInventory.CreatedDate;
-            currentInventory.ModifiedDate = Globals.EXEC_DATETIME;
+            currentInventory.ModifiedDate = DateTime.Now;
         }
 
         private async Task DeleteInventory(string InventoryID)

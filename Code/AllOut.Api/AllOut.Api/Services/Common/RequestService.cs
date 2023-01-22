@@ -20,7 +20,7 @@ namespace AllOut.Api.Services.Common
                 ApprovedDate = null,
                 ApprovedBy = null,
                 Status = requestStatus,
-                CreatedDate = Globals.EXEC_DATETIME,
+                CreatedDate = DateTime.Now,
                 ModifiedDate = null
             };
 
