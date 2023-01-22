@@ -97,6 +97,7 @@ namespace AllOut.Api.Services
             {
                 sales.salesItems = await GetSalesItemsByID(sales.SalesID);
                 sales.otherCharges = await GetOtherChargesByID(sales.SalesID);
+                sales.Total = _utility.GetTotal(sales.salesItems, sales.otherCharges);
             }
 
             return salesList;
@@ -125,6 +126,7 @@ namespace AllOut.Api.Services
             {
                 sales.salesItems = await GetSalesItemsByID(sales.SalesID);
                 sales.otherCharges = await GetOtherChargesByID(sales.SalesID);
+                sales.Total = _utility.GetTotal(sales.salesItems, sales.otherCharges);
             }
 
             return salesList;
@@ -153,6 +155,7 @@ namespace AllOut.Api.Services
             {
                 sales.salesItems = await GetSalesItemsByID(sales.SalesID);
                 sales.otherCharges = await GetOtherChargesByID(sales.SalesID);
+                sales.Total = _utility.GetTotal(sales.salesItems, sales.otherCharges);
             }
 
             return salesList;

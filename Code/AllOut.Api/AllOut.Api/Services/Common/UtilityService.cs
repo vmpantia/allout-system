@@ -2,6 +2,7 @@
 using AllOut.Api.Contractors;
 using AllOut.Api.DataAccess;
 using AllOut.Api.DataAccess.Models;
+using AllOut.Api.Models;
 using AllOut.Api.Models.enums;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
@@ -63,6 +64,26 @@ namespace AllOut.Api.Services.Common
         public bool GetReorderState(int stock, int reorderpoint)
         {
             return stock <= reorderpoint;
+        }
+
+        public decimal GetTotal(IEnumerable<SalesItemFullInformation> items, IEnumerable<OtherCharge> otherCharges)
+        {
+            var itemsTotal = items.Sum(data => data.Total);
+            var otherCharges_Add = otherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
+            var otherCharges_Minus = otherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
+
+            var total = itemsTotal + otherCharges_Add + otherCharges_Minus;
+            return Math.Round(total, 2);
+        }
+
+        public decimal GetTotal(IEnumerable<SalesItem> items, IEnumerable<OtherCharge> otherCharges)
+        {
+            var itemsTotal = items.Sum(data => data.Total);
+            var otherCharges_Add = otherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
+            var otherCharges_Minus = otherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
+
+            var total = itemsTotal + otherCharges_Add + otherCharges_Minus;
+            return Math.Round(total, 2);
         }
 
         public async Task<string> ValidateClientID(Guid ClientID, RequestType requestType, string functionID)
