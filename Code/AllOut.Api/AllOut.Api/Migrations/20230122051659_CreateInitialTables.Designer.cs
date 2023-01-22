@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AllOut.Api.Migrations
 {
     [DbContext(typeof(AllOutDbContext))]
-    [Migration("20230122044405_ChangePKSalesItemAndOtherCharge")]
-    partial class ChangePKSalesItemAndOtherCharge
+    [Migration("20230122051659_CreateInitialTables")]
+    partial class CreateInitialTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

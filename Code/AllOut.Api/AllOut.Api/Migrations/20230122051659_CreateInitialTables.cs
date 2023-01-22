@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AllOut.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class AddInitialTable : Migration
+    public partial class CreateInitialTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -156,7 +156,7 @@ namespace AllOut.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OtherCharges", x => x.SalesID);
+                    table.PrimaryKey("PK_OtherCharges", x => new { x.SalesID, x.ChargeName });
                 });
 
             migrationBuilder.CreateTable(
@@ -285,7 +285,7 @@ namespace AllOut.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SalesItems", x => x.SalesID);
+                    table.PrimaryKey("PK_SalesItems", x => new { x.SalesID, x.ProductID });
                 });
 
             migrationBuilder.CreateTable(
