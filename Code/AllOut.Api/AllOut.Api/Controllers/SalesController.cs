@@ -32,6 +32,24 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_SALES_REPORT_BY_MONTH, clientID, year);
         }
 
+        [HttpGet("GetSales")]
+        public async Task<IActionResult> GetSalesAsync(Guid clientID)
+        {
+            return await ProcessRequest(RequestType.GET_SALES, clientID);
+        }
+
+        [HttpGet("GetSalesByQuery")]
+        public async Task<IActionResult> GetSalesByQueryAsync(Guid clientID, string query)
+        {
+            return await ProcessRequest(RequestType.GET_SALES_BY_QUERY, clientID, query);
+        }
+
+        [HttpGet("GetSalesByID")]
+        public async Task<IActionResult> GetSalesByIDAsync(Guid clientID, string id)
+        {
+            return await ProcessRequest(RequestType.GET_SALES_BY_ID, clientID, id);
+        }
+
         [HttpPost("SaveSales")]
         public async Task<IActionResult> SaveSalesAsync(SaveSalesRequest request)
         {
@@ -56,6 +74,18 @@ namespace AllOut.Api.Controllers
 
                     case RequestType.GET_SALES_REPORT_BY_MONTH:
                         response = await _sales.GetSalesReportByMonthAsync((int)data);
+                        break;
+
+                    case RequestType.GET_SALES:
+                        response = await _sales.GetSalesAsync();
+                        break;
+
+                    case RequestType.GET_SALES_BY_QUERY:
+                        response = await _sales.GetSalesByQueryAsync((string)data);
+                        break;
+
+                    case RequestType.GET_SALES_BY_ID:
+                        response = await _sales.GetSalesByIDAsync((string)data);
                         break;
 
                     case RequestType.POST_SAVE_SALES:

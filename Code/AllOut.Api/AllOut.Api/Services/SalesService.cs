@@ -75,7 +75,7 @@ namespace AllOut.Api.Services
             return report;
         }
 
-        public async Task<IEnumerable<SalesFullInformation>> GetSales()
+        public async Task<IEnumerable<SalesFullInformation>> GetSalesAsync()
         {
             var salesList = await (from a in _db.Sales
                                    join b in _db.Users on a.UserID equals b.UserID into bb from b in bb.DefaultIfEmpty()
@@ -102,7 +102,7 @@ namespace AllOut.Api.Services
             return salesList;
         }
 
-        public async Task<IEnumerable<SalesFullInformation>> GetSalesByQuery(string query)
+        public async Task<IEnumerable<SalesFullInformation>> GetSalesByQueryAsync(string query)
         {
             var salesList = await (from a in _db.Sales
                                    join b in _db.Users on a.UserID equals b.UserID into bb from b in bb.DefaultIfEmpty()
@@ -130,7 +130,7 @@ namespace AllOut.Api.Services
             return salesList;
         }
 
-        public async Task<IEnumerable<SalesFullInformation>> GetSalesByID(string id)
+        public async Task<IEnumerable<SalesFullInformation>> GetSalesByIDAsync(string id)
         {
             var salesList = await (from a in _db.Sales
                                    join b in _db.Users on a.UserID equals b.UserID into bb

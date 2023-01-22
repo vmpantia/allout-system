@@ -50,6 +50,9 @@
         //Sales Request
         GET_SALES_REPORT_BY_YEAR,
         GET_SALES_REPORT_BY_MONTH,
+        GET_SALES,
+        GET_SALES_BY_QUERY,
+        GET_SALES_BY_ID,
         POST_SAVE_SALES,
     }
 }
