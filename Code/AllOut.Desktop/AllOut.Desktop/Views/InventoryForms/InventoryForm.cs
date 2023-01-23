@@ -35,7 +35,7 @@ namespace AllOut.Desktop.Views.InventoryForms
 
             //Populate Text Fields in Data
             _inventoryInfo.InventoryID = txtInventoryID.Text;
-            _inventoryInfo.ProductID = (Guid)cmdProduct.SelectedValue;
+            _inventoryInfo.ProductID = (Guid)cmbProduct.SelectedValue;
             _inventoryInfo.Quantity = int.Parse(txtQuantity.Text);
             _inventoryInfo.Status = Constants.STATUS_ENABLED_INT;
 
@@ -97,7 +97,7 @@ namespace AllOut.Desktop.Views.InventoryForms
             
             //Populate Data in Text Fields
             txtInventoryID.Text = _inventoryInfo.InventoryID;
-            cmdProduct.SelectedValue = _inventoryInfo.ProductID;
+            cmbProduct.SelectedValue = _inventoryInfo.ProductID;
             txtQuantity.Text = _inventoryInfo.Quantity.ToString();
 
             EnableControls(_inventoryInfo.Status == Constants.STATUS_ENABLED_INT);
@@ -117,14 +117,14 @@ namespace AllOut.Desktop.Views.InventoryForms
                 ProductName = string.Format(Constants.CMB_PLACEHOLDER, Constants.OBJECT_PRODUCT),
             });
 
-            cmdProduct.DataSource = products;
-            cmdProduct.DisplayMember = Constants.CMB_DISPLAY_PRODUCT_NAME;
-            cmdProduct.ValueMember = Constants.CMB_VALUE_PRODUCT_ID;
+            cmbProduct.DataSource = products;
+            cmbProduct.DisplayMember = Constants.CMB_DISPLAY_PRODUCT_NAME;
+            cmbProduct.ValueMember = Constants.CMB_VALUE_PRODUCT_ID;
         }
 
         private void EnableControls(bool isEnabled)
         {
-            cmdProduct.Enabled = isEnabled;
+            cmbProduct.Enabled = isEnabled;
             txtQuantity.Enabled = isEnabled;
             btnSave.Enabled = isEnabled;
         }

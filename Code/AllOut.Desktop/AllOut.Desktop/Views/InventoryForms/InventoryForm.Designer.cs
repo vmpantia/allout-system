@@ -31,7 +31,6 @@
             this.lblFormDescription = new System.Windows.Forms.Label();
             this.lblFormTitle = new System.Windows.Forms.Label();
             this.txtQuantity = new Guna.UI2.WinForms.Guna2TextBox();
-            this.cmdProduct = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
@@ -39,6 +38,7 @@
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txtInventoryID = new Guna.UI2.WinForms.Guna2TextBox();
+            this.cmbProduct = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,23 +88,6 @@
             this.txtQuantity.SelectedText = "";
             this.txtQuantity.Size = new System.Drawing.Size(340, 41);
             this.txtQuantity.TabIndex = 3;
-            // 
-            // cmdProduct
-            // 
-            this.cmdProduct.BackColor = System.Drawing.Color.White;
-            this.cmdProduct.BorderColor = System.Drawing.Color.Silver;
-            this.cmdProduct.BorderRadius = 6;
-            this.cmdProduct.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmdProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmdProduct.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmdProduct.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmdProduct.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.cmdProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cmdProduct.ItemHeight = 30;
-            this.cmdProduct.Location = new System.Drawing.Point(21, 179);
-            this.cmdProduct.Name = "cmdProduct";
-            this.cmdProduct.Size = new System.Drawing.Size(340, 36);
-            this.cmdProduct.TabIndex = 1;
             // 
             // guna2HtmlLabel5
             // 
@@ -218,6 +201,23 @@
             this.txtInventoryID.Size = new System.Drawing.Size(340, 41);
             this.txtInventoryID.TabIndex = 15;
             // 
+            // cmbProduct
+            // 
+            this.cmbProduct.BackColor = System.Drawing.Color.White;
+            this.cmbProduct.BorderColor = System.Drawing.Color.Silver;
+            this.cmbProduct.BorderRadius = 6;
+            this.cmbProduct.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbProduct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProduct.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbProduct.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbProduct.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.cmbProduct.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbProduct.ItemHeight = 30;
+            this.cmbProduct.Location = new System.Drawing.Point(21, 179);
+            this.cmbProduct.Name = "cmbProduct";
+            this.cmbProduct.Size = new System.Drawing.Size(340, 36);
+            this.cmbProduct.TabIndex = 16;
+            // 
             // InventoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,9 +225,9 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(383, 387);
             this.ControlBox = false;
+            this.Controls.Add(this.cmbProduct);
             this.Controls.Add(this.txtInventoryID);
             this.Controls.Add(this.guna2HtmlLabel2);
-            this.Controls.Add(this.cmdProduct);
             this.Controls.Add(this.guna2HtmlLabel5);
             this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.lblFormDescription);
@@ -252,10 +252,10 @@
         private System.Windows.Forms.Label lblFormTitle;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2TextBox txtQuantity;
-        private Guna.UI2.WinForms.Guna2ComboBox cmdProduct;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2TextBox txtInventoryID;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbProduct;
     }
 }
