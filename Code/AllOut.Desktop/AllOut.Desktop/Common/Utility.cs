@@ -46,9 +46,13 @@ namespace AllOut.Desktop.Common
             return Encoding.UTF8.GetString(bytes);
         }
 
-        public static Guid GetIDByCellValue(object value)
+        public static Guid GetGuidByCellValue(object value)
         {
             return value == null ? Guid.Empty : Guid.Parse(value.ToString());
+        }
+        public static string GetStringByCellValue(object value)
+        {
+            return value == null ? string.Empty : value.ToString();
         }
     }
 }

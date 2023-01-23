@@ -288,7 +288,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateUserStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        public static async Task<Response> PostUpdateUserStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -559,7 +559,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateProductStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        public static async Task<Response> PostUpdateProductStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -830,7 +830,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateBrandStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        public static async Task<Response> PostUpdateBrandStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1101,7 +1101,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateCategoryStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        public static async Task<Response> PostUpdateCategoryStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1156,7 +1156,7 @@ namespace AllOut.Desktop.Controllers
                 {
                     //Success Response
                     customResponse.Result = ResponseResult.SUCCESS;
-                    customResponse.Data = JsonConvert.DeserializeObject<List<Inventory>>(content);
+                    customResponse.Data = JsonConvert.DeserializeObject<List<InventoryFullInformation>>(content);
                     return customResponse;
                 }
                 //API Error Response
@@ -1193,7 +1193,7 @@ namespace AllOut.Desktop.Controllers
                 {
                     //Success Response
                     customResponse.Result = ResponseResult.SUCCESS;
-                    customResponse.Data = JsonConvert.DeserializeObject<List<Inventory>>(content);
+                    customResponse.Data = JsonConvert.DeserializeObject<List<InventoryFullInformation>>(content);
                     return customResponse;
                 }
                 //API Error Response
@@ -1230,7 +1230,7 @@ namespace AllOut.Desktop.Controllers
                 {
                     //Success Response
                     customResponse.Result = ResponseResult.SUCCESS;
-                    customResponse.Data = JsonConvert.DeserializeObject<List<Inventory>>(content);
+                    customResponse.Data = JsonConvert.DeserializeObject<List<InventoryFullInformation>>(content);
                     return customResponse;
                 }
                 //API Error Response
@@ -1246,7 +1246,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetInventoriesByIDAsync(Guid clientID, Guid id)
+        public static async Task<Response> GetInventoryByIDAsync(Guid clientID, string id)
         {
             var customResponse = new Response();
             try
@@ -1341,13 +1341,44 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostSaveInventoriesAsync(SaveInventoryRequest request)
+        public static async Task<Response> PostSaveInventoryAsync(SaveInventoryRequest request)
         {
             var customResponse = new Response();
             try
             {
                 //Prepare Data and API URL
                 var url = Globals.POST_SAVE_INVENTORY;
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.PostAsync(url, data);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> PostUpdateInventoryStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare Data and API URL
+                var url = Globals.POST_UPDATE_INVENTORY_STATUS_BY_IDS;
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -1396,7 +1427,7 @@ namespace AllOut.Desktop.Controllers
                 {
                     //Success Response
                     customResponse.Result = ResponseResult.SUCCESS;
-                    customResponse.Data = JsonConvert.DeserializeObject<List<Sales>>(content);
+                    customResponse.Data = JsonConvert.DeserializeObject<List<SalesFullInformation>>(content);
                     return customResponse;
                 }
                 //API Error Response
@@ -1433,7 +1464,7 @@ namespace AllOut.Desktop.Controllers
                 {
                     //Success Response
                     customResponse.Result = ResponseResult.SUCCESS;
-                    customResponse.Data = JsonConvert.DeserializeObject<List<Sales>>(content);
+                    customResponse.Data = JsonConvert.DeserializeObject<List<SalesFullInformation>>(content);
                     return customResponse;
                 }
                 //API Error Response
@@ -1470,7 +1501,7 @@ namespace AllOut.Desktop.Controllers
                 {
                     //Success Response
                     customResponse.Result = ResponseResult.SUCCESS;
-                    customResponse.Data = JsonConvert.DeserializeObject<List<Sales>>(content);
+                    customResponse.Data = JsonConvert.DeserializeObject<List<SalesFullInformation>>(content);
                     return customResponse;
                 }
                 //API Error Response
@@ -1588,6 +1619,37 @@ namespace AllOut.Desktop.Controllers
             {
                 //Prepare Data and API URL
                 var url = Globals.POST_SAVE_SALES;
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = await httpClient.PostAsync(url, data);
+
+                //Get content in reponse of API
+                var content = await httpResponse.Content.ReadAsStringAsync();
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static async Task<Response> PostUpdateSalesStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare Data and API URL
+                var url = Globals.POST_UPDATE_SALES_STATUS_BY_IDS;
                 var json = JsonConvert.SerializeObject(request);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
 

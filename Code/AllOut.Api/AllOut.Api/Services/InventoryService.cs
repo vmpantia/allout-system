@@ -152,7 +152,7 @@ namespace AllOut.Api.Services
             return requestID;
         }
 
-        public async Task<string> UpdateInventoryStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        public async Task<string> UpdateInventoryStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
         {
             var requestID = await _request.InsertRequest(_db, request.client.UserID,
                                                               request.FunctionID,

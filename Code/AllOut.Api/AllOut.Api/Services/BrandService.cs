@@ -94,7 +94,7 @@ namespace AllOut.Api.Services
             return requestID;
         }
 
-        public async Task<string> UpdateBrandStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        public async Task<string> UpdateBrandStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var requestID = await _request.InsertRequest(_db, request.client.UserID,
                                                               request.FunctionID,

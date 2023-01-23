@@ -13,6 +13,6 @@ namespace AllOut.Api.Contractors
         Task<int> GetCountProductsAsync();
         Task<int> GetCountProductsByStatusAsync(int status);
         Task<string> SaveProductAsync(SaveProductRequest request);
-        Task<string> UpdateProductStatusByIDsAsync(UpdateStatusByIDsRequest request);
+        Task<string> UpdateProductStatusByIDsAsync(UpdateStatusByGUIDsRequest request);
     }
 }

@@ -71,7 +71,7 @@ namespace AllOut.Desktop.Views.CategoryForms
             if (e.RowIndex < 0 && (e.ColumnIndex != BUTTON_COL_IDX || e.ColumnIndex != CHECKBOX_COL_IDX))
                 return;
 
-            var id = Utility.GetIDByCellValue(tblObjectList.Rows[e.RowIndex].Cells[ID_COL_IDX].Value);
+            var id = Utility.GetGuidByCellValue(tblObjectList.Rows[e.RowIndex].Cells[ID_COL_IDX].Value);
 
             //Check if Edit Button is Clicked
             if (e.ColumnIndex == BUTTON_COL_IDX)
@@ -211,7 +211,7 @@ namespace AllOut.Desktop.Views.CategoryForms
             if (dialogResult == DialogResult.No)
                 return;
 
-            var request = new UpdateStatusByIDsRequest
+            var request = new UpdateStatusByGUIDsRequest
             {
                 FunctionID = functionID,
                 RequestStatus = requestStatus,
@@ -248,7 +248,7 @@ namespace AllOut.Desktop.Views.CategoryForms
                 DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)item.Cells[CHECKBOX_COL_IDX];
                 cell.Value = value;
 
-                var id = Utility.GetIDByCellValue(item.Cells[ID_COL_IDX].Value);
+                var id = Utility.GetGuidByCellValue(item.Cells[ID_COL_IDX].Value);
                 if (value)
                     _categoryIDs.Add(id);
                 else

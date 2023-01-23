@@ -75,7 +75,8 @@
     <Compile Include="Models\Requests\SaveProductRequest.cs" />
     <Compile Include="Models\Requests\SaveSalesRequest.cs" />
     <Compile Include="Models\Requests\SaveUserRequest.cs" />
-    <Compile Include="Models\Requests\UpdateStatusByIDsRequest.cs" />
+    <Compile Include="Models\Requests\UpdateStatusByStringIDsRequest.cs" />
+    <Compile Include="Models\Requests\UpdateStatusByGUIDsRequest.cs" />
     <Compile Include="Models\Requests\SaveBrandRequest.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Sales.cs" />
@@ -102,6 +103,18 @@
     </Compile>
     <Compile Include="Views\CategoryForms\CategoryListForm.Designer.cs">
       <DependentUpon>CategoryListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InventoryForms\InventoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\InventoryForms\InventoryForm.Designer.cs">
+      <DependentUpon>InventoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InventoryForms\InventoryListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\InventoryForms\InventoryListForm.Designer.cs">
+      <DependentUpon>InventoryListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UserForms\UserForm.cs">
       <SubType>Form</SubType>
@@ -174,6 +187,12 @@
     <EmbeddedResource Include="Views\CategoryForms\CategoryListForm.resx">
       <DependentUpon>CategoryListForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\InventoryForms\InventoryForm.resx">
+      <DependentUpon>InventoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\InventoryForms\InventoryListForm.resx">
+      <DependentUpon>InventoryListForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\UserForms\UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -221,6 +240,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Images\alloutlogo.jpg" />
+    <None Include="Images\icons8-warehouse-100.png" />
     <None Include="Images\icons8-warehouse-64-white.png" />
     <None Include="Images\icons8-new-copy-90.png" />
     <None Include="Images\icons8-logout-rounded-down-96.png" />
@@ -251,6 +271,7 @@
     <None Include="Images\icons8-branding-96-white.png" />
     <None Include="Images\icons8-category-96-white.png" />
     <None Include="Images\icons8-total-sales-64-white.png" />
+    <None Include="Images\icons8-total-sales-64.png" />
     <Content Include="Images\icons8-user-96.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,6 +12,6 @@ namespace AllOut.Api.Contractors
         Task<int> GetCountBrandsAsync();
         Task<int> GetCountBrandsByStatusAsync(int status);
         Task<string> SaveBrandAsync(SaveBrandRequest request);
-        Task<string> UpdateBrandStatusByIDsAsync(UpdateStatusByIDsRequest request);
+        Task<string> UpdateBrandStatusByIDsAsync(UpdateStatusByGUIDsRequest request);
     }
 }

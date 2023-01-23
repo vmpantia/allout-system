@@ -24,9 +24,9 @@ namespace AllOut.Desktop.Views.ProductForms
             lblFormTitle.Text = _isAdd ? string.Format(Constants.TITLE_ADD, Constants.OBJECT_PRODUCT) : string.Format(Constants.TITLE_EDIT, Constants.OBJECT_PRODUCT);
             lblFormDescription.Text = _isAdd ? string.Format(Constants.DESC_ADD, Constants.OBJECT_PRODUCT) : string.Format(Constants.DESC_EDIT, Constants.OBJECT_PRODUCT);
 
-            PopulateProduct(productID);
             PopulateBrands();
             PopulateCategories();
+            PopulateProduct(productID);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -81,13 +81,13 @@ namespace AllOut.Desktop.Views.ProductForms
             Close();
         }
 
-        private async void PopulateProduct(Guid brandID)
+        private async void PopulateProduct(Guid productID)
         {
             //Check if Add or Edit
             if (!_isAdd)
             {
                 //Get Product based on the given ID
-                var response = await HttpController.GetProductByIDAsync(Globals.ClientInformation.ClientID, brandID);
+                var response = await HttpController.GetProductByIDAsync(Globals.ClientInformation.ClientID, productID);
                 if (response.Result != ResponseResult.SUCCESS)
                 {
                     MessageBox.Show((string)response.Data,

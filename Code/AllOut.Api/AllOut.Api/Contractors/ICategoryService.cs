@@ -12,6 +12,6 @@ namespace AllOut.Api.Contractors
         Task<int> GetCountCategoriesAsync();
         Task<int> GetCountCategoriesByStatusAsync(int status);
         Task<string> SaveCategoryAsync(SaveCategoryRequest request);
-        Task<string> UpdateCategoryStatusByIDsAsync(UpdateStatusByIDsRequest request);
+        Task<string> UpdateCategoryStatusByIDsAsync(UpdateStatusByGUIDsRequest request);
     }
 }

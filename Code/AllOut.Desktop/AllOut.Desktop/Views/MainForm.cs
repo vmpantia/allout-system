@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AllOut.Desktop.Views.UserForms;
+using AllOut.Desktop.Views.InventoryForms;
 
 namespace AllOut.Desktop.Views
 {
@@ -34,6 +35,16 @@ namespace AllOut.Desktop.Views
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             SetActiveForm(Constants.FORM_DASHBOARDS);
+        }
+
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            SetActiveForm(Constants.FORM_INVENTORIES);
+        }
+
+        private void btnSales_Click(object sender, EventArgs e)
+        {
+            SetActiveForm(Constants.FORM_SALES);
         }
 
         private void btnProduct_Click(object sender, EventArgs e)
@@ -68,6 +79,12 @@ namespace AllOut.Desktop.Views
             {
                 case Constants.FORM_DASHBOARDS:
                     activeForm = new DashboardForm();
+                    break;
+                case Constants.FORM_INVENTORIES:
+                    activeForm = new InventoryListForm();
+                    break;
+                case Constants.FORM_SALES:
+                    activeForm = new ProductListForm();
                     break;
                 case Constants.FORM_PRODUCTS:
                     activeForm = new ProductListForm();

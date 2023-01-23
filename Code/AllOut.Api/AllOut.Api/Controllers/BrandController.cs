@@ -62,7 +62,7 @@ namespace AllOut.Api.Controllers
         }
 
         [HttpPost("UpdateBrandStatusByIDs")]
-        public async Task<IActionResult> UpdateBrandStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        public async Task<IActionResult> UpdateBrandStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             return await ProcessRequest(RequestType.POST_UPDATE_BRAND_STATUS_BY_IDS, request.client.ClientID, request, request.FunctionID);
         }
@@ -108,7 +108,7 @@ namespace AllOut.Api.Controllers
                         break;
 
                     case RequestType.POST_UPDATE_BRAND_STATUS_BY_IDS:
-                        response = await _brand.UpdateBrandStatusByIDsAsync((UpdateStatusByIDsRequest)data);
+                        response = await _brand.UpdateBrandStatusByIDsAsync((UpdateStatusByGUIDsRequest)data);
                         break;
                 }
 

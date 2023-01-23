@@ -14,6 +14,6 @@ namespace AllOut.Api.Contractors
         Task<int> GetCountUsersAsync();
         Task<int> GetCountUsersByStatusAsync(int status);
         Task<string> SaveUserAsync(SaveUserRequest request);
-        Task<string> UpdateUserStatusByIDsAsync(UpdateStatusByIDsRequest request);
+        Task<string> UpdateUserStatusByIDsAsync(UpdateStatusByGUIDsRequest request);
     }
 }

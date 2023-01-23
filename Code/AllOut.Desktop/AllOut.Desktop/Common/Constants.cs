@@ -21,6 +21,8 @@ namespace AllOut.Desktop.Common
 
         #region Forms
         public const string FORM_DASHBOARDS = "Dashboards";
+        public const string FORM_INVENTORIES = "Inventories";
+        public const string FORM_SALES = "Sales";
         public const string FORM_PRODUCTS = "Products";
         public const string FORM_BRANDS = "Brands";
         public const string FORM_CATEGORIES = "Categories";
@@ -154,6 +156,8 @@ namespace AllOut.Desktop.Common
         #region Combobox Configuration
         public const string CMB_PLACEHOLDER = "Select {0}";
         public const string CMB_DISPLAY_NAME = "Name";
+        public const string CMB_DISPLAY_PRODUCT_NAME = "ProductName";
+        public const string CMB_VALUE_PRODUCT_ID = "ProductID";
         public const string CMB_VALUE_BRAND_ID = "BrandID";
         public const string CMB_VALUE_CATEGORY_ID = "CategoryID"; 
         #endregion
