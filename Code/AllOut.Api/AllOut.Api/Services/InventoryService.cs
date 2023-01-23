@@ -151,6 +151,29 @@ namespace AllOut.Api.Services
 
             return requestID;
         }
+
+        public async Task<string> UpdateInventoryStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        {
+            var requestID = await _request.InsertRequest(_db, request.client.UserID,
+                                                              request.FunctionID,
+                                                              request.RequestStatus);
+            var count = 0;
+            foreach (var id in request.IDs)
+            {
+                count++;
+                var inventory = await _db.Inventories.FindAsync(id);
+                if (inventory != null)
+                {
+                    inventory.Status = request.newStatus;
+                    inventory.ModifiedDate = DateTime.Now;
+                    await InsertInventory_TRN(inventory, requestID.ToString(), count);
+                }
+            }
+
+            await _db.SaveChangesAsync();
+
+            return requestID;
+        }
         #endregion
 
         #region Private Methods

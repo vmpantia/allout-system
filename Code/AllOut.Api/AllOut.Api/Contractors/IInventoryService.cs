@@ -13,5 +13,6 @@ namespace AllOut.Api.Contractors
         Task<int> GetCountInventoriesAsync();
         Task<int> GetCountInventoriesByStatusAsync(int status);
         Task<string> SaveInventoryAsync(SaveInventoryRequest request);
+        Task<string> UpdateInventoryStatusByIDsAsync(UpdateStatusByIDsRequest request);
     }
 }

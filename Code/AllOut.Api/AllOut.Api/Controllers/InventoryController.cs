@@ -62,6 +62,12 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.POST_SAVE_INVENTORY, request.client.ClientID, request, request.FunctionID);
         }
 
+        [HttpPost("UpdateInventoryStatusByIDs")]
+        public async Task<IActionResult> UpdateInventoryStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        {
+            return await ProcessRequest(RequestType.POST_UPDATE_INVENTORY_STATUS_BY_IDS, request.client.ClientID, request, request.FunctionID);
+        }
+
         private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object data = null, string functionID = null)
         {
             try
@@ -100,6 +106,10 @@ namespace AllOut.Api.Controllers
 
                     case RequestType.POST_SAVE_INVENTORY:
                         response = await _inventory.SaveInventoryAsync((SaveInventoryRequest)data);
+                        break;
+
+                    case RequestType.POST_UPDATE_INVENTORY_STATUS_BY_IDS:
+                        response = await _inventory.UpdateInventoryStatusByIDsAsync((UpdateStatusByIDsRequest)data);
                         break;
                 }
 

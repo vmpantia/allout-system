@@ -62,6 +62,12 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.POST_SAVE_SALES, request.client.ClientID, request, request.FunctionID);
         }
 
+        [HttpPost("UpdateSalesStatusByIDs")]
+        public async Task<IActionResult> UpdateSalesStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        {
+            return await ProcessRequest(RequestType.POST_UPDATE_SALES_STATUS_BY_IDS, request.client.ClientID, request, request.FunctionID);
+        }
+
         private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object data = null, string functionID = null)
         {
             try
@@ -100,6 +106,10 @@ namespace AllOut.Api.Controllers
 
                     case RequestType.POST_SAVE_SALES:
                         response = await _sales.SaveSalesAsync((SaveSalesRequest)data);
+                        break;
+
+                    case RequestType.POST_UPDATE_SALES_STATUS_BY_IDS:
+                        response = await _sales.UpdateSalesStatusByIDsAsync((UpdateStatusByIDsRequest)data);
                         break;
                 }
 

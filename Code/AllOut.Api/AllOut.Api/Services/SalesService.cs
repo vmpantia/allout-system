@@ -184,6 +184,29 @@ namespace AllOut.Api.Services
 
             return requestID;
         }
+
+        public async Task<string> UpdateSalesStatusByIDsAsync(UpdateStatusByIDsRequest request)
+        {
+            var requestID = await _request.InsertRequest(_db, request.client.UserID,
+                                                              request.FunctionID,
+                                                              request.RequestStatus);
+            var count = 0;
+            foreach (var id in request.IDs)
+            {
+                count++;
+                var sales = await _db.Sales.FindAsync(id);
+                if (sales != null)
+                {
+                    sales.Status = request.newStatus;
+                    sales.ModifiedDate = DateTime.Now;
+                    await InsertSales_TRN(sales, requestID.ToString(), count);
+                }
+            }
+
+            await _db.SaveChangesAsync();
+
+            return requestID;
+        }
         #endregion
 
         #region Private Methods
