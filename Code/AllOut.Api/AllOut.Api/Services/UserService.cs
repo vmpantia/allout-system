@@ -254,6 +254,9 @@ namespace AllOut.Api.Services
                 !_utility.IsValidName(newData.LastName))
                 return Constants.ERROR_NAME_NOT_VALID;
 
+            if (!_utility.IsValidPassword(newData.Password))
+                return Constants.ERROR_PASSWORD_NOT_VALID;
+
             if (oldData != null)
             {
                 isNew = false;
