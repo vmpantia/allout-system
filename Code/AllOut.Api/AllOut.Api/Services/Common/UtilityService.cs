@@ -69,10 +69,10 @@ namespace AllOut.Api.Services.Common
         public decimal GetTotal(IEnumerable<SalesItemFullInformation> items, IEnumerable<OtherCharge> otherCharges)
         {
             var itemsTotal = items.Sum(data => data.Total);
-            var otherCharges_Add = otherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
-            var otherCharges_Minus = otherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
+            var oc_Additionals = otherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
+            var oc_Deductions = otherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
 
-            var total = itemsTotal + otherCharges_Add + otherCharges_Minus;
+            var total = itemsTotal + oc_Additionals + oc_Deductions;
             return Math.Round(total, 2);
         }
 
