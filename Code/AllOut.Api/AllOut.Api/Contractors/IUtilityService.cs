@@ -18,7 +18,7 @@ namespace AllOut.Api.Contractors
         bool IsValidName(string name);
         bool IsValidEmail(string email);
         bool IsValidPassword(string password);
-        string EncryptPassowrd(string password);
-        string DescryptPassowrd(string password);
+        string EncodePassword(string password);
+        string DecodePassword(string password);
     }
 }

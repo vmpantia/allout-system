@@ -130,44 +130,23 @@ namespace AllOut.Api.Services.Common
         public bool IsValidPassword(string password)
         {
             var regex = new Regex(Constants.REGEX_PASSWORD_PATTERN);
-            var value = DescryptPassowrd(password);
+            var value = DecodePassword(password);
             return regex.IsMatch(value);
         }
 
-        public string EncryptPassowrd(string password)
+        public string EncodePassword(string password)
         {
             if (string.IsNullOrEmpty(password))
                 return password;
 
-            byte[] data = UTF8Encoding.UTF8.GetBytes(password);
-            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
-            {
-                byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(Constants.HASH));
-                using (TripleDESCryptoServiceProvider tripDes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
-                {
-                    ICryptoTransform transform = tripDes.CreateEncryptor();
-                    byte[] result = transform.TransformFinalBlock(data, 0, data.Length);
-                    return Convert.ToBase64String(result, 0, result.Length);
-                }
-            }
+            var bytes = Encoding.UTF8.GetBytes(password);
+            return Convert.ToBase64String(bytes);
         }
 
-        public string DescryptPassowrd(string password)
+        public string DecodePassword(string password)
         {
-            if (string.IsNullOrEmpty(password))
-                return password;
-
-            byte[] data = Convert.FromBase64String(password);
-            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
-            {
-                byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(Constants.HASH));
-                using (TripleDESCryptoServiceProvider tripDes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
-                {
-                    ICryptoTransform transform = tripDes.CreateDecryptor();
-                    byte[] result = transform.TransformFinalBlock(data, 0, data.Length);
-                    return UTF8Encoding.UTF8.GetString(result);
-                }
-            }
+            var bytes = Convert.FromBase64String(password);
+            return Encoding.UTF8.GetString(bytes);
         }
 
         #endregion
