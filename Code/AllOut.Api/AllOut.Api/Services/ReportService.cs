@@ -10,16 +10,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AllOut.Api.Services
 {
-    public class ReportService 
+    public class ReportService : IReportService
     {
         private readonly AllOutDbContext _db;
-        private readonly IRequestService _request;
-        private readonly IUtilityService _utility;
-        public ReportService(AllOutDbContext context, IRequestService request, IUtilityService utility)
+        public ReportService(AllOutDbContext context)
         {
             _db = context;
-            _request = request;
-            _utility = utility;
         }
 
         #region Public Methods
@@ -56,7 +52,7 @@ namespace AllOut.Api.Services
             mergeSales.AddRange(salesInOtherCharges);
 
             var report = (from a in mergeSales
-                          group a by a.Month into g
+                          group a by a.Year into g
                           select new SalesReportInformation
                           {
                               Year = g.Key,
@@ -119,8 +115,11 @@ namespace AllOut.Api.Services
             return report;
         }
 
-        public async Task<IEnumerable<SalesReportInformation>> GetSalesReportByYearAndMonthAsync(int year, int month)
+        public async Task<IEnumerable<SalesReportInformation>> GetSalesReportByYearAndMonthAsync(string query)
         {
+            var year = int.Parse(query.Split(Constants.AND)[0]);
+            var month = int.Parse(query.Split(Constants.AND)[1]);
+
             var salesInItems = await (from a in _db.Sales
                                       join b in _db.SalesItems on a.SalesID equals b.SalesID
                                       where a.Status == Constants.STATUS_ENABLED_INT &&
@@ -154,7 +153,7 @@ namespace AllOut.Api.Services
             mergeSales.AddRange(salesInOtherCharges);
 
             var report = (from a in mergeSales
-                          group a by a.Month into g
+                          group a by a.Day into g
                           select new SalesReportInformation
                           {
                               Day = g.Key,

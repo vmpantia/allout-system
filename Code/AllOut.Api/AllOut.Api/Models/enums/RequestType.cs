@@ -53,7 +53,8 @@
         GET_SALES_BY_ID,
         POST_SAVE_SALES,
         //Report 
+        GET_SALES_REPORT,
         GET_SALES_REPORT_BY_YEAR,
-        GET_SALES_REPORT_BY_MONTH,
+        GET_SALES_REPORT_BY_YEAR_MONTH,
     }
 }

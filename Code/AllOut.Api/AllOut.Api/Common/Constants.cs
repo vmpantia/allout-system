@@ -9,6 +9,7 @@
         public const char ZERO = '0';
         public const string HASH = "@l10uTxK@lr0T1r35";
         public const string HIDE_PASSWORD = "**************";
+        public const char AND = '&';
 
         #region Regex Pattern
         public const string REGEX_EMAIL_PATTERN = "^[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*$";
