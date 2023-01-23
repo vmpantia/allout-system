@@ -259,7 +259,7 @@
             this.ClientSize = new System.Drawing.Size(1584, 761);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.panel2);
-            this.MinimumSize = new System.Drawing.Size(1000, 800);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
