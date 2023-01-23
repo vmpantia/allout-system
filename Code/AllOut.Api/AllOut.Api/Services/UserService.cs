@@ -182,7 +182,7 @@ namespace AllOut.Api.Services
             currentUser.MiddleName = inputUser.MiddleName;
             currentUser.LastName = inputUser.LastName;
             currentUser.IsEmailConfirmed = inputUser.IsEmailConfirmed;
-            currentUser.Permission = inputUser.Permission;
+            currentUser.RoleID = inputUser.RoleID;
             currentUser.Status = inputUser.Status;
             //currentUser.CreatedDate = inputUser.CreatedDate;
             currentUser.ModifiedDate = DateTime.Now;
@@ -212,7 +212,7 @@ namespace AllOut.Api.Services
                 MiddleName = inputUser.MiddleName,
                 LastName = inputUser.LastName,
                 IsEmailConfirmed = inputUser.IsEmailConfirmed,
-                Permission = inputUser.Permission,
+                RoleID = inputUser.RoleID,
                 Status = inputUser.Status,
                 CreatedDate = inputUser.CreatedDate,
                 ModifiedDate = inputUser.ModifiedDate
@@ -269,7 +269,7 @@ namespace AllOut.Api.Services
                     newData.MiddleName == oldData.MiddleName &&
                     newData.LastName == oldData.LastName &&
                     //newData.IsEmailConfirmed == oldData.IsEmailConfirmed &&
-                    newData.Permission == oldData.Permission &&
+                    newData.RoleID == oldData.RoleID &&
                     newData.Status == oldData.Status &&
                     newData.CreatedDate == oldData.CreatedDate &&
                     newData.ModifiedDate == oldData.ModifiedDate)
@@ -341,7 +341,7 @@ namespace AllOut.Api.Services
                 MiddleName = data.MiddleName,
                 LastName = data.LastName,
                 IsEmailConfirmed = data.IsEmailConfirmed,
-                Permission = data.Permission,
+                RoleID = data.RoleID,
                 Status = data.Status,
                 CreatedDate = data.CreatedDate,
                 ModifiedDate = data.ModifiedDate

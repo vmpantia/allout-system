@@ -14,7 +14,9 @@ namespace AllOut.Api.DataAccess.Models
         public string SalesID { get; set; }
         public Guid ProductID { get; set; }
         public int Quantity { get; set; }
+        [Precision(18, 2)]
         public decimal Price { get; set; }
+        [Precision(18, 2)]
         public decimal Total { get; set; }
     }
 }

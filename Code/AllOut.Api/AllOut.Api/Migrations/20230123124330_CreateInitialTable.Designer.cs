@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AllOut.Api.Migrations
 {
     [DbContext(typeof(AllOutDbContext))]
-    [Migration("20230122051659_CreateInitialTables")]
-    partial class CreateInitialTables
+    [Migration("20230123124330_CreateInitialTable")]
+    partial class CreateInitialTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -259,6 +259,7 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("SalesID", "ChargeName");
@@ -280,6 +281,7 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("nvarchar(15)");
 
                     b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ChargeName")
@@ -320,6 +322,7 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ReorderPoint")
@@ -367,6 +370,7 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ReorderPoint")
@@ -426,9 +430,11 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("nvarchar(15)");
 
                     b.Property<decimal>("AmountPaid")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Change")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("CreatedDate")
@@ -462,12 +468,14 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Total")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("SalesID", "ProductID");
@@ -485,6 +493,7 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("ProductID")
@@ -499,6 +508,7 @@ namespace AllOut.Api.Migrations
                         .HasColumnType("nvarchar(15)");
 
                     b.Property<decimal>("Total")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("RequestID", "Number");
@@ -579,8 +589,8 @@ namespace AllOut.Api.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("Permission")
-                        .HasColumnType("int");
+                    b.Property<Guid>("RoleID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -640,8 +650,8 @@ namespace AllOut.Api.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("Permission")
-                        .HasColumnType("int");
+                    b.Property<Guid>("RoleID")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

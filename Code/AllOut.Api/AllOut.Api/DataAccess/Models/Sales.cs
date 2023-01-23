@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace AllOut.Api.DataAccess.Models
 {
@@ -7,7 +8,9 @@ namespace AllOut.Api.DataAccess.Models
         [Key, MaxLength(15)]
         public string SalesID { get; set; }
         public Guid UserID { get; set; }
+        [Precision(18, 2)]
         public decimal AmountPaid { get; set; }
+        [Precision(18, 2)]
         public decimal Change { get; set; }
         [MaxLength(100)]
         public string? Remarks { get; set; }

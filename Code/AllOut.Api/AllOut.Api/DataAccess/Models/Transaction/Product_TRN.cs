@@ -17,6 +17,7 @@ namespace AllOut.Api.DataAccess.Models
         [MaxLength(100)]
         public string? Description { get; set; }
         public int ReorderPoint { get; set; }
+        [Precision(18, 2)]
         public decimal Price { get; set; }
         public int Status { get; set; }
         public DateTime CreatedDate { get; set; }

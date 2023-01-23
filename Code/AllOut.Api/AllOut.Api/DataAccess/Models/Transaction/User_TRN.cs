@@ -24,7 +24,7 @@ namespace AllOut.Api.DataAccess.Models
         [Required, MaxLength(25)]
         public string LastName { get; set; }
         public bool IsEmailConfirmed { get; set; }
-        public int Permission { get; set; }
+        public Guid RoleID { get; set; }
         public int Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }

@@ -13,6 +13,7 @@ namespace AllOut.Api.DataAccess.Models
         public string SalesID { get; set; }
         [Required, MaxLength(50)]
         public string ChargeName { get; set; }
+        [Precision(18, 2)]
         public decimal Amount { get; set; }
     }
 }
