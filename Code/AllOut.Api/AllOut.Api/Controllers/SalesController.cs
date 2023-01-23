@@ -32,10 +32,28 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_SALES_BY_QUERY, clientID, query);
         }
 
+        [HttpGet("GetSalesByStatus")]
+        public async Task<IActionResult> GetSalesByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_SALES_BY_STATUS, clientID, status);
+        }
+
         [HttpGet("GetSalesByID")]
         public async Task<IActionResult> GetSalesByIDAsync(Guid clientID, string id)
         {
             return await ProcessRequest(RequestType.GET_SALES_BY_ID, clientID, id);
+        }
+
+        [HttpGet("GetCountSales")]
+        public async Task<IActionResult> GetCountSalesAsync(Guid clientID)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_SALES, clientID);
+        }
+
+        [HttpGet("GetCountSalesByStatus")]
+        public async Task<IActionResult> GetCountSalesByStatusAsync(Guid clientID, int status)
+        {
+            return await ProcessRequest(RequestType.GET_COUNT_SALES_BY_STATUS, clientID, status);
         }
 
         [HttpPost("SaveSales")]
@@ -64,8 +82,20 @@ namespace AllOut.Api.Controllers
                         response = await _sales.GetSalesByQueryAsync((string)data);
                         break;
 
+                    case RequestType.GET_SALES_BY_STATUS:
+                        response = await _sales.GetSalesByStatusAsync((int)data);
+                        break;
+
                     case RequestType.GET_SALES_BY_ID:
                         response = await _sales.GetSalesByIDAsync((string)data);
+                        break;
+
+                    case RequestType.GET_COUNT_SALES:
+                        response = await _sales.GetCountSalesAsync();
+                        break;
+
+                    case RequestType.GET_COUNT_SALES_BY_STATUS:
+                        response = await _sales.GetCountSalesByStatusAsync((int)data);
                         break;
 
                     case RequestType.POST_SAVE_SALES:

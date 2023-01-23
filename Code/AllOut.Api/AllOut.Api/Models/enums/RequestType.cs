@@ -50,7 +50,10 @@
         //Sales Request
         GET_SALES,
         GET_SALES_BY_QUERY,
+        GET_SALES_BY_STATUS,
         GET_SALES_BY_ID,
+        GET_COUNT_SALES,
+        GET_COUNT_SALES_BY_STATUS,
         POST_SAVE_SALES,
         //Report 
         GET_SALES_REPORT,

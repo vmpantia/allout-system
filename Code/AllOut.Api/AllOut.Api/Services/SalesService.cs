@@ -80,6 +80,34 @@ namespace AllOut.Api.Services
             return salesList;
         }
 
+        public async Task<IEnumerable<SalesFullInformation>> GetSalesByStatusAsync(int status)
+        {
+            var salesList = await (from a in _db.Sales
+                                   join b in _db.Users on a.UserID equals b.UserID into bb from b in bb.DefaultIfEmpty()
+                                   where a.Status == status
+                                   select new SalesFullInformation
+                                   {
+                                       SalesID = a.SalesID,
+                                       UserID = a.UserID,
+                                       Name = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
+                                       AmountPaid = a.AmountPaid,
+                                       Change = a.Change,
+                                       Remarks = a.Remarks,
+                                       Status = a.Status,
+                                       CreatedDate = a.CreatedDate,
+                                       ModifiedDate = a.ModifiedDate
+                                   }).ToListAsync();
+
+            foreach (var sales in salesList)
+            {
+                sales.salesItems = await GetSalesItemsByID(sales.SalesID);
+                sales.otherCharges = await GetOtherChargesByID(sales.SalesID);
+                sales.Total = _utility.GetTotal(sales.salesItems, sales.otherCharges);
+            }
+
+            return salesList;
+        }
+
         public async Task<IEnumerable<SalesFullInformation>> GetSalesByIDAsync(string id)
         {
             var salesList = await (from a in _db.Sales
@@ -107,6 +135,18 @@ namespace AllOut.Api.Services
             }
 
             return salesList;
+        }
+
+        public async Task<int> GetCountSalesAsync()
+        {
+            var count = await _db.Sales.Where(data => data.Status != Constants.STATUS_DELETION_INT).CountAsync();
+            return count;
+        }
+
+        public async Task<int> GetCountSalesByStatusAsync(int status)
+        {
+            var count = await _db.Sales.Where(data => data.Status == status).CountAsync();
+            return count;
         }
 
         public async Task<string> SaveSalesAsync(SaveSalesRequest request)
