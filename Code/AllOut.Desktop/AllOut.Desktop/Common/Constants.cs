@@ -16,8 +16,8 @@ namespace AllOut.Desktop.Common
         public const string USERNAME_FORMAT = "{0}.{1}";
         public const char ZERO = '0';
         public const string HASH = "@l10uTxK@lr0T1r35";
-        //public const string API_BASE = "http://www.allout.api.com/";
-        public const string API_BASE = "https://localhost:7252/";
+        public const string API_BASE = "http://www.allout.api.com/";
+        //public const string API_BASE = "https://localhost:7252/";
 
         #region Forms
         public const string FORM_DASHBOARDS = "Dashboards";
