@@ -313,6 +313,16 @@ namespace AllOut.Desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_total_sales_64_white {
+            get {
+                object obj = ResourceManager.GetObject("icons8-total-sales-64-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_trash_90 {
             get {
                 object obj = ResourceManager.GetObject("icons8-trash-90", resourceCulture);
@@ -336,6 +346,16 @@ namespace AllOut.Desktop.Properties {
         internal static System.Drawing.Bitmap icons8_user_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-user-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_warehouse_64_white {
+            get {
+                object obj = ResourceManager.GetObject("icons8-warehouse-64-white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

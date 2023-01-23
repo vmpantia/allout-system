@@ -58,6 +58,16 @@ namespace AllOut.Desktop.Common
         public static string GET_COUNT_INVENTORIES_BY_STATUS = string.Concat(Constants.API_BASE, "Inventory/GetCountInventoriesByStatus?clientID={0}&status={1}");
         public static string POST_SAVE_INVENTORY = string.Concat(Constants.API_BASE, "Inventory/SaveInventory");
 
+        public static string GET_SALES = string.Concat(Constants.API_BASE, "Sales/GetSales?clientID={0}");
+        public static string GET_SALES_BY_QUERY = string.Concat(Constants.API_BASE, "Sales/GetSalesByQuery?clientID={0}&query={1}");
+        public static string GET_SALES_BY_STATUS = string.Concat(Constants.API_BASE, "Sales/GetSalesByStatus?clientID={0}&status={1}");
+        public static string GET_SALES_BY_ID = string.Concat(Constants.API_BASE, "Sales/GetSalesByID?clientID={0}&id={1}");
+        public static string GET_COUNT_SALES = string.Concat(Constants.API_BASE, "Sales/GetCountSales?clientID={0}");
+        public static string GET_COUNT_SALES_BY_STATUS = string.Concat(Constants.API_BASE, "Sales/GetCountSalesByStatus?clientID={0}&status={1}");
         public static string POST_SAVE_SALES = string.Concat(Constants.API_BASE, "Sales/SaveSales");
+
+        public static string GET_SALES_REPORT = string.Concat(Constants.API_BASE, "Report/GetSalesReport?clientID={0}");
+        public static string GET_SALES_REPORT_BY_YEAR = string.Concat(Constants.API_BASE, "Report/GetSalesReportByYear?clientID={0}&year={1}");
+        public static string GET_SALES_REPORT_BY_YEAR_MONTH = string.Concat(Constants.API_BASE, "Report/GetSalesReportByYearAndMonthAsync?clientID={0}&query={1}");
     }
 }

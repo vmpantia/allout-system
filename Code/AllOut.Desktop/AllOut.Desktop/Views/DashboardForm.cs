@@ -32,6 +32,22 @@ namespace AllOut.Desktop.Views
 
             response = await HttpController.GetCountUsersAsync(Globals.ClientInformation.ClientID);
             lblCountUser.Text = response.Result == ResponseResult.SUCCESS ? (string)response.Data : Constants.NA;
+
+            response = await HttpController.GetCountInventoriesAsync(Globals.ClientInformation.ClientID);
+            lblCountInventory.Text = response.Result == ResponseResult.SUCCESS ? (string)response.Data : Constants.NA;
+
+            response = await HttpController.GetCountSalesAsync(Globals.ClientInformation.ClientID);
+            lblCountSales.Text = response.Result == ResponseResult.SUCCESS ? (string)response.Data : Constants.NA;
+
+            var res = await HttpController.GetSalesReportAsync(Globals.ClientInformation.ClientID);
+            if(res.Result == ResponseResult.SUCCESS)
+            {
+                var salesReports = (List<SalesReportInformation>)res.Data;
+                foreach(var salesReport in salesReports)
+                {
+                    SalesChart.Series["Total"].Points.AddXY(salesReport.Year, salesReport.Total);
+                }
+            }
         }
     }
 }

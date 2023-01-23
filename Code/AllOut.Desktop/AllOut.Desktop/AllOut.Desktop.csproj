@@ -42,6 +42,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,7 +79,10 @@
     <Compile Include="Models\Requests\SaveBrandRequest.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Sales.cs" />
+    <Compile Include="Models\SalesFullInformation.cs" />
     <Compile Include="Models\SalesItem.cs" />
+    <Compile Include="Models\SalesItemFullInformation.cs" />
+    <Compile Include="Models\SalesReportInformation.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -217,6 +221,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Images\alloutlogo.jpg" />
+    <None Include="Images\icons8-warehouse-64-white.png" />
     <None Include="Images\icons8-new-copy-90.png" />
     <None Include="Images\icons8-logout-rounded-down-96.png" />
     <None Include="Images\icons8-branding-90.png" />
@@ -245,6 +250,7 @@
     <None Include="Images\icons8-people-100-white.png" />
     <None Include="Images\icons8-branding-96-white.png" />
     <None Include="Images\icons8-category-96-white.png" />
+    <None Include="Images\icons8-total-sales-64-white.png" />
     <Content Include="Images\icons8-user-96.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
