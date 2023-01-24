@@ -16,7 +16,7 @@ namespace AllOut.Desktop.Controllers
     public class HttpController
     {
         #region User
-        public static async Task<Response> PostLoginUserAsync(LoginUserRequest request)
+        public static Response PostLoginUserAsync(LoginUserRequest request)
         {
             var customResponse = new Response();
             try
@@ -27,10 +27,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -52,7 +52,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetUsersAsync(Guid clientID)
+        public static Response GetUsersAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -62,10 +62,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -89,7 +89,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetUsersByQueryAsync(Guid clientID, string query)
+        public static Response GetUsersByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -99,10 +99,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -126,7 +126,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetUsersByStatusAsync(Guid clientID, int status)
+        public static Response GetUsersByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -136,10 +136,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -163,7 +163,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetUserByIDAsync(Guid clientID, Guid id)
+        public static Response GetUserByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -173,10 +173,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -200,7 +200,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountUsersAsync(Guid clientID)
+        public static Response GetCountUsersAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -210,10 +210,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -229,7 +229,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountUsersByStatusAsync(Guid clientID, int status)
+        public static Response GetCountUsersByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -239,10 +239,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -258,7 +258,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostSaveUserAsync(SaveUserRequest request)
+        public static Response PostSaveUserAsync(SaveUserRequest request)
         {
             var customResponse = new Response();
             try
@@ -269,10 +269,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -288,7 +288,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateUserStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public static Response PostUpdateUserStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -300,10 +300,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -322,7 +322,7 @@ namespace AllOut.Desktop.Controllers
         #endregion
 
         #region Product
-        public static async Task<Response> GetProductsAsync(Guid clientID)
+        public static Response GetProductsAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -332,10 +332,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -359,7 +359,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetProductsByQueryAsync(Guid clientID, string query)
+        public static Response GetProductsByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -369,10 +369,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -396,7 +396,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetProductsByStatusAsync(Guid clientID, int status)
+        public static Response GetProductsByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -406,10 +406,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -433,7 +433,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetProductByIDAsync(Guid clientID, Guid id)
+        public static Response GetProductByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -443,10 +443,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -470,7 +470,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountProductsAsync(Guid clientID)
+        public static Response GetCountProductsAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -480,10 +480,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -499,7 +499,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountProductsByStatusAsync(Guid clientID, int status)
+        public static Response GetCountProductsByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -509,10 +509,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -528,7 +528,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostSaveProductAsync(SaveProductRequest request)
+        public static Response PostSaveProductAsync(SaveProductRequest request)
         {
             var customResponse = new Response();
             try
@@ -540,10 +540,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -559,7 +559,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateProductStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public static Response PostUpdateProductStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -571,10 +571,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -593,7 +593,7 @@ namespace AllOut.Desktop.Controllers
         #endregion
 
         #region Brand
-        public static async Task<Response> GetBrandsAsync(Guid clientID)
+        public static Response GetBrandsAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -603,10 +603,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -630,7 +630,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetBrandsByQueryAsync(Guid clientID, string query)
+        public static Response GetBrandsByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -640,10 +640,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -667,7 +667,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetBrandsByStatusAsync(Guid clientID, int status)
+        public static Response GetBrandsByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -677,10 +677,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -704,7 +704,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetBrandByIDAsync(Guid clientID, Guid id)
+        public static Response GetBrandByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -714,10 +714,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -741,7 +741,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountBrandsAsync(Guid clientID)
+        public static Response GetCountBrandsAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -751,10 +751,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -770,7 +770,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountBrandsByStatusAsync(Guid clientID, int status)
+        public static Response GetCountBrandsByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -780,10 +780,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -799,7 +799,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostSaveBrandAsync(SaveBrandRequest request)
+        public static Response PostSaveBrandAsync(SaveBrandRequest request)
         {
             var customResponse = new Response();
             try
@@ -811,10 +811,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -830,7 +830,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateBrandStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public static Response PostUpdateBrandStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -842,10 +842,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -864,7 +864,7 @@ namespace AllOut.Desktop.Controllers
         #endregion
 
         #region Category
-        public static async Task<Response> GetCategoriesAsync(Guid clientID)
+        public static Response GetCategoriesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -874,10 +874,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -901,7 +901,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCategoriesByQueryAsync(Guid clientID, string query)
+        public static Response GetCategoriesByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -911,10 +911,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -938,7 +938,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCategoriesByStatusAsync(Guid clientID, int status)
+        public static Response GetCategoriesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -948,10 +948,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -975,7 +975,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCategoryByIDAsync(Guid clientID, Guid id)
+        public static Response GetCategoryByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -985,10 +985,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1012,7 +1012,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountCategoriesAsync(Guid clientID)
+        public static Response GetCountCategoriesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1022,10 +1022,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1041,7 +1041,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountCategoriesByStatusAsync(Guid clientID, int status)
+        public static Response GetCountCategoriesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1051,10 +1051,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1070,7 +1070,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostSaveCategoryAsync(SaveCategoryRequest request)
+        public static Response PostSaveCategoryAsync(SaveCategoryRequest request)
         {
             var customResponse = new Response();
             try
@@ -1082,10 +1082,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1101,7 +1101,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateCategoryStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public static Response PostUpdateCategoryStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1113,10 +1113,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1135,7 +1135,7 @@ namespace AllOut.Desktop.Controllers
         #endregion
 
         #region Inventories
-        public static async Task<Response> GetInventoriesAsync(Guid clientID)
+        public static Response GetInventoriesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1145,10 +1145,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1172,7 +1172,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetInventoriesByQueryAsync(Guid clientID, string query)
+        public static Response GetInventoriesByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -1182,10 +1182,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1209,7 +1209,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetInventoriesByStatusAsync(Guid clientID, int status)
+        public static Response GetInventoriesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1219,10 +1219,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1246,7 +1246,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetInventoryByIDAsync(Guid clientID, string id)
+        public static Response GetInventoryByIDAsync(Guid clientID, string id)
         {
             var customResponse = new Response();
             try
@@ -1256,10 +1256,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1283,7 +1283,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountInventoriesAsync(Guid clientID)
+        public static Response GetCountInventoriesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1293,10 +1293,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1312,7 +1312,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountInventoriesByStatusAsync(Guid clientID, int status)
+        public static Response GetCountInventoriesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1322,10 +1322,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1341,7 +1341,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostSaveInventoryAsync(SaveInventoryRequest request)
+        public static Response PostSaveInventoryAsync(SaveInventoryRequest request)
         {
             var customResponse = new Response();
             try
@@ -1353,10 +1353,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1372,7 +1372,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateInventoryStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
+        public static Response PostUpdateInventoryStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1384,10 +1384,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1406,7 +1406,7 @@ namespace AllOut.Desktop.Controllers
         #endregion
 
         #region Sales
-        public static async Task<Response> GetSalesAsync(Guid clientID)
+        public static Response GetSalesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1416,10 +1416,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1443,7 +1443,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetSalesByQueryAsync(Guid clientID, string query)
+        public static Response GetSalesByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -1453,10 +1453,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1480,7 +1480,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetSalesByStatusAsync(Guid clientID, int status)
+        public static Response GetSalesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1490,10 +1490,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1517,7 +1517,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetSalesByIDAsync(Guid clientID, Guid id)
+        public static Response GetSalesByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -1527,10 +1527,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1554,7 +1554,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountSalesAsync(Guid clientID)
+        public static Response GetCountSalesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1564,10 +1564,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1583,7 +1583,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetCountSalesByStatusAsync(Guid clientID, int status)
+        public static Response GetCountSalesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1593,10 +1593,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1612,7 +1612,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostSaveSalesAsync(SaveSalesRequest request)
+        public static Response PostSaveSalesAsync(SaveSalesRequest request)
         {
             var customResponse = new Response();
             try
@@ -1624,10 +1624,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1643,7 +1643,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> PostUpdateSalesStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
+        public static Response PostUpdateSalesStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1655,10 +1655,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1677,7 +1677,7 @@ namespace AllOut.Desktop.Controllers
         #endregion
 
         #region SalesReport
-        public static async Task<Response> GetSalesReportAsync(Guid clientID)
+        public static Response GetSalesReportAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1687,10 +1687,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1714,7 +1714,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetSalesReportByYearAsync(Guid clientID, int year)
+        public static Response GetSalesReportByYearAsync(Guid clientID, int year)
         {
             var customResponse = new Response();
             try
@@ -1724,10 +1724,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1751,7 +1751,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static async Task<Response> GetSalesReportByYearAndMonthAsync(Guid clientID, string query)
+        public static Response GetSalesReportByYearAndMonthAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -1761,10 +1761,10 @@ namespace AllOut.Desktop.Controllers
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();

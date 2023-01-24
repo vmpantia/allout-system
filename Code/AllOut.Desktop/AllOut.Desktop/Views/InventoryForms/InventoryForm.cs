@@ -28,7 +28,7 @@ namespace AllOut.Desktop.Views.InventoryForms
             PopulateInventory(inventoryID);
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             //Disable Controls
             EnableControls(false);
@@ -50,7 +50,7 @@ namespace AllOut.Desktop.Views.InventoryForms
             };
 
             //Send Request for Save
-            var response = await HttpController.PostSaveInventoryAsync(request);
+            var response = HttpController.PostSaveInventoryAsync(request);
 
             //Enable Controls
             EnableControls(true);
@@ -77,13 +77,13 @@ namespace AllOut.Desktop.Views.InventoryForms
             Close();
         }
 
-        private async void PopulateInventory(string inventoryID)
+        private void PopulateInventory(string inventoryID)
         {
             //Check if Add or Edit
             if (!_isAdd)
             {
                 //Get Inventory based on the given ID
-                var response = await HttpController.GetInventoryByIDAsync(Globals.ClientInformation.ClientID, inventoryID);
+                var response = HttpController.GetInventoryByIDAsync(Globals.ClientInformation.ClientID, inventoryID);
                 if (response.Result != ResponseResult.SUCCESS)
                 {
                     MessageBox.Show((string)response.Data,
@@ -103,10 +103,10 @@ namespace AllOut.Desktop.Views.InventoryForms
             EnableControls(_inventoryInfo.Status == Constants.STATUS_ENABLED_INT);
         }
 
-        private async void PopulateProducts()
+        private void PopulateProducts()
         {
             var products = new List<ProductFullInformation>();
-            var response = await HttpController.GetProductsByStatusAsync(Globals.ClientInformation.ClientID, Constants.STATUS_ENABLED_INT);
+            var response = HttpController.GetProductsByStatusAsync(Globals.ClientInformation.ClientID, Constants.STATUS_ENABLED_INT);
 
             if (response.Result == ResponseResult.SUCCESS)
                 products = ((List<ProductFullInformation>)response.Data).OrderBy(data => data.ProductName).ToList();

@@ -115,13 +115,13 @@ namespace AllOut.Desktop.Views.UserForms
             }
         }
 
-        private async void PopulateUsers(string query = null)
+        private void PopulateUsers(string query = null)
         {
             Response response;
             if (string.IsNullOrEmpty(query))
-                response = await HttpController.GetUsersAsync(Globals.ClientInformation.ClientID);
+                response = HttpController.GetUsersAsync(Globals.ClientInformation.ClientID);
             else
-                response = await HttpController.GetUsersByQueryAsync(Globals.ClientInformation.ClientID, query);
+                response = HttpController.GetUsersByQueryAsync(Globals.ClientInformation.ClientID, query);
 
             btnSelectAll.Enabled = false;
             tblObjectList.Visible = false;
@@ -195,7 +195,7 @@ namespace AllOut.Desktop.Views.UserForms
             tblObjectList.Columns[ID_COL_IDX].Visible = false;
         }
 
-        private async void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
+        private void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
         {
             string action;
             if (newStatus == Constants.STATUS_ENABLED_INT)
@@ -221,7 +221,7 @@ namespace AllOut.Desktop.Views.UserForms
                 newStatus = newStatus
             };
 
-            var response = await HttpController.PostUpdateUserStatusByIDsAsync(request);
+            var response = HttpController.PostUpdateUserStatusByIDsAsync(request);
 
             if (response.Result != ResponseResult.SUCCESS)
             {

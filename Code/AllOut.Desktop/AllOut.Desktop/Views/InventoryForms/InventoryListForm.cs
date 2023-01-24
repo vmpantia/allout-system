@@ -115,13 +115,13 @@ namespace AllOut.Desktop.Views.InventoryForms
             }
         }
 
-        private async void PopulateInventories(string query = null)
+        private void PopulateInventories(string query = null)
         {
             Response response;
             if (string.IsNullOrEmpty(query))
-                response = await HttpController.GetInventoriesAsync(Globals.ClientInformation.ClientID);
+                response = HttpController.GetInventoriesAsync(Globals.ClientInformation.ClientID);
             else
-                response = await HttpController.GetInventoriesByQueryAsync(Globals.ClientInformation.ClientID, query);
+                response = HttpController.GetInventoriesByQueryAsync(Globals.ClientInformation.ClientID, query);
 
             btnSelectAll.Enabled = false;
             tblObjectList.Visible = false;
@@ -188,7 +188,7 @@ namespace AllOut.Desktop.Views.InventoryForms
             tblObjectList.Columns.Insert(CHECKBOX_COL_IDX, selectCheckBox);
         }
 
-        private async void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
+        private void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
         {
             string action;
             if (newStatus == Constants.STATUS_ENABLED_INT)
@@ -214,7 +214,7 @@ namespace AllOut.Desktop.Views.InventoryForms
                 newStatus = newStatus
             };
 
-            var response = await HttpController.PostUpdateInventoryStatusByIDsAsync(request);
+            var response = HttpController.PostUpdateInventoryStatusByIDsAsync(request);
 
             if (response.Result != ResponseResult.SUCCESS)
             {

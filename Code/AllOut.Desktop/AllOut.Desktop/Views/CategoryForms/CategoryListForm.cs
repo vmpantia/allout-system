@@ -117,13 +117,13 @@ namespace AllOut.Desktop.Views.CategoryForms
             }
         }
 
-        private async void PopulateCategories(string query = null)
+        private void PopulateCategories(string query = null)
         {
             Response response;
             if (string.IsNullOrEmpty(query))
-                response = await HttpController.GetCategoriesAsync(Globals.ClientInformation.ClientID);
+                response = HttpController.GetCategoriesAsync(Globals.ClientInformation.ClientID);
             else
-                response = await HttpController.GetCategoriesByQueryAsync(Globals.ClientInformation.ClientID, query);
+                response = HttpController.GetCategoriesByQueryAsync(Globals.ClientInformation.ClientID, query);
 
             btnSelectAll.Enabled = false;
             tblObjectList.Visible = false;
@@ -194,7 +194,7 @@ namespace AllOut.Desktop.Views.CategoryForms
             tblObjectList.Columns[ID_COL_IDX].Visible = false;
         }
 
-        private async void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
+        private void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
         {
             string action;
             if (newStatus == Constants.STATUS_ENABLED_INT)
@@ -220,7 +220,7 @@ namespace AllOut.Desktop.Views.CategoryForms
                 newStatus = newStatus
             };
 
-            var response = await HttpController.PostUpdateCategoryStatusByIDsAsync(request);
+            var response = HttpController.PostUpdateCategoryStatusByIDsAsync(request);
 
             if (response.Result != ResponseResult.SUCCESS)
             {

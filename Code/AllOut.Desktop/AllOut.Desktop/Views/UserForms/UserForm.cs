@@ -26,7 +26,7 @@ namespace AllOut.Desktop.Views.UserForms
             PopulateUser(userID);
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             //Disable Controls
             EnableControls(false);
@@ -53,7 +53,7 @@ namespace AllOut.Desktop.Views.UserForms
             };
 
             //Send Request for Save
-            var response = await HttpController.PostSaveUserAsync(request);
+            var response = HttpController.PostSaveUserAsync(request);
 
             //Enable Controls
             EnableControls(true);
@@ -80,13 +80,13 @@ namespace AllOut.Desktop.Views.UserForms
             Close();
         }
 
-        private async void PopulateUser(Guid userID)
+        private void PopulateUser(Guid userID)
         {
             //Check if Add or Edit
             if (!_isAdd)
             {
                 //Get User based on the given ID
-                var response = await HttpController.GetUserByIDAsync(Globals.ClientInformation.ClientID, userID);
+                var response = HttpController.GetUserByIDAsync(Globals.ClientInformation.ClientID, userID);
                 if (response.Result != ResponseResult.SUCCESS)
                 {
                     MessageBox.Show((string)response.Data,

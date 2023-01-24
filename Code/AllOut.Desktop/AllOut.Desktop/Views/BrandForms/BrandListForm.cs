@@ -117,13 +117,13 @@ namespace AllOut.Desktop.Views.BrandForms
             }
         }
 
-        private async void PopulateBrands(string query = null)
+        private void PopulateBrands(string query = null)
         {
             Response response;
             if (string.IsNullOrEmpty(query))
-                response = await HttpController.GetBrandsAsync(Globals.ClientInformation.ClientID);
+                response = HttpController.GetBrandsAsync(Globals.ClientInformation.ClientID);
             else
-                response = await HttpController.GetBrandsByQueryAsync(Globals.ClientInformation.ClientID, query);
+                response = HttpController.GetBrandsByQueryAsync(Globals.ClientInformation.ClientID, query);
 
             btnSelectAll.Enabled = false;
             tblObjectList.Visible = false;
@@ -194,7 +194,7 @@ namespace AllOut.Desktop.Views.BrandForms
             tblObjectList.Columns[ID_COL_IDX].Visible = false;
         }
 
-        private async void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
+        private void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
         {
             string action;
             if (newStatus == Constants.STATUS_ENABLED_INT)
@@ -220,7 +220,7 @@ namespace AllOut.Desktop.Views.BrandForms
                 newStatus = newStatus
             };
 
-            var response = await HttpController.PostUpdateBrandStatusByIDsAsync(request);
+            var response = HttpController.PostUpdateBrandStatusByIDsAsync(request);
 
             if (response.Result != ResponseResult.SUCCESS)
             {

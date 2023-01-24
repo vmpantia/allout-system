@@ -29,7 +29,7 @@ namespace AllOut.Desktop.Views.ProductForms
             PopulateProduct(productID);
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             //Disable Controls
             EnableControls(false);
@@ -54,7 +54,7 @@ namespace AllOut.Desktop.Views.ProductForms
             };
 
             //Send Request for Save
-            var response = await HttpController.PostSaveProductAsync(request);
+            var response = HttpController.PostSaveProductAsync(request);
 
             //Enable Controls
             EnableControls(true);
@@ -81,13 +81,13 @@ namespace AllOut.Desktop.Views.ProductForms
             Close();
         }
 
-        private async void PopulateProduct(Guid productID)
+        private void PopulateProduct(Guid productID)
         {
             //Check if Add or Edit
             if (!_isAdd)
             {
                 //Get Product based on the given ID
-                var response = await HttpController.GetProductByIDAsync(Globals.ClientInformation.ClientID, productID);
+                var response = HttpController.GetProductByIDAsync(Globals.ClientInformation.ClientID, productID);
                 if (response.Result != ResponseResult.SUCCESS)
                 {
                     MessageBox.Show((string)response.Data,
@@ -110,10 +110,10 @@ namespace AllOut.Desktop.Views.ProductForms
             EnableControls(_productInfo.Status == Constants.STATUS_ENABLED_INT);
         }
 
-        private async void PopulateBrands()
+        private void PopulateBrands()
         {
             var brands = new List<Brand>();
-            var response = await HttpController.GetBrandsByStatusAsync(Globals.ClientInformation.ClientID, Constants.STATUS_ENABLED_INT);
+            var response = HttpController.GetBrandsByStatusAsync(Globals.ClientInformation.ClientID, Constants.STATUS_ENABLED_INT);
 
             if (response.Result == ResponseResult.SUCCESS)
                 brands = ((List<Brand>)response.Data).OrderBy(data => data.Name).ToList();
@@ -129,10 +129,10 @@ namespace AllOut.Desktop.Views.ProductForms
             cmbBrand.ValueMember = Constants.CMB_VALUE_BRAND_ID;
         }
 
-        private async void PopulateCategories()
+        private void PopulateCategories()
         {
             var categories = new List<Category>();
-            var response = await HttpController.GetCategoriesByStatusAsync(Globals.ClientInformation.ClientID, Constants.STATUS_ENABLED_INT);
+            var response = HttpController.GetCategoriesByStatusAsync(Globals.ClientInformation.ClientID, Constants.STATUS_ENABLED_INT);
 
             if (response.Result == ResponseResult.SUCCESS)
                 categories = ((List<Category>)response.Data).OrderBy(data => data.Name).ToList();

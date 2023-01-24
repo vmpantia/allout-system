@@ -115,13 +115,13 @@ namespace AllOut.Desktop.Views.ProductForms
             }
         }
 
-        private async void PopulateProducts(string query = null)
+        private void PopulateProducts(string query = null)
         {
             Response response;
             if (string.IsNullOrEmpty(query))
-                response = await HttpController.GetProductsAsync(Globals.ClientInformation.ClientID);
+                response = HttpController.GetProductsAsync(Globals.ClientInformation.ClientID);
             else
-                response = await HttpController.GetProductsByQueryAsync(Globals.ClientInformation.ClientID, query);
+                response = HttpController.GetProductsByQueryAsync(Globals.ClientInformation.ClientID, query);
 
             btnSelectAll.Enabled = false;
             tblObjectList.Visible = false;
@@ -197,7 +197,7 @@ namespace AllOut.Desktop.Views.ProductForms
             tblObjectList.Columns[ID_COL_IDX].Visible = false;
         }
 
-        private async void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
+        private void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
         {
             string action;
             if (newStatus == Constants.STATUS_ENABLED_INT)
@@ -223,7 +223,7 @@ namespace AllOut.Desktop.Views.ProductForms
                 newStatus = newStatus
             };
 
-            var response = await HttpController.PostUpdateProductStatusByIDsAsync(request);
+            var response = HttpController.PostUpdateProductStatusByIDsAsync(request);
 
             if (response.Result != ResponseResult.SUCCESS)
             {

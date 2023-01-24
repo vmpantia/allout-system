@@ -25,7 +25,7 @@ namespace AllOut.Desktop.Views.BrandForms
             PopulateBrand(brandID);
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             //Disable Controls
             EnableControls(false);
@@ -46,7 +46,7 @@ namespace AllOut.Desktop.Views.BrandForms
             };
 
             //Send Request for Save
-            var response = await HttpController.PostSaveBrandAsync(request);
+            var response = HttpController.PostSaveBrandAsync(request);
 
             //Enable Controls
             EnableControls(true);
@@ -73,13 +73,13 @@ namespace AllOut.Desktop.Views.BrandForms
             Close();
         }
 
-        private async void PopulateBrand(Guid brandID)
+        private void PopulateBrand(Guid brandID)
         {
             //Check if Add or Edit
             if (!_isAdd)
             {
                 //Get Brand based on the given ID
-                var response = await HttpController.GetBrandByIDAsync(Globals.ClientInformation.ClientID, brandID);
+                var response = HttpController.GetBrandByIDAsync(Globals.ClientInformation.ClientID, brandID);
                 if (response.Result != ResponseResult.SUCCESS)
                 {
                     MessageBox.Show((string)response.Data,

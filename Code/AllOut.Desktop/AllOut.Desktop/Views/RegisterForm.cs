@@ -21,7 +21,7 @@ namespace AllOut.Desktop.Views
             Close();
         }
 
-        private async void btnRegister_Click(object sender, EventArgs e)
+        private void btnRegister_Click(object sender, EventArgs e)
         {
             EnableButtonsAndFields(false);
 
@@ -67,7 +67,7 @@ namespace AllOut.Desktop.Views
                 }
             };
 
-            var response = await HttpController.PostSaveUserAsync(request);
+            var response = HttpController.PostSaveUserAsync(request);
             EnableButtonsAndFields(true);
 
             if (response.Result == ResponseResult.API_ERROR)

@@ -110,7 +110,7 @@ namespace AllOut.Desktop.Views
             this.Text = formName;
         }
 
-        private async void SetUserInfo(Client client)
+        private void SetUserInfo(Client client)
         {
             if (client == null)
             {
@@ -119,7 +119,7 @@ namespace AllOut.Desktop.Views
                 return;
             }
 
-            var response = await HttpController.GetUserByIDAsync(client.ClientID, client.UserID);
+            var response = HttpController.GetUserByIDAsync(client.ClientID, client.UserID);
             //Get Product based on the given ID
             if (response.Result != ResponseResult.SUCCESS)
             {

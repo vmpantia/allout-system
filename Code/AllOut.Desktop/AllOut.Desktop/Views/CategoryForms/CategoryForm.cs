@@ -25,7 +25,7 @@ namespace AllOut.Desktop.Views.CategoryForms
             PopulateCategory(brandID);
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             //Disable Controls
             EnableControls(false);
@@ -46,7 +46,7 @@ namespace AllOut.Desktop.Views.CategoryForms
             };
 
             //Send Request for Save
-            var response = await HttpController.PostSaveCategoryAsync(request);
+            var response = HttpController.PostSaveCategoryAsync(request);
 
             //Enable Controls
             EnableControls(true);
@@ -73,13 +73,13 @@ namespace AllOut.Desktop.Views.CategoryForms
             Close();
         }
 
-        private async void PopulateCategory(Guid brandID)
+        private void PopulateCategory(Guid brandID)
         {
             //Check if Add or Edit
             if (!_isAdd)
             {
                 //Get Category based on the given ID
-                var response = await HttpController.GetCategoryByIDAsync(Globals.ClientInformation.ClientID, brandID);
+                var response = HttpController.GetCategoryByIDAsync(Globals.ClientInformation.ClientID, brandID);
                 if (response.Result != ResponseResult.SUCCESS)
                 {
                     MessageBox.Show((string)response.Data,

@@ -97,7 +97,7 @@
             this.guna2HtmlLabel5.Location = new System.Drawing.Point(21, 154);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             this.guna2HtmlLabel5.Size = new System.Drawing.Size(68, 19);
-            this.guna2HtmlLabel5.TabIndex = 9;
+            this.guna2HtmlLabel5.TabIndex = 7;
             this.guna2HtmlLabel5.Text = "PRODUCT:";
             // 
             // guna2PictureBox1
@@ -127,7 +127,7 @@
             this.btnCancel.Location = new System.Drawing.Point(272, 328);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(89, 34);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -148,7 +148,7 @@
             this.btnSave.Location = new System.Drawing.Point(177, 328);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(89, 34);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -161,7 +161,7 @@
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(21, 72);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(99, 19);
-            this.guna2HtmlLabel1.TabIndex = 8;
+            this.guna2HtmlLabel1.TabIndex = 6;
             this.guna2HtmlLabel1.Text = "INVENTORY ID:";
             // 
             // guna2HtmlLabel2
@@ -172,7 +172,7 @@
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(21, 241);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             this.guna2HtmlLabel2.Size = new System.Drawing.Size(73, 19);
-            this.guna2HtmlLabel2.TabIndex = 14;
+            this.guna2HtmlLabel2.TabIndex = 8;
             this.guna2HtmlLabel2.Text = "QUANTITY:";
             // 
             // txtInventoryID
@@ -199,7 +199,7 @@
             this.txtInventoryID.PlaceholderText = "";
             this.txtInventoryID.SelectedText = "";
             this.txtInventoryID.Size = new System.Drawing.Size(340, 41);
-            this.txtInventoryID.TabIndex = 15;
+            this.txtInventoryID.TabIndex = 1;
             // 
             // cmbProduct
             // 
@@ -216,7 +216,7 @@
             this.cmbProduct.Location = new System.Drawing.Point(21, 179);
             this.cmbProduct.Name = "cmbProduct";
             this.cmbProduct.Size = new System.Drawing.Size(340, 36);
-            this.cmbProduct.TabIndex = 16;
+            this.cmbProduct.TabIndex = 2;
             // 
             // InventoryForm
             // 

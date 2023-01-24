@@ -18,7 +18,7 @@ namespace AllOut.Desktop.Views
             ResetError();
         }
 
-        private async void btnLogin_Click(object sender, EventArgs e)
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             ResetError();
             EnableButtonsAndFields(false);
@@ -32,7 +32,7 @@ namespace AllOut.Desktop.Views
                 WindowsVersion = Constants.NA
             };
 
-            var response = await HttpController.PostLoginUserAsync(loginUerRequest);
+            var response = HttpController.PostLoginUserAsync(loginUerRequest);
 
             EnableButtonsAndFields(true);
 
