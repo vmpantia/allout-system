@@ -153,6 +153,16 @@ namespace AllOut.Desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_close_90_black {
+            get {
+                object obj = ResourceManager.GetObject("icons8-close-90-black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_dashboard_layout_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-dashboard-layout-96", resourceCulture);
@@ -273,6 +283,16 @@ namespace AllOut.Desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_receive_cash_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-receive-cash-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_save_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-save-96", resourceCulture);
@@ -346,6 +366,16 @@ namespace AllOut.Desktop.Properties {
         internal static System.Drawing.Bitmap icons8_trash_90 {
             get {
                 object obj = ResourceManager.GetObject("icons8-trash-90", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_update_left_rotation_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-update-left-rotation-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

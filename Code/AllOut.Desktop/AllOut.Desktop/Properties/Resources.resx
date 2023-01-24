@@ -130,6 +130,9 @@
   <data name="icons8-people-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-people-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-update-left-rotation-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-update-left-rotation-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-warehouse-64-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-warehouse-64-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -199,14 +202,20 @@
   <data name="icons8-total-sales-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-total-sales-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-checkmark-90" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-checkmark-90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-close-90-black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-close-90-black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-add-user-male-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-add-user-male-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-warehouse-1001" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-warehouse-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-checkmark-90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-checkmark-90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-total-sales-641" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-total-sales-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-shipping-product-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-shipping-product-96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,7 +226,7 @@
   <data name="icons8-disabled-64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\icons8-disabled-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-total-sales-641" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\icons8-total-sales-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-receive-cash-100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\icons8-receive-cash-100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

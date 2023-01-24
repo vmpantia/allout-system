@@ -308,6 +308,10 @@
     <None Include="Images\icons8-category-96-white.png" />
     <None Include="Images\icons8-total-sales-64-white.png" />
     <None Include="Images\icons8-total-sales-64.png" />
+    <None Include="Images\icons8-close-90-black.png" />
+    <None Include="Images\icons8-update-left-rotation-80.png" />
+    <None Include="Images\icons8-update-left-rotation-100.png" />
+    <None Include="Images\icons8-receive-cash-100.png" />
     <Content Include="Images\icons8-user-96.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

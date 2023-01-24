@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
             this.OtherCharges = new Guna.UI2.WinForms.Guna2Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tblOtherChargeList = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.btnAddOtherCharge = new Guna.UI2.WinForms.Guna2Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Item = new Guna.UI2.WinForms.Guna2Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tblItemList = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.btnAddItem = new Guna.UI2.WinForms.Guna2Button();
             this.label3 = new System.Windows.Forms.Label();
             this.Additional = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,10 +59,8 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.lblCashier = new System.Windows.Forms.Label();
-            this.lblSalesID = new System.Windows.Forms.Label();
-            this.btnAddOtherCharge = new Guna.UI2.WinForms.Guna2Button();
-            this.btnAddItem = new Guna.UI2.WinForms.Guna2Button();
             this.btnPay = new Guna.UI2.WinForms.Guna2Button();
+            this.lblSalesID = new System.Windows.Forms.Label();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
             this.btnReset = new Guna.UI2.WinForms.Guna2Button();
             this.tableLayoutPanel1.SuspendLayout();
@@ -168,26 +168,26 @@
             // 
             this.tblOtherChargeList.AllowUserToAddRows = false;
             this.tblOtherChargeList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tblOtherChargeList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblOtherChargeList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tblOtherChargeList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblOtherChargeList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
             this.tblOtherChargeList.ColumnHeadersHeight = 30;
             this.tableLayoutPanel3.SetColumnSpan(this.tblOtherChargeList, 2);
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tblOtherChargeList.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tblOtherChargeList.DefaultCellStyle = dataGridViewCellStyle27;
             this.tblOtherChargeList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblOtherChargeList.GridColor = System.Drawing.SystemColors.Control;
             this.tblOtherChargeList.Location = new System.Drawing.Point(3, 47);
@@ -219,6 +219,28 @@
             this.tblOtherChargeList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Silver;
             this.tblOtherChargeList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.tblOtherChargeList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblOtherChargeList_CellContentClick);
+            // 
+            // btnAddOtherCharge
+            // 
+            this.btnAddOtherCharge.BorderRadius = 6;
+            this.btnAddOtherCharge.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnAddOtherCharge.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnAddOtherCharge.DisabledState.FillColor = System.Drawing.Color.Transparent;
+            this.btnAddOtherCharge.DisabledState.ForeColor = System.Drawing.Color.Gray;
+            this.btnAddOtherCharge.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAddOtherCharge.FillColor = System.Drawing.Color.White;
+            this.btnAddOtherCharge.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddOtherCharge.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAddOtherCharge.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnAddOtherCharge.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAddOtherCharge.ImageSize = new System.Drawing.Size(15, 15);
+            this.btnAddOtherCharge.Location = new System.Drawing.Point(295, 3);
+            this.btnAddOtherCharge.Name = "btnAddOtherCharge";
+            this.btnAddOtherCharge.Size = new System.Drawing.Size(118, 38);
+            this.btnAddOtherCharge.TabIndex = 2;
+            this.btnAddOtherCharge.Text = "Add Charge";
+            this.btnAddOtherCharge.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAddOtherCharge.Click += new System.EventHandler(this.btnAddOtherCharge_Click);
             // 
             // label1
             // 
@@ -271,26 +293,26 @@
             // 
             this.tblItemList.AllowUserToAddRows = false;
             this.tblItemList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tblItemList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblItemList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tblItemList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblItemList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
             this.tblItemList.ColumnHeadersHeight = 30;
             this.tableLayoutPanel2.SetColumnSpan(this.tblItemList, 2);
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tblItemList.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tblItemList.DefaultCellStyle = dataGridViewCellStyle30;
             this.tblItemList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblItemList.GridColor = System.Drawing.SystemColors.Control;
             this.tblItemList.Location = new System.Drawing.Point(3, 47);
@@ -322,6 +344,28 @@
             this.tblItemList.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.Silver;
             this.tblItemList.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.tblItemList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tblItemList_CellContentClick);
+            // 
+            // btnAddItem
+            // 
+            this.btnAddItem.BorderRadius = 6;
+            this.btnAddItem.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnAddItem.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnAddItem.DisabledState.FillColor = System.Drawing.Color.Transparent;
+            this.btnAddItem.DisabledState.ForeColor = System.Drawing.Color.Gray;
+            this.btnAddItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAddItem.FillColor = System.Drawing.Color.White;
+            this.btnAddItem.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAddItem.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnAddItem.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAddItem.ImageSize = new System.Drawing.Size(15, 15);
+            this.btnAddItem.Location = new System.Drawing.Point(1002, 3);
+            this.btnAddItem.Name = "btnAddItem";
+            this.btnAddItem.Size = new System.Drawing.Size(107, 38);
+            this.btnAddItem.TabIndex = 2;
+            this.btnAddItem.Text = "Add Item";
+            this.btnAddItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
             // 
             // label3
             // 
@@ -491,22 +535,19 @@
             this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel4, 4);
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
             this.tableLayoutPanel4.Controls.Add(this.lblCashier, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnPay, 4, 0);
             this.tableLayoutPanel4.Controls.Add(this.lblSalesID, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnCancel, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnReset, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnCancel, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnReset, 3, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 831);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1574, 46);
             this.tableLayoutPanel4.TabIndex = 26;
             // 
@@ -517,68 +558,10 @@
             this.lblCashier.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCashier.Location = new System.Drawing.Point(3, 0);
             this.lblCashier.Name = "lblCashier";
-            this.lblCashier.Size = new System.Drawing.Size(481, 46);
+            this.lblCashier.Size = new System.Drawing.Size(511, 46);
             this.lblCashier.TabIndex = 0;
             this.lblCashier.Text = "Cashier: Vincent M. Pantia";
             this.lblCashier.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblSalesID
-            // 
-            this.lblSalesID.AutoSize = true;
-            this.lblSalesID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSalesID.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSalesID.Location = new System.Drawing.Point(490, 0);
-            this.lblSalesID.Name = "lblSalesID";
-            this.lblSalesID.Size = new System.Drawing.Size(481, 46);
-            this.lblSalesID.TabIndex = 1;
-            this.lblSalesID.Text = "Sales ID: SL2023012400005";
-            this.lblSalesID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnAddOtherCharge
-            // 
-            this.btnAddOtherCharge.BorderRadius = 6;
-            this.btnAddOtherCharge.DisabledState.BorderColor = System.Drawing.Color.Transparent;
-            this.btnAddOtherCharge.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnAddOtherCharge.DisabledState.FillColor = System.Drawing.Color.Transparent;
-            this.btnAddOtherCharge.DisabledState.ForeColor = System.Drawing.Color.Gray;
-            this.btnAddOtherCharge.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAddOtherCharge.FillColor = System.Drawing.Color.White;
-            this.btnAddOtherCharge.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOtherCharge.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAddOtherCharge.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnAddOtherCharge.Image = global::AllOut.Desktop.Properties.Resources.icons8_plus_math_90;
-            this.btnAddOtherCharge.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAddOtherCharge.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnAddOtherCharge.Location = new System.Drawing.Point(295, 3);
-            this.btnAddOtherCharge.Name = "btnAddOtherCharge";
-            this.btnAddOtherCharge.Size = new System.Drawing.Size(118, 38);
-            this.btnAddOtherCharge.TabIndex = 2;
-            this.btnAddOtherCharge.Text = "Add Charge";
-            this.btnAddOtherCharge.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAddOtherCharge.Click += new System.EventHandler(this.btnAddOtherCharge_Click);
-            // 
-            // btnAddItem
-            // 
-            this.btnAddItem.BorderRadius = 6;
-            this.btnAddItem.DisabledState.BorderColor = System.Drawing.Color.Transparent;
-            this.btnAddItem.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnAddItem.DisabledState.FillColor = System.Drawing.Color.Transparent;
-            this.btnAddItem.DisabledState.ForeColor = System.Drawing.Color.Gray;
-            this.btnAddItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAddItem.FillColor = System.Drawing.Color.White;
-            this.btnAddItem.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAddItem.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnAddItem.Image = global::AllOut.Desktop.Properties.Resources.icons8_plus_math_90;
-            this.btnAddItem.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAddItem.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnAddItem.Location = new System.Drawing.Point(1002, 3);
-            this.btnAddItem.Name = "btnAddItem";
-            this.btnAddItem.Size = new System.Drawing.Size(107, 38);
-            this.btnAddItem.TabIndex = 2;
-            this.btnAddItem.Text = "Add Item";
-            this.btnAddItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
             // 
             // btnPay
             // 
@@ -589,18 +572,30 @@
             this.btnPay.DisabledState.ForeColor = System.Drawing.Color.Gray;
             this.btnPay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPay.FillColor = System.Drawing.Color.White;
-            this.btnPay.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnPay.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnPay.Image = global::AllOut.Desktop.Properties.Resources.icons8_plus_math_90;
+            this.btnPay.Image = global::AllOut.Desktop.Properties.Resources.icons8_receive_cash_100;
             this.btnPay.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnPay.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnPay.Location = new System.Drawing.Point(1377, 3);
+            this.btnPay.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnPay.Location = new System.Drawing.Point(1397, 3);
             this.btnPay.Name = "btnPay";
-            this.btnPay.Size = new System.Drawing.Size(194, 40);
+            this.btnPay.Size = new System.Drawing.Size(174, 40);
             this.btnPay.TabIndex = 24;
             this.btnPay.Text = "Pay";
-            this.btnPay.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnPay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblSalesID
+            // 
+            this.lblSalesID.AutoSize = true;
+            this.lblSalesID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSalesID.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSalesID.Location = new System.Drawing.Point(520, 0);
+            this.lblSalesID.Name = "lblSalesID";
+            this.lblSalesID.Size = new System.Drawing.Size(511, 46);
+            this.lblSalesID.TabIndex = 1;
+            this.lblSalesID.Text = "Sales ID: SL2023012400005";
+            this.lblSalesID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnCancel
             // 
@@ -611,18 +606,18 @@
             this.btnCancel.DisabledState.ForeColor = System.Drawing.Color.Gray;
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCancel.FillColor = System.Drawing.Color.White;
-            this.btnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnCancel.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Image = global::AllOut.Desktop.Properties.Resources.icons8_plus_math_90;
+            this.btnCancel.Image = global::AllOut.Desktop.Properties.Resources.icons8_close_90_black;
             this.btnCancel.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCancel.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnCancel.Location = new System.Drawing.Point(1177, 3);
+            this.btnCancel.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnCancel.Location = new System.Drawing.Point(1037, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(194, 40);
+            this.btnCancel.Size = new System.Drawing.Size(174, 40);
             this.btnCancel.TabIndex = 23;
             this.btnCancel.Text = "Cancel";
-            this.btnCancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnCancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnReset
@@ -634,18 +629,18 @@
             this.btnReset.DisabledState.ForeColor = System.Drawing.Color.Gray;
             this.btnReset.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReset.FillColor = System.Drawing.Color.White;
-            this.btnReset.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnReset.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnReset.Image = global::AllOut.Desktop.Properties.Resources.icons8_plus_math_90;
+            this.btnReset.Image = global::AllOut.Desktop.Properties.Resources.icons8_update_left_rotation_100;
             this.btnReset.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnReset.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnReset.Location = new System.Drawing.Point(977, 3);
+            this.btnReset.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnReset.Location = new System.Drawing.Point(1217, 3);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(194, 40);
+            this.btnReset.Size = new System.Drawing.Size(174, 40);
             this.btnReset.TabIndex = 23;
             this.btnReset.Text = "Reset";
-            this.btnReset.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnReset.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // POSForm
