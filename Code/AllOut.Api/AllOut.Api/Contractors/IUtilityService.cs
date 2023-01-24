@@ -12,8 +12,7 @@ namespace AllOut.Api.Contractors
         bool CheckUserAvailability(User user);
         int GetCurrentStock(int inventories, int sales);
         bool GetReorderState(int stock, int reorderpoint);
-        decimal GetTotal(IEnumerable<SalesItemFullInformation> items, IEnumerable<OtherCharge> otherCharges);
-        decimal GetTotal(IEnumerable<SalesItem> items, IEnumerable<OtherCharge> otherCharges);
+        decimal GetTotal(decimal totalItems, decimal totalAdditional, decimal totalDeduction);
         Task<string> ValidateClientID(Guid ClientID, RequestType requestType, string functionID);
         bool IsValidName(string name);
         bool IsValidEmail(string email);

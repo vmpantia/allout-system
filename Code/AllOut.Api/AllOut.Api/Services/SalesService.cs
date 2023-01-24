@@ -45,7 +45,10 @@ namespace AllOut.Api.Services
             {
                 sales.salesItems = await GetSalesItemsByID(sales.SalesID);
                 sales.otherCharges = await GetOtherChargesByID(sales.SalesID);
-                sales.Total = _utility.GetTotal(sales.salesItems, sales.otherCharges);
+                sales.TotalItems = sales.salesItems.Sum(x => x.Total);
+                sales.TotalAdditional = sales.otherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
+                sales.TotalDeduction = sales.otherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
+                sales.Total = _utility.GetTotal(sales.TotalItems, sales.TotalAdditional, sales.TotalDeduction);
             }
 
             return salesList;
@@ -74,7 +77,10 @@ namespace AllOut.Api.Services
             {
                 sales.salesItems = await GetSalesItemsByID(sales.SalesID);
                 sales.otherCharges = await GetOtherChargesByID(sales.SalesID);
-                sales.Total = _utility.GetTotal(sales.salesItems, sales.otherCharges);
+                sales.TotalItems = sales.salesItems.Sum(x => x.Total);
+                sales.TotalAdditional = sales.otherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
+                sales.TotalDeduction = sales.otherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
+                sales.Total = _utility.GetTotal(sales.TotalItems, sales.TotalAdditional, sales.TotalDeduction);
             }
 
             return salesList;
@@ -102,7 +108,10 @@ namespace AllOut.Api.Services
             {
                 sales.salesItems = await GetSalesItemsByID(sales.SalesID);
                 sales.otherCharges = await GetOtherChargesByID(sales.SalesID);
-                sales.Total = _utility.GetTotal(sales.salesItems, sales.otherCharges);
+                sales.TotalItems = sales.salesItems.Sum(x => x.Total);
+                sales.TotalAdditional = sales.otherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
+                sales.TotalDeduction = sales.otherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
+                sales.Total = _utility.GetTotal(sales.TotalItems, sales.TotalAdditional, sales.TotalDeduction);
             }
 
             return salesList;
@@ -131,7 +140,10 @@ namespace AllOut.Api.Services
             {
                 sales.salesItems = await GetSalesItemsByID(sales.SalesID);
                 sales.otherCharges = await GetOtherChargesByID(sales.SalesID);
-                sales.Total = _utility.GetTotal(sales.salesItems, sales.otherCharges);
+                sales.TotalItems = sales.salesItems.Sum(x => x.Total);
+                sales.TotalAdditional = sales.otherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
+                sales.TotalDeduction = sales.otherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
+                sales.Total = _utility.GetTotal(sales.TotalItems, sales.TotalAdditional, sales.TotalDeduction);
             }
 
             return salesList;

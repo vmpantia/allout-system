@@ -66,23 +66,9 @@ namespace AllOut.Api.Services.Common
             return stock <= reorderpoint;
         }
 
-        public decimal GetTotal(IEnumerable<SalesItemFullInformation> items, IEnumerable<OtherCharge> otherCharges)
+        public decimal GetTotal(decimal totalItems, decimal totalAdditional, decimal totalDeduction)
         {
-            var itemsTotal = items.Sum(data => data.Total);
-            var oc_Additionals = otherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
-            var oc_Deductions = otherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
-
-            var total = itemsTotal + oc_Additionals + oc_Deductions;
-            return Math.Round(total, 2);
-        }
-
-        public decimal GetTotal(IEnumerable<SalesItem> items, IEnumerable<OtherCharge> otherCharges)
-        {
-            var itemsTotal = items.Sum(data => data.Total);
-            var otherCharges_Add = otherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
-            var otherCharges_Minus = otherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
-
-            var total = itemsTotal + otherCharges_Add + otherCharges_Minus;
+            var total = totalItems + totalAdditional + totalDeduction;
             return Math.Round(total, 2);
         }
 

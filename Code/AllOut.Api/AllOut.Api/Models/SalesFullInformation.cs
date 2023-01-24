@@ -17,6 +17,9 @@ namespace AllOut.Api.Models
         //Other Charges
         public IEnumerable<OtherCharge> otherCharges { get; set; }
 
+        public decimal TotalItems { get; set; }
+        public decimal TotalAdditional { get; set; }
+        public decimal TotalDeduction { get; set; }
         public decimal Total { get; set; }
         public decimal AmountPaid { get; set; }
         public decimal Change { get; set; }
