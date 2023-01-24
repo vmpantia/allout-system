@@ -52,10 +52,12 @@ namespace AllOut.Desktop.Views.SalesForms
 
         private void btnPay_Click(object sender, EventArgs e)
         {
+            Globals._salesInfo.Remarks = txtRemarks.Text;
             var request = new SaveSalesRequest
             {
                 client = Globals.ClientInformation,
-                FunctionID = Constants.FUNCTION_ID_ADD_SALES_BY_ADMIN,
+                FunctionID = _isAdd ? Constants.FUNCTION_ID_ADD_SALES_BY_ADMIN :
+                                      Constants.FUNCTION_ID_BULK_CHANGE_SALES_BY_ADMIN,
                 RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
                 inputSales = Globals._salesInfo,
                 inputOtherCharges = Globals._salesOtherCharges,
@@ -69,6 +71,9 @@ namespace AllOut.Desktop.Views.SalesForms
                                                             Total = data.Total
                                                         }).ToList()
             };
+            var newPayFrm = new PaymentForm(request);
+            newPayFrm.ShowDialog();
+            //ResetSalesGlobalValue();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -123,7 +128,7 @@ namespace AllOut.Desktop.Views.SalesForms
             var totalAdditionals = Globals._salesOtherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
             var totalDeductions = Globals._salesOtherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
 
-            lblAdditional.Text = string.Format(Constants.PESO_FORMAT, Math.Round(totalAdditionals, 2).ToString(Constants.N0_FORMAT));
+            lblAdditionals.Text = string.Format(Constants.PESO_FORMAT, Math.Round(totalAdditionals, 2).ToString(Constants.N0_FORMAT));
             lblDeductions.Text = string.Format(Constants.PESO_FORMAT, Math.Round(totalDeductions, 2).ToString(Constants.N0_FORMAT));
 
             var total = totalItems + totalAdditionals + totalDeductions;
