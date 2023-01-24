@@ -1517,7 +1517,7 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
-        public static Response GetSalesByIDAsync(Guid clientID, Guid id)
+        public static Response GetSalesByIDAsync(Guid clientID, string id)
         {
             var customResponse = new Response();
             try
@@ -1538,7 +1538,7 @@ namespace AllOut.Desktop.Controllers
                 {
                     //Success Response
                     customResponse.Result = ResponseResult.SUCCESS;
-                    customResponse.Data = JsonConvert.DeserializeObject<Sales>(content);
+                    customResponse.Data = JsonConvert.DeserializeObject<SalesFullInformation>(content);
                     return customResponse;
                 }
                 //API Error Response

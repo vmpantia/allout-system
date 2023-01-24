@@ -10,9 +10,13 @@ namespace AllOut.Desktop.Common
 {
     public class Globals
     {
+        #region Sales Global
+        public static Sales _salesInfo { get; set; }
+        public static List<SalesItemFullInformation> _salesItems { get; set; }
+        public static List<OtherCharge> _salesOtherCharges { get; set; }
+        #endregion
+
         public static Client ClientInformation { get; set; }
-        public static List<SalesItem> _salesItems { get; set; }
-        public static List<SalesItem> _salesCharges { get; set; }
 
         public static Regex letterFormat = new Regex("[a-zA-Z]");
 

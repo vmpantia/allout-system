@@ -16,7 +16,7 @@ namespace AllOut.Desktop.Views.InventoryForms
         private bool _isAdd = true;
         private Inventory _inventoryInfo = new Inventory();
 
-        public InventoryForm(string inventoryID = "")
+        public InventoryForm(string inventoryID = null)
         {
             InitializeComponent();
 

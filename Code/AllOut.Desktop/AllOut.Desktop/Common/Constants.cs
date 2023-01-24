@@ -10,6 +10,11 @@ namespace AllOut.Desktop.Common
 {
     public class Constants
     {
+        public const string PESO_FORMAT = "₱ {0}";
+        public const string N0_FORMAT = "N2";
+        public const string CASHIER_POS_FORMAT = "Cashier: {0}";
+        public const string SALESID_POS_FORMAT = "Sales ID: {0}";
+
         public const string DATE_FORMAT = "yyyy/MM/dd";
         public const string NA = "N/A";
         public const string NAME_FORMAT = "{0}, {1}";
@@ -18,6 +23,9 @@ namespace AllOut.Desktop.Common
         public const string HASH = "@l10uTxK@lr0T1r35";
         public const string API_BASE = "http://www.allout.api.com/";
         //public const string API_BASE = "https://localhost:7252/";
+
+
+        public const string REGEX_NUMBER_PATTERN = "^[0-9]+$";
 
         #region Forms
         public const string FORM_DASHBOARDS = "Dashboards";
@@ -143,6 +151,7 @@ namespace AllOut.Desktop.Common
         #endregion
 
         #region Action Buttons
+        public const string BUTTON_NAME_DELETE = "Delete";
         public const string BUTTON_NAME_EDIT = "Edit";
         public const string BUTTON_NAME_SELECTION = "Selection";
         public const string BUTTON_HEADER_ACTION = "Action";
