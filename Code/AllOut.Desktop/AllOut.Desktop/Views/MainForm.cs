@@ -84,7 +84,7 @@ namespace AllOut.Desktop.Views
                     activeForm = new InventoryListForm();
                     break;
                 case Constants.FORM_SALES:
-                    activeForm = new ProductListForm();
+                    activeForm = new SalesListForm();
                     break;
                 case Constants.FORM_PRODUCTS:
                     activeForm = new ProductListForm();
