@@ -2,6 +2,7 @@
 using AllOut.Desktop.Controllers;
 using AllOut.Desktop.Models;
 using AllOut.Desktop.Models.enums;
+using AllOut.Desktop.Models.Requests;
 using AllOut.Desktop.Views.ProductForms;
 using System;
 using System.Collections.Generic;
@@ -49,13 +50,35 @@ namespace AllOut.Desktop.Views.SalesForms
             PopulateTables();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnPay_Click(object sender, EventArgs e)
         {
-            Close();
+            var request = new SaveSalesRequest
+            {
+                client = Globals.ClientInformation,
+                FunctionID = Constants.FUNCTION_ID_ADD_SALES_BY_ADMIN,
+                RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
+                inputSales = Globals._salesInfo,
+                inputOtherCharges = Globals._salesOtherCharges,
+                inputSalesItems = Globals._salesItems.Select(data => 
+                                                        new SalesItem
+                                                        {
+                                                            SalesID = data.SalesID,
+                                                            ProductID = data.ProductID,
+                                                            Quantity = data.Quantity,
+                                                            Price = data.Price,
+                                                            Total = data.Total
+                                                        }).ToList()
+            };
         }
+
         private void btnReset_Click(object sender, EventArgs e)
         {
             ResetSalesGlobalValue();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void tblItemList_CellContentClick(object sender, DataGridViewCellEventArgs e)
