@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnPay = new Guna.UI2.WinForms.Guna2Button();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.OtherCharges = new Guna.UI2.WinForms.Guna2Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tblOtherChargeList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.btnAddOtherCharge = new Guna.UI2.WinForms.Guna2Button();
@@ -48,30 +48,31 @@
             this.tblItemList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.btnAddItem = new Guna.UI2.WinForms.Guna2Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            this.Additional = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblAdditional = new System.Windows.Forms.Label();
-            this.guna2CustomGradientPanel6 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            this.Deductions = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblDeductions = new System.Windows.Forms.Label();
-            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.Total = new Guna.UI2.WinForms.Guna2Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.lblSalesID = new System.Windows.Forms.Label();
             this.lblCashier = new System.Windows.Forms.Label();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnReset = new Guna.UI2.WinForms.Guna2Button();
             this.tableLayoutPanel1.SuspendLayout();
-            this.guna2Panel1.SuspendLayout();
+            this.OtherCharges.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblOtherChargeList)).BeginInit();
             this.Item.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblItemList)).BeginInit();
-            this.guna2CustomGradientPanel2.SuspendLayout();
-            this.guna2CustomGradientPanel6.SuspendLayout();
-            this.guna2Panel2.SuspendLayout();
+            this.Additional.SuspendLayout();
+            this.Deductions.SuspendLayout();
+            this.Total.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,24 +85,22 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 221F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 221F));
             this.tableLayoutPanel1.Controls.Add(this.txtDescription, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnPay, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnCancel, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.guna2Panel1, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.OtherCharges, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.Item, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.guna2CustomGradientPanel2, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.guna2CustomGradientPanel6, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.guna2Panel2, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.Additional, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.Deductions, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.Total, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 10);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1580, 880);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -130,7 +129,7 @@
             this.txtDescription.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.txtDescription.PlaceholderText = "Remarks";
             this.txtDescription.SelectedText = "";
-            this.txtDescription.Size = new System.Drawing.Size(436, 313);
+            this.txtDescription.Size = new System.Drawing.Size(436, 310);
             this.txtDescription.TabIndex = 25;
             // 
             // btnPay
@@ -148,10 +147,9 @@
             this.btnPay.Image = global::AllOut.Desktop.Properties.Resources.icons8_plus_math_90;
             this.btnPay.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnPay.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnPay.Location = new System.Drawing.Point(1362, 834);
+            this.btnPay.Location = new System.Drawing.Point(1377, 3);
             this.btnPay.Name = "btnPay";
-            this.tableLayoutPanel1.SetRowSpan(this.btnPay, 2);
-            this.btnPay.Size = new System.Drawing.Size(215, 43);
+            this.btnPay.Size = new System.Drawing.Size(194, 40);
             this.btnPay.TabIndex = 24;
             this.btnPay.Text = "Pay";
             this.btnPay.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -171,29 +169,28 @@
             this.btnCancel.Image = global::AllOut.Desktop.Properties.Resources.icons8_plus_math_90;
             this.btnCancel.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnCancel.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnCancel.Location = new System.Drawing.Point(1141, 834);
+            this.btnCancel.Location = new System.Drawing.Point(1177, 3);
             this.btnCancel.Name = "btnCancel";
-            this.tableLayoutPanel1.SetRowSpan(this.btnCancel, 2);
-            this.btnCancel.Size = new System.Drawing.Size(215, 43);
+            this.btnCancel.Size = new System.Drawing.Size(194, 40);
             this.btnCancel.TabIndex = 23;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // guna2Panel1
+            // OtherCharges
             // 
-            this.guna2Panel1.BackColor = System.Drawing.Color.White;
-            this.guna2Panel1.BorderColor = System.Drawing.Color.Silver;
-            this.guna2Panel1.BorderRadius = 10;
-            this.guna2Panel1.BorderThickness = 1;
-            this.tableLayoutPanel1.SetColumnSpan(this.guna2Panel1, 2);
-            this.guna2Panel1.Controls.Add(this.tableLayoutPanel3);
-            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Panel1.Location = new System.Drawing.Point(1141, 3);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.guna2Panel1.Size = new System.Drawing.Size(436, 294);
-            this.guna2Panel1.TabIndex = 17;
+            this.OtherCharges.BackColor = System.Drawing.Color.White;
+            this.OtherCharges.BorderColor = System.Drawing.Color.Silver;
+            this.OtherCharges.BorderRadius = 10;
+            this.OtherCharges.BorderThickness = 1;
+            this.tableLayoutPanel1.SetColumnSpan(this.OtherCharges, 2);
+            this.OtherCharges.Controls.Add(this.tableLayoutPanel3);
+            this.OtherCharges.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OtherCharges.Location = new System.Drawing.Point(1141, 3);
+            this.OtherCharges.Name = "OtherCharges";
+            this.OtherCharges.Padding = new System.Windows.Forms.Padding(10);
+            this.OtherCharges.Size = new System.Drawing.Size(436, 294);
+            this.OtherCharges.TabIndex = 17;
             // 
             // tableLayoutPanel3
             // 
@@ -216,26 +213,26 @@
             // 
             this.tblOtherChargeList.AllowUserToAddRows = false;
             this.tblOtherChargeList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tblOtherChargeList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblOtherChargeList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tblOtherChargeList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblOtherChargeList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.tblOtherChargeList.ColumnHeadersHeight = 30;
             this.tableLayoutPanel3.SetColumnSpan(this.tblOtherChargeList, 2);
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tblOtherChargeList.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tblOtherChargeList.DefaultCellStyle = dataGridViewCellStyle9;
             this.tblOtherChargeList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblOtherChargeList.GridColor = System.Drawing.SystemColors.Control;
             this.tblOtherChargeList.Location = new System.Drawing.Point(3, 47);
@@ -315,8 +312,8 @@
             this.Item.Location = new System.Drawing.Point(3, 3);
             this.Item.Name = "Item";
             this.Item.Padding = new System.Windows.Forms.Padding(10);
-            this.tableLayoutPanel1.SetRowSpan(this.Item, 5);
-            this.Item.Size = new System.Drawing.Size(1132, 839);
+            this.tableLayoutPanel1.SetRowSpan(this.Item, 4);
+            this.Item.Size = new System.Drawing.Size(1132, 822);
             this.Item.TabIndex = 16;
             // 
             // tableLayoutPanel2
@@ -333,40 +330,40 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1112, 819);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1112, 802);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // tblItemList
             // 
             this.tblItemList.AllowUserToAddRows = false;
             this.tblItemList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tblItemList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblItemList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tblItemList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblItemList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.tblItemList.ColumnHeadersHeight = 30;
             this.tableLayoutPanel2.SetColumnSpan(this.tblItemList, 2);
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tblItemList.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tblItemList.DefaultCellStyle = dataGridViewCellStyle12;
             this.tblItemList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblItemList.GridColor = System.Drawing.SystemColors.Control;
             this.tblItemList.Location = new System.Drawing.Point(3, 47);
             this.tblItemList.Name = "tblItemList";
             this.tblItemList.RowHeadersVisible = false;
             this.tblItemList.RowTemplate.Height = 30;
-            this.tblItemList.Size = new System.Drawing.Size(1106, 769);
+            this.tblItemList.Size = new System.Drawing.Size(1106, 752);
             this.tblItemList.TabIndex = 8;
             this.tblItemList.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.LightGrid;
             this.tblItemList.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -428,22 +425,22 @@
             this.label3.Text = "ITEMS(S):";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // guna2CustomGradientPanel2
+            // Additional
             // 
-            this.guna2CustomGradientPanel2.BorderRadius = 10;
-            this.guna2CustomGradientPanel2.Controls.Add(this.label2);
-            this.guna2CustomGradientPanel2.Controls.Add(this.label4);
-            this.guna2CustomGradientPanel2.Controls.Add(this.lblAdditional);
-            this.guna2CustomGradientPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2CustomGradientPanel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.guna2CustomGradientPanel2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.guna2CustomGradientPanel2.FillColor3 = System.Drawing.Color.Green;
-            this.guna2CustomGradientPanel2.FillColor4 = System.Drawing.Color.Gainsboro;
-            this.guna2CustomGradientPanel2.Location = new System.Drawing.Point(1141, 303);
-            this.guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
-            this.guna2CustomGradientPanel2.Padding = new System.Windows.Forms.Padding(10);
-            this.guna2CustomGradientPanel2.Size = new System.Drawing.Size(215, 76);
-            this.guna2CustomGradientPanel2.TabIndex = 18;
+            this.Additional.BorderRadius = 10;
+            this.Additional.Controls.Add(this.label2);
+            this.Additional.Controls.Add(this.label4);
+            this.Additional.Controls.Add(this.lblAdditional);
+            this.Additional.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Additional.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.Additional.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.Additional.FillColor3 = System.Drawing.Color.Green;
+            this.Additional.FillColor4 = System.Drawing.Color.Gainsboro;
+            this.Additional.Location = new System.Drawing.Point(1141, 303);
+            this.Additional.Name = "Additional";
+            this.Additional.Padding = new System.Windows.Forms.Padding(10);
+            this.Additional.Size = new System.Drawing.Size(215, 76);
+            this.Additional.TabIndex = 18;
             // 
             // label2
             // 
@@ -482,22 +479,22 @@
             this.lblAdditional.Text = "₱ 0.00";
             this.lblAdditional.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // guna2CustomGradientPanel6
+            // Deductions
             // 
-            this.guna2CustomGradientPanel6.BorderRadius = 10;
-            this.guna2CustomGradientPanel6.Controls.Add(this.label6);
-            this.guna2CustomGradientPanel6.Controls.Add(this.label9);
-            this.guna2CustomGradientPanel6.Controls.Add(this.lblDeductions);
-            this.guna2CustomGradientPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2CustomGradientPanel6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
-            this.guna2CustomGradientPanel6.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
-            this.guna2CustomGradientPanel6.FillColor3 = System.Drawing.Color.Red;
-            this.guna2CustomGradientPanel6.FillColor4 = System.Drawing.Color.Gainsboro;
-            this.guna2CustomGradientPanel6.Location = new System.Drawing.Point(1362, 303);
-            this.guna2CustomGradientPanel6.Name = "guna2CustomGradientPanel6";
-            this.guna2CustomGradientPanel6.Padding = new System.Windows.Forms.Padding(10);
-            this.guna2CustomGradientPanel6.Size = new System.Drawing.Size(215, 76);
-            this.guna2CustomGradientPanel6.TabIndex = 19;
+            this.Deductions.BorderRadius = 10;
+            this.Deductions.Controls.Add(this.label6);
+            this.Deductions.Controls.Add(this.label9);
+            this.Deductions.Controls.Add(this.lblDeductions);
+            this.Deductions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Deductions.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.Deductions.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
+            this.Deductions.FillColor3 = System.Drawing.Color.Red;
+            this.Deductions.FillColor4 = System.Drawing.Color.Gainsboro;
+            this.Deductions.Location = new System.Drawing.Point(1362, 303);
+            this.Deductions.Name = "Deductions";
+            this.Deductions.Padding = new System.Windows.Forms.Padding(10);
+            this.Deductions.Size = new System.Drawing.Size(215, 76);
+            this.Deductions.TabIndex = 19;
             // 
             // label6
             // 
@@ -536,21 +533,21 @@
             this.lblDeductions.Text = "₱ 0.00";
             this.lblDeductions.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // guna2Panel2
+            // Total
             // 
-            this.guna2Panel2.BackColor = System.Drawing.Color.White;
-            this.guna2Panel2.BorderColor = System.Drawing.Color.Silver;
-            this.guna2Panel2.BorderRadius = 10;
-            this.guna2Panel2.BorderThickness = 1;
-            this.tableLayoutPanel1.SetColumnSpan(this.guna2Panel2, 2);
-            this.guna2Panel2.Controls.Add(this.label8);
-            this.guna2Panel2.Controls.Add(this.lblTotal);
-            this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Panel2.Location = new System.Drawing.Point(1141, 385);
-            this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.guna2Panel2.Size = new System.Drawing.Size(436, 124);
-            this.guna2Panel2.TabIndex = 22;
+            this.Total.BackColor = System.Drawing.Color.White;
+            this.Total.BorderColor = System.Drawing.Color.Silver;
+            this.Total.BorderRadius = 10;
+            this.Total.BorderThickness = 1;
+            this.tableLayoutPanel1.SetColumnSpan(this.Total, 2);
+            this.Total.Controls.Add(this.label8);
+            this.Total.Controls.Add(this.lblTotal);
+            this.Total.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Total.Location = new System.Drawing.Point(1141, 385);
+            this.Total.Name = "Total";
+            this.Total.Padding = new System.Windows.Forms.Padding(10);
+            this.Total.Size = new System.Drawing.Size(436, 124);
+            this.Total.TabIndex = 22;
             // 
             // label8
             // 
@@ -576,30 +573,14 @@
             this.lblTotal.Text = "₱ 0.00";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel4, 2);
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.lblSalesID, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.lblCashier, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 848);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1132, 29);
-            this.tableLayoutPanel4.TabIndex = 26;
-            // 
             // lblSalesID
             // 
             this.lblSalesID.AutoSize = true;
             this.lblSalesID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblSalesID.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSalesID.Location = new System.Drawing.Point(569, 0);
+            this.lblSalesID.Location = new System.Drawing.Point(490, 0);
             this.lblSalesID.Name = "lblSalesID";
-            this.lblSalesID.Size = new System.Drawing.Size(560, 29);
+            this.lblSalesID.Size = new System.Drawing.Size(481, 46);
             this.lblSalesID.TabIndex = 1;
             this.lblSalesID.Text = "Sales ID: SL2023012400005";
             this.lblSalesID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -611,10 +592,58 @@
             this.lblCashier.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCashier.Location = new System.Drawing.Point(3, 0);
             this.lblCashier.Name = "lblCashier";
-            this.lblCashier.Size = new System.Drawing.Size(560, 29);
+            this.lblCashier.Size = new System.Drawing.Size(481, 46);
             this.lblCashier.TabIndex = 0;
             this.lblCashier.Text = "Cashier: Vincent M. Pantia";
             this.lblCashier.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 5;
+            this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel4, 4);
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.lblCashier, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnPay, 4, 0);
+            this.tableLayoutPanel4.Controls.Add(this.lblSalesID, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnCancel, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnReset, 2, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 831);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1574, 46);
+            this.tableLayoutPanel4.TabIndex = 26;
+            // 
+            // btnReset
+            // 
+            this.btnReset.BorderRadius = 6;
+            this.btnReset.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnReset.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnReset.DisabledState.FillColor = System.Drawing.Color.Transparent;
+            this.btnReset.DisabledState.ForeColor = System.Drawing.Color.Gray;
+            this.btnReset.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReset.FillColor = System.Drawing.Color.White;
+            this.btnReset.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnReset.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnReset.Image = global::AllOut.Desktop.Properties.Resources.icons8_plus_math_90;
+            this.btnReset.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnReset.ImageSize = new System.Drawing.Size(15, 15);
+            this.btnReset.Location = new System.Drawing.Point(977, 3);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(194, 40);
+            this.btnReset.TabIndex = 23;
+            this.btnReset.Text = "Reset";
+            this.btnReset.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // POSForm
             // 
@@ -630,7 +659,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "POSForm";
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.guna2Panel1.ResumeLayout(false);
+            this.OtherCharges.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblOtherChargeList)).EndInit();
@@ -638,12 +667,12 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblItemList)).EndInit();
-            this.guna2CustomGradientPanel2.ResumeLayout(false);
-            this.guna2CustomGradientPanel2.PerformLayout();
-            this.guna2CustomGradientPanel6.ResumeLayout(false);
-            this.guna2CustomGradientPanel6.PerformLayout();
-            this.guna2Panel2.ResumeLayout(false);
-            this.guna2Panel2.PerformLayout();
+            this.Additional.ResumeLayout(false);
+            this.Additional.PerformLayout();
+            this.Deductions.ResumeLayout(false);
+            this.Deductions.PerformLayout();
+            this.Total.ResumeLayout(false);
+            this.Total.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
@@ -657,28 +686,29 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2Button btnAddItem;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2Panel OtherCharges;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private Guna.UI2.WinForms.Guna2Button btnAddOtherCharge;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2DataGridView tblItemList;
         private Guna.UI2.WinForms.Guna2DataGridView tblOtherChargeList;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel2;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel6;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel Additional;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel Deductions;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblDeductions;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblAdditional;
         private System.Windows.Forms.Label label6;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private Guna.UI2.WinForms.Guna2Panel Total;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblTotal;
         private Guna.UI2.WinForms.Guna2Button btnPay;
         private Guna.UI2.WinForms.Guna2Button btnCancel;
         private Guna.UI2.WinForms.Guna2TextBox txtDescription;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label lblSalesID;
         private System.Windows.Forms.Label lblCashier;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private Guna.UI2.WinForms.Guna2Button btnReset;
     }
 }

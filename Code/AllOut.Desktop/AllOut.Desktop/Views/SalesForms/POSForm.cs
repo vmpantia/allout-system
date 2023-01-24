@@ -35,13 +35,29 @@ namespace AllOut.Desktop.Views.SalesForms
             PopulateSales(salesID);
         }
 
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            var addItemFrm = new AddItemForm();
+            addItemFrm.ShowDialog();
+            PopulateTables();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            ResetSalesGlobalValue();
+        }
+
         private void ResetSalesGlobalValue()
         {
             Globals._salesInfo = new Sales();
             Globals._salesItems = new List<SalesItemFullInformation>();
             Globals._salesOtherCharges = new List<OtherCharge>();
 
-            ComputeAll();
+            PopulateTables();
         }
 
         private void ComputeAll()
@@ -148,18 +164,6 @@ namespace AllOut.Desktop.Views.SalesForms
                 UseColumnTextForButtonValue = true
             };
             tblOtherChargeList.Columns.Insert(BUTTON_OTHERCHARGES_COL_IDX, deleteButton);
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btnAddItem_Click(object sender, EventArgs e)
-        {
-            var addItemFrm = new AddItemForm();
-            addItemFrm.ShowDialog();
-            PopulateTables();
         }
     }
 }

@@ -104,7 +104,7 @@ namespace AllOut.Desktop.Views.ProductForms
 
                     if (quantity > product.Stock)
                     {
-                        MessageBox.Show("One of your selected products quantity is already exist in the current stocks.");
+                        MessageBox.Show("One of your selected products quantity is already exceed in the current stocks.");
                         return;
                     }
 
