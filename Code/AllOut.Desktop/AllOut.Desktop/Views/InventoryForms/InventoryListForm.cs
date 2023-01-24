@@ -155,7 +155,7 @@ namespace AllOut.Desktop.Views.InventoryForms
             tblObjectList.Columns.Clear();
             EnableOtherControls(false);
 
-            tblObjectList.DataSource = inventories.OrderBy(data => data.ProductName)
+            tblObjectList.DataSource = inventories.OrderBy(data => data.InventoryID)
                                                .Select(data => new
                                                {
                                                     Id = data.InventoryID,
