@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AllOut.Desktop.Views.UserForms;
 using AllOut.Desktop.Views.InventoryForms;
+using AllOut.Desktop.Views.SalesForms;
 
 namespace AllOut.Desktop.Views
 {

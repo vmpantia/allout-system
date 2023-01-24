@@ -11,6 +11,9 @@ namespace AllOut.Desktop.Common
     public class Globals
     {
         public static Client ClientInformation { get; set; }
+        public static List<SalesItem> _salesItems { get; set; }
+        public static List<SalesItem> _salesCharges { get; set; }
+
         public static Regex letterFormat = new Regex("[a-zA-Z]");
 
         public static string POST_LOGIN_USER = string.Concat(Constants.API_BASE, "User/LoginUser");

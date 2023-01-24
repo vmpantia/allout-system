@@ -1,4 +1,4 @@
-﻿namespace AllOut.Desktop.Views.InventoryForms
+﻿namespace AllOut.Desktop.Views.SalesForms
 {
     partial class SalesListForm
     {

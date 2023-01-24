@@ -1,5 +1,6 @@
 ﻿using AllOut.Desktop.Views;
 using AllOut.Desktop.Views.ProductForms;
+using AllOut.Desktop.Views.SalesForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;

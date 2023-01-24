@@ -9,7 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace AllOut.Desktop.Views.InventoryForms
+namespace AllOut.Desktop.Views.SalesForms
 {
     public partial class SalesListForm : Form
     {
@@ -34,9 +34,9 @@ namespace AllOut.Desktop.Views.InventoryForms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //var form = new InventoryForm();
-            //form.ShowDialog();
-            //PopulateSales();
+            var form = new POSForm();
+            form.ShowDialog();
+            PopulateSales();
         }
 
         private void btnSelectAll_Click(object sender, EventArgs e)
