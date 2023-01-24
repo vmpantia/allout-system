@@ -373,6 +373,16 @@ namespace AllOut.Desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_warehouse_1001 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-warehouse-1001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_warehouse_64_white {
             get {
                 object obj = ResourceManager.GetObject("icons8-warehouse-64-white", resourceCulture);

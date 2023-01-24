@@ -310,9 +310,10 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(54, 29);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(440, 17);
+            this.label2.Size = new System.Drawing.Size(451, 17);
             this.label2.TabIndex = 5;
-            this.label2.Text = "In this page you will see the list of all products that is saved on the system";
+            this.label2.Text = "In this page you will see the list of all inventories that is saved on the system" +
+    "";
             // 
             // label1
             // 
@@ -321,13 +322,13 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(53, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 21);
+            this.label1.Size = new System.Drawing.Size(96, 21);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Products";
+            this.label1.Text = "Inventories";
             // 
             // guna2PictureBox1
             // 
-            this.guna2PictureBox1.Image = global::AllOut.Desktop.Properties.Resources.icons8_shipping_product_96;
+            this.guna2PictureBox1.Image = global::AllOut.Desktop.Properties.Resources.icons8_warehouse_1001;
             this.guna2PictureBox1.ImageRotate = 0F;
             this.guna2PictureBox1.Location = new System.Drawing.Point(7, 7);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
@@ -419,7 +420,7 @@
             this.btnSearchToolTip.AllowLinksHandling = true;
             this.btnSearchToolTip.MaximumSize = new System.Drawing.Size(0, 0);
             // 
-            // ProductListForm
+            // InventoryListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -427,7 +428,7 @@
             this.ClientSize = new System.Drawing.Size(1179, 525);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ProductListForm";
+            this.Name = "InventoryListForm";
             this.Text = "BrandListForm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
