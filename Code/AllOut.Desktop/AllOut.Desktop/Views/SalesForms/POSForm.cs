@@ -51,6 +51,20 @@ namespace AllOut.Desktop.Views.SalesForms
             ResetSalesGlobalValue();
         }
 
+        private void tblItemList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != BUTTON_ITEMS_COL_IDX)
+                return;
+
+            var id = Utility.GetGuidByCellValue(tblItemList.Rows[e.RowIndex].Cells[ID_COL_IDX].Value);
+
+            var item = Globals._salesItems.Where(data => data.ProductID == id).ToList();
+            if (item.Any())
+                Globals._salesItems.Remove(item.First());
+
+            PopulateTables();
+        }
+
         private void ResetSalesGlobalValue()
         {
             Globals._salesInfo = new Sales();

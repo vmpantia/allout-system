@@ -148,19 +148,16 @@ namespace AllOut.Desktop.Views.ProductForms
 
         private void tblProductList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 && e.ColumnIndex != CHECKBOX_COL_IDX)
+            if (e.RowIndex < 0 || e.ColumnIndex != CHECKBOX_COL_IDX)
                 return;
 
             var id = Utility.GetGuidByCellValue(tblProductList.Rows[e.RowIndex].Cells[ID_COL_IDX].Value);
 
-            if (e.ColumnIndex == CHECKBOX_COL_IDX)
-            {
-                var isIDExist = _productIDs.Exists(data => data == id);
-                if (isIDExist)
-                    _productIDs.Remove(id);
-                else
-                    _productIDs.Add(id);
-            }
+            var isIDExist = _productIDs.Exists(data => data == id);
+            if (isIDExist)
+                _productIDs.Remove(id);
+            else
+                _productIDs.Add(id);
         }
     }
 }
