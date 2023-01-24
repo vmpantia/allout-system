@@ -42,6 +42,13 @@ namespace AllOut.Desktop.Views.SalesForms
             PopulateTables();
         }
 
+        private void btnAddOtherCharge_Click(object sender, EventArgs e)
+        {
+            var addOtherChargeFrm = new AddOtherChargeForm();
+            addOtherChargeFrm.ShowDialog();
+            PopulateTables();
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
@@ -61,6 +68,19 @@ namespace AllOut.Desktop.Views.SalesForms
             var item = Globals._salesItems.Where(data => data.ProductID == id).ToList();
             if (item.Any())
                 Globals._salesItems.Remove(item.First());
+
+            PopulateTables();
+        }
+        private void tblOtherChargeList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != BUTTON_OTHERCHARGES_COL_IDX)
+                return;
+
+            var name = Utility.GetStringByCellValue(tblOtherChargeList.Rows[e.RowIndex].Cells[ID_COL_IDX].Value);
+
+            var otherCharge = Globals._salesOtherCharges.Where(data => data.ChargeName == name).ToList();
+            if (otherCharge.Any())
+                Globals._salesOtherCharges.Remove(otherCharge.First());
 
             PopulateTables();
         }

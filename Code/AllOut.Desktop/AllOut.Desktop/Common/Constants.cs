@@ -25,7 +25,7 @@ namespace AllOut.Desktop.Common
         //public const string API_BASE = "https://localhost:7252/";
 
 
-        public const string REGEX_NUMBER_PATTERN = "^[0-9]+$";
+        public const string REGEX_NUMBER_PATTERN = "^-?[0-9]\\d*(\\.\\d+)?$";
 
         #region Forms
         public const string FORM_DASHBOARDS = "Dashboards";

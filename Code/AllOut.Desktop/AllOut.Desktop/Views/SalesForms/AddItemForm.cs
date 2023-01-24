@@ -26,53 +26,6 @@ namespace AllOut.Desktop.Views.ProductForms
             PopulateProducts();
         }
 
-        private void PopulateProducts(string query = null)
-        {
-            _productFullInfoList = new List<ProductFullInformation>();
-
-            Response response;
-            if (string.IsNullOrEmpty(query))
-                response = HttpController.GetProductsAsync(Globals.ClientInformation.ClientID);
-            else
-                response = HttpController.GetProductsByQueryAsync(Globals.ClientInformation.ClientID, query);
-            
-            if (response.Result == ResponseResult.SUCCESS)
-            {
-                _productFullInfoList = (List<ProductFullInformation>)response.Data;
-            }
-            PopulateTable(_productFullInfoList);
-        }
-
-        private void PopulateTable(List<ProductFullInformation> products)
-        {
-            tblProductList.DataSource = null;
-            tblProductList.Rows.Clear();
-            tblProductList.Columns.Clear();
-
-            tblProductList.DataSource = products.Where(data => data.Status == Constants.STATUS_ENABLED_INT)
-                                                .OrderBy(data => data.ProductName)
-                                                .Select(data => new
-                                                {
-                                                    Id = data.ProductID,
-                                                    Name = data.ProductName,
-                                                    Brand = data.BrandName,
-                                                    Category = data.CategoryName,
-                                                    data.Price,
-                                                    data.Stock
-                                                }).ToList();
-
-            DataGridViewCheckBoxColumn selectCheckBox = new DataGridViewCheckBoxColumn
-            {
-                Name = Constants.BUTTON_NAME_SELECTION,
-                HeaderText = Constants.BUTTON_HEADER_SELECT,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
-
-            };
-            tblProductList.Columns.Insert(CHECKBOX_COL_IDX, selectCheckBox);
-            tblProductList.Columns[ID_COL_IDX].Visible = false;
-        }
-
-
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             PopulateProducts(txtSearch.Text);
@@ -158,6 +111,52 @@ namespace AllOut.Desktop.Views.ProductForms
                 _productIDs.Remove(id);
             else
                 _productIDs.Add(id);
+        }
+
+        private void PopulateProducts(string query = null)
+        {
+            _productFullInfoList = new List<ProductFullInformation>();
+
+            Response response;
+            if (string.IsNullOrEmpty(query))
+                response = HttpController.GetProductsAsync(Globals.ClientInformation.ClientID);
+            else
+                response = HttpController.GetProductsByQueryAsync(Globals.ClientInformation.ClientID, query);
+
+            if (response.Result == ResponseResult.SUCCESS)
+            {
+                _productFullInfoList = (List<ProductFullInformation>)response.Data;
+            }
+            PopulateTable(_productFullInfoList);
+        }
+
+        private void PopulateTable(List<ProductFullInformation> products)
+        {
+            tblProductList.DataSource = null;
+            tblProductList.Rows.Clear();
+            tblProductList.Columns.Clear();
+
+            tblProductList.DataSource = products.Where(data => data.Status == Constants.STATUS_ENABLED_INT)
+                                                .OrderBy(data => data.ProductName)
+                                                .Select(data => new
+                                                {
+                                                    Id = data.ProductID,
+                                                    Name = data.ProductName,
+                                                    Brand = data.BrandName,
+                                                    Category = data.CategoryName,
+                                                    data.Price,
+                                                    data.Stock
+                                                }).ToList();
+
+            DataGridViewCheckBoxColumn selectCheckBox = new DataGridViewCheckBoxColumn
+            {
+                Name = Constants.BUTTON_NAME_SELECTION,
+                HeaderText = Constants.BUTTON_HEADER_SELECT,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+
+            };
+            tblProductList.Columns.Insert(CHECKBOX_COL_IDX, selectCheckBox);
+            tblProductList.Columns[ID_COL_IDX].Visible = false;
         }
     }
 }
