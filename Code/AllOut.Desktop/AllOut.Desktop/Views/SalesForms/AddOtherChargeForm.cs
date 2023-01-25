@@ -44,6 +44,7 @@ namespace AllOut.Desktop.Views.SalesForms
 
             Globals._salesOtherCharges.Add(new OtherCharge
             {
+                SalesID = string.Empty,
                 ChargeName = txtChargeName.Text,
                 Amount = quantity
             });

@@ -40,6 +40,13 @@ namespace AllOut.Desktop.Views.ProductForms
                 return;
             }
 
+
+            if (_productIDs.Count() == 0)
+            {
+                MessageBox.Show("Please check product(s) to add.");
+                return;
+            }
+
             var quantity = int.Parse(txtQuantity.Text);
             foreach (var id in _productIDs)
             {
@@ -51,18 +58,19 @@ namespace AllOut.Desktop.Views.ProductForms
                     //Check if already exist in SalesItems Global
                     if(Globals._salesItems.Exists(data => data.ProductID == product.ProductID))
                     {
-                        MessageBox.Show("One of your selected products is already in the POS Item list.");
+                        MessageBox.Show("One of your selected product is already in the POS Item list.");
                         return;
                     }
 
                     if (quantity > product.Stock)
                     {
-                        MessageBox.Show("One of your selected products quantity is already exceed in the current stocks.");
+                        MessageBox.Show("One of your selected product quantity is already exceed in the current stocks.");
                         return;
                     }
 
                     Globals._salesItems.Add(new SalesItemFullInformation
                     {
+                        SalesID = string.Empty,
                         ProductID = product.ProductID,
                         ProductName = product.ProductName,
                         Quantity = quantity,

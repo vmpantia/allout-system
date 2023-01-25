@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +20,13 @@ namespace AllOut.Desktop.Views.SalesForms
 {
     public partial class POSForm : Form
     {
+        private decimal _totalItems = 0;
+        private decimal _totalAdditionals = 0;
+        private decimal _totalDeductions = 0;
+        private decimal _total = 0;
+        private decimal _change = 0;
+        private decimal _payment = 0;
+
         private bool _isAdd = true;
         private const int ID_COL_IDX = 0;
         private const int BUTTON_ITEMS_COL_IDX = 5;
@@ -50,9 +58,29 @@ namespace AllOut.Desktop.Views.SalesForms
             PopulateTables();
         }
 
+        private void txtPayment_TextChanged(object sender, EventArgs e)
+        {
+            decimal payment = 0;
+            if (!Regex.IsMatch(txtPayment.Text, Constants.REGEX_NUMBER_PATTERN) || 
+                (decimal.TryParse(txtPayment.Text, out payment) && payment < 0))
+            {
+                txtPayment.Text = "0";
+                lblChange.Text = Constants.DEFAULT_AMOUNT;
+                MessageBox.Show("Please input valid amount.");
+                return;
+            }
+            ComputeAll(payment);
+        }
+
         private void btnPay_Click(object sender, EventArgs e)
         {
+            Globals._salesInfo.SalesID = lblSalesID.Text;
+            Globals._salesInfo.UserID = Globals.ClientInformation.UserID;
+            Globals._salesInfo.AmountPaid = _payment;
+            Globals._salesInfo.Change = _change;
             Globals._salesInfo.Remarks = txtRemarks.Text;
+            Globals._salesInfo.Status = Constants.STATUS_ENABLED_INT;
+
             var request = new SaveSalesRequest
             {
                 client = Globals.ClientInformation,
@@ -71,9 +99,24 @@ namespace AllOut.Desktop.Views.SalesForms
                                                             Total = data.Total
                                                         }).ToList()
             };
-            var newPayFrm = new PaymentForm(request);
-            newPayFrm.ShowDialog();
-            //ResetSalesGlobalValue();
+
+            var response = HttpController.PostSaveSalesAsync(request);
+
+            //Check Response Result
+            if (response.Result != ResponseResult.SUCCESS)
+            {
+                MessageBox.Show(response.Data.ToString(),
+                                string.Format(Constants.TITLE_SAVE, Constants.OBJECT_SALES),
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show(string.Format(Constants.SUCCESS_SAVED, Constants.OBJECT_PRODUCT, response.Data),
+                            string.Format(Constants.TITLE_SAVE, Constants.OBJECT_SALES),
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+            ResetSalesGlobalValue();
+            Close();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -122,17 +165,23 @@ namespace AllOut.Desktop.Views.SalesForms
             PopulateTables();
         }
 
-        private void ComputeAll()
+        private void ComputeAll(decimal payment = 0)
         {
-            var totalItems = Globals._salesItems.Sum(data => data.Total);
-            var totalAdditionals = Globals._salesOtherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
-            var totalDeductions = Globals._salesOtherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
+            _totalItems = Globals._salesItems.Sum(data => data.Total);
+            _totalAdditionals = Globals._salesOtherCharges.Where(data => data.Amount > 0).Sum(data => data.Amount);
+            _totalDeductions = Globals._salesOtherCharges.Where(data => data.Amount < 0).Sum(data => data.Amount);
 
-            lblAdditionals.Text = string.Format(Constants.PESO_FORMAT, Math.Round(totalAdditionals, 2).ToString(Constants.N0_FORMAT));
-            lblDeductions.Text = string.Format(Constants.PESO_FORMAT, Math.Round(totalDeductions, 2).ToString(Constants.N0_FORMAT));
+            lblAdditionals.Text = string.Format(Constants.PESO_FORMAT, Math.Round(_totalAdditionals, 2).ToString(Constants.N0_FORMAT));
+            lblDeductions.Text = string.Format(Constants.PESO_FORMAT, Math.Round(_totalDeductions, 2).ToString(Constants.N0_FORMAT));
 
-            var total = totalItems + totalAdditionals + totalDeductions;
-            lblTotal.Text = string.Format(Constants.PESO_FORMAT, Math.Round(total, 2).ToString(Constants.N0_FORMAT));
+            _total = _totalItems + _totalAdditionals + _totalDeductions;
+            lblTotal.Text = string.Format(Constants.PESO_FORMAT, Math.Round(_total, 2).ToString(Constants.N0_FORMAT));
+
+            _payment = payment;
+            _change = _payment - _total;
+            lblChange.Text = string.Format(Constants.PESO_FORMAT, Math.Round(_change, 2).ToString(Constants.N0_FORMAT));
+
+            btnPay.Enabled = _total != 0 && _payment != 0  && _change >= 0;
         }
 
         private void PopulateSales(string salesID)

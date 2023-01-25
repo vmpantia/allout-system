@@ -11,6 +11,7 @@ namespace AllOut.Desktop.Common
     public class Constants
     {
         public const string PESO_FORMAT = "₱ {0}";
+        public const string DEFAULT_AMOUNT = "₱ 0.00";
         public const string N0_FORMAT = "N2";
         public const string CASHIER_POS_FORMAT = "Cashier: {0}";
         public const string SALESID_POS_FORMAT = "Sales ID: {0}";
