@@ -26,6 +26,7 @@ namespace AllOut.Desktop.Views
         {
             InitializeComponent();
             SetUserInfo(Globals.ClientInformation);
+            SetActiveForm(Constants.FORM_DASHBOARDS);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

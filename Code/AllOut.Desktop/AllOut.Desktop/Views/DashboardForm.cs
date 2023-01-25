@@ -46,6 +46,8 @@ namespace AllOut.Desktop.Views
                 foreach(var salesReport in salesReports)
                 {
                     SalesChart.Series["Total"].Points.AddXY(salesReport.Year, salesReport.Total);
+                    SalesChart.Series["Additional"].Points.AddXY(salesReport.Year, salesReport.Additional);
+                    SalesChart.Series["Deduction"].Points.AddXY(salesReport.Year, salesReport.Deductions);
                 }
             }
         }
