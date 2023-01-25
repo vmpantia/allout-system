@@ -77,9 +77,9 @@ namespace AllOut.Desktop.Views.SalesForms
                 IsSelectAll(false);
 
                 //Show Form
-                //var form = new InventoryForm(id);
-                //form.ShowDialog();
-                //PopulateSales();
+                var form = new POSForm(id);
+                form.ShowDialog();
+                PopulateSales();
             }
 
             //Check if Select CheckBox is Clicked
@@ -221,7 +221,7 @@ namespace AllOut.Desktop.Views.SalesForms
                 newStatus = newStatus
             };
 
-            var response = HttpController.PostUpdateInventoryStatusByIDsAsync(request);
+            var response = HttpController.PostUpdateSalesStatusByIDsAsync(request);
 
             if (response.Result != ResponseResult.SUCCESS)
             {
