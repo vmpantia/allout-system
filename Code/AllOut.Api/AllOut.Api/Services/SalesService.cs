@@ -117,7 +117,7 @@ namespace AllOut.Api.Services
             return salesList;
         }
 
-        public async Task<IEnumerable<SalesFullInformation>> GetSalesByIDAsync(string id)
+        public async Task<SalesFullInformation> GetSalesByIDAsync(string id)
         {
             var salesList = await (from a in _db.Sales
                                    join b in _db.Users on a.UserID equals b.UserID into bb
@@ -146,7 +146,7 @@ namespace AllOut.Api.Services
                 sales.Total = _utility.GetTotal(sales.TotalItems, sales.TotalAdditional, sales.TotalDeduction);
             }
 
-            return salesList;
+            return salesList.First();
         }
 
         public async Task<int> GetCountSalesAsync()

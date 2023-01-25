@@ -8,7 +8,7 @@ namespace AllOut.Api.Contractors
         Task<IEnumerable<SalesFullInformation>> GetSalesAsync();
         Task<IEnumerable<SalesFullInformation>> GetSalesByQueryAsync(string query);
         Task<IEnumerable<SalesFullInformation>> GetSalesByStatusAsync(int status);
-        Task<IEnumerable<SalesFullInformation>> GetSalesByIDAsync(string id);
+        Task<SalesFullInformation> GetSalesByIDAsync(string id);
         Task<int> GetCountSalesAsync();
         Task<int> GetCountSalesByStatusAsync(int status);
         Task<string> SaveSalesAsync(SaveSalesRequest request);
