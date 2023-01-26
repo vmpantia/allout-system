@@ -58,6 +58,8 @@
     <Compile Include="Common\Globals.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Controllers\HttpController.cs" />
+    <Compile Include="Models\Year.cs" />
+    <Compile Include="Models\Month.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Client.cs" />

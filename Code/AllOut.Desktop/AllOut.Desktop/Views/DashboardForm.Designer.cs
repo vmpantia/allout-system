@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,24 +41,24 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2CustomGradientPanel5 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.guna2PictureBox6 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.lblCountInventory = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.guna2PictureBox6 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2CustomGradientPanel3 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.lblCountCategory = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2CustomGradientPanel6 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.guna2PictureBox7 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.guna2PictureBox7 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.lblCountSales = new System.Windows.Forms.Label();
             this.guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.guna2PictureBox3 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblCountBrand = new System.Windows.Forms.Label();
+            this.guna2PictureBox3 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -66,17 +66,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.guna2CustomGradientPanel4 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.guna2PictureBox5 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.lblCountUser = new System.Windows.Forms.Label();
+            this.guna2PictureBox5 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.SalesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cmbMonth = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.cmbCategory = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.cmbYear = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
@@ -221,20 +221,6 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(219, 78);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
-            // guna2PictureBox6
-            // 
-            this.guna2PictureBox6.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2PictureBox6.Image = global::AllOut.Desktop.Properties.Resources.icons8_warehouse_64_white;
-            this.guna2PictureBox6.ImageRotate = 0F;
-            this.guna2PictureBox6.Location = new System.Drawing.Point(144, 3);
-            this.guna2PictureBox6.Name = "guna2PictureBox6";
-            this.tableLayoutPanel6.SetRowSpan(this.guna2PictureBox6, 2);
-            this.guna2PictureBox6.Size = new System.Drawing.Size(72, 72);
-            this.guna2PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox6.TabIndex = 9;
-            this.guna2PictureBox6.TabStop = false;
-            // 
             // lblCountInventory
             // 
             this.lblCountInventory.BackColor = System.Drawing.Color.Transparent;
@@ -261,6 +247,20 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "INVENTORY";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2PictureBox6
+            // 
+            this.guna2PictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2PictureBox6.Image = global::AllOut.Desktop.Properties.Resources.icons8_warehouse_64_white;
+            this.guna2PictureBox6.ImageRotate = 0F;
+            this.guna2PictureBox6.Location = new System.Drawing.Point(144, 3);
+            this.guna2PictureBox6.Name = "guna2PictureBox6";
+            this.tableLayoutPanel6.SetRowSpan(this.guna2PictureBox6, 2);
+            this.guna2PictureBox6.Size = new System.Drawing.Size(72, 72);
+            this.guna2PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox6.TabIndex = 9;
+            this.guna2PictureBox6.TabStop = false;
             // 
             // guna2CustomGradientPanel3
             // 
@@ -295,20 +295,6 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(219, 78);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
-            // guna2PictureBox4
-            // 
-            this.guna2PictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2PictureBox4.Image = global::AllOut.Desktop.Properties.Resources.icons8_category_96_white;
-            this.guna2PictureBox4.ImageRotate = 0F;
-            this.guna2PictureBox4.Location = new System.Drawing.Point(144, 3);
-            this.guna2PictureBox4.Name = "guna2PictureBox4";
-            this.tableLayoutPanel4.SetRowSpan(this.guna2PictureBox4, 2);
-            this.guna2PictureBox4.Size = new System.Drawing.Size(72, 72);
-            this.guna2PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox4.TabIndex = 9;
-            this.guna2PictureBox4.TabStop = false;
-            // 
             // lblCountCategory
             // 
             this.lblCountCategory.BackColor = System.Drawing.Color.Transparent;
@@ -335,6 +321,20 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "CATEGORY";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2PictureBox4
+            // 
+            this.guna2PictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2PictureBox4.Image = global::AllOut.Desktop.Properties.Resources.icons8_category_96_white;
+            this.guna2PictureBox4.ImageRotate = 0F;
+            this.guna2PictureBox4.Location = new System.Drawing.Point(144, 3);
+            this.guna2PictureBox4.Name = "guna2PictureBox4";
+            this.tableLayoutPanel4.SetRowSpan(this.guna2PictureBox4, 2);
+            this.guna2PictureBox4.Size = new System.Drawing.Size(72, 72);
+            this.guna2PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox4.TabIndex = 9;
+            this.guna2PictureBox4.TabStop = false;
             // 
             // guna2CustomGradientPanel6
             // 
@@ -369,20 +369,6 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(219, 78);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
-            // guna2PictureBox7
-            // 
-            this.guna2PictureBox7.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2PictureBox7.Image = global::AllOut.Desktop.Properties.Resources.icons8_total_sales_64_white;
-            this.guna2PictureBox7.ImageRotate = 0F;
-            this.guna2PictureBox7.Location = new System.Drawing.Point(144, 3);
-            this.guna2PictureBox7.Name = "guna2PictureBox7";
-            this.tableLayoutPanel7.SetRowSpan(this.guna2PictureBox7, 2);
-            this.guna2PictureBox7.Size = new System.Drawing.Size(72, 72);
-            this.guna2PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox7.TabIndex = 9;
-            this.guna2PictureBox7.TabStop = false;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -396,6 +382,20 @@
             this.label9.TabIndex = 11;
             this.label9.Text = "SALES";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2PictureBox7
+            // 
+            this.guna2PictureBox7.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2PictureBox7.Image = global::AllOut.Desktop.Properties.Resources.icons8_total_sales_64_white;
+            this.guna2PictureBox7.ImageRotate = 0F;
+            this.guna2PictureBox7.Location = new System.Drawing.Point(144, 3);
+            this.guna2PictureBox7.Name = "guna2PictureBox7";
+            this.tableLayoutPanel7.SetRowSpan(this.guna2PictureBox7, 2);
+            this.guna2PictureBox7.Size = new System.Drawing.Size(72, 72);
+            this.guna2PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox7.TabIndex = 9;
+            this.guna2PictureBox7.TabStop = false;
             // 
             // lblCountSales
             // 
@@ -443,20 +443,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(219, 78);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
-            // guna2PictureBox3
-            // 
-            this.guna2PictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2PictureBox3.Image = global::AllOut.Desktop.Properties.Resources.icons8_branding_96_white;
-            this.guna2PictureBox3.ImageRotate = 0F;
-            this.guna2PictureBox3.Location = new System.Drawing.Point(144, 3);
-            this.guna2PictureBox3.Name = "guna2PictureBox3";
-            this.tableLayoutPanel3.SetRowSpan(this.guna2PictureBox3, 2);
-            this.guna2PictureBox3.Size = new System.Drawing.Size(72, 72);
-            this.guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox3.TabIndex = 9;
-            this.guna2PictureBox3.TabStop = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -483,6 +469,20 @@
             this.lblCountBrand.TabIndex = 10;
             this.lblCountBrand.Text = "-";
             this.lblCountBrand.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // guna2PictureBox3
+            // 
+            this.guna2PictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2PictureBox3.Image = global::AllOut.Desktop.Properties.Resources.icons8_branding_96_white;
+            this.guna2PictureBox3.ImageRotate = 0F;
+            this.guna2PictureBox3.Location = new System.Drawing.Point(144, 3);
+            this.guna2PictureBox3.Name = "guna2PictureBox3";
+            this.tableLayoutPanel3.SetRowSpan(this.guna2PictureBox3, 2);
+            this.guna2PictureBox3.Size = new System.Drawing.Size(72, 72);
+            this.guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox3.TabIndex = 9;
+            this.guna2PictureBox3.TabStop = false;
             // 
             // guna2CustomGradientPanel1
             // 
@@ -591,6 +591,19 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(223, 78);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
+            // lblCountUser
+            // 
+            this.lblCountUser.BackColor = System.Drawing.Color.Transparent;
+            this.lblCountUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblCountUser.Font = new System.Drawing.Font("Segoe UI Semibold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCountUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.lblCountUser.Location = new System.Drawing.Point(3, 29);
+            this.lblCountUser.Name = "lblCountUser";
+            this.lblCountUser.Size = new System.Drawing.Size(139, 49);
+            this.lblCountUser.TabIndex = 10;
+            this.lblCountUser.Text = "-";
+            this.lblCountUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // guna2PictureBox5
             // 
             this.guna2PictureBox5.BackColor = System.Drawing.Color.Transparent;
@@ -604,19 +617,6 @@
             this.guna2PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2PictureBox5.TabIndex = 9;
             this.guna2PictureBox5.TabStop = false;
-            // 
-            // lblCountUser
-            // 
-            this.lblCountUser.BackColor = System.Drawing.Color.Transparent;
-            this.lblCountUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCountUser.Font = new System.Drawing.Font("Segoe UI Semibold", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCountUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.lblCountUser.Location = new System.Drawing.Point(3, 29);
-            this.lblCountUser.Name = "lblCountUser";
-            this.lblCountUser.Size = new System.Drawing.Size(139, 49);
-            this.lblCountUser.TabIndex = 10;
-            this.lblCountUser.Text = "-";
-            this.lblCountUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
@@ -652,7 +652,7 @@
             this.tableLayoutPanel8.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel8.ColumnCount = 2;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 372F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 399F));
             this.tableLayoutPanel8.Controls.Add(this.SalesChart, 0, 1);
             this.tableLayoutPanel8.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.panel1, 1, 0);
@@ -667,26 +667,26 @@
             // 
             // SalesChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.SalesChart.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.SalesChart.ChartAreas.Add(chartArea2);
             this.tableLayoutPanel8.SetColumnSpan(this.SalesChart, 2);
             this.SalesChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.SalesChart.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.SalesChart.Legends.Add(legend2);
             this.SalesChart.Location = new System.Drawing.Point(3, 59);
             this.SalesChart.Name = "SalesChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Total";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Additional";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Deduction";
-            this.SalesChart.Series.Add(series1);
-            this.SalesChart.Series.Add(series2);
-            this.SalesChart.Series.Add(series3);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Total";
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Additional";
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Deduction";
+            this.SalesChart.Series.Add(series4);
+            this.SalesChart.Series.Add(series5);
+            this.SalesChart.Series.Add(series6);
             this.SalesChart.Size = new System.Drawing.Size(703, 264);
             this.SalesChart.TabIndex = 10;
             this.SalesChart.Text = "chart1";
@@ -699,54 +699,41 @@
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label8.Location = new System.Drawing.Point(3, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(331, 56);
+            this.label8.Size = new System.Drawing.Size(304, 56);
             this.label8.TabIndex = 11;
             this.label8.Text = "SALES REPORT";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.guna2ComboBox1);
+            this.panel1.Controls.Add(this.cmbMonth);
             this.panel1.Controls.Add(this.guna2HtmlLabel1);
-            this.panel1.Controls.Add(this.cmbCategory);
+            this.panel1.Controls.Add(this.cmbYear);
             this.panel1.Controls.Add(this.guna2HtmlLabel6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(340, 3);
+            this.panel1.Location = new System.Drawing.Point(313, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(366, 50);
+            this.panel1.Size = new System.Drawing.Size(393, 50);
             this.panel1.TabIndex = 12;
             // 
-            // guna2ComboBox1
+            // cmbMonth
             // 
-            this.guna2ComboBox1.BackColor = System.Drawing.Color.White;
-            this.guna2ComboBox1.BorderColor = System.Drawing.Color.Silver;
-            this.guna2ComboBox1.BorderRadius = 6;
-            this.guna2ComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.guna2ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.guna2ComboBox1.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2ComboBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.guna2ComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2ComboBox1.ItemHeight = 30;
-            this.guna2ComboBox1.Items.AddRange(new object[] {
-            "All",
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"});
-            this.guna2ComboBox1.Location = new System.Drawing.Point(240, 7);
-            this.guna2ComboBox1.Name = "guna2ComboBox1";
-            this.guna2ComboBox1.Size = new System.Drawing.Size(113, 36);
-            this.guna2ComboBox1.StartIndex = 11;
-            this.guna2ComboBox1.TabIndex = 17;
+            this.cmbMonth.BackColor = System.Drawing.Color.White;
+            this.cmbMonth.BorderColor = System.Drawing.Color.Silver;
+            this.cmbMonth.BorderRadius = 6;
+            this.cmbMonth.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMonth.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbMonth.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbMonth.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.cmbMonth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbMonth.ItemHeight = 30;
+            this.cmbMonth.Location = new System.Drawing.Point(240, 7);
+            this.cmbMonth.Name = "cmbMonth";
+            this.cmbMonth.Size = new System.Drawing.Size(142, 36);
+            this.cmbMonth.TabIndex = 17;
+            this.cmbMonth.SelectedIndexChanged += new System.EventHandler(this.cmbMonth_SelectedIndexChanged);
+            this.cmbMonth.SelectedValueChanged += new System.EventHandler(this.cmbMonth_SelectedValueChanged);
             // 
             // guna2HtmlLabel1
             // 
@@ -759,22 +746,24 @@
             this.guna2HtmlLabel1.TabIndex = 18;
             this.guna2HtmlLabel1.Text = "MONTH:";
             // 
-            // cmbCategory
+            // cmbYear
             // 
-            this.cmbCategory.BackColor = System.Drawing.Color.White;
-            this.cmbCategory.BorderColor = System.Drawing.Color.Silver;
-            this.cmbCategory.BorderRadius = 6;
-            this.cmbCategory.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCategory.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbCategory.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cmbCategory.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.cmbCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cmbCategory.ItemHeight = 30;
-            this.cmbCategory.Location = new System.Drawing.Point(58, 7);
-            this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(113, 36);
-            this.cmbCategory.TabIndex = 15;
+            this.cmbYear.BackColor = System.Drawing.Color.White;
+            this.cmbYear.BorderColor = System.Drawing.Color.Silver;
+            this.cmbYear.BorderRadius = 6;
+            this.cmbYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbYear.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbYear.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbYear.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.cmbYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbYear.ItemHeight = 30;
+            this.cmbYear.Location = new System.Drawing.Point(58, 7);
+            this.cmbYear.Name = "cmbYear";
+            this.cmbYear.Size = new System.Drawing.Size(113, 36);
+            this.cmbYear.TabIndex = 15;
+            this.cmbYear.SelectedIndexChanged += new System.EventHandler(this.cmbYear_SelectedIndexChanged);
+            this.cmbYear.SelectedValueChanged += new System.EventHandler(this.cmbYear_SelectedValueChanged);
             // 
             // guna2HtmlLabel6
             // 
@@ -876,9 +865,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel1;
-        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbMonth;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbCategory;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbYear;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
     }
 }

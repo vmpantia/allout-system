@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AllOut.Desktop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -53,6 +54,50 @@ namespace AllOut.Desktop.Common
         public static string GetStringByCellValue(object value)
         {
             return value == null ? string.Empty : value.ToString();
+        }
+
+        public static List<Year> GetYears(int firstYear, int lastYear)
+        {
+            var years = new List<Year>
+            {
+                //Add Default Year
+                new Year
+                {
+                    YearString = "All",
+                    YearInt = 0,
+                }
+            };
+            for(int i = firstYear; i <= lastYear; i++)
+            {
+                years.Add(new Year
+                {
+                    YearString = i.ToString(),
+                    YearInt = i,
+                });
+            };
+
+            return years.ToList();
+        }
+
+        public static List<Month> GetMonths()
+        {
+            return new List<Month>
+            {
+                //Add Default Month
+                new Month {  MonthName = "All", MonthNumber = 0, },
+                new Month {  MonthName = "JANUARY", MonthNumber = 1, },
+                new Month {  MonthName = "FEBRUARY", MonthNumber = 2, },
+                new Month {  MonthName = "MARCH", MonthNumber = 3, },
+                new Month {  MonthName = "APRIL", MonthNumber = 4, },
+                new Month {  MonthName = "MAY", MonthNumber = 5, },
+                new Month {  MonthName = "JUNE", MonthNumber = 6, },
+                new Month {  MonthName = "JULY", MonthNumber = 7, },
+                new Month {  MonthName = "AUGUST", MonthNumber = 8, },
+                new Month {  MonthName = "SEPTEMBER", MonthNumber = 9, },
+                new Month {  MonthName = "OCTOBER", MonthNumber = 10, },
+                new Month {  MonthName = "NOVEMBER", MonthNumber = 11, },
+                new Month {  MonthName = "DECEMBER", MonthNumber = 12, }
+            };
         }
     }
 }

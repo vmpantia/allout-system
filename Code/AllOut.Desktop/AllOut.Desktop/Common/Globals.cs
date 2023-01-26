@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AllOut.Desktop.Common
 {
     public class Globals
     {
+
         #region Sales Global
         public static Sales _salesInfo { get; set; }
         public static List<SalesItemFullInformation> _salesItems { get; set; }
@@ -77,6 +79,6 @@ namespace AllOut.Desktop.Common
 
         public static string GET_SALES_REPORT = string.Concat(Constants.API_BASE, "Report/GetSalesReport?clientID={0}");
         public static string GET_SALES_REPORT_BY_YEAR = string.Concat(Constants.API_BASE, "Report/GetSalesReportByYear?clientID={0}&year={1}");
-        public static string GET_SALES_REPORT_BY_YEAR_MONTH = string.Concat(Constants.API_BASE, "Report/GetSalesReportByYearAndMonthAsync?clientID={0}&query={1}");
+        public static string GET_SALES_REPORT_BY_YEAR_MONTH = string.Concat(Constants.API_BASE, "Report/GetSalesReportByYearAndMonth?clientID={0}&query={1}");
     }
 }

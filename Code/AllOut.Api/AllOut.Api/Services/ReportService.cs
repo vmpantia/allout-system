@@ -117,8 +117,8 @@ namespace AllOut.Api.Services
 
         public async Task<IEnumerable<SalesReportInformation>> GetSalesReportByYearAndMonthAsync(string query)
         {
-            var year = int.Parse(query.Split(Constants.AND)[0]);
-            var month = int.Parse(query.Split(Constants.AND)[1]);
+            var year = int.Parse(query.Split(Constants.DASH)[0]);
+            var month = int.Parse(query.Split(Constants.DASH)[1]);
 
             var salesInItems = await (from a in _db.Sales
                                       join b in _db.SalesItems on a.SalesID equals b.SalesID
