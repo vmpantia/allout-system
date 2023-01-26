@@ -78,27 +78,24 @@ namespace AllOut.Desktop.Views
                     cmbMonth.ValueMember = "MonthNumber";
                 }
             }
+            else if (year != 0 && month == 0)
+            {
+                isByYear = true;
+                var res = HttpController.GetSalesReportByYearAsync(Globals.ClientInformation.ClientID, year);
+                if (res.Result == ResponseResult.SUCCESS)
+                {
+                    salesReports = (List<SalesReportInformation>)res.Data;
+                }
+            }
             else
             {
-                if (year != 0 && month == 0)
+                isByMonth = true;
+                var res = HttpController.GetSalesReportByYearAndMonthAsync(Globals.ClientInformation.ClientID,
+                                                                           string.Format("{0}-{1}", year,
+                                                                                                    month));
+                if (res.Result == ResponseResult.SUCCESS)
                 {
-                    isByYear = true;
-                    var res = HttpController.GetSalesReportByYearAsync(Globals.ClientInformation.ClientID, year);
-                    if (res.Result == ResponseResult.SUCCESS)
-                    {
-                        salesReports = (List<SalesReportInformation>)res.Data;
-                    }
-                }
-                else if (year != 0 && month != 0)
-                {
-                        isByMonth = true;
-                    var res = HttpController.GetSalesReportByYearAndMonthAsync(Globals.ClientInformation.ClientID,
-                                                                               string.Format("{0}-{1}", year,
-                                                                                                        month));
-                    if (res.Result == ResponseResult.SUCCESS)
-                    {
-                        salesReports = (List<SalesReportInformation>)res.Data;
-                    }
+                    salesReports = (List<SalesReportInformation>)res.Data;
                 }
             }
 
