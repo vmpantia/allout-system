@@ -91,7 +91,7 @@ namespace AllOut.Desktop.Views
                 }
                 else if (year != 0 && month != 0)
                 {
-                    isByMonth = true;
+                        isByMonth = true;
                     var res = HttpController.GetSalesReportByYearAndMonthAsync(Globals.ClientInformation.ClientID,
                                                                                string.Format("{0}-{1}", year,
                                                                                                         month));
