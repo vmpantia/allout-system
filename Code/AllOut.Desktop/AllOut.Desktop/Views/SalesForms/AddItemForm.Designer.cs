@@ -67,7 +67,7 @@
             // 
             // guna2PictureBox1
             // 
-            this.guna2PictureBox1.Image = global::AllOut.Desktop.Properties.Resources.icons8_shipping_product_96;
+            this.guna2PictureBox1.Image = global::AllOut.Desktop.Properties.Resources.dg_product;
             this.guna2PictureBox1.ImageRotate = 0F;
             this.guna2PictureBox1.Location = new System.Drawing.Point(21, 16);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
@@ -87,7 +87,7 @@
             this.btnCancel.FillColor = System.Drawing.Color.Gray;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Image = global::AllOut.Desktop.Properties.Resources.icons8_close_90;
+            this.btnCancel.Image = global::AllOut.Desktop.Properties.Resources.white_close;
             this.btnCancel.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnCancel.Location = new System.Drawing.Point(452, 426);
             this.btnCancel.Name = "btnCancel";
@@ -108,7 +108,7 @@
             this.btnAdd.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::AllOut.Desktop.Properties.Resources.icons8_save_96;
+            this.btnAdd.Image = global::AllOut.Desktop.Properties.Resources.white_save;
             this.btnAdd.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnAdd.Location = new System.Drawing.Point(357, 426);
             this.btnAdd.Name = "btnAdd";

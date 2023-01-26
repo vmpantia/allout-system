@@ -116,7 +116,7 @@
             this.guna2CircleButton1.FillColor = System.Drawing.Color.White;
             this.guna2CircleButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2CircleButton1.ForeColor = System.Drawing.Color.White;
-            this.guna2CircleButton1.Image = global::AllOut.Desktop.Properties.Resources.icons8_facebook_96;
+            this.guna2CircleButton1.Image = global::AllOut.Desktop.Properties.Resources.facebook;
             this.guna2CircleButton1.ImageSize = new System.Drawing.Size(50, 50);
             this.guna2CircleButton1.Location = new System.Drawing.Point(64, 425);
             this.guna2CircleButton1.Name = "guna2CircleButton1";
@@ -126,7 +126,7 @@
             // 
             // guna2PictureBox1
             // 
-            this.guna2PictureBox1.Image = global::AllOut.Desktop.Properties.Resources.alloutlogo;
+            this.guna2PictureBox1.Image = global::AllOut.Desktop.Properties.Resources.all_out_logo;
             this.guna2PictureBox1.ImageRotate = 0F;
             this.guna2PictureBox1.Location = new System.Drawing.Point(64, 48);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
@@ -149,7 +149,7 @@
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPassword.IconLeft = global::AllOut.Desktop.Properties.Resources.icons8_password_key_96;
+            this.txtPassword.IconLeft = global::AllOut.Desktop.Properties.Resources.white_password;
             this.txtPassword.IconLeftOffset = new System.Drawing.Point(3, 0);
             this.txtPassword.Location = new System.Drawing.Point(64, 292);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -175,7 +175,7 @@
             this.txtLogonName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLogonName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtLogonName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtLogonName.IconLeft = global::AllOut.Desktop.Properties.Resources.icons8_user_96;
+            this.txtLogonName.IconLeft = global::AllOut.Desktop.Properties.Resources.white_user;
             this.txtLogonName.IconLeftOffset = new System.Drawing.Point(3, 0);
             this.txtLogonName.Location = new System.Drawing.Point(64, 233);
             this.txtLogonName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

@@ -10,33 +10,25 @@ namespace AllOut.Desktop.Common
 {
     public class Constants
     {
-        public const string PESO_FORMAT = "₱ {0}";
-        public const string DEFAULT_AMOUNT = "₱ 0.00";
-        public const string N0_FORMAT = "N2";
-        public const string CASHIER_POS_FORMAT = "Cashier: {0}";
-        public const string SALESID_POS_FORMAT = "Sales ID: {0}";
-
+        #region Common Format
         public const string DATE_FORMAT = "yyyy/MM/dd";
         public const string NA = "N/A";
         public const string NAME_FORMAT = "{0}, {1}";
         public const string USERNAME_FORMAT = "{0}.{1}";
         public const char ZERO = '0';
-        public const string HASH = "@l10uTxK@lr0T1r35";
         public const string API_BASE = "http://www.allout.api.com/";
         //public const string API_BASE = "https://localhost:7252/";
+        #endregion
 
+        #region Sales Format
+        public const string PESO_FORMAT = "₱ {0}";
+        public const string DEFAULT_AMOUNT = "₱ 0.00";
+        public const string N0_FORMAT = "N2";
+        public const string CASHIER_POS_FORMAT = "Cashier: {0}";
+        public const string SALESID_POS_FORMAT = "Sales ID: {0}";
+        #endregion
 
         public const string REGEX_NUMBER_PATTERN = "^-?[0-9]\\d*(\\.\\d+)?$";
-
-        #region Forms
-        public const string FORM_DASHBOARDS = "Dashboards";
-        public const string FORM_INVENTORIES = "Inventories";
-        public const string FORM_SALES = "Sales";
-        public const string FORM_PRODUCTS = "Products";
-        public const string FORM_BRANDS = "Brands";
-        public const string FORM_CATEGORIES = "Categories";
-        public const string FORM_USERS = "Users";
-        #endregion
 
         #region Request Status
         public const string REQUEST_STATUS_COMPLETED = "A2";
@@ -128,6 +120,16 @@ namespace AllOut.Desktop.Common
         public const string MESSAGE_CONFIRMATION = "Are you sure you want to {0} {1} {2}(s)?";
         #endregion
 
+        #region Forms
+        public const string FORM_DASHBOARD = "Dashboard";
+        public const string FORM_INVENTORY = "Inventory";
+        public const string FORM_SALES = "Sales";
+        public const string FORM_PRODUCT = "Product";
+        public const string FORM_BRAND = "Brand";
+        public const string FORM_CATEGORY = "Category";
+        public const string FORM_USER = "User";
+        #endregion
+
         #region Titles
         public const string TITLE_ADD = "Add {0}";
         public const string TITLE_EDIT = "Edit {0}";
@@ -139,6 +141,7 @@ namespace AllOut.Desktop.Common
         #region Descriptions
         public const string DESC_ADD = "In this page you can add {0}.";
         public const string DESC_EDIT = "In this page you can edit {0}.";
+        public const string DESC_FORM = "In this page you can view all the {0} that is saved in the system.";
         #endregion
 
         #region Objects

@@ -590,7 +590,7 @@
             this.btnPay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnPay.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnPay.Image = global::AllOut.Desktop.Properties.Resources.icons8_receive_cash_100;
+            this.btnPay.Image = global::AllOut.Desktop.Properties.Resources.dg_payment;
             this.btnPay.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnPay.ImageSize = new System.Drawing.Size(30, 30);
             this.btnPay.Location = new System.Drawing.Point(1397, 3);
@@ -625,7 +625,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnCancel.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnCancel.Image = global::AllOut.Desktop.Properties.Resources.icons8_close_90_black;
+            this.btnCancel.Image = global::AllOut.Desktop.Properties.Resources.dg_close;
             this.btnCancel.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnCancel.ImageSize = new System.Drawing.Size(30, 30);
             this.btnCancel.Location = new System.Drawing.Point(1037, 3);
@@ -648,7 +648,7 @@
             this.btnReset.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnReset.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnReset.Image = global::AllOut.Desktop.Properties.Resources.icons8_update_left_rotation_100;
+            this.btnReset.Image = global::AllOut.Desktop.Properties.Resources.dg_reset;
             this.btnReset.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnReset.ImageSize = new System.Drawing.Size(30, 30);
             this.btnReset.Location = new System.Drawing.Point(1217, 3);
