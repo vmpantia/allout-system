@@ -44,7 +44,17 @@ namespace AllOut.Desktop.Views
 
             Globals.ClientInformation = (Client)response.Data;
             var mainForm = new MainForm();
+
+            //Hide Login Form
+            this.Hide();
+
+            //Show Main Form
             mainForm.ShowDialog();
+            
+            //Reset Fields & Show Login Form
+            txtPassword.Text = string.Empty;
+            txtLogonName.Text = string.Empty;
+            this.Show();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
