@@ -34,6 +34,7 @@ namespace AllOut.Desktop.Views.SalesForms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //Show POS Form
             var form = new POSForm();
             form.ShowDialog();
             PopulateSales();
@@ -76,10 +77,9 @@ namespace AllOut.Desktop.Views.SalesForms
             {
                 IsSelectAll(false);
 
-                //Show Form
+                //Show POS Form
                 var form = new POSForm(id);
                 form.ShowDialog();
-                PopulateSales();
             }
 
             //Check if Select CheckBox is Clicked
