@@ -28,9 +28,9 @@ namespace AllOut.Desktop.Views.SalesForms
         private decimal _payment = 0;
 
         private bool _isAdd = true;
-        private const int ID_COL_IDX = 0;
-        private const int BUTTON_ITEMS_COL_IDX = 5;
-        private const int BUTTON_OTHERCHARGES_COL_IDX = 2;
+        private const int ID_COL_IDX = 1;
+        private const int BUTTON_ITEMS_COL_IDX = 0;
+        private const int BUTTON_OTHERCHARGES_COL_IDX = 0;
 
         public POSForm(string salesID = null)
         {
