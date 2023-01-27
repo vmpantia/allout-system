@@ -38,9 +38,6 @@ namespace AllOut.Desktop.Views.SalesForms
             ResetSalesGlobalValue();
 
             _isAdd = string.IsNullOrEmpty(salesID);
-
-            lblCashier.Text = string.Format(Constants.CASHIER_POS_FORMAT, Globals.ClientInformation.Name);
-            lblSalesID.Text = string.Format(Constants.CASHIER_POS_FORMAT, _isAdd ? Constants.NA : salesID);
             PopulateSales(salesID);
         }
 
@@ -201,6 +198,12 @@ namespace AllOut.Desktop.Views.SalesForms
                 var salesFullInfo = response.Data as SalesFullInformation;
                 PopulateSalesByFullInfo(salesFullInfo);
             }
+
+            lblCashier.Text = string.Format(Constants.CASHIER_POS_FORMAT, Globals.ClientInformation.Name);
+            lblSalesID.Text = string.Format(Constants.CASHIER_POS_FORMAT, _isAdd ? Constants.NA : salesID);
+            txtPayment.Text = Globals._salesInfo.AmountPaid.ToString();
+            _payment = Globals._salesInfo.AmountPaid;
+
             PopulateTables();
         }
 
@@ -225,7 +228,7 @@ namespace AllOut.Desktop.Views.SalesForms
         {
             PopulateItems();
             PopulateOtherCharges();
-            ComputeAll();
+            ComputeAll(_payment);
         }
 
         private void PopulateItems()
