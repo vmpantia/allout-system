@@ -12,7 +12,7 @@ namespace AllOut.Desktop.Models
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public bool IsEmailConfirmed { get; set; }
-        public int Permission { get; set; }
+        public Guid RoleID { get; set; }
         public int Status { get; set; } 
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }

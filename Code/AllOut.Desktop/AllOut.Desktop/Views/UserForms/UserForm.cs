@@ -39,7 +39,7 @@ namespace AllOut.Desktop.Views.UserForms
             _userInfo.MiddleName = txtMiddleName.Text;
             _userInfo.LastName = txtLastName.Text;
             _userInfo.IsEmailConfirmed = false;
-            _userInfo.Permission = int.Parse(cmbPermission.SelectedValue.ToString());
+            _userInfo.RoleID = (Guid)cmdRole.SelectedValue;
             _userInfo.Status = Constants.STATUS_ENABLED_INT;
 
             //Prepare Request for Save
@@ -102,8 +102,8 @@ namespace AllOut.Desktop.Views.UserForms
             txtEmail.Text = _userInfo.Email;
             txtFirstName.Text = _userInfo.FirstName;
             txtMiddleName.Text = _userInfo.MiddleName;
-            txtLastName.Text = _userInfo.LastName.ToString();
-            cmbPermission.SelectedValue = _userInfo.Permission.ToString();
+            txtLastName.Text = _userInfo.LastName;
+            cmdRole.SelectedValue = _userInfo.RoleID;
 
             EnableControls(_userInfo.Status == Constants.STATUS_ENABLED_INT);
         }
@@ -114,7 +114,7 @@ namespace AllOut.Desktop.Views.UserForms
             txtFirstName.Enabled = isEnabled;
             txtMiddleName.Enabled = isEnabled;
             txtLastName.Enabled = isEnabled;
-            cmbPermission.Enabled = isEnabled;
+            cmdRole.Enabled = isEnabled;
             btnSave.Enabled = isEnabled;
         }
     }
