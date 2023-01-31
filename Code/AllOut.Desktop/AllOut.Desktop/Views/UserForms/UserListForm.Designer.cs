@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUnselectAll = new Guna.UI2.WinForms.Guna2Button();
             this.btnDelete = new Guna.UI2.WinForms.Guna2Button();
             this.btnSelectAll = new Guna.UI2.WinForms.Guna2Button();
             this.btnDisable = new Guna.UI2.WinForms.Guna2Button();
-            this.btnAdd = new Guna.UI2.WinForms.Guna2Button();
             this.btnEnable = new Guna.UI2.WinForms.Guna2Button();
             this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
@@ -69,8 +68,7 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 9;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel2.ColumnCount = 8;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
@@ -79,14 +77,14 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 277F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tableLayoutPanel2.Controls.Add(this.btnUnselectAll, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnDelete, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnSelectAll, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnDisable, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnAdd, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnEnable, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnSearch, 8, 0);
-            this.tableLayoutPanel2.Controls.Add(this.txtSearch, 7, 0);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.btnUnselectAll, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnDelete, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnSelectAll, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnDisable, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnEnable, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnSearch, 7, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtSearch, 6, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -112,7 +110,7 @@
             this.btnUnselectAll.Image = global::AllOut.Desktop.Properties.Resources.dg_uncheck_al;
             this.btnUnselectAll.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnUnselectAll.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnUnselectAll.Location = new System.Drawing.Point(188, 3);
+            this.btnUnselectAll.Location = new System.Drawing.Point(108, 3);
             this.btnUnselectAll.Name = "btnUnselectAll";
             this.btnUnselectAll.Size = new System.Drawing.Size(114, 41);
             this.btnUnselectAll.TabIndex = 9;
@@ -136,7 +134,7 @@
             this.btnDelete.Image = global::AllOut.Desktop.Properties.Resources.dg_delete;
             this.btnDelete.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDelete.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnDelete.Location = new System.Drawing.Point(488, 3);
+            this.btnDelete.Location = new System.Drawing.Point(408, 3);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(84, 41);
             this.btnDelete.TabIndex = 8;
@@ -160,7 +158,7 @@
             this.btnSelectAll.Image = global::AllOut.Desktop.Properties.Resources.dg_check_all;
             this.btnSelectAll.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSelectAll.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnSelectAll.Location = new System.Drawing.Point(83, 3);
+            this.btnSelectAll.Location = new System.Drawing.Point(3, 3);
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.Size = new System.Drawing.Size(99, 41);
             this.btnSelectAll.TabIndex = 8;
@@ -184,36 +182,13 @@
             this.btnDisable.Image = global::AllOut.Desktop.Properties.Resources.dg_disabled;
             this.btnDisable.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDisable.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnDisable.Location = new System.Drawing.Point(398, 3);
+            this.btnDisable.Location = new System.Drawing.Point(318, 3);
             this.btnDisable.Name = "btnDisable";
             this.btnDisable.Size = new System.Drawing.Size(84, 41);
             this.btnDisable.TabIndex = 6;
             this.btnDisable.Text = "Disable";
             this.btnDisable.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDisable.Click += new System.EventHandler(this.btnDisable_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BorderRadius = 6;
-            this.btnAdd.DisabledState.BorderColor = System.Drawing.Color.Transparent;
-            this.btnAdd.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnAdd.DisabledState.FillColor = System.Drawing.Color.Transparent;
-            this.btnAdd.DisabledState.ForeColor = System.Drawing.Color.Gray;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.FillColor = System.Drawing.Color.White;
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAdd.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Image = global::AllOut.Desktop.Properties.Resources.dg_add;
-            this.btnAdd.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAdd.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnAdd.Location = new System.Drawing.Point(3, 3);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(74, 41);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEnable
             // 
@@ -231,7 +206,7 @@
             this.btnEnable.Image = global::AllOut.Desktop.Properties.Resources.dg_enabled;
             this.btnEnable.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnEnable.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnEnable.Location = new System.Drawing.Point(308, 3);
+            this.btnEnable.Location = new System.Drawing.Point(228, 3);
             this.btnEnable.Name = "btnEnable";
             this.btnEnable.Size = new System.Drawing.Size(84, 41);
             this.btnEnable.TabIndex = 0;
@@ -312,25 +287,25 @@
             // 
             this.tblObjectList.AllowUserToAddRows = false;
             this.tblObjectList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tblObjectList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblObjectList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tblObjectList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblObjectList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.tblObjectList.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tblObjectList.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tblObjectList.DefaultCellStyle = dataGridViewCellStyle3;
             this.tblObjectList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblObjectList.GridColor = System.Drawing.SystemColors.Control;
             this.tblObjectList.Location = new System.Drawing.Point(0, 0);
@@ -395,7 +370,6 @@
         private Guna.UI2.WinForms.Guna2Button btnDelete;
         private Guna.UI2.WinForms.Guna2Button btnSelectAll;
         private Guna.UI2.WinForms.Guna2Button btnDisable;
-        private Guna.UI2.WinForms.Guna2Button btnAdd;
         private Guna.UI2.WinForms.Guna2Button btnEnable;
         private Guna.UI2.WinForms.Guna2Button btnSearch;
         private Guna.UI2.WinForms.Guna2HtmlToolTip btnSearchToolTip;

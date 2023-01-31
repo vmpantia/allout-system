@@ -100,6 +100,7 @@ namespace AllOut.Desktop.Views.UserForms
 
             //Populate Data in Text Fields
             txtEmail.Text = _userInfo.Email;
+            txtUsername.Text = _userInfo.Username;
             txtFirstName.Text = _userInfo.FirstName;
             txtMiddleName.Text = _userInfo.MiddleName;
             txtLastName.Text = _userInfo.LastName;

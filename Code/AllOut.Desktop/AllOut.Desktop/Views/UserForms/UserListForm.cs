@@ -32,13 +32,6 @@ namespace AllOut.Desktop.Views.UserForms
             PopulateUsers(txtSearch.Text);
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            var form = new UserForm();
-            form.ShowDialog();
-            PopulateUsers();
-        }
-
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
             IsSelectAll(true);
