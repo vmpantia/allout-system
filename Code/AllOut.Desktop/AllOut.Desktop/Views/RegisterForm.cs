@@ -60,7 +60,7 @@ namespace AllOut.Desktop.Views
                     LastName = txtLastName.Text.Trim(),
                     Password = Utility.EncodePassword(txtPassword.Text.Trim()),
                     IsEmailConfirmed = false,
-                    RoleID = Guid.NewGuid(),
+                    RoleID = Guid.Empty,
                     Status = Constants.STATUS_ENABLED_INT,
                     CreatedDate = DateTime.Now,
                     ModifiedDate = null
