@@ -112,28 +112,10 @@ namespace AllOut.Api.Services.Common
             if (role.Status != Constants.STATUS_ENABLED_INT)
                 return "User Role is currently disabled in the system.";
 
-            var isRolePermitted = false;
-            switch(functionID)
-            {
-                case Constants.FUNCTION_ID_ADD_PRODUCT_BY_ADMIN:
-                    isRolePermitted = IsPermitted(role.ProductPermission, PermissionType.ADD);
-                    break;
-                case Constants.FUNCTION_ID_CHANGE_PRODUCT_BY_ADMIN:
-                case Constants.FUNCTION_ID_BULK_CHANGE_PRODUCT_BY_ADMIN:
-                    isRolePermitted = IsPermitted(role.ProductPermission, PermissionType.EDIT);
-                    break;
-                case Constants.FUNCTION_ID_DELETE_PRODUCT_BY_ADMIN:
-                case Constants.FUNCTION_ID_BULK_DELETE_PRODUCT_BY_ADMIN:
-                    isRolePermitted = IsPermitted(role.ProductPermission, PermissionType.DELETE);
-                    break;
-            }
+            if (CheckPermission(role, functionID))
+                return "You don't have permission to do this transaction.";
 
-            return isRolePermitted ? string.Empty : "You don't have permission to do this transaction.";
-        }
-
-        private bool IsPermitted(int permission, PermissionType type)
-        {
-            return (permission & (1 << (int)type)) != 0;
+            return string.Empty;
         }
 
         public bool IsValidName(string name)
@@ -238,6 +220,115 @@ namespace AllOut.Api.Services.Common
                 default:
                     return Constants.NA;
             }
+        }
+
+        private bool CheckPermission(Role role, string? functionID)
+        {
+            switch (functionID)
+            {
+                #region Product
+                case Constants.FUNCTION_ID_ADD_PRODUCT_BY_ADMIN:
+                    return IsPermitted(role.ProductPermission, PermissionType.ADD);
+
+                case Constants.FUNCTION_ID_CHANGE_PRODUCT_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_CHANGE_PRODUCT_BY_ADMIN:
+                    return IsPermitted(role.ProductPermission, PermissionType.EDIT);
+
+                case Constants.FUNCTION_ID_DELETE_PRODUCT_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_DELETE_PRODUCT_BY_ADMIN:
+                    return IsPermitted(role.ProductPermission, PermissionType.DELETE);
+                #endregion
+
+                #region Brand
+                case Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN:
+                    return IsPermitted(role.BrandPermission, PermissionType.ADD);
+
+                case Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN:
+                    return IsPermitted(role.BrandPermission, PermissionType.EDIT);
+
+                case Constants.FUNCTION_ID_DELETE_BRAND_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN:
+                    return IsPermitted(role.BrandPermission, PermissionType.DELETE);
+                #endregion
+
+                #region Category
+                case Constants.FUNCTION_ID_ADD_CATEGORY_BY_ADMIN:
+                    return IsPermitted(role.CategoryPermission, PermissionType.ADD);
+
+                case Constants.FUNCTION_ID_CHANGE_CATEGORY_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_CHANGE_CATEGORY_BY_ADMIN:
+                    return IsPermitted(role.CategoryPermission, PermissionType.EDIT);
+
+                case Constants.FUNCTION_ID_DELETE_CATEGORY_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_DELETE_CATEGORY_BY_ADMIN:
+                    return IsPermitted(role.CategoryPermission, PermissionType.DELETE);
+                #endregion
+
+                #region Inventory
+                case Constants.FUNCTION_ID_ADD_INVENTORY_BY_ADMIN:
+                    return IsPermitted(role.InventoryPermission, PermissionType.ADD);
+
+                case Constants.FUNCTION_ID_CHANGE_INVENTORY_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_CHANGE_INVENTORY_BY_ADMIN:
+                    return IsPermitted(role.InventoryPermission, PermissionType.EDIT);
+
+                case Constants.FUNCTION_ID_DELETE_INVENTORY_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_DELETE_INVENTORY_BY_ADMIN:
+                    return IsPermitted(role.InventoryPermission, PermissionType.DELETE);
+                #endregion
+
+                #region Sales
+                case Constants.FUNCTION_ID_ADD_SALES_BY_ADMIN:
+                case Constants.FUNCTION_ID_ADD_SALES:
+                    return IsPermitted(role.SalesPermission, PermissionType.ADD);
+
+                case Constants.FUNCTION_ID_CHANGE_SALES_BY_ADMIN:
+                case Constants.FUNCTION_ID_CHANGE_SALES:
+                case Constants.FUNCTION_ID_BULK_CHANGE_SALES_BY_ADMIN:
+                    return IsPermitted(role.SalesPermission, PermissionType.EDIT);
+
+                case Constants.FUNCTION_ID_DELETE_SALES_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_DELETE_SALES_BY_ADMIN:
+                    return IsPermitted(role.SalesPermission, PermissionType.DELETE);
+                #endregion
+
+                #region Sales
+                case Constants.FUNCTION_ID_ADD_USER_BY_ADMIN:
+                case Constants.FUNCTION_ID_ADD_USER:
+                    return IsPermitted(role.UserPermission, PermissionType.ADD);
+
+                case Constants.FUNCTION_ID_CHANGE_USER_BY_ADMIN:
+                case Constants.FUNCTION_ID_CHANGE_USER:
+                case Constants.FUNCTION_ID_BULK_CHANGE_USER_BY_ADMIN:
+                    return IsPermitted(role.UserPermission, PermissionType.EDIT);
+
+                case Constants.FUNCTION_ID_DELETE_USER_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_DELETE_USER_BY_ADMIN:
+                    return IsPermitted(role.UserPermission, PermissionType.DELETE);
+                #endregion
+
+                #region Role
+                case Constants.FUNCTION_ID_ADD_ROLE_BY_ADMIN:
+                    return IsPermitted(role.RolePermission, PermissionType.ADD);
+
+                case Constants.FUNCTION_ID_CHANGE_ROLE_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_CHANGE_ROLE_BY_ADMIN:
+                    return IsPermitted(role.RolePermission, PermissionType.EDIT);
+
+                case Constants.FUNCTION_ID_DELETE_ROLE_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_DELETE_ROLE_BY_ADMIN:
+                    return IsPermitted(role.RolePermission, PermissionType.DELETE);
+                #endregion
+
+                default:
+                    return true;
+            }
+        }
+
+        private bool IsPermitted(int permission, PermissionType type)
+        {
+            return ((permission & (int)type) > 0);
         }
         #endregion
     }
