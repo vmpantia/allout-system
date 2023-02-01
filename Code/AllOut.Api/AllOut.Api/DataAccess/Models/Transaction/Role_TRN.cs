@@ -51,6 +51,12 @@ namespace AllOut.Api.DataAccess.Models
         public bool DeleteUser { get; set; }
         #endregion
 
+        #region Role
+        public bool AddRole { get; set; }
+        public bool EditRole { get; set; }
+        public bool DeleteRole { get; set; }
+        #endregion
+
         public int Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }

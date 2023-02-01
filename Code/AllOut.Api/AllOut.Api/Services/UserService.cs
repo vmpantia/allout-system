@@ -110,7 +110,7 @@ namespace AllOut.Api.Services
                 case Constants.FUNCTION_ID_CHANGE_USER: //Change
                     await UpdateUser(request.inputUser);
                     break;
-                case Constants.FUNCTION_ID_DELETE_PRODUCT_BY_ADMIN: //Delete
+                case Constants.FUNCTION_ID_DELETE_USER_BY_ADMIN: //Delete
                     await DeleteUser(request.inputUser.UserID);
                     break;
             }
@@ -262,9 +262,9 @@ namespace AllOut.Api.Services
                 isNew = false;
 
                 //Check if new data and old data changed
-                if (/*newData.Email == oldData.BrandID &&*/
-                    //newData.Username == oldData.CategoryID &&
-                    //newData.Password == oldData.Name &&
+                if (/*newData.Email == oldData.Email &&*/
+                    //newData.Username == oldData.Username &&
+                    //newData.Password == oldData.Password &&
                     newData.FirstName == oldData.FirstName &&
                     newData.MiddleName == oldData.MiddleName &&
                     newData.LastName == oldData.LastName &&
