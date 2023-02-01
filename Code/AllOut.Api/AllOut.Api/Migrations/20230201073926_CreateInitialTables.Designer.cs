@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AllOut.Api.Migrations
 {
     [DbContext(typeof(AllOutDbContext))]
-    [Migration("20230201072533_Update-RoleTable")]
-    partial class UpdateRoleTable
+    [Migration("20230201073926_CreateInitialTables")]
+    partial class CreateInitialTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
