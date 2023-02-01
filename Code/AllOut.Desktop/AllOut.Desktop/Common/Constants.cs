@@ -51,16 +51,6 @@ namespace AllOut.Desktop.Common
 
         #region Function ID
 
-        #region User
-        public const string FUNCTION_ID_ADD_USER_BY_ADMIN = "00A00";
-        public const string FUNCTION_ID_ADD_USER = "00A01";
-        public const string FUNCTION_ID_CHANGE_USER_BY_ADMIN = "00C00";
-        public const string FUNCTION_ID_CHANGE_USER = "00C01";
-        public const string FUNCTION_ID_BULK_CHANGE_USER_BY_ADMIN = "10C00";
-        public const string FUNCTION_ID_DELETE_USER_BY_ADMIN = "00D00";
-        public const string FUNCTION_ID_BULK_DELETE_USER_BY_ADMIN = "10D00";
-        #endregion
-
         #region Product
         public const string FUNCTION_ID_ADD_PRODUCT_BY_ADMIN = "01A00";
         public const string FUNCTION_ID_CHANGE_PRODUCT_BY_ADMIN = "01C00";
@@ -101,6 +91,24 @@ namespace AllOut.Desktop.Common
         public const string FUNCTION_ID_BULK_CHANGE_SALES_BY_ADMIN = "15C00";
         public const string FUNCTION_ID_DELETE_SALES_BY_ADMIN = "05D00";
         public const string FUNCTION_ID_BULK_DELETE_SALES_BY_ADMIN = "15D00";
+        #endregion
+
+        #region User
+        public const string FUNCTION_ID_ADD_USER_BY_ADMIN = "06A00";
+        public const string FUNCTION_ID_ADD_USER = "06A01";
+        public const string FUNCTION_ID_CHANGE_USER_BY_ADMIN = "06C00";
+        public const string FUNCTION_ID_CHANGE_USER = "06C01";
+        public const string FUNCTION_ID_BULK_CHANGE_USER_BY_ADMIN = "16C00";
+        public const string FUNCTION_ID_DELETE_USER_BY_ADMIN = "06D00";
+        public const string FUNCTION_ID_BULK_DELETE_USER_BY_ADMIN = "16D00";
+        #endregion
+
+        #region Role
+        public const string FUNCTION_ID_ADD_ROLE_BY_ADMIN = "07A00";
+        public const string FUNCTION_ID_CHANGE_ROLE_BY_ADMIN = "07C00";
+        public const string FUNCTION_ID_BULK_CHANGE_ROLE_BY_ADMIN = "17C00";
+        public const string FUNCTION_ID_DELETE_ROLE_BY_ADMIN = "07D00";
+        public const string FUNCTION_ID_BULK_DELETE_ROLE_BY_ADMIN = "17D00";
         #endregion
 
         #endregion
