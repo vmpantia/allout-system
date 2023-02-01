@@ -12,12 +12,10 @@ namespace AllOut.Api.Services
     {
         private readonly AllOutDbContext _db;
         private readonly IRequestService _request;
-        private readonly IUtilityService _utility;
-        public RoleService(AllOutDbContext context, IRequestService request, IUtilityService utility)
+        public RoleService(AllOutDbContext context, IRequestService request)
         {
             _db = context;
             _request = request;
-            _utility = utility;
         }
 
         #region Public Methods

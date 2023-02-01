@@ -2,18 +2,8 @@
 {
     public enum RequestType
     {
-        //User Request
-        POST_LOGIN_USER = 0,
-        GET_USERS,
-        GET_USERS_BY_QUERY,
-        GET_USERS_BY_STATUS,
-        GET_USER_BY_ID,
-        GET_COUNT_USERS,
-        GET_COUNT_USERS_BY_STATUS,
-        POST_SAVE_USER,
-        POST_UPDATE_USER_STATUS_BY_IDS,
         //Product Request
-        GET_PRODUCTS,
+        GET_PRODUCTS = 0,
         GET_PRODUCTS_BY_QUERY,
         GET_PRODUCTS_BY_STATUS,
         GET_PRODUCT_BY_ID,
@@ -61,5 +51,24 @@
         GET_SALES_REPORT,
         GET_SALES_REPORT_BY_YEAR,
         GET_SALES_REPORT_BY_YEAR_MONTH,
+        //User Request
+        POST_LOGIN_USER,
+        GET_USERS,
+        GET_USERS_BY_QUERY,
+        GET_USERS_BY_STATUS,
+        GET_USER_BY_ID,
+        GET_COUNT_USERS,
+        GET_COUNT_USERS_BY_STATUS,
+        POST_SAVE_USER,
+        POST_UPDATE_USER_STATUS_BY_IDS,
+        //Sales Request
+        GET_ROLES,
+        GET_ROLES_BY_QUERY,
+        GET_ROLES_BY_STATUS,
+        GET_ROLE_BY_ID,
+        GET_COUNT_ROLES,
+        GET_COUNT_ROLES_BY_STATUS,
+        POST_SAVE_ROLE,
+        POST_UPDATE_ROLE_STATUS_BY_IDS,
     }
 }

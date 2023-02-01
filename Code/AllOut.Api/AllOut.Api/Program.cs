@@ -16,7 +16,6 @@ var connectionstring = builder.Configuration.GetConnectionString("DEV_SQL_CON");
 
 builder.Services.AddDbContext<AllOutDbContext>(options => options.UseSqlServer(connectionstring));
 
-builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -24,7 +23,9 @@ builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<ISalesService, SalesService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
-builder.Services.AddScoped<IUtilityService, UtilityService>(); 
+builder.Services.AddScoped<IUtilityService, UtilityService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
 
 builder.Services.AddCors(options =>
 {
