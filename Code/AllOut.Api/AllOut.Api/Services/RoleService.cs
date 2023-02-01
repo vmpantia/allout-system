@@ -147,27 +147,13 @@ namespace AllOut.Api.Services
 
             //currentRole.RoleID = inputRole.RoleID;
             currentRole.Name = inputRole.Name;
-            currentRole.AddProduct = inputRole.AddProduct;
-            currentRole.EditProduct = inputRole.EditProduct;
-            currentRole.DeleteProduct = inputRole.DeleteProduct;
-            currentRole.AddCategory = inputRole.AddCategory;
-            currentRole.EditCategory = inputRole.EditCategory;
-            currentRole.DeleteCategory = inputRole.DeleteCategory;
-            currentRole.AddBrand = inputRole.AddBrand;
-            currentRole.EditBrand = inputRole.EditBrand;
-            currentRole.DeleteBrand = inputRole.DeleteBrand;
-            currentRole.AddInventory = inputRole.AddInventory;
-            currentRole.EditInventory = inputRole.EditInventory;
-            currentRole.DeleteInventory = inputRole.DeleteInventory;
-            currentRole.AddSales = inputRole.AddSales;
-            currentRole.EditSales = inputRole.EditSales;
-            currentRole.DeleteSales = inputRole.DeleteSales;
-            currentRole.AddUser = inputRole.AddUser;
-            currentRole.EditUser = inputRole.EditUser;
-            currentRole.DeleteUser = inputRole.DeleteUser;
-            currentRole.AddRole = inputRole.AddRole;
-            currentRole.EditRole = inputRole.EditRole;
-            currentRole.DeleteRole = inputRole.DeleteRole;
+            currentRole.ProductPermission = inputRole.ProductPermission;
+            currentRole.CategoryPermission = inputRole.CategoryPermission;
+            currentRole.BrandPermission = inputRole.BrandPermission;
+            currentRole.InventoryPermission = inputRole.InventoryPermission;
+            currentRole.SalesPermission = inputRole.SalesPermission;
+            currentRole.UserPermission = inputRole.UserPermission;
+            currentRole.RolePermission = inputRole.RolePermission;
             currentRole.Status = inputRole.Status;
             //currentRole.CreatedDate = inputRole.CreatedDate;
             currentRole.ModifiedDate = DateTime.Now;
@@ -191,27 +177,13 @@ namespace AllOut.Api.Services
                 Number = number,
                 RoleID = inputRole.RoleID,
                 Name = inputRole.Name,
-                AddProduct = inputRole.AddProduct,
-                EditProduct = inputRole.EditProduct,
-                DeleteProduct = inputRole.DeleteProduct,
-                AddCategory = inputRole.AddCategory,
-                EditCategory = inputRole.EditCategory,
-                DeleteCategory = inputRole.DeleteCategory,
-                AddBrand = inputRole.AddBrand,
-                EditBrand = inputRole.EditBrand,
-                DeleteBrand = inputRole.DeleteBrand,
-                AddInventory = inputRole.AddInventory,
-                EditInventory = inputRole.EditInventory,
-                DeleteInventory = inputRole.DeleteInventory,
-                AddSales = inputRole.AddSales,
-                EditSales = inputRole.EditSales,
-                DeleteSales = inputRole.DeleteSales,
-                AddUser = inputRole.AddUser,
-                EditUser = inputRole.EditUser,
-                DeleteUser = inputRole.DeleteUser,
-                AddRole = inputRole.AddRole,
-                EditRole = inputRole.EditRole,
-                DeleteRole = inputRole.DeleteRole,
+                ProductPermission = inputRole.ProductPermission,
+                CategoryPermission = inputRole.CategoryPermission,
+                BrandPermission = inputRole.BrandPermission,
+                InventoryPermission = inputRole.InventoryPermission,
+                SalesPermission = inputRole.SalesPermission,
+                UserPermission = inputRole.UserPermission,
+                RolePermission = inputRole.RolePermission,
                 Status = inputRole.Status,
                 CreatedDate = inputRole.CreatedDate,
                 ModifiedDate = inputRole.ModifiedDate
@@ -239,35 +211,13 @@ namespace AllOut.Api.Services
 
                 //Check if new data and old data changed
                 if (newData.Name == oldData.Name &&
-
-                    newData.AddProduct == oldData.AddProduct &&
-                    newData.EditProduct == oldData.EditProduct &&
-                    newData.DeleteProduct == oldData.DeleteProduct &&
-
-                    newData.AddCategory == oldData.AddCategory &&
-                    newData.EditCategory == oldData.EditCategory &&
-                    newData.DeleteCategory == oldData.DeleteCategory &&
-
-                    newData.AddBrand == oldData.AddBrand &&
-                    newData.EditBrand == oldData.EditBrand &&
-                    newData.DeleteBrand == oldData.DeleteBrand &&
-
-                    newData.AddInventory == oldData.AddInventory &&
-                    newData.EditInventory == oldData.EditInventory &&
-                    newData.DeleteInventory == oldData.DeleteInventory &&
-
-                    newData.AddSales == oldData.AddSales &&
-                    newData.EditSales == oldData.EditSales &&
-                    newData.DeleteSales == oldData.DeleteSales &&
-
-                    newData.AddUser == oldData.AddUser &&
-                    newData.EditUser == oldData.EditUser &&
-                    newData.DeleteUser == oldData.DeleteUser &&
-
-                    newData.AddRole == oldData.AddRole &&
-                    newData.EditRole == oldData.EditRole &&
-                    newData.DeleteRole == oldData.DeleteRole &&
-
+                    newData.ProductPermission == oldData.ProductPermission &&
+                    newData.CategoryPermission == oldData.CategoryPermission &&
+                    newData.BrandPermission == oldData.BrandPermission &&
+                    newData.InventoryPermission == oldData.InventoryPermission &&
+                    newData.SalesPermission == oldData.SalesPermission &&
+                    newData.UserPermission == oldData.UserPermission &&
+                    newData.RolePermission == oldData.RolePermission &&
                     newData.Status == oldData.Status &&
                     newData.CreatedDate == oldData.CreatedDate &&
                     newData.ModifiedDate == oldData.ModifiedDate)

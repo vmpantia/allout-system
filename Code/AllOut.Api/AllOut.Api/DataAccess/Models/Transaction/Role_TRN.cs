@@ -15,47 +15,13 @@ namespace AllOut.Api.DataAccess.Models
         public string Name { get; set; }
 
         //Permissions
-        #region Product
-        public bool AddProduct { get; set; }
-        public bool EditProduct { get; set; }
-        public bool DeleteProduct { get; set; }
-        #endregion
-
-        #region Category
-        public bool AddCategory { get; set; }
-        public bool EditCategory { get; set; }
-        public bool DeleteCategory { get; set; }
-        #endregion
-
-        #region Brand
-        public bool AddBrand { get; set; }
-        public bool EditBrand { get; set; }
-        public bool DeleteBrand { get; set; }
-        #endregion
-
-        #region Inventory
-        public bool AddInventory { get; set; }
-        public bool EditInventory { get; set; }
-        public bool DeleteInventory { get; set; }
-        #endregion
-
-        #region Sales
-        public bool AddSales { get; set; }
-        public bool EditSales { get; set; }
-        public bool DeleteSales { get; set; }
-        #endregion
-
-        #region User
-        public bool AddUser { get; set; }
-        public bool EditUser { get; set; }
-        public bool DeleteUser { get; set; }
-        #endregion
-
-        #region Role
-        public bool AddRole { get; set; }
-        public bool EditRole { get; set; }
-        public bool DeleteRole { get; set; }
-        #endregion
+        public int ProductPermission { get; set; }
+        public int CategoryPermission { get; set; }
+        public int BrandPermission { get; set; }
+        public int InventoryPermission { get; set; }
+        public int SalesPermission { get; set; }
+        public int UserPermission { get; set; }
+        public int RolePermission { get; set; }
 
         public int Status { get; set; }
         public DateTime CreatedDate { get; set; }

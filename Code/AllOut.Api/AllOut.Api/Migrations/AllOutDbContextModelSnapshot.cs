@@ -426,71 +426,17 @@ namespace AllOut.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("AddBrand")
-                        .HasColumnType("bit");
+                    b.Property<int>("BrandPermission")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("AddCategory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AddInventory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AddProduct")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AddRole")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AddSales")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AddUser")
-                        .HasColumnType("bit");
+                    b.Property<int>("CategoryPermission")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeleteBrand")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteCategory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteInventory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteProduct")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteRole")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteSales")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteUser")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditBrand")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditCategory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditInventory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditProduct")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditRole")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditSales")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditUser")
-                        .HasColumnType("bit");
+                    b.Property<int>("InventoryPermission")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -500,7 +446,19 @@ namespace AllOut.Api.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("ProductPermission")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RolePermission")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SalesPermission")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserPermission")
                         .HasColumnType("int");
 
                     b.HasKey("RoleID");
@@ -520,71 +478,17 @@ namespace AllOut.Api.Migrations
                     b.Property<Guid>("RoleID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("AddBrand")
-                        .HasColumnType("bit");
+                    b.Property<int>("BrandPermission")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("AddCategory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AddInventory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AddProduct")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AddRole")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AddSales")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AddUser")
-                        .HasColumnType("bit");
+                    b.Property<int>("CategoryPermission")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeleteBrand")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteCategory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteInventory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteProduct")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteRole")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteSales")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeleteUser")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditBrand")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditCategory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditInventory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditProduct")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditRole")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditSales")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("EditUser")
-                        .HasColumnType("bit");
+                    b.Property<int>("InventoryPermission")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -594,7 +498,19 @@ namespace AllOut.Api.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("ProductPermission")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RolePermission")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SalesPermission")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserPermission")
                         .HasColumnType("int");
 
                     b.HasKey("RequestID", "Number", "RoleID");

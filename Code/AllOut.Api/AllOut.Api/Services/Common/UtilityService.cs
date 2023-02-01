@@ -98,15 +98,42 @@ namespace AllOut.Api.Services.Common
             if (noofHours > Constants.NO_HOURS_ACTIVE_THRESHOLD)
                 return Constants.ERROR_CLIENT_NOT_VALID;
             
-            var userID = await _db.Users.FindAsync(client.UserID);
-            if (userID == null)
-                return Constants.ERROR_CLIENT_NOT_VALID;
+            var user = await _db.Users.FindAsync(client.UserID);
+            if (user == null)
+                return "User NOT found in the system.";
 
-            if(client.Status != Constants.STATUS_ENABLED_INT)
-                return Constants.ERROR_CLIENT_NOT_VALID;
+            if(user.Status != Constants.STATUS_ENABLED_INT)
+                return "User is currently disabled in the system.";
 
+            var role = await _db.Roles.FindAsync(user.RoleID);
+            if (role == null)
+                return "User Role NOT found in the system.";
 
-            return string.Empty;
+            if (role.Status != Constants.STATUS_ENABLED_INT)
+                return "User Role is currently disabled in the system.";
+
+            var isRolePermitted = false;
+            switch(functionID)
+            {
+                case Constants.FUNCTION_ID_ADD_PRODUCT_BY_ADMIN:
+                    isRolePermitted = IsPermitted(role.ProductPermission, PermissionType.ADD);
+                    break;
+                case Constants.FUNCTION_ID_CHANGE_PRODUCT_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_CHANGE_PRODUCT_BY_ADMIN:
+                    isRolePermitted = IsPermitted(role.ProductPermission, PermissionType.EDIT);
+                    break;
+                case Constants.FUNCTION_ID_DELETE_PRODUCT_BY_ADMIN:
+                case Constants.FUNCTION_ID_BULK_DELETE_PRODUCT_BY_ADMIN:
+                    isRolePermitted = IsPermitted(role.ProductPermission, PermissionType.DELETE);
+                    break;
+            }
+
+            return isRolePermitted ? string.Empty : "You don't have permission to do this transaction.";
+        }
+
+        private bool IsPermitted(int permission, PermissionType type)
+        {
+            return (permission & (1 << (int)type)) != 0;
         }
 
         public bool IsValidName(string name)
