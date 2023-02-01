@@ -112,7 +112,7 @@ namespace AllOut.Api.Services.Common
             if (role.Status != Constants.STATUS_ENABLED_INT)
                 return "User Role is currently disabled in the system.";
 
-            if (CheckPermission(role, functionID))
+            if (!CheckPermission(role, functionID))
                 return "You don't have permission to do this transaction.";
 
             return string.Empty;
