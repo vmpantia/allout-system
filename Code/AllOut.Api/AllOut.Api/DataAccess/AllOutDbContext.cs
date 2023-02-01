@@ -10,6 +10,7 @@ namespace AllOut.Api.DataAccess
 
         #region MASTER TABLES
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
@@ -23,6 +24,7 @@ namespace AllOut.Api.DataAccess
 
         #region TRANSACTION TABLES
         public virtual DbSet<User_TRN> User_TRN { get; set; }
+        public virtual DbSet<Role_TRN> Role_TRN { get; set; }
         public virtual DbSet<Product_TRN> Product_TRN { get; set; }
         public virtual DbSet<Category_TRN> Category_TRN { get; set; }
         public virtual DbSet<Brand_TRN> Brand_TRN { get; set; }
