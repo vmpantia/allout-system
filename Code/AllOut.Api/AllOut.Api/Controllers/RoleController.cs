@@ -81,7 +81,7 @@ namespace AllOut.Api.Controllers
             {
                 object? response = null;
 
-                var errorMessage = await _utility.ValidateClientID(clientID, type, functionID);
+                var errorMessage = await _utility.ValidateClient(clientID, type, functionID);
                 if (!string.IsNullOrEmpty(errorMessage))
                     return Unauthorized(errorMessage);
 

@@ -72,7 +72,7 @@ namespace AllOut.Api.Services.Common
             return Math.Round(total, 2);
         }
 
-        public async Task<string> ValidateClientID(Guid ClientID, RequestType requestType, string functionID)
+        public async Task<string> ValidateClient(Guid ClientID, RequestType requestType, string functionID)
         {
             if ((requestType == RequestType.POST_LOGIN_USER) || /*Not Required for ClientID Validation if the Request is Login*/
                 (requestType == RequestType.POST_SAVE_USER && 
@@ -97,6 +97,14 @@ namespace AllOut.Api.Services.Common
             var noofHours = (DateTime.Now - firstClientCreated).TotalHours;
             if (noofHours > Constants.NO_HOURS_ACTIVE_THRESHOLD)
                 return Constants.ERROR_CLIENT_NOT_VALID;
+            
+            var userID = await _db.Users.FindAsync(client.UserID);
+            if (userID == null)
+                return Constants.ERROR_CLIENT_NOT_VALID;
+
+            if(client.Status != Constants.STATUS_ENABLED_INT)
+                return Constants.ERROR_CLIENT_NOT_VALID;
+
 
             return string.Empty;
         }

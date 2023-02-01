@@ -13,7 +13,7 @@ namespace AllOut.Api.Contractors
         int GetCurrentStock(int inventories, int sales);
         bool GetReorderState(int stock, int reorderpoint);
         decimal GetTotal(decimal totalItems, decimal totalAdditional, decimal totalDeduction);
-        Task<string> ValidateClientID(Guid ClientID, RequestType requestType, string functionID);
+        Task<string> ValidateClient(Guid ClientID, RequestType requestType, string functionID);
         bool IsValidName(string name);
         bool IsValidEmail(string email);
         bool IsValidPassword(string password);
