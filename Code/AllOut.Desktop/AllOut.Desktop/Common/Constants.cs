@@ -10,6 +10,8 @@ namespace AllOut.Desktop.Common
 {
     public class Constants
     {
+        public const string REGEX_NUMBER_PATTERN = "^-?[0-9]\\d*(\\.\\d+)?$";
+
         #region Common Format
         public const string DATE_FORMAT = "yyyy/MM/dd";
         public const string NA = "N/A";
@@ -27,8 +29,6 @@ namespace AllOut.Desktop.Common
         public const string CASHIER_POS_FORMAT = "Cashier: {0}";
         public const string SALESID_POS_FORMAT = "Sales ID: {0}";
         #endregion
-
-        public const string REGEX_NUMBER_PATTERN = "^-?[0-9]\\d*(\\.\\d+)?$";
 
         #region Request Status
         public const string REQUEST_STATUS_COMPLETED = "A2";
@@ -154,6 +154,7 @@ namespace AllOut.Desktop.Common
 
         #region Objects
         public const string OBJECT_USER = "User";
+        public const string OBJECT_ROLE = "Role";
         public const string OBJECT_PRODUCT = "Product";
         public const string OBJECT_BRAND = "Brand";
         public const string OBJECT_CATEGORY = "Category";
@@ -181,6 +182,7 @@ namespace AllOut.Desktop.Common
         public const string CMB_VALUE_PRODUCT_ID = "ProductID";
         public const string CMB_VALUE_BRAND_ID = "BrandID";
         public const string CMB_VALUE_CATEGORY_ID = "CategoryID"; 
+        public const string CMB_VALUE_ROLE_ID = "RoleID"; 
         #endregion
     }
 }

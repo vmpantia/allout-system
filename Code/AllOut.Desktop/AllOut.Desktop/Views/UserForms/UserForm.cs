@@ -6,6 +6,7 @@ using AllOut.Desktop.Models.Requests;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AllOut.Desktop.Views.UserForms
@@ -23,6 +24,7 @@ namespace AllOut.Desktop.Views.UserForms
             lblFormTitle.Text = _isAdd ? string.Format(Constants.TITLE_ADD, Constants.OBJECT_USER) : string.Format(Constants.TITLE_EDIT, Constants.OBJECT_USER);
             lblFormDescription.Text = _isAdd ? string.Format(Constants.DESC_ADD, Constants.OBJECT_USER) : string.Format(Constants.DESC_EDIT, Constants.OBJECT_USER);
 
+            PopulateRoles();
             PopulateUser(userID);
         }
 
@@ -45,8 +47,8 @@ namespace AllOut.Desktop.Views.UserForms
             //Prepare Request for Save
             var request = new SaveUserRequest
             {
-                FunctionID = _isAdd ? Constants.FUNCTION_ID_ADD_PRODUCT_BY_ADMIN : 
-                                      Constants.FUNCTION_ID_CHANGE_PRODUCT_BY_ADMIN,
+                FunctionID = _isAdd ? Constants.FUNCTION_ID_ADD_USER_BY_ADMIN : 
+                                      Constants.FUNCTION_ID_CHANGE_USER_BY_ADMIN,
                 RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
                 client = Globals.ClientInformation,
                 inputUser = _userInfo
@@ -107,6 +109,25 @@ namespace AllOut.Desktop.Views.UserForms
             cmdRole.SelectedValue = _userInfo.RoleID;
 
             EnableControls(_userInfo.Status == Constants.STATUS_ENABLED_INT);
+        }
+
+        private void PopulateRoles()
+        {
+            var categories = new List<Role>();
+            var response = HttpController.GetRolesByStatusAsync(Globals.ClientInformation.ClientID, Constants.STATUS_ENABLED_INT);
+
+            if (response.Result == ResponseResult.SUCCESS)
+                categories = ((List<Role>)response.Data).OrderBy(data => data.Name).ToList();
+
+            categories.Insert(0, new Role
+            {
+                RoleID = Guid.Empty,
+                Name = string.Format(Constants.CMB_PLACEHOLDER, Constants.OBJECT_ROLE),
+            });
+
+            cmdRole.DataSource = categories;
+            cmdRole.DisplayMember = Constants.CMB_DISPLAY_NAME;
+            cmdRole.ValueMember = Constants.CMB_VALUE_ROLE_ID;
         }
 
         private void EnableControls(bool isEnabled)

@@ -32,6 +32,15 @@ namespace AllOut.Desktop.Common
         public static string POST_SAVE_USER = string.Concat(Constants.API_BASE, "User/SaveUser");
         public static string POST_UPDATE_USER_STATUS_BY_IDS = string.Concat(Constants.API_BASE, "User/UpdateUserStatusByIDs");
 
+        public static string GET_ROLES = string.Concat(Constants.API_BASE, "Role/GetRoles?clientID={0}");
+        public static string GET_ROLES_BY_QUERY = string.Concat(Constants.API_BASE, "Role/GetRolesByQuery?clientID={0}&query={1}");
+        public static string GET_ROLES_BY_STATUS = string.Concat(Constants.API_BASE, "Role/GetRolesByStatus?clientID={0}&status={1}");
+        public static string GET_ROLE_BY_ID = string.Concat(Constants.API_BASE, "Role/GetRoleByID?clientID={0}&id={1}");
+        public static string GET_COUNT_ROLES = string.Concat(Constants.API_BASE, "Role/GetCountRoles?clientID={0}");
+        public static string GET_COUNT_ROLES_BY_STATUS = string.Concat(Constants.API_BASE, "Role/GetCountRolesByStatus?clientID={0}&status={1}");
+        public static string POST_SAVE_ROLE = string.Concat(Constants.API_BASE, "Role/SaveRole");
+        public static string POST_UPDATE_ROLE_STATUS_BY_IDS = string.Concat(Constants.API_BASE, "Role/UpdateRoleStatusByIDs");
+
         public static string GET_PRODUCTS = string.Concat(Constants.API_BASE, "Product/GetProducts?clientID={0}");
         public static string GET_PRODUCTS_BY_QUERY = string.Concat(Constants.API_BASE, "Product/GetProductsByQuery?clientID={0}&query={1}");
         public static string GET_PRODUCTS_BY_STATUS = string.Concat(Constants.API_BASE, "Product/GetProductsByStatus?clientID={0}&status={1}");

@@ -321,6 +321,278 @@ namespace AllOut.Desktop.Controllers
         }
         #endregion
 
+
+        #region Role
+        public static Response GetRolesAsync(Guid clientID)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_ROLES, clientID);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.GetAsync(url).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<Role>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static Response GetRolesByQueryAsync(Guid clientID, string query)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_ROLES_BY_QUERY, clientID, query);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.GetAsync(url).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<Role>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static Response GetRolesByStatusAsync(Guid clientID, int status)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_ROLES_BY_STATUS, clientID, status);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.GetAsync(url).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<Role>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static Response GetRoleByIDAsync(Guid clientID, Guid id)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_ROLE_BY_ID, clientID, id);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.GetAsync(url).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<Role>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static Response GetCountRolesAsync(Guid clientID)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_COUNT_ROLES, clientID);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.GetAsync(url).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static Response GetCountRolesByStatusAsync(Guid clientID, int status)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_COUNT_ROLES_BY_STATUS, clientID, status);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.GetAsync(url).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static Response PostSaveRoleAsync(SaveRoleRequest request)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare Data and API URL
+                var url = Globals.POST_SAVE_ROLE;
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.PostAsync(url, data).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static Response PostUpdateRoleStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare Data and API URL
+                var url = Globals.POST_UPDATE_ROLE_STATUS_BY_IDS;
+                var json = JsonConvert.SerializeObject(request);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.PostAsync(url, data).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                customResponse.Result = httpResponse.StatusCode == HttpStatusCode.OK ? ResponseResult.SUCCESS : ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        #endregion
+
         #region Product
         public static Response GetProductsAsync(Guid clientID)
         {
