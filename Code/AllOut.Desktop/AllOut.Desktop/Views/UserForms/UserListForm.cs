@@ -72,6 +72,11 @@ namespace AllOut.Desktop.Views.UserForms
                 //Show Form
                 var form = new UserForm(id);
                 form.ShowDialog();
+
+                //if the current User have changes do force logout
+                if (id == Globals.ClientInformation.UserID)
+                    EnableOtherControls(false);
+
                 PopulateUsers();
             }
 
@@ -228,6 +233,11 @@ namespace AllOut.Desktop.Views.UserForms
                             string.Format(Constants.TITLE_UPDATE_STATUS, Constants.OBJECT_USER),
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+
+            //if the current User have changes do force logout
+            if (_userIDs.Exists(data => data == Globals.ClientInformation.UserID))
+                EnableOtherControls(false);
+
             PopulateUsers();
         }
 
