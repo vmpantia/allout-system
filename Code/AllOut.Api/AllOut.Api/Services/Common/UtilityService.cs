@@ -72,48 +72,48 @@ namespace AllOut.Api.Services.Common
             return Math.Round(total, 2);
         }
 
-        public async Task<string> ValidateClient(Guid ClientID, RequestType requestType, string functionID)
+        public async Task<string> ValidateClient(Guid clientID, RequestType requestType, string functionID)
         {
-            if ((requestType == RequestType.POST_LOGIN_USER) || /*Not Required for ClientID Validation if the Request is Login*/
+            if ((requestType == RequestType.POST_LOGIN_USER) || /*Not Required for clientID Validation if the Request is Login*/
                 (requestType == RequestType.POST_SAVE_USER && 
-                 functionID != null && functionID == Constants.FUNCTION_ID_ADD_USER)) /*Not Required for ClientID Validation if the Request is User Registration*/
+                 functionID != null && functionID == Constants.FUNCTION_ID_ADD_USER)) /*Not Required for clientID Validation if the Request is User Registration*/
                 return string.Empty;
 
-            //Check if ClientID is Empty
-            if (ClientID == Guid.Empty)
-                return Constants.ERROR_CLIENT_NOT_VALID;
+            //Check if clientID is Empty
+            if (clientID == Guid.Empty)
+                return string.Format(Constants.ERROR_CLIENT_FORMAT, Constants.ERROR_CLIENT_ID_EMPTY);
 
-            //Check if ClientID is existing
-            var client = await _db.Clients.FindAsync(ClientID);
+            //Check if clientID is existing
+            var client = await _db.Clients.FindAsync(clientID);
             if (client == null)
-                return Constants.ERROR_CLIENT_NOT_VALID;
+                return string.Format(Constants.ERROR_CLIENT_FORMAT, Constants.ERROR_CLIENT_ID_NOT_EXIST);
 
             //Check if Client is Active
             if (client.Status != Constants.STATUS_ENABLED_INT)
-                return Constants.ERROR_CLIENT_NOT_VALID;
+                return string.Format(Constants.ERROR_CLIENT_FORMAT, Constants.ERROR_CLIENT_ID_NOT_ACTIVE);
 
             //Check Number of Hours Active Threshold
             var firstClientCreated = client.CreatedDate;
             var noofHours = (DateTime.Now - firstClientCreated).TotalHours;
             if (noofHours > Constants.NO_HOURS_ACTIVE_THRESHOLD)
-                return Constants.ERROR_CLIENT_NOT_VALID;
-            
+                return string.Format(Constants.ERROR_CLIENT_FORMAT, Constants.ERROR_CLIENT_ID_EXPIRED);
+
             var user = await _db.Users.FindAsync(client.UserID);
             if (user == null)
-                return "User NOT found in the system.";
+                return string.Format(Constants.ERROR_USER_FORMAT, Constants.ERROR_USER_NOT_EXIST);
 
-            if(user.Status != Constants.STATUS_ENABLED_INT)
-                return "User is currently disabled in the system.";
+            if (user.Status != Constants.STATUS_ENABLED_INT)
+                return string.Format(Constants.ERROR_USER_FORMAT, Constants.ERROR_USER_NOT_ACTIVE);
 
             var role = await _db.Roles.FindAsync(user.RoleID);
             if (role == null)
-                return "User Role NOT found in the system.";
+                return string.Format(Constants.ERROR_USER_ROLE_FORMAT, Constants.ERROR_USER_ROLE_NOT_EXIST);
 
             if (role.Status != Constants.STATUS_ENABLED_INT)
-                return "User Role is currently disabled in the system.";
+                return string.Format(Constants.ERROR_USER_ROLE_FORMAT, Constants.ERROR_USER_ROLE_NOT_ACTIVE);
 
             if (!CheckPermission(role, functionID))
-                return "You don't have permission to do this transaction.";
+                return string.Format(Constants.ERROR_USER_ROLE_FORMAT, Constants.ERROR_USER_ROLE_NO_PERMISSION);
 
             return string.Empty;
         }

@@ -24,20 +24,20 @@ namespace AllOut.Api.Services
         public async Task<Client> LoginUserAsync(LoginUserRequest request)
         {
             if (string.IsNullOrEmpty(request.LogonName) || string.IsNullOrEmpty(request.Password))
-                throw new APIException(Constants.ERROR_EMPTY_CREDENTIAL);
+                throw new APIException(Constants.ERROR_LOGIN_EMPTY_CREDENTIAL);
 
             var users = await _db.Users.Where(data => (data.Username == request.LogonName && data.Password == request.Password) ||
                                                       (data.Email == request.LogonName && data.Password == request.Password)).ToListAsync();
 
             if (users == null || !users.Any())
-                throw new APIException(Constants.ERROR_INCORRECT_CREDENTIAL);
+                throw new APIException(Constants.ERROR_LOGIN_INCORRECT_CREDENTIAL);
 
             if (users.First().Status != Constants.STATUS_ENABLED_INT)
                 throw new APIException(Constants.ERROR_USER_NOT_ACTIVE);
 
             var client = await GenerateNewClient(users.First(), request);
             if (client == null)
-                throw new APIException(Constants.ERROR_GENERATE_CLIENT);
+                throw new APIException(Constants.ERROR_LOGIN_GENERATE_CLIENT);
 
             return client;
         }
