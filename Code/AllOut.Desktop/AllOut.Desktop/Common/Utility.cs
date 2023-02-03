@@ -124,7 +124,7 @@ namespace AllOut.Desktop.Common
             };
         }
 
-        private static bool IsPermitted(int permission, PermissionType type)
+        public static bool IsPermitted(int permission, PermissionType type)
         {
             return ((permission & (int)type) > 0);
         }

@@ -14,15 +14,15 @@ namespace AllOut.Desktop.Views.CategoryForms
         private bool _isAdd = true;
         private Category _categoryInfo = new Category();
 
-        public CategoryForm(Guid brandID = new Guid())
+        public CategoryForm(Guid categoryID = new Guid())
         {
             InitializeComponent();
 
-            _isAdd = brandID == Guid.Empty;
+            _isAdd = categoryID == Guid.Empty;
             lblFormTitle.Text = _isAdd ? string.Format(Constants.TITLE_ADD, Constants.OBJECT_CATEGORY) : string.Format(Constants.TITLE_EDIT, Constants.OBJECT_CATEGORY);
             lblFormDescription.Text = _isAdd ? string.Format(Constants.DESC_ADD, Constants.OBJECT_CATEGORY) : string.Format(Constants.DESC_EDIT, Constants.OBJECT_CATEGORY);
 
-            PopulateCategory(brandID);
+            PopulateCategory(categoryID);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -73,13 +73,13 @@ namespace AllOut.Desktop.Views.CategoryForms
             Close();
         }
 
-        private void PopulateCategory(Guid brandID)
+        private void PopulateCategory(Guid categoryID)
         {
             //Check if Add or Edit
             if (!_isAdd)
             {
                 //Get Category based on the given ID
-                var response = HttpController.GetCategoryByIDAsync(Globals.ClientInformation.ClientID, brandID);
+                var response = HttpController.GetCategoryByIDAsync(Globals.ClientInformation.ClientID, categoryID);
                 if (response.Result != ResponseResult.SUCCESS)
                 {
                     MessageBox.Show((string)response.Data,

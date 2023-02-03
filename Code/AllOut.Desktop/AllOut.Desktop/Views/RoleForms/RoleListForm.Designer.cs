@@ -1,4 +1,4 @@
-﻿namespace AllOut.Desktop.Views.CategoryForms
+﻿namespace AllOut.Desktop.Views.RoleForms
 {
     partial class RoleListForm
     {

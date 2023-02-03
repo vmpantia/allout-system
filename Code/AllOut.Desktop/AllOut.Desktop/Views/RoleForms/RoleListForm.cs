@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AllOut.Desktop.Views.CategoryForms
+namespace AllOut.Desktop.Views.RoleForms
 {
     public partial class RoleListForm : Form
     {
@@ -36,7 +36,7 @@ namespace AllOut.Desktop.Views.CategoryForms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var form = new CategoryForm();
+            var form = new RoleForm();
             form.ShowDialog();
             PopulateRoles();
         }
@@ -79,7 +79,7 @@ namespace AllOut.Desktop.Views.CategoryForms
                 IsSelectAll(false);
 
                 //Show Form
-                var form = new CategoryForm(id);
+                var form = new RoleForm(id);
                 form.ShowDialog();
                 PopulateRoles();
             }

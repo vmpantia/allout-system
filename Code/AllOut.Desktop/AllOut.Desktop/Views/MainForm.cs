@@ -6,18 +6,12 @@ using AllOut.Desktop.Views.BrandForms;
 using AllOut.Desktop.Views.CategoryForms;
 using AllOut.Desktop.Views.ProductForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AllOut.Desktop.Views.UserForms;
 using AllOut.Desktop.Views.InventoryForms;
 using AllOut.Desktop.Views.SalesForms;
 using AllOut.Desktop.Properties;
+using AllOut.Desktop.Views.RoleForms;
 
 namespace AllOut.Desktop.Views
 {
