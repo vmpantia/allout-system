@@ -36,7 +36,6 @@ namespace AllOut.Desktop.Views.UserForms
             //Populate Text Fields in Data
             _userInfo.Email = txtEmail.Text;
             _userInfo.Username = string.Format(Constants.USERNAME_FORMAT, txtLastName.Text.Trim(), txtFirstName.Text.Trim()).ToLower();
-            _userInfo.Password = string.Empty;
             _userInfo.FirstName = txtFirstName.Text;
             _userInfo.MiddleName = txtMiddleName.Text;
             _userInfo.LastName = txtLastName.Text;
