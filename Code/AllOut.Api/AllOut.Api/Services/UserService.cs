@@ -55,7 +55,8 @@ namespace AllOut.Api.Services
             return list.Where(data => data.Email.Contains(query) ||
                                       data.Username.Contains(query) ||
                                       data.FirstName.Contains(query) ||
-                                      data.LastName.Contains(query))
+                                      data.LastName.Contains(query) ||
+                                      data.RoleName.Contains(query)) 
                        .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToList();
         }
 

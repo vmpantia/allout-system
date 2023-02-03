@@ -59,6 +59,7 @@
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Controllers\HttpController.cs" />
     <Compile Include="Models\Requests\SaveRoleRequest.cs" />
+    <Compile Include="Models\UserFullInformation.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Year.cs" />
     <Compile Include="Models\Month.cs" />

@@ -131,7 +131,7 @@ namespace AllOut.Desktop.Views.UserForms
                 return;
             }
 
-            var users = (List<User>)response.Data;
+            var users = (List<UserFullInformation>)response.Data;
             if (users == null || users.Count == 0)
             {
                 lblTableDescription.Text = Constants.ERROR_NO_RECORDS;
@@ -145,7 +145,7 @@ namespace AllOut.Desktop.Views.UserForms
             return;
         }
 
-        private void PopulateTable(List<User> users)
+        private void PopulateTable(List<UserFullInformation> users)
         {
             _userIDs = new List<Guid>();
             tblObjectList.DataSource = null;
@@ -162,7 +162,7 @@ namespace AllOut.Desktop.Views.UserForms
                                                 Username = data.Username,
                                                 Password = data.Password,
                                                 EmailConfirmed = data.IsEmailConfirmed,
-                                                RoleID = data.RoleID,
+                                                Role = data.RoleName,
                                                 Status = Utility.ConvertStatusToString(data.Status),
                                                 CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),
                                                 ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),

@@ -73,7 +73,7 @@ namespace AllOut.Desktop.Controllers
                 {
                     //Success Response
                     customResponse.Result = ResponseResult.SUCCESS;
-                    customResponse.Data = JsonConvert.DeserializeObject<List<User>>(content);
+                    customResponse.Data = JsonConvert.DeserializeObject<List<UserFullInformation>>(content);
                     return customResponse;
                 }
                 //API Error Response
@@ -110,7 +110,7 @@ namespace AllOut.Desktop.Controllers
                 {
                     //Success Response
                     customResponse.Result = ResponseResult.SUCCESS;
-                    customResponse.Data = JsonConvert.DeserializeObject<List<User>>(content);
+                    customResponse.Data = JsonConvert.DeserializeObject<List<UserFullInformation>>(content);
                     return customResponse;
                 }
                 //API Error Response
@@ -147,7 +147,7 @@ namespace AllOut.Desktop.Controllers
                 {
                     //Success Response
                     customResponse.Result = ResponseResult.SUCCESS;
-                    customResponse.Data = JsonConvert.DeserializeObject<List<User>>(content);
+                    customResponse.Data = JsonConvert.DeserializeObject<List<UserFullInformation>>(content);
                     return customResponse;
                 }
                 //API Error Response
