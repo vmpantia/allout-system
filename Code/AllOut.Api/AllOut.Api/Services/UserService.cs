@@ -5,6 +5,7 @@ using AllOut.Api.Models.Requests;
 using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
+using AllOut.Api.Models;
 
 namespace AllOut.Api.Services
 {
@@ -42,13 +43,13 @@ namespace AllOut.Api.Services
             return client;
         }
 
-        public async Task<IEnumerable<User>> GetUsersAsync()
+        public async Task<IEnumerable<UserFullInformation>> GetUsersAsync()
         {
             var list = await GetUsers();
             return list.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToList();
         }
 
-        public async Task<IEnumerable<User>> GetUsersByQueryAsync(string query)
+        public async Task<IEnumerable<UserFullInformation>> GetUsersByQueryAsync(string query)
         {
             var list = await GetUsers();
             return list.Where(data => data.Email.Contains(query) ||
@@ -58,7 +59,7 @@ namespace AllOut.Api.Services
                        .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToList();
         }
 
-        public async Task<IEnumerable<User>> GetUsersByStatusAsync(int status)
+        public async Task<IEnumerable<UserFullInformation>> GetUsersByStatusAsync(int status)
         {
             var list = await GetUsers();
             return list.Where(data => data.Status == status).ToList();
@@ -66,13 +67,13 @@ namespace AllOut.Api.Services
 
         public async Task<User> GetUserByIDAsync(Guid userID)
         {
-            var list = await GetUsers();
-            var users = list.Where(data => data.UserID == userID).ToList();
+            var user = await _db.Users.FindAsync(userID);
 
-            if (users == null || users.Count() == 0)
+            if (user == null)
                 throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_USER));
 
-            return users.First();
+            user.Password = Constants.HIDE_PASSWORD;
+            return user;
         }
 
         public async Task<int> GetCountUsersAsync()
@@ -329,23 +330,26 @@ namespace AllOut.Api.Services
             return client;
         }
 
-        private async Task<IEnumerable<User>> GetUsers()
+        private async Task<IEnumerable<UserFullInformation>> GetUsers()
         {
-            return await _db.Users.Select(data => new User
-            {
-                UserID = data.UserID,
-                Email = data.Email,
-                Username = data.Username,
-                Password = Constants.HIDE_PASSWORD,
-                FirstName = data.FirstName,
-                MiddleName = data.MiddleName,
-                LastName = data.LastName,
-                IsEmailConfirmed = data.IsEmailConfirmed,
-                RoleID = data.RoleID,
-                Status = data.Status,
-                CreatedDate = data.CreatedDate,
-                ModifiedDate = data.ModifiedDate
-            }).ToListAsync();
+            return await (from a in _db.Users
+                          join b in _db.Roles on a.RoleID equals b.RoleID into bb from b in bb.DefaultIfEmpty()
+                          select new UserFullInformation
+                          {
+                              UserID = a.UserID,
+                              Email = a.Email,
+                              Username = a.Username,
+                              Password = Constants.HIDE_PASSWORD,
+                              FirstName = a.FirstName,
+                              MiddleName = a.MiddleName,
+                              LastName = a.LastName,
+                              IsEmailConfirmed = a.IsEmailConfirmed,
+                              RoleID = a.RoleID,
+                              RoleName = _utility.CheckRoleAvailability(b) ? b.Name : Constants.NA,
+                              Status = a.Status,
+                              CreatedDate = a.CreatedDate,
+                              ModifiedDate = a.ModifiedDate
+                          }).ToListAsync();
         }
         #endregion
     }

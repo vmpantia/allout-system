@@ -7,9 +7,9 @@ namespace AllOut.Api.Contractors
     public interface IUserService
     {
         Task<Client> LoginUserAsync(LoginUserRequest request);
-        Task<IEnumerable<User>> GetUsersAsync();
-        Task<IEnumerable<User>> GetUsersByQueryAsync(string query);
-        Task<IEnumerable<User>> GetUsersByStatusAsync(int status);
+        Task<IEnumerable<UserFullInformation>> GetUsersAsync();
+        Task<IEnumerable<UserFullInformation>> GetUsersByQueryAsync(string query);
+        Task<IEnumerable<UserFullInformation>> GetUsersByStatusAsync(int status);
         Task<User> GetUserByIDAsync(Guid userID);
         Task<int> GetCountUsersAsync();
         Task<int> GetCountUsersByStatusAsync(int status);

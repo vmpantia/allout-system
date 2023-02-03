@@ -23,7 +23,7 @@ namespace AllOut.Api.Services.Common
         #region Public Methods
         public bool CheckProductAvailablity(Product product)
         {
-            if (null == product)
+            if (product == null)
                 return false;
 
             return product.Status == Constants.STATUS_ENABLED_INT;
@@ -31,7 +31,7 @@ namespace AllOut.Api.Services.Common
 
         public bool CheckBrandAvailablity(Brand brand)
         {
-            if (null == brand)
+            if (brand == null)
                 return false;
 
             return brand.Status == Constants.STATUS_ENABLED_INT;
@@ -39,7 +39,7 @@ namespace AllOut.Api.Services.Common
 
         public bool CheckCategoryAvailablity(Category category)
         {
-            if (null == category)
+            if (category == null)
                 return false;
 
             return category.Status == Constants.STATUS_ENABLED_INT;
@@ -47,10 +47,18 @@ namespace AllOut.Api.Services.Common
 
         public bool CheckUserAvailability(User user)
         {
-            if (null == user)
+            if (user == null)
                 return false;
 
             return user.Status == Constants.STATUS_ENABLED_INT;
+        }
+
+        public bool CheckRoleAvailability(Role role)
+        {
+            if (role == null)
+                return false;
+
+            return role.Status == Constants.STATUS_ENABLED_INT;
         }
 
         public int GetCurrentStock(int inventories, int sales)
