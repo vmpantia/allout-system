@@ -223,6 +223,16 @@ namespace AllOut.Desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dg_role {
+            get {
+                object obj = ResourceManager.GetObject("dg-role", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dg_sales {
             get {
                 object obj = ResourceManager.GetObject("dg-sales", resourceCulture);
@@ -336,6 +346,16 @@ namespace AllOut.Desktop.Properties {
         internal static System.Drawing.Bitmap white_product {
             get {
                 object obj = ResourceManager.GetObject("white-product", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap white_role {
+            get {
+                object obj = ResourceManager.GetObject("white-role", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

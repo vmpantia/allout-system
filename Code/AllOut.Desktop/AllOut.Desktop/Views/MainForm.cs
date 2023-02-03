@@ -66,6 +66,11 @@ namespace AllOut.Desktop.Views
             SetActiveForm(Constants.FORM_USER);
         }
 
+        private void btnRole_Click(object sender, EventArgs e)
+        {
+            SetActiveForm(Constants.FORM_ROLE);
+        }
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             Globals.ClientInformation = null;
@@ -122,6 +127,12 @@ namespace AllOut.Desktop.Views
                     formIcon.Image = Resources.dg_users;
                     formDescription.Text = string.Format(Constants.DESC_FORM, Constants.FORM_USER);
                     activeForm = new UserListForm();
+                    break;
+                case Constants.FORM_ROLE:
+                    formTitle.Text = Constants.FORM_ROLE;
+                    formIcon.Image = Resources.dg_role;
+                    formDescription.Text = string.Format(Constants.DESC_FORM, Constants.FORM_ROLE);
+                    activeForm = new RoleListForm();
                     break;
             }
 

@@ -49,6 +49,7 @@
             this.formTitle = new System.Windows.Forms.Label();
             this.formIcon = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.btnRole = new Guna.UI2.WinForms.Guna2Button();
             this.pnlSidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
@@ -60,6 +61,7 @@
             // 
             // pnlSidebar
             // 
+            this.pnlSidebar.Controls.Add(this.btnRole);
             this.pnlSidebar.Controls.Add(this.btnBrand);
             this.pnlSidebar.Controls.Add(this.guna2PictureBox1);
             this.pnlSidebar.Controls.Add(this.btnUser);
@@ -395,6 +397,27 @@
             this.guna2PictureBox2.TabIndex = 5;
             this.guna2PictureBox2.TabStop = false;
             // 
+            // btnRole
+            // 
+            this.btnRole.BorderRadius = 6;
+            this.btnRole.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnRole.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnRole.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnRole.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnRole.FillColor = System.Drawing.Color.Transparent;
+            this.btnRole.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnRole.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnRole.Image = global::AllOut.Desktop.Properties.Resources.dg_role;
+            this.btnRole.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnRole.Location = new System.Drawing.Point(15, 395);
+            this.btnRole.Name = "btnRole";
+            this.btnRole.Size = new System.Drawing.Size(194, 37);
+            this.btnRole.TabIndex = 7;
+            this.btnRole.Text = "Role";
+            this.btnRole.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnRole.Click += new System.EventHandler(this.btnRole_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -443,5 +466,6 @@
         private Guna.UI2.WinForms.Guna2PictureBox formIcon;
         private System.Windows.Forms.Label formTitle;
         private System.Windows.Forms.Label formDescription;
+        private Guna.UI2.WinForms.Guna2Button btnRole;
     }
 }

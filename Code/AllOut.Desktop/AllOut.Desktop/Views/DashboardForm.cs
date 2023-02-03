@@ -42,6 +42,8 @@ namespace AllOut.Desktop.Views
             response = HttpController.GetCountSalesAsync(Globals.ClientInformation.ClientID);
             lblCountSales.Text = response.Result == ResponseResult.SUCCESS ? (string)response.Data : Constants.NA;
 
+            response = HttpController.GetCountRolesAsync(Globals.ClientInformation.ClientID);
+            lblCountRole.Text = response.Result == ResponseResult.SUCCESS ? (string)response.Data : Constants.NA;
         }
 
         private void PopulateChart(int year = 0, int month = 0)
