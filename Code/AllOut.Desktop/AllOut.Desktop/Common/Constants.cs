@@ -18,6 +18,7 @@ namespace AllOut.Desktop.Common
         public const string NAME_FORMAT = "{0}, {1}";
         public const string USERNAME_FORMAT = "{0}.{1}";
         public const char ZERO = '0';
+        public const string NEWLINE = "\n";
         public const string API_BASE = "http://www.allout.api.com/";
         //public const string API_BASE = "https://localhost:7252/";
         #endregion
@@ -162,6 +163,8 @@ namespace AllOut.Desktop.Common
         public const string OBJECT_INVENTORY = "Inventory";
         public const string OBJECT_SALES = "Sales";
         public const string OBJECT_REQUEST = "Request";
+
+        public const string OBJECT_PERMISSION = "Permission";
         #endregion
 
         #region Action Buttons

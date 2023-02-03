@@ -1,4 +1,5 @@
 ﻿using AllOut.Desktop.Models;
+using AllOut.Desktop.Models.enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,30 @@ using System.Threading.Tasks;
 
 namespace AllOut.Desktop.Common
 {
-    internal class Utility
+    public class Utility
     {
+        public static string PermittedObjects(Role role, PermissionType type)
+        {
+            string allowed = string.Empty;
+
+            var properties = role.GetType().GetProperties();
+
+            foreach (var property in properties)
+            {
+                if (property.Name.Contains(Constants.OBJECT_PERMISSION))
+                {
+                    var permission = (int)property.GetValue(role);
+
+                    if (Utility.IsPermitted(permission, type))
+                    {
+                        var name = property.Name.Replace(Constants.OBJECT_PERMISSION, string.Empty);
+                        allowed += string.Concat(name.ToUpper(), Constants.NEWLINE);
+                    }
+                }
+            }
+            return string.IsNullOrEmpty(allowed) ? Constants.NA : allowed;
+        }
+
         public static bool ConvertStatusToBoolean(int status)
         {
             return status == Constants.STATUS_ENABLED_INT;
@@ -51,6 +74,7 @@ namespace AllOut.Desktop.Common
         {
             return value == null ? Guid.Empty : Guid.Parse(value.ToString());
         }
+
         public static string GetStringByCellValue(object value)
         {
             return value == null ? string.Empty : value.ToString();
@@ -98,6 +122,11 @@ namespace AllOut.Desktop.Common
                 new Month {  MonthName = "NOVEMBER", MonthNumber = 11, },
                 new Month {  MonthName = "DECEMBER", MonthNumber = 12, }
             };
+        }
+
+        private static bool IsPermitted(int permission, PermissionType type)
+        {
+            return ((permission & (int)type) > 0);
         }
     }
 }

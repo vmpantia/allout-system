@@ -17,7 +17,7 @@ namespace AllOut.Desktop.Views.CategoryForms
     {
         private List<Guid> _roleIDs = new List<Guid>();
         private const int ID_COL_IDX = 2;
-        private const int STATUS_COL_IDX = 5;
+        private const int STATUS_COL_IDX = 7;
         private const int BUTTON_COL_IDX = 0;
         private const int CHECKBOX_COL_IDX = 1;
 
@@ -162,6 +162,9 @@ namespace AllOut.Desktop.Views.CategoryForms
                                             {
                                                 Id = data.RoleID,
                                                 Name = data.Name,
+                                                Add = Utility.PermittedObjects(data, PermissionType.ADD),
+                                                Edit = Utility.PermittedObjects(data, PermissionType.EDIT),
+                                                Delete = Utility.PermittedObjects(data, PermissionType.DELETE),
                                                 Status = Utility.ConvertStatusToString(data.Status),
                                                 CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),
                                                 ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),
