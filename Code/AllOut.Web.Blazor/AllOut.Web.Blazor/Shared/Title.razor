@@ -1,0 +1,22 @@
+﻿
+<PageTitle>@Name</PageTitle>
+<div class="cstm-page-title">
+    <div>
+        <img class="icon" src="@Icon" width="50" height="50" />
+    </div>
+    <div>
+        <div class="name">@Name</div>
+        <div class="desc">@Description</div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Icon { get; set; }
+
+    [Parameter]
+    public string Name { get; set; }
+
+    [Parameter]
+    public string Description { get; set; }
+}
