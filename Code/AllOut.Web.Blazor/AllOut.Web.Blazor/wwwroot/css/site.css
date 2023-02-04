@@ -4,17 +4,17 @@
 .cstm-page-title {
     display:inline-flex;
 }
-.cstm-page-title .icon {
-    margin-right: 10px;
-}
-.cstm-page-title .name {
-    font-size: 25px;
-    font-weight: bold;
-}
-.cstm-page-title .desc {
-    margin-top: -5px;
-    font-size: 12px;
-}
+    .cstm-page-title .icon {
+        margin-right: 10px;
+    }
+    .cstm-page-title .name {
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .cstm-page-title .desc {
+        margin-top: -5px;
+        font-size: 12px;
+    }
 
 
 /*Default Blazor CSS*/
