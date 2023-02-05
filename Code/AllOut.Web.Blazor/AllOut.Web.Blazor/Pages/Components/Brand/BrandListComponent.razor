@@ -3,16 +3,19 @@
 <Title Icon="oi oi-tag"
        Name="Brand"
        Description="In this page you can view all the Brand that is saved in the system."></Title>
-
+       
 @if (!string.IsNullOrEmpty(errorMessage))
 {
     <div class="alert alert-danger" role="alert">
         @errorMessage
     </div>
 }
+
 <table class="table">
     <thead>
         <tr>
+            <th>Select</th>
+            <th>Action</th>
             <th>Name</th>
             <th>Description</th>
             <th>Status</th>
@@ -36,10 +39,28 @@
             @foreach (var brand in brandList)
             {
                 <tr>
+                    <td>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    </td>
+                    <td>
+                        <a>Edit</a>
+                    </td>
                     <td>@brand.Name</td>
                     <td>@brand.Description</td>
-                    <td>@Utility.ConvertStatusToString(brand.Status)</td>
+
+                    @*Status Column*@
+                    @if (brand.Status == Constants.STATUS_ENABLED_INT)
+                    {
+                        <td><span class="badge bg-success">@Utility.ConvertStatusToString(brand.Status)</span></td>
+                    }
+                    else
+                    {
+                        <td><span class="badge bg-secondary">@Utility.ConvertStatusToString(brand.Status)</span></td>
+                    }
+
                     <td>@DateTime.Parse(brand.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT)</td>
+
+                    @*Modified Date Column*@
                     @if(brand.ModifiedDate == null) {
                         <td>@Constants.NA</td>
                     }
