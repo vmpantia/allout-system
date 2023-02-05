@@ -34,10 +34,9 @@
     border-bottom: 1px solid gainsboro;
 }
     .cstm-actions [type=button] {
-        color: rgb(64, 64, 64);
         background-color: white;
         padding: 7px 15px 7px 15px;
-        border-radius: 5px;
+        border-radius: 3px;
         border: none;
     }
     .cstm-actions span {
@@ -45,11 +44,9 @@
     }
     .cstm-actions [type=button]:hover {
         background-color: gainsboro;
-        color: rgb(64, 64, 64);
     }
     .cstm-actions [type=text] {
         border:none;
-        border-right: 1px solid gainsboro;
         padding: 6px 10px 6px 10px;
     }
     .cstm-actions .buttons {
@@ -62,7 +59,6 @@
 /*Default Blazor CSS*/
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: rgb(64, 64, 64);
 }
 h1:focus {
     outline: none;
