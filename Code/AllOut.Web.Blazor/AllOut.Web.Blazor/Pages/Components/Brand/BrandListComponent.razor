@@ -1,9 +1,74 @@
 ﻿@page "/Brand"
-
+@inject IHTTPService _http
 <Title Icon="oi oi-tag"
        Name="Brand"
        Description="In this page you can view all the Brand that is saved in the system."></Title>
 
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @errorMessage
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Created Date</th>
+            <th>Modified Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (brandList == null || brandList.Count == 0)
+        {
+            <tr>
+                <td colspan="5">
+                    <div class="cstm-no-records">
+                        No Records Found in the Database
+                    </div>
+                </td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var brand in brandList)
+            {
+                <tr>
+                    <td>@brand.Name</td>
+                    <td>@brand.Description</td>
+                    <td>@Utility.ConvertStatusToString(brand.Status)</td>
+                    <td>@DateTime.Parse(brand.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT)</td>
+                    @if(brand.ModifiedDate == null) {
+                        <td>@Constants.NA</td>
+                    }
+                    else {
+                        <td>@DateTime.Parse(brand.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT)</td>
+                    }
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
 @code {
+
+    private List<Brand> brandList { get; set; }
+
+    private string errorMessage { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await _http.GetBrandsAsync(Globals.TEMP_CLIENT_ID);
+
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            errorMessage = (string)response.Data;
+            return;
+        }
+
+        brandList = (List<Brand>)response.Data;
+    }
 
 }

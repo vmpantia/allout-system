@@ -17,6 +17,10 @@
         font-size: 15px;
     }
 
+.cstm-no-records {
+    text-align: center;
+    font-size: 15px;
+}
 
 /*Default Blazor CSS*/
 html, body {

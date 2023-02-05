@@ -2,6 +2,8 @@
 {
     public class Globals
     {
+        public static Guid TEMP_CLIENT_ID = Guid.Parse("8435DC1B-356F-4F6E-A727-08DB05D958A1");
+
         public static string POST_LOGIN_USER = string.Concat(Constants.API_BASE, "User/LoginUser");
         public static string GET_USERS = string.Concat(Constants.API_BASE, "User/GetUsers?clientID={0}");
         public static string GET_USERS_BY_QUERY = string.Concat(Constants.API_BASE, "User/GetUsersByQuery?clientID={0}&query={1}");
