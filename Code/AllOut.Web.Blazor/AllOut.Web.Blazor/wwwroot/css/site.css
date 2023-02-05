@@ -2,6 +2,7 @@
 
 /*Custom CSS*/
 .cstm-page-title {
+    width: 100%;
     display:inline-flex;
 }
     .cstm-page-title .icon {
@@ -23,6 +24,40 @@
     font-size: 15px;
     padding: 10px;
 }
+
+.cstm-actions {
+    display: inline-flex;
+    width: 100%;
+    font-size: 15px;
+    padding: 5px 0px 5px 0px;
+    border-top: 1px solid gainsboro;
+    border-bottom: 1px solid gainsboro;
+}
+    .cstm-actions [type=button] {
+        color: rgb(64, 64, 64);
+        background-color: white;
+        padding: 7px 15px 7px 15px;
+        border-radius: 5px;
+        border: none;
+    }
+    .cstm-actions span {
+        padding-right: 5px;
+    }
+    .cstm-actions [type=button]:hover {
+        background-color: gainsboro;
+        color: rgb(64, 64, 64);
+    }
+    .cstm-actions [type=text] {
+        border:none;
+        border-right: 1px solid gainsboro;
+        padding: 6px 10px 6px 10px;
+    }
+    .cstm-actions .buttons {
+        width: 70%;
+    }
+    .cstm-actions .search {
+        width: 30%;
+    }
 
 /*Default Blazor CSS*/
 html, body {
