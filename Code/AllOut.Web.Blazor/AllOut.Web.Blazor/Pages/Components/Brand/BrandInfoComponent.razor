@@ -7,7 +7,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">@title</h5>
+                    <span class="modal-title">@title</span>
                     <button type="button" class="btn-close" aria-label="Close" @onclick="() => Cancel()"></button>
                 </div>
                 <div class="modal-body">
@@ -17,11 +17,18 @@
                             @errorMessage
                         </div>
                     }
-
+                    <div class="mb-3">
+                        <label for="name" class="form-label">NAME</label>
+                        <input type="text" class="form-control" id="name" @bind="brandInfo.Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="desc" class="form-label">DESCRIPTION</label>
+                        <textarea class="form-control" id="desc" rows="4" @bind="brandInfo.Description"></textarea>
+                    </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" @onclick="() => Save()">Save</button>
                     <button type="button" class="btn btn-secondary" @onclick="() => Cancel()">Cancel</button>
-                    <button type="button" class="btn btn-primary">Yes</button>
                 </div>
             </div>
         </div>
@@ -35,7 +42,7 @@
     private string errorMessage { get; set; } = string.Empty;
 
     [Parameter]
-    public EventCallback<bool> Result { get; set; }
+    public EventCallback<Response> BrandInfoResponse { get; set; }
 
     public void InitializeBrand(Guid? brandID)
     {
@@ -61,5 +68,38 @@
     private void Cancel()
     {
         showBox = false;
+        BrandInfoResponse.InvokeAsync(null);
+    }
+
+    private void Save()
+    {
+        var isAdd = brandInfo.BrandID == Guid.Empty ? true : false;
+
+        brandInfo.Name = brandInfo.Name == null ? string.Empty : brandInfo.Name.ToUpper();
+        brandInfo.Description = brandInfo.Description == null ? string.Empty : brandInfo.Description.ToUpper();
+        brandInfo.Status = Constants.STATUS_ENABLED_INT;
+
+        //Prepare Request for Save
+        var request = new SaveBrandRequest
+        {
+            FunctionID = isAdd ? Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN :
+                                    Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN,
+            RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
+            client = Globals.TEMP_CLIENT,
+            inputBrand = brandInfo
+        };
+
+        //Send Request for Save
+        var response = _http.PostSaveBrand(request);
+
+        //Check Response Result
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            errorMessage = (string)response.Data;
+            return;
+        }
+
+        showBox = false;
+        BrandInfoResponse.InvokeAsync(response);
     }
 }

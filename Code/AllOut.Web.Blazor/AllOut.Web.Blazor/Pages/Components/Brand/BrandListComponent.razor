@@ -41,11 +41,7 @@
         </button>
     </div>
     <div class="search">
-        <input type="text" placeholder="Search Brand" />
-        <button type="button">
-            <span class="oi oi-magnifying-glass" aria-hidden="true"></span>
-            Search
-        </button>
+        <input type="text" placeholder="Search Brand" @oninput="SearchBrandChange" />
     </div>
 </div>
 
@@ -112,7 +108,7 @@
     </tbody>
 </table>
 
-<BrandInfoComponent @ref="brandInfo"></BrandInfoComponent>
+<BrandInfoComponent @ref="brandInfo" BrandInfoResponse="GetBrandResponse"></BrandInfoComponent>
 
 @code {
     private BrandInfoComponent? brandInfo { get; set; }
@@ -121,7 +117,25 @@
 
     protected override void OnInitialized()
     {
-        var response = _http.GetBrands(Globals.TEMP_CLIENT_ID);
+        PopulateBrands();
+    }
+
+    private void SearchBrandChange(ChangeEventArgs e)
+    {
+        var query = string.Empty;
+        if (e.Value != null)
+            query = (string)e.Value;
+
+        PopulateBrands(query);
+    }
+
+    private void PopulateBrands(string query = null)
+    {
+        Response response;
+        if (string.IsNullOrEmpty(query))
+            response = _http.GetBrands(Globals.TEMP_CLIENT_ID);
+        else
+            response = _http.GetBrandsByQuery(Globals.TEMP_CLIENT_ID, query);
 
         if (response.Result != ResponseResult.SUCCESS)
         {
@@ -138,5 +152,11 @@
             return;
 
         brandInfo.InitializeBrand(id);
+    }
+
+    private void GetBrandResponse(Response res)
+    {
+        if(res != null && res.Result == ResponseResult.SUCCESS)
+            OnInitialized();
     }
 }
