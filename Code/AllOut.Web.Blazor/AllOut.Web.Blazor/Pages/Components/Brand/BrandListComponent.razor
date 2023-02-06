@@ -81,7 +81,7 @@
             {
                 <tr>
                     <td class="cstm-column-action">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" @onclick="() => Checked(brand.BrandID)">
                     </td>
                     <td class="cstm-column-action">
                         <button class="btn btn-warning btn-sm" @onclick="() => ShowBrand(brand.BrandID)">
@@ -129,6 +129,11 @@
     protected override void OnInitialized()
     {
         PopulateBrands();
+    }
+
+    private void Checked(Guid brandID)
+    {
+        errorMessage = brandID.ToString();
     }
 
     private void SearchBrandChange(ChangeEventArgs e)
