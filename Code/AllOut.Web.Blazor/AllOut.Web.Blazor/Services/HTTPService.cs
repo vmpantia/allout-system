@@ -16,7 +16,7 @@ namespace AllOut.Web.Blazor.Services
         }
 
         #region User
-        public async Task<Response> PostLoginUserAsync(LoginUserRequest request)
+        public Response PostLoginUserAsync(LoginUserRequest request)
         {
             var customResponse = new Response();
             try
@@ -27,10 +27,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send POST request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -52,7 +52,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetUsersAsync(Guid clientID)
+        public Response GetUsersAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -62,10 +62,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -89,7 +89,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetUsersByQueryAsync(Guid clientID, string query)
+        public Response GetUsersByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -99,10 +99,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -126,7 +126,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetUsersByStatusAsync(Guid clientID, int status)
+        public Response GetUsersByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -136,10 +136,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -163,7 +163,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetUserByIDAsync(Guid clientID, Guid id)
+        public Response GetUserByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -173,10 +173,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -200,7 +200,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountUsersAsync(Guid clientID)
+        public Response GetCountUsersAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -210,10 +210,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -229,7 +229,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountUsersByStatusAsync(Guid clientID, int status)
+        public Response GetCountUsersByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -239,10 +239,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -258,7 +258,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostSaveUserAsync(SaveUserRequest request)
+        public Response PostSaveUserAsync(SaveUserRequest request)
         {
             var customResponse = new Response();
             try
@@ -272,7 +272,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -288,7 +288,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostUpdateUserStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public Response PostUpdateUserStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -303,7 +303,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -322,7 +322,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Role
-        public async Task<Response> GetRolesAsync(Guid clientID)
+        public Response GetRolesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -332,10 +332,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -359,7 +359,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetRolesByQueryAsync(Guid clientID, string query)
+        public Response GetRolesByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -369,10 +369,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -396,7 +396,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetRolesByStatusAsync(Guid clientID, int status)
+        public Response GetRolesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -406,10 +406,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -433,7 +433,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetRoleByIDAsync(Guid clientID, Guid id)
+        public Response GetRoleByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -443,10 +443,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -470,7 +470,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountRolesAsync(Guid clientID)
+        public Response GetCountRolesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -480,10 +480,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -499,7 +499,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountRolesByStatusAsync(Guid clientID, int status)
+        public Response GetCountRolesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -509,10 +509,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -528,7 +528,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostSaveRoleAsync(SaveRoleRequest request)
+        public Response PostSaveRoleAsync(SaveRoleRequest request)
         {
             var customResponse = new Response();
             try
@@ -543,7 +543,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -559,7 +559,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostUpdateRoleStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public Response PostUpdateRoleStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -574,7 +574,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -593,7 +593,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Product
-        public async Task<Response> GetProductsAsync(Guid clientID)
+        public Response GetProductsAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -603,10 +603,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -630,7 +630,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetProductsByQueryAsync(Guid clientID, string query)
+        public Response GetProductsByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -640,10 +640,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -667,7 +667,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetProductsByStatusAsync(Guid clientID, int status)
+        public Response GetProductsByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -677,10 +677,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -704,7 +704,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetProductByIDAsync(Guid clientID, Guid id)
+        public Response GetProductByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -714,10 +714,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -741,7 +741,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountProductsAsync(Guid clientID)
+        public Response GetCountProductsAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -751,10 +751,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -770,7 +770,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountProductsByStatusAsync(Guid clientID, int status)
+        public Response GetCountProductsByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -780,10 +780,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -799,7 +799,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostSaveProductAsync(SaveProductRequest request)
+        public Response PostSaveProductAsync(SaveProductRequest request)
         {
             var customResponse = new Response();
             try
@@ -814,7 +814,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -830,7 +830,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostUpdateProductStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public Response PostUpdateProductStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -845,7 +845,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -864,7 +864,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Brand
-        public async Task<Response> GetBrandsAsync(Guid clientID)
+        public Response GetBrandsAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -874,10 +874,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -901,7 +901,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetBrandsByQueryAsync(Guid clientID, string query)
+        public Response GetBrandsByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -911,10 +911,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -938,7 +938,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetBrandsByStatusAsync(Guid clientID, int status)
+        public Response GetBrandsByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -948,10 +948,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -975,7 +975,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetBrandByIDAsync(Guid clientID, Guid id)
+        public Response GetBrandByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -985,10 +985,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1012,7 +1012,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountBrandsAsync(Guid clientID)
+        public Response GetCountBrandsAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1022,10 +1022,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1041,7 +1041,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountBrandsByStatusAsync(Guid clientID, int status)
+        public Response GetCountBrandsByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1051,10 +1051,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1070,7 +1070,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostSaveBrandAsync(SaveBrandRequest request)
+        public Response PostSaveBrandAsync(SaveBrandRequest request)
         {
             var customResponse = new Response();
             try
@@ -1085,7 +1085,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1101,7 +1101,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostUpdateBrandStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public Response PostUpdateBrandStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1116,7 +1116,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1135,7 +1135,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Category
-        public async Task<Response> GetCategoriesAsync(Guid clientID)
+        public Response GetCategoriesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1145,10 +1145,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1172,7 +1172,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCategoriesByQueryAsync(Guid clientID, string query)
+        public Response GetCategoriesByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -1182,10 +1182,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1209,7 +1209,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCategoriesByStatusAsync(Guid clientID, int status)
+        public Response GetCategoriesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1219,10 +1219,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1246,7 +1246,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCategoryByIDAsync(Guid clientID, Guid id)
+        public Response GetCategoryByIDAsync(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -1256,10 +1256,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1283,7 +1283,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountCategoriesAsync(Guid clientID)
+        public Response GetCountCategoriesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1293,10 +1293,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1312,7 +1312,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountCategoriesByStatusAsync(Guid clientID, int status)
+        public Response GetCountCategoriesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1322,10 +1322,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1341,7 +1341,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostSaveCategoryAsync(SaveCategoryRequest request)
+        public Response PostSaveCategoryAsync(SaveCategoryRequest request)
         {
             var customResponse = new Response();
             try
@@ -1356,7 +1356,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1372,7 +1372,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostUpdateCategoryStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public Response PostUpdateCategoryStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1387,7 +1387,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1406,7 +1406,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Inventories
-        public async Task<Response> GetInventoriesAsync(Guid clientID)
+        public Response GetInventoriesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1416,10 +1416,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1443,7 +1443,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetInventoriesByQueryAsync(Guid clientID, string query)
+        public Response GetInventoriesByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -1453,10 +1453,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1480,7 +1480,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetInventoriesByStatusAsync(Guid clientID, int status)
+        public Response GetInventoriesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1490,10 +1490,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1517,7 +1517,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetInventoryByIDAsync(Guid clientID, string id)
+        public Response GetInventoryByIDAsync(Guid clientID, string id)
         {
             var customResponse = new Response();
             try
@@ -1527,10 +1527,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1554,7 +1554,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountInventoriesAsync(Guid clientID)
+        public Response GetCountInventoriesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1564,10 +1564,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1583,7 +1583,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountInventoriesByStatusAsync(Guid clientID, int status)
+        public Response GetCountInventoriesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1593,10 +1593,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1612,7 +1612,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostSaveInventoryAsync(SaveInventoryRequest request)
+        public Response PostSaveInventoryAsync(SaveInventoryRequest request)
         {
             var customResponse = new Response();
             try
@@ -1627,7 +1627,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1643,7 +1643,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostUpdateInventoryStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
+        public Response PostUpdateInventoryStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1658,7 +1658,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1677,7 +1677,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Sales
-        public async Task<Response> GetSalesAsync(Guid clientID)
+        public Response GetSalesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1687,10 +1687,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1714,7 +1714,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetSalesByQueryAsync(Guid clientID, string query)
+        public Response GetSalesByQueryAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -1724,10 +1724,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1751,7 +1751,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetSalesByStatusAsync(Guid clientID, int status)
+        public Response GetSalesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1761,10 +1761,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1788,7 +1788,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetSalesByIDAsync(Guid clientID, string id)
+        public Response GetSalesByIDAsync(Guid clientID, string id)
         {
             var customResponse = new Response();
             try
@@ -1798,10 +1798,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1825,7 +1825,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountSalesAsync(Guid clientID)
+        public Response GetCountSalesAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1835,10 +1835,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1854,7 +1854,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetCountSalesByStatusAsync(Guid clientID, int status)
+        public Response GetCountSalesByStatusAsync(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1864,10 +1864,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1883,7 +1883,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostSaveSalesAsync(SaveSalesRequest request)
+        public Response PostSaveSalesAsync(SaveSalesRequest request)
         {
             var customResponse = new Response();
             try
@@ -1898,7 +1898,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1914,7 +1914,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> PostUpdateSalesStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
+        public Response PostUpdateSalesStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1929,7 +1929,7 @@ namespace AllOut.Web.Blazor.Services
                 var httpResponse = httpClient.PostAsync(url, data).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1948,7 +1948,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region SalesReport
-        public async Task<Response> GetSalesReportAsync(Guid clientID)
+        public Response GetSalesReportAsync(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1958,10 +1958,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -1985,7 +1985,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetSalesReportByYearAsync(Guid clientID, int year)
+        public Response GetSalesReportByYearAsync(Guid clientID, int year)
         {
             var customResponse = new Response();
             try
@@ -1995,10 +1995,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();
@@ -2022,7 +2022,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public async Task<Response> GetSalesReportByYearAndMonthAsync(Guid clientID, string query)
+        public Response GetSalesReportByYearAndMonthAsync(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -2032,10 +2032,10 @@ namespace AllOut.Web.Blazor.Services
 
                 //Send GET request to API
                 var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(url);
+                var httpResponse = httpClient.GetAsync(url).Result;
 
                 //Get content in reponse of API
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
 
                 //Generate custom response based on the response of API
                 customResponse.StatusCode = httpResponse.StatusCode.ToString();

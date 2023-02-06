@@ -1,0 +1,65 @@
+﻿@inject IHTTPService _http
+
+@if (showBox)
+{
+    <!-- Modal -->
+    <div class="modal fade show d-block" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@title</h5>
+                    <button type="button" class="btn-close" aria-label="Close" @onclick="() => Cancel()"></button>
+                </div>
+                <div class="modal-body">
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @errorMessage
+                        </div>
+                    }
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="() => Cancel()">Cancel</button>
+                    <button type="button" class="btn btn-primary">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private Brand brandInfo { get; set; }
+    private bool showBox { get; set; }
+    private string title { get; set; } = string.Empty;
+    private string errorMessage { get; set; } = string.Empty;
+
+    [Parameter]
+    public EventCallback<bool> Result { get; set; }
+
+    public void InitializeBrand(Guid? brandID)
+    {
+        showBox = true;
+        StateHasChanged();
+
+        title = "Add Brand";
+        brandInfo = new Brand();
+        if(brandID != null)
+        {
+            title = "Edit Brand";
+            var response = _http.GetBrandByIDAsync(Globals.TEMP_CLIENT_ID, (Guid)brandID);
+
+            if (response.Result != ResponseResult.SUCCESS)
+            {
+                errorMessage = (string)response.Data;
+                return;
+            }
+            brandInfo = (Brand)response.Data;
+        }
+    }
+
+    private void Cancel()
+    {
+        showBox = false;
+    }
+}

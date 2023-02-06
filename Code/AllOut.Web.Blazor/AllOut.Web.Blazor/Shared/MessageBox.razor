@@ -1,11 +1,11 @@
-﻿@if (ShowBox)
+﻿@if (showBox)
 {
     <!-- Modal -->
     <div class="modal fade show d-block" id="exampleModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">@Title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">@title</h5>
                     <button type="button" class="btn-close" aria-label="Close" @onclick="() => OnChoiceChange(false)"></button>
                 </div>
                 <div class="modal-body">
@@ -20,24 +20,24 @@
 }
 
 @code {
-    private bool ShowBox { get; set; }
-    private string Title { get; set; } = string.Empty;
-    private string Message { get; set; } = string.Empty;
+    private bool showBox { get; set; }
+    private string title { get; set; }
+    private string message { get; set; }
 
     [Parameter]
     public EventCallback<bool> Result { get; set; }
 
-    public void Show(string title, string msg)
+    public void Show(string ttl, string msg)
     {
-        Title = title;
-        Message = msg;
-        ShowBox = true;
+        title = ttl;
+        message = msg;
+        showBox = true;
         StateHasChanged();
     }
 
     protected async Task OnChoiceChange(bool value)
     {
-        ShowBox = false;
+        showBox = false;
         await Result.InvokeAsync(value);
     }
 }

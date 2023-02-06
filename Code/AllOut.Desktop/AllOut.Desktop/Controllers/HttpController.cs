@@ -321,7 +321,6 @@ namespace AllOut.Desktop.Controllers
         }
         #endregion
 
-
         #region Role
         public static Response GetRolesAsync(Guid clientID)
         {
