@@ -47,7 +47,7 @@
         if(brandID != null)
         {
             title = "Edit Brand";
-            var response = _http.GetBrandByIDAsync(Globals.TEMP_CLIENT_ID, (Guid)brandID);
+            var response = _http.GetBrandByID(Globals.TEMP_CLIENT_ID, (Guid)brandID);
 
             if (response.Result != ResponseResult.SUCCESS)
             {

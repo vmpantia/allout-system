@@ -121,7 +121,7 @@
 
     protected override void OnInitialized()
     {
-        var response = _http.GetBrandsAsync(Globals.TEMP_CLIENT_ID);
+        var response = _http.GetBrands(Globals.TEMP_CLIENT_ID);
 
         if (response.Result != ResponseResult.SUCCESS)
         {
@@ -137,6 +137,6 @@
         if (brandInfo == null)
             return;
 
-        brandInfo.InitializeBrand(Guid.NewGuid());
+        brandInfo.InitializeBrand(id);
     }
 }

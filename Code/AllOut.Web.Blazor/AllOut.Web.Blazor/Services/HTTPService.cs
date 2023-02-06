@@ -16,7 +16,7 @@ namespace AllOut.Web.Blazor.Services
         }
 
         #region User
-        public Response PostLoginUserAsync(LoginUserRequest request)
+        public Response PostLoginUser(LoginUserRequest request)
         {
             var customResponse = new Response();
             try
@@ -52,7 +52,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetUsersAsync(Guid clientID)
+        public Response GetUsers(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -89,7 +89,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetUsersByQueryAsync(Guid clientID, string query)
+        public Response GetUsersByQuery(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -126,7 +126,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetUsersByStatusAsync(Guid clientID, int status)
+        public Response GetUsersByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -163,7 +163,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetUserByIDAsync(Guid clientID, Guid id)
+        public Response GetUserByID(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -200,7 +200,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountUsersAsync(Guid clientID)
+        public Response GetCountUsers(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -229,7 +229,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountUsersByStatusAsync(Guid clientID, int status)
+        public Response GetCountUsersByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -258,7 +258,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostSaveUserAsync(SaveUserRequest request)
+        public Response PostSaveUser(SaveUserRequest request)
         {
             var customResponse = new Response();
             try
@@ -288,7 +288,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostUpdateUserStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public Response PostUpdateUserStatusByIDs(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -322,7 +322,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Role
-        public Response GetRolesAsync(Guid clientID)
+        public Response GetRoles(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -359,7 +359,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetRolesByQueryAsync(Guid clientID, string query)
+        public Response GetRolesByQuery(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -396,7 +396,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetRolesByStatusAsync(Guid clientID, int status)
+        public Response GetRolesByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -433,7 +433,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetRoleByIDAsync(Guid clientID, Guid id)
+        public Response GetRoleByID(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -470,7 +470,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountRolesAsync(Guid clientID)
+        public Response GetCountRoles(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -499,7 +499,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountRolesByStatusAsync(Guid clientID, int status)
+        public Response GetCountRolesByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -528,7 +528,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostSaveRoleAsync(SaveRoleRequest request)
+        public Response PostSaveRole(SaveRoleRequest request)
         {
             var customResponse = new Response();
             try
@@ -559,7 +559,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostUpdateRoleStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public Response PostUpdateRoleStatusByIDs(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -593,7 +593,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Product
-        public Response GetProductsAsync(Guid clientID)
+        public Response GetProducts(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -630,7 +630,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetProductsByQueryAsync(Guid clientID, string query)
+        public Response GetProductsByQuery(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -667,7 +667,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetProductsByStatusAsync(Guid clientID, int status)
+        public Response GetProductsByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -704,7 +704,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetProductByIDAsync(Guid clientID, Guid id)
+        public Response GetProductByID(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -741,7 +741,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountProductsAsync(Guid clientID)
+        public Response GetCountProducts(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -770,7 +770,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountProductsByStatusAsync(Guid clientID, int status)
+        public Response GetCountProductsByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -799,7 +799,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostSaveProductAsync(SaveProductRequest request)
+        public Response PostSaveProduct(SaveProductRequest request)
         {
             var customResponse = new Response();
             try
@@ -830,7 +830,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostUpdateProductStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public Response PostUpdateProductStatusByIDs(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -864,7 +864,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Brand
-        public Response GetBrandsAsync(Guid clientID)
+        public Response GetBrands(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -901,7 +901,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetBrandsByQueryAsync(Guid clientID, string query)
+        public Response GetBrandsByQuery(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -938,7 +938,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetBrandsByStatusAsync(Guid clientID, int status)
+        public Response GetBrandsByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -975,7 +975,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetBrandByIDAsync(Guid clientID, Guid id)
+        public Response GetBrandByID(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -1012,7 +1012,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountBrandsAsync(Guid clientID)
+        public Response GetCountBrands(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1041,7 +1041,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountBrandsByStatusAsync(Guid clientID, int status)
+        public Response GetCountBrandsByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1070,7 +1070,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostSaveBrandAsync(SaveBrandRequest request)
+        public Response PostSaveBrand(SaveBrandRequest request)
         {
             var customResponse = new Response();
             try
@@ -1101,7 +1101,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostUpdateBrandStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public Response PostUpdateBrandStatusByIDs(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1135,7 +1135,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Category
-        public Response GetCategoriesAsync(Guid clientID)
+        public Response GetCategories(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1172,7 +1172,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCategoriesByQueryAsync(Guid clientID, string query)
+        public Response GetCategoriesByQuery(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -1209,7 +1209,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCategoriesByStatusAsync(Guid clientID, int status)
+        public Response GetCategoriesByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1246,7 +1246,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCategoryByIDAsync(Guid clientID, Guid id)
+        public Response GetCategoryByID(Guid clientID, Guid id)
         {
             var customResponse = new Response();
             try
@@ -1283,7 +1283,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountCategoriesAsync(Guid clientID)
+        public Response GetCountCategories(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1312,7 +1312,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountCategoriesByStatusAsync(Guid clientID, int status)
+        public Response GetCountCategoriesByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1341,7 +1341,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostSaveCategoryAsync(SaveCategoryRequest request)
+        public Response PostSaveCategory(SaveCategoryRequest request)
         {
             var customResponse = new Response();
             try
@@ -1372,7 +1372,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostUpdateCategoryStatusByIDsAsync(UpdateStatusByGUIDsRequest request)
+        public Response PostUpdateCategoryStatusByIDs(UpdateStatusByGUIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1406,7 +1406,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Inventories
-        public Response GetInventoriesAsync(Guid clientID)
+        public Response GetInventories(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1443,7 +1443,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetInventoriesByQueryAsync(Guid clientID, string query)
+        public Response GetInventoriesByQuery(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -1480,7 +1480,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetInventoriesByStatusAsync(Guid clientID, int status)
+        public Response GetInventoriesByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1517,7 +1517,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetInventoryByIDAsync(Guid clientID, string id)
+        public Response GetInventoryByID(Guid clientID, string id)
         {
             var customResponse = new Response();
             try
@@ -1554,7 +1554,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountInventoriesAsync(Guid clientID)
+        public Response GetCountInventories(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1583,7 +1583,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountInventoriesByStatusAsync(Guid clientID, int status)
+        public Response GetCountInventoriesByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1612,7 +1612,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostSaveInventoryAsync(SaveInventoryRequest request)
+        public Response PostSaveInventory(SaveInventoryRequest request)
         {
             var customResponse = new Response();
             try
@@ -1643,7 +1643,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostUpdateInventoryStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
+        public Response PostUpdateInventoryStatusByIDs(UpdateStatusByStringIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1677,7 +1677,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region Sales
-        public Response GetSalesAsync(Guid clientID)
+        public Response GetSales(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1714,7 +1714,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetSalesByQueryAsync(Guid clientID, string query)
+        public Response GetSalesByQuery(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
@@ -1751,7 +1751,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetSalesByStatusAsync(Guid clientID, int status)
+        public Response GetSalesByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1788,7 +1788,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetSalesByIDAsync(Guid clientID, string id)
+        public Response GetSalesByID(Guid clientID, string id)
         {
             var customResponse = new Response();
             try
@@ -1825,7 +1825,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountSalesAsync(Guid clientID)
+        public Response GetCountSales(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1854,7 +1854,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetCountSalesByStatusAsync(Guid clientID, int status)
+        public Response GetCountSalesByStatus(Guid clientID, int status)
         {
             var customResponse = new Response();
             try
@@ -1883,7 +1883,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostSaveSalesAsync(SaveSalesRequest request)
+        public Response PostSaveSales(SaveSalesRequest request)
         {
             var customResponse = new Response();
             try
@@ -1914,7 +1914,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response PostUpdateSalesStatusByIDsAsync(UpdateStatusByStringIDsRequest request)
+        public Response PostUpdateSalesStatusByIDs(UpdateStatusByStringIDsRequest request)
         {
             var customResponse = new Response();
             try
@@ -1948,7 +1948,7 @@ namespace AllOut.Web.Blazor.Services
         #endregion
 
         #region SalesReport
-        public Response GetSalesReportAsync(Guid clientID)
+        public Response GetSalesReport(Guid clientID)
         {
             var customResponse = new Response();
             try
@@ -1985,7 +1985,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetSalesReportByYearAsync(Guid clientID, int year)
+        public Response GetSalesReportByYear(Guid clientID, int year)
         {
             var customResponse = new Response();
             try
@@ -2022,7 +2022,7 @@ namespace AllOut.Web.Blazor.Services
             }
             return customResponse;
         }
-        public Response GetSalesReportByYearAndMonthAsync(Guid clientID, string query)
+        public Response GetSalesReportByYearAndMonth(Guid clientID, string query)
         {
             var customResponse = new Response();
             try
