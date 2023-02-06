@@ -15,7 +15,7 @@
 @*Brand Action Buttons*@
 <div class="cstm-actions">
     <div class="buttons">
-        <button type="button" @onclick="() => OpenModal()">
+        <button type="button" @onclick="() => ShowBrand()">
             <span class="oi oi-plus" aria-hidden="true"></span>
             Add
         </button>
@@ -63,7 +63,7 @@
         </tr>
     </thead>
     <tbody>
-        @if (brandList == null || brandList.Count == 0)
+        @if (brandList.Count == 0)
         {
             <tr>
                 <td colspan="5">
@@ -112,27 +112,12 @@
     </tbody>
 </table>
 
-@*Brand Modal*@
-<Modal @ref="modal">
-    <Title>@modalTitle</Title>
-    <Body>
-
-    </Body>
-    <Footer>
-        <button type="button" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => modal.Close()">Close</button>
-    </Footer>
-</Modal>
+<MessageBox @ref="messageBox"></MessageBox>
 
 @code {
-
-    //Brand Info 
-    private Modal modal { get; set; }
-    private string modalTitle { get; set; }
-    private bool isAdd { get; set; }
-
-    private List<Brand> brandList { get; set; }
-    private string errorMessage { get; set; }
+    private MessageBox? messageBox { get; set; }
+    private List<Brand> brandList { get; set; } = new List<Brand>();
+    private string errorMessage { get; set; } = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -147,15 +132,11 @@
         brandList = (List<Brand>)response.Data;
     }
 
-    private void OpenModal(Guid? id = null)
+    private void ShowBrand(Guid? id = null)
     {
-        isAdd = false;
-        modalTitle = "Edit Brand";
-        if(id == null)
-        {
-            isAdd = true;
-            modalTitle = "Add Brand";
-        }
-        modal.Open();
+        if (messageBox == null)
+            return;
+
+        messageBox.Show("tae", "tae");
     }
 }
