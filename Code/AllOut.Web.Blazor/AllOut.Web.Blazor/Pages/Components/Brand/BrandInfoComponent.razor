@@ -27,8 +27,14 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" @onclick="() => Save()">Save</button>
-                    <button type="button" class="btn btn-secondary" @onclick="() => Cancel()">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-sm" @onclick="() => Save()">
+                        <span class="oi oi-data-transfer-download" aria-hidden="true"></span>
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" @onclick="() => Cancel()">
+                        <span class="oi oi-x" aria-hidden="true"></span>
+                        Cancel
+                    </button>
                 </div>
             </div>
         </div>
@@ -46,6 +52,7 @@
 
     public void InitializeBrand(Guid? brandID)
     {
+        errorMessage = string.Empty;
         showBox = true;
         StateHasChanged();
 
