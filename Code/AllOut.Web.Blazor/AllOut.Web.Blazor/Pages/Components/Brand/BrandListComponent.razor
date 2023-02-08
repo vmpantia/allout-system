@@ -21,15 +21,15 @@
 @*Brand Action Buttons*@
 <div class="cstm-actions">
     <div class="buttons">
-        <button type="button" @onclick="() => ShowBrand()">
+        <button type="button" @onclick="() => ShowInfo()">
             <span class="oi oi-plus" aria-hidden="true"></span>
             Add
         </button>
-        <button type="button">
+        <button type="button" @onclick="() => SelectAll(true)">
             <span class="oi oi-circle-check" aria-hidden="true"></span>
             Select All
         </button>
-        <button type="button">
+        <button type="button" @onclick="() => SelectAll(false)">
             <span class="oi oi-circle-x" aria-hidden="true"></span>
             Unselect All
         </button>
@@ -47,7 +47,7 @@
         </button>
     </div>
     <div class="search">
-        <input type="text" placeholder="Search Brand" @oninput="SearchBrandChange" />
+        <input type="text" placeholder="Search Brand" @oninput="SearchChange" />
     </div>
 </div>
 
@@ -81,10 +81,10 @@
             {
                 <tr>
                     <td class="cstm-column-action">
-                        <input class="form-check-input" type="checkbox" @onclick="() => Checked(brand.BrandID)">
+                        <input class="form-check-input" type="checkbox" checked="@isSelectAll" @onclick="() => Select(brand.BrandID)">
                     </td>
                     <td class="cstm-column-action">
-                        <button class="btn btn-warning btn-sm" @onclick="() => ShowBrand(brand.BrandID)">
+                        <button class="btn btn-warning btn-sm" @onclick="() => ShowInfo(brand.BrandID)">
                             <span class="oi oi-pencil" aria-hidden="true"></span>
                             Edit
                         </button>
@@ -117,36 +117,56 @@
     </tbody>
 </table>
 
-<BrandInfoComponent @ref="brandInfo" BrandInfoResponse="GetBrandResponse"></BrandInfoComponent>
+<BrandInfoComponent @ref="brandInfo" BrandInfoResponse="GetResponse"></BrandInfoComponent>
 
 @code {
     private BrandInfoComponent? brandInfo { get; set; }
 
     private List<Brand> brandList { get; set; } = new List<Brand>();
+    private List<Guid> brandIDs { get; set; } = new List<Guid>();
     private string errorMessage { get; set; } = string.Empty;
     private string responseMessage { get; set; } = string.Empty;
+    private bool isSelectAll = false;
 
     protected override void OnInitialized()
     {
-        PopulateBrands();
+        PopulateTable();
     }
 
-    private void Checked(Guid brandID)
+    private void Select(Guid brandID)
     {
-        errorMessage = brandID.ToString();
+        if(brandIDs.Exists(data => data == brandID))
+        {
+            brandIDs.Remove(brandID);
+            return;
+        }
+        brandIDs.Add(brandID);
     }
 
-    private void SearchBrandChange(ChangeEventArgs e)
+    private void SelectAll(bool value)
+    {
+        brandIDs = new List<Guid>();
+        isSelectAll = value;
+
+        if(value)
+            brandIDs = brandList.Select(data => data.BrandID).ToList();
+    }
+
+    private void SearchChange(ChangeEventArgs e)
     {
         var query = string.Empty;
         if (e.Value != null)
             query = (string)e.Value;
 
-        PopulateBrands(query);
+        PopulateTable(query);
     }
 
-    private void PopulateBrands(string query = null)
+    private void PopulateTable(string query = null)
     {
+        brandList = new List<Brand>();
+        brandIDs = new List<Guid>();
+        isSelectAll = false;
+
         Response response;
         if (string.IsNullOrEmpty(query))
             response = _http.GetBrands(Globals.TEMP_CLIENT_ID);
@@ -162,7 +182,7 @@
         brandList = (List<Brand>)response.Data;
     }
 
-    private void ShowBrand(Guid? id = null)
+    private void ShowInfo(Guid? id = null)
     {
         responseMessage = string.Empty;
 
@@ -172,7 +192,7 @@
         brandInfo.InitializeBrand(id);
     }
 
-    private void GetBrandResponse(Response res)
+    private void GetResponse(Response res)
     {
         if(res != null && res.Result == ResponseResult.SUCCESS)
         {
