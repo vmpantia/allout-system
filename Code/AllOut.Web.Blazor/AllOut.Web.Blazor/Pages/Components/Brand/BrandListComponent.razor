@@ -48,7 +48,7 @@
     <thead>
         <tr>
             <th class="cstm-column-action">
-                <input class="form-check-input" type="checkbox" checked="@isSelectAll" @onchange="SelectAllChange">
+                <input class="form-check-input" type="checkbox" checked="@isSelectAll" @onclick="() => SelectAllChange()">
             </th>
             <th class="cstm-column-action">Action</th>
             <th>Name</th>
@@ -139,12 +139,10 @@
         PopulateBrands(query);
     }
 
-    private void SelectAllChange(ChangeEventArgs e)
+    private void SelectAllChange()
     {
-        if (e.Value == null)
-            return;
-
-        SelectAll((bool)e.Value);
+        isSelectAll = !isSelectAll;
+        SelectAll(isSelectAll);
     }
 
     private void SelectAll(bool value)
