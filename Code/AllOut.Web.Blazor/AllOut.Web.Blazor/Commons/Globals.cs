@@ -5,17 +5,6 @@ namespace AllOut.Web.Blazor.Commons
 {
     public class Globals
     {
-        public static Guid TEMP_CLIENT_ID = Guid.Parse("8435DC1B-356F-4F6E-A727-08DB05D958A1");
-        public static Client TEMP_CLIENT = new Client {
-            ClientID = TEMP_CLIENT_ID,
-            UserID = Guid.Parse("0718EF62-4239-4A4C-B262-B2670FB76930"),
-            Name = "ADMIN, ADMIN",
-            Browser = Constants.NA,
-            IPAddress = Constants.NA,
-            WindowsVersion = Constants.NA,
-            Status = 0,
-            CreatedDate = DateTime.Parse("2024-02-03 20:43:40.6506777")
-        };
         public static Client ClientInformation { get; set; }
 
         public static string POST_LOGIN_USER = string.Concat(Constants.API_BASE, "User/LoginUser");

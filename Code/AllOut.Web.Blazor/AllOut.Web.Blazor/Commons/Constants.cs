@@ -2,6 +2,11 @@
 {
     public class Constants
     {
+        #region Open Iconic
+        public const string OI_PLUS = "oi oi-plus";
+        public const string OI_PENCIL = "oi oi-pencil";
+        #endregion
+
         #region Common Format
         public const string DATE_FORMAT = "yyyy/MM/dd";
         public const string NA = "N/A";

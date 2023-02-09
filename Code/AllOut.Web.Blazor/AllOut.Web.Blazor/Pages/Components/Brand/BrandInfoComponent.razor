@@ -7,7 +7,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <Title Icon="oi oi-tag"
+                    <Title Icon="@icon"
                        Name="@title"
                        Description="@description"></Title>
                 </div>
@@ -46,8 +46,10 @@
     private Brand brandInfo { get; set; }
     private bool showBox { get; set; }
 
+    private string icon { get; set; } = string.Empty;
     private string title { get; set; } = string.Empty;
     private string description { get; set; } = string.Empty;
+
     private string errorMessage { get; set; } = string.Empty;
 
     private bool disableEdit = false;
@@ -63,12 +65,16 @@
 
         title = string.Format(Constants.TITLE_ADD, Constants.OBJECT_BRAND);
         description = string.Format(Constants.DESC_ADD, Constants.OBJECT_BRAND);
+        icon = Constants.OI_PLUS;
+
         brandInfo = new Brand();
         if(brandID != null)
         {
             title = string.Format(Constants.TITLE_EDIT, Constants.OBJECT_BRAND);
             description = string.Format(Constants.DESC_EDIT, Constants.OBJECT_BRAND);
-            var response = _http.GetBrandByID(Globals.TEMP_CLIENT_ID, (Guid)brandID);
+            icon = Constants.OI_PENCIL;
+
+            var response = _http.GetBrandByID(Globals.ClientInformation.ClientID, (Guid)brandID);
 
             if (response.Result != ResponseResult.SUCCESS)
             {
@@ -101,7 +107,7 @@
             FunctionID = isAdd ? Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN :
                                     Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN,
             RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
-            client = Globals.TEMP_CLIENT,
+            client = Globals.ClientInformation,
             inputBrand = brandInfo
         };
 
