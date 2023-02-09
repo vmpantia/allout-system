@@ -87,12 +87,10 @@
                     <td>@brand.Description</td>
 
                     @*Status Column*@
-                    @if (brand.Status == Constants.STATUS_ENABLED_INT)
-                    {
+                    @if (brand.Status == Constants.STATUS_ENABLED_INT) {
                         <td><span class="badge bg-success">@Utility.ConvertStatusToString(brand.Status)</span></td>
                     }
-                    else
-                    {
+                    else {
                         <td><span class="badge bg-secondary">@Utility.ConvertStatusToString(brand.Status)</span></td>
                     }
 

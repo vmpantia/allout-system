@@ -42,7 +42,7 @@
     .cstm-actions span {
         padding-right: 5px;
     }
-    .cstm-actions [type=button]:hover {
+    .cstm-actions [type=button]:hover:enabled {
         background-color: gainsboro;
     }
     .cstm-actions [type=text] {
