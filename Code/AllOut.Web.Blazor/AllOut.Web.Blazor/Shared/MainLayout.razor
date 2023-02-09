@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager navMan
 
 <PageTitle>AllOut.Web.Blazor</PageTitle>
 
@@ -17,3 +18,14 @@
         </article>
     </main>
 </div>
+
+@code{
+    protected async override Task OnInitializedAsync()
+    {
+        if(Globals.ClientInformation == null)
+        {
+            await base.OnInitializedAsync();
+            navMan.NavigateTo("/Login");
+        }
+    }
+}

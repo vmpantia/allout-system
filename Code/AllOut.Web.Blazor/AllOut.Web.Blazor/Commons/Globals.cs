@@ -16,6 +16,7 @@ namespace AllOut.Web.Blazor.Commons
             Status = 0,
             CreatedDate = DateTime.Parse("2024-02-03 20:43:40.6506777")
         };
+        public static Client ClientInformation { get; set; }
 
         public static string POST_LOGIN_USER = string.Concat(Constants.API_BASE, "User/LoginUser");
         public static string GET_USERS = string.Concat(Constants.API_BASE, "User/GetUsers?clientID={0}");

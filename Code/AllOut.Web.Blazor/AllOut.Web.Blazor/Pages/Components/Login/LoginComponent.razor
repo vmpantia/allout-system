@@ -1,0 +1,55 @@
+﻿@page "/Login"
+@layout LoginLayout
+@inject IHTTPService _http
+@inject NavigationManager nav
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @errorMessage
+    </div>
+}
+
+<!-- Email input -->
+<div class="form-outline mb-4">
+    <label class="form-label" for="logonName">Email address</label>
+    <input type="text" id="logonName" class="form-control" placeholder="Enter Username or Email Address" @bind="logonName"/>
+</div>
+
+<!-- Password input -->
+<div class="form-outline mb-3">
+    <label class="form-label" for="password">Password</label>
+    <input type="password" id="password" class="form-control" placeholder="Enter password" @bind="password"/>
+</div>
+
+<button @onclick="() => Login()">Login</button>
+
+@code {
+
+    private string logonName { get; set; } = string.Empty;
+    private string password { get; set; } = string.Empty;
+    private string errorMessage { get; set; } = string.Empty;
+
+    private void Login()
+    {
+        var loginUerRequest = new LoginUserRequest
+        {
+            LogonName = logonName,
+            Password = Utility.EncodePassword(password),
+            Browser = Constants.NA,
+            IPAddress = Constants.NA,
+            WindowsVersion = Constants.NA
+        };
+
+        var response = _http.PostLoginUser(loginUerRequest);
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            errorMessage = (string)response.Data;
+            return;
+        }
+
+        Globals.ClientInformation = (Client)response.Data;
+
+        nav.NavigateTo("/");
+    }
+}
