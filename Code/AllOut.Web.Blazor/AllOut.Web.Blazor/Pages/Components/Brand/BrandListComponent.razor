@@ -33,15 +33,15 @@
             <span class="oi oi-circle-x" aria-hidden="true"></span>
             Unselect All
         </button>
-        <button type="button">
+        <button type="button" @onclick="() => EnableBrands()">
             <span class="oi oi-chevron-top" aria-hidden="true"></span>
             Enable
         </button>
-        <button type="button">
+        <button type="button" @onclick="() => DisableBrands()">
             <span class="oi oi-chevron-bottom" aria-hidden="true"></span>
             Disable
         </button>
-        <button type="button">
+        <button type="button" @onclick="() => DeleteBrands()">
             <span class="oi oi-trash" aria-hidden="true"></span>
             Delete
         </button>
@@ -120,17 +120,18 @@
 <BrandInfoComponent @ref="brandInfo" BrandInfoResponse="GetResponse"></BrandInfoComponent>
 
 @code {
-    private BrandInfoComponent? brandInfo { get; set; }
-
-    private List<Brand> brandList { get; set; } = new List<Brand>();
-    private List<Guid> brandIDs { get; set; } = new List<Guid>();
     private string errorMessage { get; set; } = string.Empty;
     private string responseMessage { get; set; } = string.Empty;
     private bool isSelectAll = false;
 
+    private BrandInfoComponent? brandInfo { get; set; }
+
+    private List<Brand> brandList { get; set; } = new List<Brand>();
+    private List<Guid> brandIDs { get; set; } = new List<Guid>();
+
     protected override void OnInitialized()
     {
-        PopulateTable();
+        PopulateBrands();
     }
 
     private void Select(Guid brandID)
@@ -158,14 +159,12 @@
         if (e.Value != null)
             query = (string)e.Value;
 
-        PopulateTable(query);
+        PopulateBrands(query);
     }
 
-    private void PopulateTable(string query = null)
+    private void PopulateBrands(string query = null)
     {
-        brandList = new List<Brand>();
-        brandIDs = new List<Guid>();
-        isSelectAll = false;
+        ResetData();
 
         Response response;
         if (string.IsNullOrEmpty(query))
@@ -182,8 +181,55 @@
         brandList = (List<Brand>)response.Data;
     }
 
+    private void EnableBrands()
+    {
+        UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_ENABLED_INT);
+    }
+
+    private void DisableBrands()
+    {
+        UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_DISABLED_INT);
+    }
+
+    private void DeleteBrands()
+    {
+        UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_POST_DELETE, Constants.STATUS_DELETION_INT);
+    }
+
+    private void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
+    {
+        var request = new UpdateStatusByGUIDsRequest
+            {
+                FunctionID = functionID,
+                RequestStatus = requestStatus,
+                client = Globals.TEMP_CLIENT,
+                IDs = brandIDs,
+                newStatus = newStatus
+            };
+
+        var response = _http.PostUpdateBrandStatusByIDs(request);
+
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            errorMessage = (string)response.Data;
+            return;
+        }
+        responseMessage = (string)response.Data;
+        PopulateBrands();
+    }
+
+    private void ResetData()
+    {
+        brandList = new List<Brand>();
+        brandIDs = new List<Guid>();
+        isSelectAll = false;
+        errorMessage = string.Empty;
+        responseMessage = string.Empty;
+    }
+
     private void ShowInfo(Guid? id = null)
     {
+        SelectAll(false);
         responseMessage = string.Empty;
 
         if (brandInfo == null)
@@ -197,7 +243,7 @@
         if(res != null && res.Result == ResponseResult.SUCCESS)
         {
             responseMessage = (string)res.Data;
-            OnInitialized();
+            PopulateBrands();
         }
     }
 }
