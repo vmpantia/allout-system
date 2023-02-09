@@ -19,15 +19,15 @@
                     }
                     <div class="mb-3">
                         <label for="name" class="form-label">NAME</label>
-                        <input type="text" class="form-control" id="name" @bind="brandInfo.Name">
+                        <input type="text" class="form-control" id="name" disabled="@disableEdit" @bind="brandInfo.Name">
                     </div>
                     <div class="mb-3">
                         <label for="desc" class="form-label">DESCRIPTION</label>
-                        <textarea class="form-control" id="desc" rows="4" @bind="brandInfo.Description"></textarea>
+                        <textarea class="form-control" id="desc" disabled="@disableEdit" rows="4" @bind="brandInfo.Description"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" @onclick="() => Save()">
+                    <button type="button" class="btn btn-primary btn-sm" disabled="@disableEdit" @onclick="() => Save()">
                         <span class="oi oi-data-transfer-download" aria-hidden="true"></span>
                         Save
                     </button>
@@ -44,8 +44,11 @@
 @code {
     private Brand brandInfo { get; set; }
     private bool showBox { get; set; }
+
     private string title { get; set; } = string.Empty;
     private string errorMessage { get; set; } = string.Empty;
+
+    private bool disableEdit = false;
 
     [Parameter]
     public EventCallback<Response> BrandInfoResponse { get; set; }
@@ -56,11 +59,11 @@
         showBox = true;
         StateHasChanged();
 
-        title = "Add Brand";
+        title = string.Format(Constants.TITLE_ADD, Constants.OBJECT_BRAND);
         brandInfo = new Brand();
         if(brandID != null)
         {
-            title = "Edit Brand";
+            title = string.Format(Constants.TITLE_EDIT, Constants.OBJECT_BRAND);
             var response = _http.GetBrandByID(Globals.TEMP_CLIENT_ID, (Guid)brandID);
 
             if (response.Result != ResponseResult.SUCCESS)
@@ -69,6 +72,8 @@
                 return;
             }
             brandInfo = (Brand)response.Data;
+
+            disableEdit = brandInfo.Status != Constants.STATUS_ENABLED_INT;
         }
     }
 

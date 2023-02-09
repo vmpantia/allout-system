@@ -57,8 +57,12 @@
         width: 30%;
     }
 
-.cstm-column-action{
+.cstm-column-button {
     width: 90px;
+    text-align: center;
+}
+.cstm-column-checkbox {
+    width: 50px;
     text-align: center;
 }
 
