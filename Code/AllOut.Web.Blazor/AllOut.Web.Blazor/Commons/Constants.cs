@@ -2,25 +2,12 @@
 {
     public class Constants
     {
-        public const string REGEX_NUMBER_PATTERN = "^-?[0-9]\\d*(\\.\\d+)?$";
-
         #region Common Format
         public const string DATE_FORMAT = "yyyy/MM/dd";
         public const string NA = "N/A";
-        public const string NAME_FORMAT = "{0}, {1}";
-        public const string USERNAME_FORMAT = "{0}.{1}";
-        public const char ZERO = '0';
         public const string NEWLINE = "\n";
         public const string API_BASE = "http://www.allout.api.com/";
         //public const string API_BASE = "https://localhost:7252/";
-        #endregion
-
-        #region Sales Format
-        public const string PESO_FORMAT = "₱ {0}";
-        public const string DEFAULT_AMOUNT = "₱ 0.00";
-        public const string N0_FORMAT = "N2";
-        public const string CASHIER_POS_FORMAT = "Cashier: {0}";
-        public const string SALESID_POS_FORMAT = "Sales ID: {0}";
         #endregion
 
         #region Request Status
@@ -107,43 +94,29 @@
         #endregion
 
         #region Error Messages
-        public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
-        public const string ERROR_PASSWORD_NOT_MATCH = "Password doesn't match in Confirm Password.";
         public const string ERROR_NO_RECORDS = "No records found in the system.";
         #endregion
 
-        #region Success Message
-        public const string SUCCESS_SAVED = "{0} has been Saved Successfully!\n{1}";
-        public const string SUCCESS_UPDATE = "Update {0}(s) Status Successfully!\n{1}";
-        #endregion
-
-        #region Confirmation Message
-        public const string MESSAGE_CONFIRMATION = "Are you sure you want to {0} {1} {2}(s)?";
-        #endregion
-
         #region Forms
-        public const string FORM_DASHBOARD = "Dashboard";
-        public const string FORM_INVENTORY = "Inventory";
-        public const string FORM_SALES = "Sales";
-        public const string FORM_PRODUCT = "Product";
-        public const string FORM_BRAND = "Brand";
-        public const string FORM_CATEGORY = "Category";
-        public const string FORM_USER = "User";
-        public const string FORM_ROLE = "Role";
+        public const string LINK_LOGIN = "/Login";
+        public const string LINK_DASHBOARD = "/Dashboard";
+        public const string LINK_INVENTORY = "/Inventory";
+        public const string LINK_SALES = "/Sales";
+        public const string LINK_PRODUCT = "/Product";
+        public const string LINK_BRAND = "/Brand";
+        public const string LINK_CATEGORY = "/Category";
+        public const string LINK_USER = "/User";
+        public const string LINK_ROLE = "/Role";
         #endregion
 
         #region Titles
         public const string TITLE_ADD = "Add {0}";
         public const string TITLE_EDIT = "Edit {0}";
-        public const string TITLE_SAVE = "Save {0}";
-        public const string TITLE_REGISTER = "Register {0}";
-        public const string TITLE_UPDATE_STATUS = "Update {0}(s) Status";
         #endregion
 
         #region Descriptions
         public const string DESC_ADD = "In this page you can add {0}.";
         public const string DESC_EDIT = "In this page you can edit {0}.";
-        public const string DESC_FORM = "In this page you can view all the {0} that is saved in the system.";
         #endregion
 
         #region Objects
@@ -157,28 +130,6 @@
         public const string OBJECT_REQUEST = "Request";
 
         public const string OBJECT_PERMISSION = "Permission";
-        #endregion
-
-        #region Action Buttons
-        public const string BUTTON_NAME_DELETE = "Delete";
-        public const string BUTTON_NAME_EDIT = "Edit";
-        public const string BUTTON_NAME_SELECTION = "Selection";
-        public const string BUTTON_HEADER_ACTION = "Action";
-        public const string BUTTON_HEADER_SELECT = "Select";
-        #endregion
-
-        #region ToolTip
-        public const string TOOLTIP_SEARCH = "Search {0}";
-        #endregion
-
-        #region Combobox Configuration
-        public const string CMB_PLACEHOLDER = "Select {0}";
-        public const string CMB_DISPLAY_NAME = "Name";
-        public const string CMB_DISPLAY_PRODUCT_NAME = "ProductName";
-        public const string CMB_VALUE_PRODUCT_ID = "ProductID";
-        public const string CMB_VALUE_BRAND_ID = "BrandID";
-        public const string CMB_VALUE_CATEGORY_ID = "CategoryID";
-        public const string CMB_VALUE_ROLE_ID = "RoleID";
         #endregion
     }
 }

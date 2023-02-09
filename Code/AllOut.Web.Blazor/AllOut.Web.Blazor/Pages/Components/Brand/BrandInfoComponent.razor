@@ -7,8 +7,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="modal-title">@title</span>
-                    <button type="button" class="btn-close" aria-label="Close" @onclick="() => Cancel()"></button>
+                    <Title Icon="oi oi-tag"
+                       Name="@title"
+                       Description="@description"></Title>
                 </div>
                 <div class="modal-body">
                     @if (!string.IsNullOrEmpty(errorMessage))
@@ -46,6 +47,7 @@
     private bool showBox { get; set; }
 
     private string title { get; set; } = string.Empty;
+    private string description { get; set; } = string.Empty;
     private string errorMessage { get; set; } = string.Empty;
 
     private bool disableEdit = false;
@@ -60,10 +62,12 @@
         StateHasChanged();
 
         title = string.Format(Constants.TITLE_ADD, Constants.OBJECT_BRAND);
+        description = string.Format(Constants.DESC_ADD, Constants.OBJECT_BRAND);
         brandInfo = new Brand();
         if(brandID != null)
         {
             title = string.Format(Constants.TITLE_EDIT, Constants.OBJECT_BRAND);
+            description = string.Format(Constants.DESC_EDIT, Constants.OBJECT_BRAND);
             var response = _http.GetBrandByID(Globals.TEMP_CLIENT_ID, (Guid)brandID);
 
             if (response.Result != ResponseResult.SUCCESS)

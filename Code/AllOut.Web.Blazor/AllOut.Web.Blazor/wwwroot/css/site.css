@@ -7,7 +7,7 @@
 }
     .cstm-page-title .icon {
         font-size: 25px;
-        padding: 10px 15px 10px 0px;
+        padding: 10px 15px 0px 0px;
     }
     .cstm-page-title .name {
         font-size: 20px;
@@ -26,6 +26,7 @@
 }
 
 .cstm-actions {
+    margin-top: 10px;
     display: inline-flex;
     width: 100%;
     font-size: 15px;
@@ -67,21 +68,6 @@
 }
 
 /*Login CSS*/
-.divider:after,
-.divider:before {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #eee;
-}
-.h-custom {
-    height: calc(100% - 73px);
-}
-@media (max-width: 450px) {
-    .h-custom {
-        height: 100%;
-    }
-}
 
 /*Default Blazor CSS*/
 html, body {
