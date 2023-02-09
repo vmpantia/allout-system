@@ -25,29 +25,18 @@
             <span class="oi oi-plus" aria-hidden="true"></span>
             Add
         </button>
-        <button type="button" @onclick="() => SelectAll(true)">
-            <span class="oi oi-circle-check" aria-hidden="true"></span>
-            Select All
+        <button type="button" disabled="@isDisableOtherButtons" @onclick="() => EnableBrands()">
+            <span class="oi oi-chevron-top" aria-hidden="true"></span>
+            Enable
         </button>
-        <button type="button" @onclick="() => SelectAll(false)">
-            <span class="oi oi-circle-x" aria-hidden="true"></span>
-            Unselect All
+        <button type="button" disabled="@isDisableOtherButtons" @onclick="() => DisableBrands()">
+            <span class="oi oi-chevron-bottom" aria-hidden="true"></span>
+            Disable
         </button>
-        @if (!isHideStatusButtons)
-        {
-            <button type="button" @onclick="() => EnableBrands()">
-                <span class="oi oi-chevron-top" aria-hidden="true"></span>
-                Enable
-            </button>
-            <button type="button" @onclick="() => DisableBrands()">
-                <span class="oi oi-chevron-bottom" aria-hidden="true"></span>
-                Disable
-            </button>
-            <button type="button" @onclick="() => DeleteBrands()">
-                <span class="oi oi-trash" aria-hidden="true"></span>
-                Delete
-            </button>
-        }
+        <button type="button" disabled="@isDisableOtherButtons" @onclick="() => DeleteBrands()">
+            <span class="oi oi-trash" aria-hidden="true"></span>
+            Delete
+        </button>
     </div>
     <div class="search">
         <input type="text" placeholder="Search Brand" @oninput="SearchChange" />
@@ -58,7 +47,9 @@
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th class="cstm-column-action">Select</th>
+            <th class="cstm-column-action">
+                <input class="form-check-input" type="checkbox" checked="@isSelectAll" @onchange="SelectAllChange">
+            </th>
             <th class="cstm-column-action">Action</th>
             <th>Name</th>
             <th>Description</th>
@@ -73,7 +64,7 @@
             <tr>
                 <td colspan="7">
                     <div class="cstm-no-records">
-                        No Records Found in the Database
+                        @Constants.ERROR_NO_RECORDS
                     </div>
                 </td>
             </tr>
@@ -84,7 +75,7 @@
             {
                 <tr>
                     <td class="cstm-column-action">
-                        <input class="form-check-input" type="checkbox" checked="@isSelectAll" @onclick="() => Select(brand.BrandID)">
+                        <input class="form-check-input" type="checkbox" checked="@brand.isSelect" @onclick="() => Select(brand)">
                     </td>
                     <td class="cstm-column-action">
                         <button class="btn btn-warning btn-sm" @onclick="() => ShowInfo(brand.BrandID)">
@@ -127,7 +118,7 @@
     private string responseMessage { get; set; } = string.Empty;
 
     private bool isSelectAll = false;
-    private bool isHideStatusButtons = true;
+    private bool isDisableOtherButtons = true;
 
     private BrandInfoComponent? brandInfo { get; set; }
 
@@ -139,26 +130,6 @@
         PopulateBrands();
     }
 
-    private void Select(Guid brandID)
-    {
-        if(brandIDs.Exists(data => data == brandID))
-            brandIDs.Remove(brandID);
-        else 
-            brandIDs.Add(brandID);
-
-        isHideStatusButtons = brandIDs.Count == 0;
-    }
-
-    private void SelectAll(bool value)
-    {
-        brandIDs = new List<Guid>();
-        isSelectAll = value;
-        isHideStatusButtons = !value;
-
-        if(value)
-            brandIDs = brandList.Select(data => data.BrandID).ToList();
-    }
-
     private void SearchChange(ChangeEventArgs e)
     {
         var query = string.Empty;
@@ -166,6 +137,31 @@
             query = (string)e.Value;
 
         PopulateBrands(query);
+    }
+
+    private void SelectAllChange(ChangeEventArgs e)
+    {
+        if (e.Value == null)
+            return;
+
+        SelectAll((bool)e.Value);
+    }
+
+    private void SelectAll(bool value)
+    {
+        foreach (var brand in brandList)
+        {
+            brand.isSelect = value;
+        }
+
+        isDisableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
+    }
+
+    private void Select(Brand brand)
+    {
+        brand.isSelect = !brand.isSelect;
+
+        isDisableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
     }
 
     private void PopulateBrands(string query = null)
@@ -185,6 +181,8 @@
         }
 
         brandList = (List<Brand>)response.Data;
+
+        isDisableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
     }
 
     private void EnableBrands()
@@ -209,7 +207,9 @@
                 FunctionID = functionID,
                 RequestStatus = requestStatus,
                 client = Globals.TEMP_CLIENT,
-                IDs = brandIDs,
+                IDs = brandList.Where(data => data.isSelect)
+                               .Select(data => data.BrandID)
+                               .ToList(),
                 newStatus = newStatus
             };
 
@@ -220,8 +220,8 @@
             errorMessage = (string)response.Data;
             return;
         }
-        responseMessage = (string)response.Data;
         PopulateBrands();
+        responseMessage = (string)response.Data;
     }
 
     private void ResetData()
