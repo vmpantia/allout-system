@@ -1,11 +1,13 @@
 using AllOut.Web.Blazor.Contractors;
 using AllOut.Web.Blazor.Services;
+using Blazored.Toast;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddBlazoredToast();
 builder.Services.AddHttpClient<IHTTPService, HTTPService>();
 
 var app = builder.Build();

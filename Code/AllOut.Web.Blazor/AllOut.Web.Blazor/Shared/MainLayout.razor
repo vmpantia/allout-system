@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager navMan
+@using Blazored.Toast.Configuration
 
 <PageTitle>AllOut.Web.Blazor</PageTitle>
 
@@ -18,6 +19,9 @@
         </article>
     </main>
 </div>
+
+<BlazoredToasts Position="ToastPosition.BottomRight"
+                Timeout="10"/>
 
 @code{
     protected async override Task OnInitializedAsync()

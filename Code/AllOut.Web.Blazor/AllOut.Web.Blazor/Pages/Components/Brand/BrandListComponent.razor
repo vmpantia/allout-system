@@ -1,5 +1,6 @@
 ﻿@page "/Brand"
 @inject IHTTPService _http
+@inject IToastService _toast
 
 <Title Icon="oi oi-tag"
        Name="Brand"
@@ -193,6 +194,7 @@
         }
         await PopulateBrands();
         responseMessage = response.Data;
+        _toast.ShowSuccess(response.Data);
     }
 
     private void SelectAllChange()
