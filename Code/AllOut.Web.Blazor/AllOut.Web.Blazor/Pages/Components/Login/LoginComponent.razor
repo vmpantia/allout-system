@@ -30,7 +30,7 @@
     private string password { get; set; } = string.Empty;
     private string errorMessage { get; set; } = string.Empty;
 
-    private void Login()
+    private async Task Login()
     {
         var loginUerRequest = new LoginUserRequest
         {
@@ -41,14 +41,14 @@
             WindowsVersion = Constants.NA
         };
 
-        var response = _http.PostLoginUser(loginUerRequest);
+        var response = await _http.PostRequestAsync(Globals.POST_LOGIN_USER, loginUerRequest);
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = (string)response.Data;
+            errorMessage = response.Data;
             return;
         }
 
-        Globals.ClientInformation = (Client)response.Data;
+        Globals.ClientInformation = JsonConvert.DeserializeObject<Client>(response.Data);
 
         nav.NavigateTo("/");
     }

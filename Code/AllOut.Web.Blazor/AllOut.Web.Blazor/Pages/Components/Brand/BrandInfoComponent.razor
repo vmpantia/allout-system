@@ -57,7 +57,7 @@
     [Parameter]
     public EventCallback<Response> BrandInfoResponse { get; set; }
 
-    public void InitializeBrand(Guid? brandID)
+    public async Task InitializeBrand(Guid? brandID)
     {
         errorMessage = string.Empty;
         showBox = true;
@@ -74,14 +74,14 @@
             description = string.Format(Constants.DESC_EDIT, Constants.OBJECT_BRAND);
             icon = Constants.OI_PENCIL;
 
-            var response = _http.GetBrandByID(Globals.ClientInformation.ClientID, (Guid)brandID);
+            var response = await _http.GetRequestAsync(Globals.GET_BRAND_BY_ID, Globals.ClientInformation.ClientID, (Guid)brandID);
 
             if (response.Result != ResponseResult.SUCCESS)
             {
-                errorMessage = (string)response.Data;
+                errorMessage = response.Data;
                 return;
             }
-            brandInfo = (Brand)response.Data;
+            brandInfo = JsonConvert.DeserializeObject<Brand>(response.Data);
 
             disableEdit = brandInfo.Status != Constants.STATUS_ENABLED_INT;
         }
@@ -93,7 +93,7 @@
         BrandInfoResponse.InvokeAsync(null);
     }
 
-    private void Save()
+    private async Task Save()
     {
         var isAdd = brandInfo.BrandID == Guid.Empty ? true : false;
 
@@ -112,16 +112,16 @@
         };
 
         //Send Request for Save
-        var response = _http.PostSaveBrand(request);
+        var response = await _http.PostRequestAsync(Globals.POST_SAVE_BRAND, request);
 
         //Check Response Result
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = (string)response.Data;
+            errorMessage = response.Data;
             return;
         }
 
         showBox = false;
-        BrandInfoResponse.InvokeAsync(response);
+        await BrandInfoResponse.InvokeAsync(response);
     }
 }

@@ -123,18 +123,18 @@
 
     private List<Brand> brandList { get; set; } = new List<Brand>();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        PopulateBrands();
+        await PopulateBrands();
     }
 
-    private void SearchChange(ChangeEventArgs e)
+    private async Task SearchChange(ChangeEventArgs e)
     {
         var query = string.Empty;
         if (e.Value != null)
             query = (string)e.Value;
 
-        PopulateBrands(query);
+        await PopulateBrands(query);
     }
 
     private void SelectAllChange()
@@ -160,15 +160,15 @@
         disableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
     }
 
-    private void PopulateBrands(string query = null)
+    private async Task PopulateBrands(string query = null)
     {
         ResetData();
 
         Response response;
         if (string.IsNullOrEmpty(query))
-            response = _http.GetBrands(Globals.ClientInformation.ClientID);
+            response = await _http.GetRequestAsync(Globals.GET_BRANDS, Globals.ClientInformation.ClientID);
         else
-            response = _http.GetBrandsByQuery(Globals.ClientInformation.ClientID, query);
+            response = await _http.GetRequestAsync(Globals.GET_BRANDS_BY_QUERY, Globals.ClientInformation.ClientID, query);
 
         if (response.Result != ResponseResult.SUCCESS)
         {
@@ -176,27 +176,27 @@
             return;
         }
 
-        brandList = (List<Brand>)response.Data;
+        brandList = JsonConvert.DeserializeObject<List<Brand>>(response.Data);
 
         disableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
     }
 
-    private void EnableBrands()
+    private async Task EnableBrands()
     {
-        UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_ENABLED_INT);
+        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_ENABLED_INT);
     }
 
-    private void DisableBrands()
+    private async Task DisableBrands()
     {
-        UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_DISABLED_INT);
+        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_DISABLED_INT);
     }
 
-    private void DeleteBrands()
+    private async Task DeleteBrands()
     {
-        UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_POST_DELETE, Constants.STATUS_DELETION_INT);
+        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_POST_DELETE, Constants.STATUS_DELETION_INT);
     }
 
-    private void UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
+    private async Task UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
     {
         var request = new UpdateStatusByGUIDsRequest
             {
@@ -209,15 +209,15 @@
                 newStatus = newStatus
             };
 
-        var response = _http.PostUpdateBrandStatusByIDs(request);
+        var response = await _http.PostRequestAsync(Globals.POST_UPDATE_BRAND_STATUS_BY_IDS, request);
 
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = (string)response.Data;
+            errorMessage = response.Data;
             return;
         }
-        PopulateBrands();
-        responseMessage = (string)response.Data;
+        await PopulateBrands();
+        responseMessage = response.Data;
     }
 
     private void ResetData()
@@ -227,7 +227,7 @@
         responseMessage = string.Empty;
     }
 
-    private void ShowInfo(Guid? id = null)
+    private async Task ShowInfo(Guid? id = null)
     {
         ResetData();
         SelectAll(false);
@@ -235,15 +235,15 @@
         if (brandInfo == null)
             return;
 
-        brandInfo.InitializeBrand(id);
+        await brandInfo.InitializeBrand(id);
     }
 
-    private void GetResponse(Response res)
+    private async Task GetResponse(Response res)
     {
         if(res != null && res.Result == ResponseResult.SUCCESS)
         {
-            responseMessage = (string)res.Data;
-            PopulateBrands();
+            await PopulateBrands();
+            responseMessage = res.Data;
         }
     }
 }

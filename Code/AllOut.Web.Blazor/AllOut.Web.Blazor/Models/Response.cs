@@ -6,6 +6,6 @@ namespace AllOut.Web.Blazor.Models
     {
         public ResponseResult Result { get; set; }
         public string StatusCode { get; set; }
-        public object Data { get; set; }
+        public string Data { get; set; }
     }
 }
