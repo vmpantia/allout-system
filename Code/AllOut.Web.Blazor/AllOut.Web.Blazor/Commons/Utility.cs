@@ -1,5 +1,6 @@
 ﻿using AllOut.Web.Blazor.Models;
 using AllOut.Web.Blazor.Models.enums;
+using Newtonsoft.Json;
 using System.Text;
 
 namespace AllOut.Web.Blazor.Commons
@@ -16,7 +17,7 @@ namespace AllOut.Web.Blazor.Commons
             {
                 if (property.Name.Contains(Constants.OBJECT_PERMISSION))
                 {
-                    var permission = (int)property.GetValue(role);
+                    var permission = (int)property.GetValue(role)!;
 
                     if (Utility.IsPermitted(permission, type))
                     {
@@ -40,10 +41,10 @@ namespace AllOut.Web.Blazor.Commons
 
         public static string ConvertStatusToString(int status)
         {
-            if(status == Constants.STATUS_ENABLED_INT)
+            if (status == Constants.STATUS_ENABLED_INT)
                 return Constants.STATUS_ENABLED_STRING;
 
-            else if(status == Constants.STATUS_DISABLED_INT)
+            else if (status == Constants.STATUS_DISABLED_INT)
                 return Constants.STATUS_DISABLED_STRING;
 
             else
@@ -55,7 +56,7 @@ namespace AllOut.Web.Blazor.Commons
             if (string.IsNullOrEmpty(password))
                 return password;
 
-           var bytes = Encoding.UTF8.GetBytes(password);
+            var bytes = Encoding.UTF8.GetBytes(password);
             return Convert.ToBase64String(bytes);
         }
 
@@ -72,7 +73,7 @@ namespace AllOut.Web.Blazor.Commons
 
         public static string GetStringByCellValue(object value)
         {
-            return value == null ? string.Empty : value.ToString();
+            return value.ToString() ?? string.Empty;
         }
 
         public static List<Year> GetYears(int firstYear, int lastYear)
@@ -86,7 +87,7 @@ namespace AllOut.Web.Blazor.Commons
                     YearInt = 0,
                 }
             };
-            for(int i = firstYear; i <= lastYear; i++)
+            for (int i = firstYear; i <= lastYear; i++)
             {
                 years.Add(new Year
                 {
@@ -132,9 +133,9 @@ namespace AllOut.Web.Blazor.Commons
             }
             switch (param.GetType().Name)
             {
-                case "Guid":
+                case Constants.DT_GUID:
                     return string.Format(url, clientID, (Guid)param);
-                case "int":
+                case Constants.DT_INT:
                     return string.Format(url, clientID, (int)param);
                 default:
                     return string.Format(url, clientID, (string)param);

@@ -7,6 +7,11 @@
         public const string OI_PENCIL = "oi oi-pencil";
         #endregion
 
+        #region Data Type in String
+        public const string DT_INT = "int";
+        public const string DT_GUID = "Guid";
+        #endregion
+
         #region Common Format
         public const string DATE_FORMAT = "yyyy/MM/dd";
         public const string NA = "N/A";

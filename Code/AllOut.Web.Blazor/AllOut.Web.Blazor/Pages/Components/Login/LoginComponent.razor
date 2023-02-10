@@ -49,7 +49,6 @@
         }
 
         Globals.ClientInformation = JsonConvert.DeserializeObject<Client>(response.Data)!;
-
         nav.NavigateTo("/");
     }
 }
