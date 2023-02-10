@@ -11,36 +11,21 @@ namespace AllOut.Web.Blazor.Services
 {
     public class HTTPService : IHTTPService
     {
+        private readonly HttpClient _httpClient;
+        public HTTPService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
+
         public async Task<Response> GetRequestAsync(string url, Guid clientID, object? param = null)
         {
             var response = new Response();
-            var finalUrl = string.Empty;
             try
             {
-                if(param != null)
-                {
-                    var type = param.GetType();
-                    switch (type.Name)
-                    {
-                        case "Guid":
-                            finalUrl = string.Format(url, clientID, (Guid)param);
-                            break;
-                        case "int":
-                            finalUrl = string.Format(url, clientID, (int)param);
-                            break;
-                        default:
-                            finalUrl = string.Format(url, clientID, (string)param);
-                            break;
-                    }
-                }
-                else
-                {
-                    finalUrl = string.Format(url, clientID);
-                }
+                var finalURL = Utility.ParseURL(url, clientID, param);
 
                 //Send GET request to API
-                var httpClient = new HttpClient();
-                var httpResponse = await httpClient.GetAsync(finalUrl);
+                var httpResponse = await _httpClient.GetAsync(finalURL);
 
                 //Get result in response of API
                 response.StatusCode = httpResponse.StatusCode.ToString();
@@ -69,8 +54,7 @@ namespace AllOut.Web.Blazor.Services
                                              Encoding.UTF8,
                                              "application/json");
                 //Send POST request to API
-                var httpClient = new HttpClient();
-                var httpResponse = await httpClient.PostAsync(url, data);
+                var httpResponse = await _httpClient.PostAsync(url, data);
 
                 //Get result in response of API
                 response.StatusCode = httpResponse.StatusCode.ToString();

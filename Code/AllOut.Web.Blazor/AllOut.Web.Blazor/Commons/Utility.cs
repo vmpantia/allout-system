@@ -123,5 +123,22 @@ namespace AllOut.Web.Blazor.Commons
         {
             return ((permission & (int)type) > 0);
         }
+
+        public static string ParseURL(string url, Guid clientID, object? param)
+        {
+            if (param == null)
+            {
+                return string.Format(url, clientID);
+            }
+            switch (param.GetType().Name)
+            {
+                case "Guid":
+                    return string.Format(url, clientID, (Guid)param);
+                case "int":
+                    return string.Format(url, clientID, (int)param);
+                default:
+                    return string.Format(url, clientID, (string)param);
+            }
+        }
     }
 }
