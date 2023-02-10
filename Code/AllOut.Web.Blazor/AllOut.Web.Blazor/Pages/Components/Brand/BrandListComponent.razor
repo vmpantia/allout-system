@@ -6,20 +6,6 @@
        Name="Brand"
        Description="In this page you can view all the Brand that is saved in the system."></Title>
 
-
-@if (!string.IsNullOrEmpty(responseMessage))
-{
-    <div class="alert alert-success" role="alert">
-        @responseMessage
-    </div>
-}
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger" role="alert">
-        @errorMessage
-    </div>
-}
-
 @*Brand Action Buttons*@
 <div class="cstm-actions">
     <div class="buttons">
@@ -114,9 +100,6 @@
 <BrandInfoComponent @ref="brandInfo" BrandInfoResponse="GetResponse"></BrandInfoComponent>
 
 @code {
-    private string errorMessage { get; set; } = string.Empty;
-    private string responseMessage { get; set; } = string.Empty;
-
     private bool selectAll = false;
     private bool disableOtherButtons = true;
 
@@ -140,7 +123,7 @@
 
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = (string)response.Data;
+            _toast.ShowError(response.Data);
             return;
         }
 
@@ -189,11 +172,10 @@
 
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = response.Data;
+            _toast.ShowError(response.Data);
             return;
         }
         await PopulateBrands();
-        responseMessage = response.Data;
         _toast.ShowSuccess(response.Data);
     }
 
@@ -223,8 +205,6 @@
     private void ResetData()
     {
         selectAll = false;
-        errorMessage = string.Empty;
-        responseMessage = string.Empty;
     }
 
     private async Task ShowInfo(Guid? id = null)
@@ -243,7 +223,7 @@
         if(res != null && res.Result == ResponseResult.SUCCESS)
         {
             await PopulateBrands();
-            responseMessage = res.Data;
+            _toast.ShowSuccess(res.Data);
         }
     }
 }
