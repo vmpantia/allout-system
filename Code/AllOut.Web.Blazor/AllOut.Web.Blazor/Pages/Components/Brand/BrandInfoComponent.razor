@@ -87,12 +87,6 @@
         }
     }
 
-    private void Cancel()
-    {
-        showBox = false;
-        BrandInfoResponse.InvokeAsync(null);
-    }
-
     private async Task Save()
     {
         var isAdd = brandInfo.BrandID == Guid.Empty ? true : false;
@@ -103,13 +97,13 @@
 
         //Prepare Request for Save
         var request = new SaveBrandRequest
-        {
-            FunctionID = isAdd ? Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN :
-                                    Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN,
-            RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
-            client = Globals.ClientInformation,
-            inputBrand = brandInfo
-        };
+            {
+                FunctionID = isAdd ? Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN :
+                                        Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN,
+                RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
+                client = Globals.ClientInformation,
+                inputBrand = brandInfo
+            };
 
         //Send Request for Save
         var response = await _http.PostRequestAsync(Globals.POST_SAVE_BRAND, request);
@@ -123,5 +117,11 @@
 
         showBox = false;
         await BrandInfoResponse.InvokeAsync(response);
+    }
+
+    private void Cancel()
+    {
+        showBox = false;
+        BrandInfoResponse.InvokeAsync(null);
     }
 }

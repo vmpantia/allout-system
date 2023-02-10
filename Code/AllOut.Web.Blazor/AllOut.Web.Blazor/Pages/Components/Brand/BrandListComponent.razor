@@ -120,7 +120,6 @@
     private bool disableOtherButtons = true;
 
     private BrandInfoComponent? brandInfo { get; set; }
-
     private List<Brand> brandList { get; set; } = new List<Brand>();
 
     protected override async Task OnInitializedAsync()
@@ -128,39 +127,7 @@
         await PopulateBrands();
     }
 
-    private async Task SearchChange(ChangeEventArgs e)
-    {
-        var query = string.Empty;
-        if (e.Value != null)
-            query = (string)e.Value;
-
-        await PopulateBrands(query);
-    }
-
-    private void SelectAllChange()
-    {
-        selectAll = !selectAll;
-        SelectAll(selectAll);
-    }
-
-    private void SelectAll(bool value)
-    {
-        foreach (var brand in brandList)
-        {
-            brand.isSelect = value;
-        }
-
-        disableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
-    }
-
-    private void Select(Brand brand)
-    {
-        brand.isSelect = !brand.isSelect;
-
-        disableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
-    }
-
-    private async Task PopulateBrands(string query = null)
+    private async Task PopulateBrands(string? query = null)
     {
         ResetData();
 
@@ -177,8 +144,16 @@
         }
 
         brandList = JsonConvert.DeserializeObject<List<Brand>>(response.Data)!;
-
         disableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
+    }
+
+    private async Task SearchChange(ChangeEventArgs e)
+    {
+        var query = string.Empty;
+        if (e.Value != null)
+            query = (string)e.Value;
+
+        await PopulateBrands(query);
     }
 
     private async Task EnableBrands()
@@ -218,6 +193,29 @@
         }
         await PopulateBrands();
         responseMessage = response.Data;
+    }
+
+    private void SelectAllChange()
+    {
+        selectAll = !selectAll;
+        SelectAll(selectAll);
+    }
+
+    private void SelectAll(bool value)
+    {
+        foreach (var brand in brandList)
+        {
+            brand.isSelect = value;
+        }
+
+        disableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
+    }
+
+    private void Select(Brand brand)
+    {
+        brand.isSelect = !brand.isSelect;
+
+        disableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
     }
 
     private void ResetData()
