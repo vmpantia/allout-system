@@ -21,7 +21,9 @@
 </div>
 
 <BlazoredToasts Position="ToastPosition.TopRight"
-                Timeout="10"/>
+                ShowProgressBar="true"
+                Timeout="10"
+                MaxToastCount="5"/>
 
 @code{
     protected async override Task OnInitializedAsync()
