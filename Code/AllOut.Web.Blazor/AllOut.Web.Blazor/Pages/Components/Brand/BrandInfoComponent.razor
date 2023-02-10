@@ -81,7 +81,7 @@
                 errorMessage = response.Data;
                 return;
             }
-            brandInfo = JsonConvert.DeserializeObject<Brand>(response.Data);
+            brandInfo = JsonConvert.DeserializeObject<Brand>(response.Data)!;
 
             disableEdit = brandInfo.Status != Constants.STATUS_ENABLED_INT;
         }

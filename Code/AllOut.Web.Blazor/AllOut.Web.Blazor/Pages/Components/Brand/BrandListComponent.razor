@@ -176,7 +176,7 @@
             return;
         }
 
-        brandList = JsonConvert.DeserializeObject<List<Brand>>(response.Data);
+        brandList = JsonConvert.DeserializeObject<List<Brand>>(response.Data)!;
 
         disableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
     }
