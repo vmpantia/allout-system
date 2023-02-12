@@ -23,7 +23,7 @@ namespace AllOut.Desktop.Common
                 {
                     var permission = (int)property.GetValue(role);
 
-                    if (Utility.IsPermitted(permission, type))
+                    if (IsPermitted(permission, type))
                     {
                         var name = property.Name.Replace(Constants.OBJECT_PERMISSION, string.Empty);
                         allowed += string.Concat(name.ToUpper(), Constants.NEWLINE);
