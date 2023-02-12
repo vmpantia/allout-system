@@ -53,6 +53,7 @@
         GET_SALES_REPORT_BY_YEAR_MONTH,
         //User Request
         POST_LOGIN_USER,
+        POST_LOGOUT_USER,
         GET_USERS,
         GET_USERS_BY_QUERY,
         GET_USERS_BY_STATUS,

@@ -26,6 +26,14 @@ namespace AllOut.Api.Controllers
                                         request);
         }
 
+
+        [HttpPost("LogoutUser")]
+        public async Task<IActionResult> LogoutUserAsync(Guid clientID)
+        {
+            return await ProcessRequest(RequestType.POST_LOGOUT_USER,
+                                        clientID);
+        }
+
         [HttpGet("GetUsers")]
         public async Task<IActionResult> GetUsersAsync(Guid clientID)
         {
@@ -98,6 +106,10 @@ namespace AllOut.Api.Controllers
                 {
                     case RequestType.POST_LOGIN_USER:
                         response = await _user.LoginUserAsync((LoginUserRequest)data);
+                        break;
+
+                    case RequestType.POST_LOGOUT_USER:
+                        await _user.LogoutUserAsync(clientID);
                         break;
 
                     case RequestType.GET_USERS:

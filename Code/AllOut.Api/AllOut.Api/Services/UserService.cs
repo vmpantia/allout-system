@@ -43,6 +43,17 @@ namespace AllOut.Api.Services
             return client;
         }
 
+        public async Task LogoutUserAsync(Guid clientID)
+        {
+            var client = await _db.Clients.FindAsync(clientID);
+
+            if (client == null)
+                throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_CLIENT));
+
+            client.Status = Constants.STATUS_DISABLED_INT;
+            await _db.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<UserFullInformation>> GetUsersAsync()
         {
             var list = await GetUsers();

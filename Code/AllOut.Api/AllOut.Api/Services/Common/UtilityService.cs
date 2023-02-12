@@ -80,7 +80,7 @@ namespace AllOut.Api.Services.Common
             return Math.Round(total, 2);
         }
 
-        public async Task<string> ValidateClient(Guid clientID, RequestType requestType, string functionID)
+        public async Task<string> ValidateClient(Guid clientID, RequestType requestType, string functionID) 
         {
             if ((requestType == RequestType.POST_LOGIN_USER) || /*Not Required for clientID Validation if the Request is Login*/
                 (requestType == RequestType.POST_SAVE_USER && 
