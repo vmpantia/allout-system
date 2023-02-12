@@ -10,6 +10,7 @@ namespace AllOut.Desktop.Common
 {
     public class Constants
     {
+        public const string APP_VERSION = "AllOut.Version 2023.02";
         public const string REGEX_NUMBER_PATTERN = "^-?[0-9]\\d*(\\.\\d+)?$";
 
         #region Common Format

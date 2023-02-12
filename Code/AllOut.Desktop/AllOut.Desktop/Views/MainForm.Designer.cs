@@ -39,7 +39,7 @@
             this.btnProduct = new Guna.UI2.WinForms.Guna2Button();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblAppVersion = new System.Windows.Forms.Label();
             this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblUserEmail = new System.Windows.Forms.Label();
@@ -264,7 +264,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.lblAppVersion);
             this.panel3.Controls.Add(this.btnLogout);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 680);
@@ -272,16 +272,16 @@
             this.panel3.Size = new System.Drawing.Size(219, 81);
             this.panel3.TabIndex = 6;
             // 
-            // label1
+            // lblAppVersion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(12, 54);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 17);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "AllOut.Version 2023.01";
+            this.lblAppVersion.AutoSize = true;
+            this.lblAppVersion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblAppVersion.Location = new System.Drawing.Point(12, 54);
+            this.lblAppVersion.Name = "lblAppVersion";
+            this.lblAppVersion.Size = new System.Drawing.Size(138, 17);
+            this.lblAppVersion.TabIndex = 6;
+            this.lblAppVersion.Text = "AllOut.Version 2023.02";
             // 
             // btnLogout
             // 
@@ -499,7 +499,7 @@
         private System.Windows.Forms.Panel pnlContent;
         private Guna.UI2.WinForms.Guna2Button btnLogout;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblAppVersion;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblUserEmail;
         private Guna.UI2.WinForms.Guna2Button btnUser;

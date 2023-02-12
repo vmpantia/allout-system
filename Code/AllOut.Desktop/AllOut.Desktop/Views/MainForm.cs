@@ -22,6 +22,9 @@ namespace AllOut.Desktop.Views
             InitializeComponent();
             SetUserInfo(Globals.ClientInformation);
             SetActiveForm(Constants.FORM_DASHBOARD);
+
+            //Set App Version
+            lblAppVersion.Text = Constants.APP_VERSION;
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
