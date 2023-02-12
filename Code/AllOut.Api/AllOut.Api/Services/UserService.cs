@@ -43,7 +43,7 @@ namespace AllOut.Api.Services
             return client;
         }
 
-        public async Task LogoutUserAsync(Guid clientID)
+        public async Task<Guid> LogoutUserAsync(Guid clientID)
         {
             var client = await _db.Clients.FindAsync(clientID);
 
@@ -52,6 +52,8 @@ namespace AllOut.Api.Services
 
             client.Status = Constants.STATUS_DISABLED_INT;
             await _db.SaveChangesAsync();
+
+            return clientID;
         }
 
         public async Task<IEnumerable<UserFullInformation>> GetUsersAsync()

@@ -52,6 +52,40 @@ namespace AllOut.Desktop.Controllers
             }
             return customResponse;
         }
+        public static Response PostLogoutUserAsync(Guid clientID)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare Data and API URL
+                var url = string.Format(Globals.POST_LOGOUT_USER, clientID);
+
+                //Send POST request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.PostAsync(url, null).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    return customResponse;
+                }
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
         public static Response GetUsersAsync(Guid clientID)
         {
             var customResponse = new Response();

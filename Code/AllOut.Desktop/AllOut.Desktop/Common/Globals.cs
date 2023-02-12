@@ -23,6 +23,7 @@ namespace AllOut.Desktop.Common
         public static Regex letterFormat = new Regex("[a-zA-Z]");
 
         public static string POST_LOGIN_USER = string.Concat(Constants.API_BASE, "User/LoginUser");
+        public static string POST_LOGOUT_USER = string.Concat(Constants.API_BASE, "User/LogoutUser?clientID={0}");
         public static string GET_USERS = string.Concat(Constants.API_BASE, "User/GetUsers?clientID={0}");
         public static string GET_USERS_BY_QUERY = string.Concat(Constants.API_BASE, "User/GetUsersByQuery?clientID={0}&query={1}");
         public static string GET_USERS_BY_STATUS = string.Concat(Constants.API_BASE, "User/GetUsersByStatus?clientID={0}&status={1}");

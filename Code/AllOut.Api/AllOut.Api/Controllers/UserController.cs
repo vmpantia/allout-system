@@ -109,7 +109,7 @@ namespace AllOut.Api.Controllers
                         break;
 
                     case RequestType.POST_LOGOUT_USER:
-                        await _user.LogoutUserAsync(clientID);
+                        response = await _user.LogoutUserAsync(clientID);
                         break;
 
                     case RequestType.GET_USERS:

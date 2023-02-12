@@ -67,6 +67,13 @@ namespace AllOut.Desktop.Views
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            var response = HttpController.PostLogoutUserAsync(Globals.ClientInformation.ClientID);
+            //Get Product based on the given ID
+            if (response.Result != ResponseResult.SUCCESS)
+            {
+                MessageBox.Show((string)response.Data);
+                return;
+            }
             Globals.ClientInformation = null;
             this.Close();
         }

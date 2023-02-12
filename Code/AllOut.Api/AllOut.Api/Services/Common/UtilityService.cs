@@ -83,6 +83,7 @@ namespace AllOut.Api.Services.Common
         public async Task<string> ValidateClient(Guid clientID, RequestType requestType, string functionID) 
         {
             if ((requestType == RequestType.POST_LOGIN_USER) || /*Not Required for clientID Validation if the Request is Login*/
+                (requestType == RequestType.POST_LOGOUT_USER) || /*Not Required for clientID Validation if the Request is Logout*/
                 (requestType == RequestType.POST_SAVE_USER && 
                  functionID != null && functionID == Constants.FUNCTION_ID_ADD_USER)) /*Not Required for clientID Validation if the Request is User Registration*/
                 return string.Empty;
