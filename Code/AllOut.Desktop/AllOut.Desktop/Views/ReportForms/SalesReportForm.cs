@@ -96,5 +96,11 @@ namespace AllOut.Desktop.Views.ReportForms
         {
             PopulateSalesReport();
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            int year, month;
+            var type = Utility.GetReportType(out year, out month, cmbYear, cmbMonth);
+        }
     }
 }
