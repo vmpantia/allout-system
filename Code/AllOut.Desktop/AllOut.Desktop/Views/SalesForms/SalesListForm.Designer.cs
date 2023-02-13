@@ -280,7 +280,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
             this.txtSearch.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.txtSearch.PlaceholderText = "Search Product";
+            this.txtSearch.PlaceholderText = "Search Sales";
             this.txtSearch.SelectedText = "";
             this.txtSearch.Size = new System.Drawing.Size(271, 35);
             this.txtSearch.TabIndex = 11;

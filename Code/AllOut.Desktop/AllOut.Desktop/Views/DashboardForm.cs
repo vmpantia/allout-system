@@ -59,12 +59,6 @@ namespace AllOut.Desktop.Views
             var type = GetReportType(out year, out month);
             GetReportsByType(out salesReports, out productReports, year, month, type);
 
-            //Initialize ComoboBox
-            if (salesReports.Any())
-            {
-                PopulateMonth();
-                PopulateYear(salesReports.First().Year, salesReports.Last().Year);
-            }
 
             //Populate Sales Chart
             PopulateChart(type, salesReports);
@@ -130,7 +124,15 @@ namespace AllOut.Desktop.Views
                 default:
                     responseSales = HttpController.GetSalesReportAsync(clientID);
                     if (responseSales.Result == ResponseResult.SUCCESS)
+                    {
                         salesReports = (List<SalesReportInformation>)responseSales.Data;
+                        //Initialize ComoboBox
+                        if (salesReports.Any())
+                        {
+                            PopulateMonth();
+                            PopulateYear(salesReports.First().Year, salesReports.Last().Year);
+                        }
+                    }
 
                     responseProducts = HttpController.GetProductsReportAsync(clientID);
                     if (responseProducts.Result == ResponseResult.SUCCESS)
@@ -144,13 +146,13 @@ namespace AllOut.Desktop.Views
             year = cmbYear.SelectedItem == null ? 0 : ((Year)cmbYear.SelectedItem).YearInt;
             month = cmbMonth.SelectedItem == null ? 0 : ((Month)cmbMonth.SelectedItem).MonthInt;
 
+            if(year == 0 && month == 0)
+                return ReportType.ALL;
+
             if (year != 0 && month == 0)
                 return ReportType.BY_YEAR;
 
-            if (year == 0 && month != 0)
-                return ReportType.BY_MONTH;
-
-            return ReportType.ALL;
+            return ReportType.BY_MONTH;
         }
 
         private void PopulateYear(int firstYear, int lastYear)

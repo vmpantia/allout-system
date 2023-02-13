@@ -73,7 +73,7 @@
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(21, 72);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(100, 19);
-            this.guna2HtmlLabel1.TabIndex = 3;
+            this.guna2HtmlLabel1.TabIndex = 6;
             this.guna2HtmlLabel1.Text = "CHARGE NAME:";
             // 
             // guna2HtmlLabel2
@@ -84,7 +84,7 @@
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(21, 149);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             this.guna2HtmlLabel2.Size = new System.Drawing.Size(87, 19);
-            this.guna2HtmlLabel2.TabIndex = 4;
+            this.guna2HtmlLabel2.TabIndex = 7;
             this.guna2HtmlLabel2.Text = "AMOUNT (₱):";
             // 
             // lblFormDescription
@@ -95,7 +95,7 @@
             this.lblFormDescription.Location = new System.Drawing.Point(68, 39);
             this.lblFormDescription.Name = "lblFormDescription";
             this.lblFormDescription.Size = new System.Drawing.Size(283, 17);
-            this.lblFormDescription.TabIndex = 13;
+            this.lblFormDescription.TabIndex = 5;
             this.lblFormDescription.Text = "In this page you can add other charge for POS.";
             // 
             // lblFormTitle
@@ -106,7 +106,7 @@
             this.lblFormTitle.Location = new System.Drawing.Point(67, 18);
             this.lblFormTitle.Name = "lblFormTitle";
             this.lblFormTitle.Size = new System.Drawing.Size(146, 21);
-            this.lblFormTitle.TabIndex = 12;
+            this.lblFormTitle.TabIndex = 4;
             this.lblFormTitle.Text = "Add Other Charge";
             // 
             // guna2PictureBox1
@@ -136,7 +136,7 @@
             this.btnCancel.Location = new System.Drawing.Point(262, 235);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(89, 34);
-            this.btnCancel.TabIndex = 10;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -164,7 +164,7 @@
             this.txtAmount.PlaceholderText = "";
             this.txtAmount.SelectedText = "";
             this.txtAmount.Size = new System.Drawing.Size(330, 41);
-            this.txtAmount.TabIndex = 14;
+            this.txtAmount.TabIndex = 1;
             // 
             // btnAdd
             // 
@@ -182,7 +182,7 @@
             this.btnAdd.Location = new System.Drawing.Point(167, 235);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(89, 34);
-            this.btnAdd.TabIndex = 15;
+            this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
