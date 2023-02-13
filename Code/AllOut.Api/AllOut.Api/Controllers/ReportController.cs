@@ -39,6 +39,24 @@ namespace AllOut.Api.Controllers
             return await ProcessRequest(RequestType.GET_SALES_REPORT_BY_YEAR_MONTH, clientID, query);
         }
 
+        [HttpGet("GetProductsReport")]
+        public async Task<IActionResult> GetProductsReportAsync(Guid clientID)
+        {
+            return await ProcessRequest(RequestType.GET_PRODUCTS_REPORT, clientID);
+        }
+
+        [HttpGet("GetProductsReportByYear")]
+        public async Task<IActionResult> GetProductsReportByYearAsync(Guid clientID, int year)
+        {
+            return await ProcessRequest(RequestType.GET_PRODUCTS_REPORT_BY_YEAR, clientID, year);
+        }
+
+        [HttpGet("GetProductsReportByYearAndMonth")]
+        public async Task<IActionResult> GetProductsReportByYearAndMonthAsync(Guid clientID, string query)
+        {
+            return await ProcessRequest(RequestType.GET_PRODUCTS_REPORT_BY_YEAR_MONTH, clientID, query);
+        }
+
         private async Task<IActionResult> ProcessRequest(RequestType type, Guid clientID, object data = null, string functionID = null)
         {
             try
@@ -61,6 +79,18 @@ namespace AllOut.Api.Controllers
 
                     case RequestType.GET_SALES_REPORT_BY_YEAR_MONTH:
                         response = await _report.GetSalesReportByYearAndMonthAsync((string)data);
+                        break;
+
+                    case RequestType.GET_PRODUCTS_REPORT:
+                        response = await _report.GetProductsReportAsync();
+                        break;
+
+                    case RequestType.GET_PRODUCTS_REPORT_BY_YEAR:
+                        response = await _report.GetProductsReportByYearAsync((int)data);
+                        break;
+
+                    case RequestType.GET_PRODUCTS_REPORT_BY_YEAR_MONTH:
+                        response = await _report.GetProductsReportByYearAndMonthAsync((string)data);
                         break;
                 }
 

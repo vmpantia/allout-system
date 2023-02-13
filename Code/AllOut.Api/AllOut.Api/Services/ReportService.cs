@@ -234,7 +234,7 @@ namespace AllOut.Api.Services
             return report;
         }
 
-        public async Task<IEnumerable<ProductReportInformation>> GetProductsReportByYearAsync(string query)
+        public async Task<IEnumerable<ProductReportInformation>> GetProductsReportByYearAndMonthAsync(string query)
         {
             var year = int.Parse(query.Split(Constants.DASH)[0]);
             var month = int.Parse(query.Split(Constants.DASH)[1]);
