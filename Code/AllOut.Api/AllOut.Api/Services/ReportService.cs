@@ -7,15 +7,18 @@ using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
 using AllOut.Api.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Tokens;
 
 namespace AllOut.Api.Services
 {
     public class ReportService : IReportService
     {
         private readonly AllOutDbContext _db;
-        public ReportService(AllOutDbContext context)
+        private readonly IUtilityService _utility;
+        public ReportService(AllOutDbContext context, IUtilityService utility)
         {
             _db = context;
+            _utility = utility;
         }
 
         #region Public Methods
@@ -162,6 +165,108 @@ namespace AllOut.Api.Services
                               Additional = g.Sum(g => g.Additional),
                               Deductions = g.Sum(g => g.Deductions),
                               Total = Math.Round((g.Sum(g => g.ItemTotal) + g.Sum(g => g.Additional) + g.Sum(g => g.Deductions)), 2)
+                          }).ToList();
+
+            return report;
+        }
+
+        public async Task<IEnumerable<ProductReportInformation>> GetProductsReportAsync()
+        {
+            var productSales = await (from a in _db.Sales
+                                      join b in _db.SalesItems on a.SalesID equals b.SalesID
+                                      join c in _db.Products on b.ProductID equals c.ProductID into cc from c in cc.DefaultIfEmpty()
+                                      join d in _db.Brands on c.BrandID equals d.BrandID into dd from d in dd.DefaultIfEmpty()
+                                      join e in _db.Categories on c.CategoryID equals e.CategoryID into ee from e in ee.DefaultIfEmpty()
+                                      where a.Status == Constants.STATUS_ENABLED_INT
+                                      select new ProductReportInformation
+                                      {
+                                          ProductName = _utility.CheckProductAvailablity(c) ? c.Name : Constants.NA,
+                                          BrandName = _utility.CheckBrandAvailablity(d) ? d.Name : Constants.NA,
+                                          CategoryName = _utility.CheckCategoryAvailablity(e) ? e.Name : Constants.NA,
+                                          Quantity = b.Quantity,
+                                          Total = b.Total
+                                      }).ToListAsync();
+
+            var report = (from a in productSales
+                          group a by a.ProductName into g
+                          select new ProductReportInformation
+                          {
+                              ProductName = g.Key,
+                              BrandName = g.First().BrandName,
+                              CategoryName = g.First().CategoryName,
+                              Quantity = g.Sum(g => g.Quantity),
+                              Total = g.Sum(g => g.Total)
+                          }).OrderByDescending(data => data.Quantity)
+                            .ToList();
+
+            return report;
+        }
+
+        public async Task<IEnumerable<ProductReportInformation>> GetProductsReportByYearAsync(int year)
+        {
+            var productSales = await (from a in _db.Sales
+                                      join b in _db.SalesItems on a.SalesID equals b.SalesID
+                                      join c in _db.Products on b.ProductID equals c.ProductID into cc from c in cc.DefaultIfEmpty()
+                                      join d in _db.Brands on c.BrandID equals d.BrandID into dd from d in dd.DefaultIfEmpty()
+                                      join e in _db.Categories on c.CategoryID equals e.CategoryID into ee from e in ee.DefaultIfEmpty()
+                                      where a.Status == Constants.STATUS_ENABLED_INT &&
+                                            a.CreatedDate.Year == year
+                                      select new ProductReportInformation
+                                      {
+                                          ProductName = _utility.CheckProductAvailablity(c) ? c.Name : Constants.NA,
+                                          BrandName = _utility.CheckBrandAvailablity(d) ? d.Name : Constants.NA,
+                                          CategoryName = _utility.CheckCategoryAvailablity(e) ? e.Name : Constants.NA,
+                                          Quantity = b.Quantity,
+                                          Total = b.Total
+                                      }).ToListAsync();
+
+            var report = (from a in productSales
+                          group a by a.ProductName into g
+                          select new ProductReportInformation
+                          {
+                              ProductName = g.Key,
+                              BrandName = g.First().BrandName,
+                              CategoryName = g.First().CategoryName,
+                              Quantity = g.Sum(g => g.Quantity),
+                              Total = g.Sum(g => g.Total)
+                          }).ToList();
+
+            return report;
+        }
+
+        public async Task<IEnumerable<ProductReportInformation>> GetProductsReportByYearAsync(string query)
+        {
+            var year = int.Parse(query.Split(Constants.DASH)[0]);
+            var month = int.Parse(query.Split(Constants.DASH)[1]);
+
+            var productSales = await (from a in _db.Sales
+                                      join b in _db.SalesItems on a.SalesID equals b.SalesID
+                                      join c in _db.Products on b.ProductID equals c.ProductID into cc
+                                      from c in cc.DefaultIfEmpty()
+                                      join d in _db.Brands on c.BrandID equals d.BrandID into dd
+                                      from d in dd.DefaultIfEmpty()
+                                      join e in _db.Categories on c.CategoryID equals e.CategoryID into ee
+                                      from e in ee.DefaultIfEmpty()
+                                      where a.Status == Constants.STATUS_ENABLED_INT &&
+                                            a.CreatedDate.Year == year && a.CreatedDate.Month == month
+                                      select new ProductReportInformation
+                                      {
+                                          ProductName = _utility.CheckProductAvailablity(c) ? c.Name : Constants.NA,
+                                          BrandName = _utility.CheckBrandAvailablity(d) ? d.Name : Constants.NA,
+                                          CategoryName = _utility.CheckCategoryAvailablity(e) ? e.Name : Constants.NA,
+                                          Quantity = b.Quantity,
+                                          Total = b.Total
+                                      }).ToListAsync();
+
+            var report = (from a in productSales
+                          group a by a.ProductName into g
+                          select new ProductReportInformation
+                          {
+                              ProductName = g.Key,
+                              BrandName = g.First().BrandName,
+                              CategoryName = g.First().CategoryName,
+                              Quantity = g.Sum(g => g.Quantity),
+                              Total = g.Sum(g => g.Total)
                           }).ToList();
 
             return report;
