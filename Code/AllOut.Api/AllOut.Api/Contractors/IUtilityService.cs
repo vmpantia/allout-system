@@ -11,6 +11,7 @@ namespace AllOut.Api.Contractors
         bool CheckCategoryAvailablity(Category category);
         bool CheckUserAvailability(User user);
         bool CheckRoleAvailability(Role role);
+        bool CheckSalesItemAvailability(SalesItem salesItem);
         int GetCurrentStock(int inventories, int sales);
         bool GetReorderState(int stock, int reorderpoint);
         decimal GetTotal(decimal totalItems, decimal totalAdditional, decimal totalDeduction);

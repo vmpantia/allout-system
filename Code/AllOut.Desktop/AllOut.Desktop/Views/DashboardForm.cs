@@ -64,7 +64,14 @@ namespace AllOut.Desktop.Views
             PopulateChart(type, salesReports);
 
             //Populate Product Sales
-            tblProduts.DataSource = productReports;
+            tblProduts.DataSource = productReports.Select(data => new
+            {
+                Product = data.ProductName,
+                Brand = data.BrandName,
+                Category = data.CategoryName,
+                data.Quantity,
+                data.Total
+            }).ToList();
             lblTableDescription.Visible = productReports.Count == 0;
         }
 

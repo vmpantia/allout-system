@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
@@ -135,7 +135,7 @@
             this.tableLayoutPanel1.Controls.Add(this.guna2CustomGradientPanel2, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.guna2CustomGradientPanel1, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.guna2CustomGradientPanel4, 5, 0);
-            this.tableLayoutPanel1.Controls.Add(this.guna2Panel1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.guna2Panel1, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.guna2CustomGradientPanel7, 6, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -146,7 +146,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 352F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1474, 562);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1474, 711);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // guna2Panel2
@@ -154,14 +154,14 @@
             this.guna2Panel2.BorderColor = System.Drawing.Color.Silver;
             this.guna2Panel2.BorderRadius = 10;
             this.guna2Panel2.BorderThickness = 1;
-            this.tableLayoutPanel1.SetColumnSpan(this.guna2Panel2, 3);
+            this.tableLayoutPanel1.SetColumnSpan(this.guna2Panel2, 4);
             this.guna2Panel2.Controls.Add(this.tableLayoutPanel10);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel2.FillColor = System.Drawing.Color.White;
             this.guna2Panel2.Location = new System.Drawing.Point(3, 163);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.guna2Panel2.Size = new System.Drawing.Size(624, 346);
+            this.guna2Panel2.Size = new System.Drawing.Size(834, 346);
             this.guna2Panel2.TabIndex = 14;
             // 
             // tableLayoutPanel10
@@ -178,7 +178,7 @@
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(604, 326);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(814, 326);
             this.tableLayoutPanel10.TabIndex = 0;
             // 
             // label1
@@ -189,26 +189,26 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(598, 28);
+            this.label1.Size = new System.Drawing.Size(808, 28);
             this.label1.TabIndex = 12;
             this.label1.Text = "SALES";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // chartSales
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartSales.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chartSales.ChartAreas.Add(chartArea2);
             this.chartSales.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chartSales.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chartSales.Legends.Add(legend2);
             this.chartSales.Location = new System.Drawing.Point(3, 31);
             this.chartSales.Name = "chartSales";
             this.chartSales.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Total";
-            this.chartSales.Series.Add(series1);
-            this.chartSales.Size = new System.Drawing.Size(598, 292);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Total";
+            this.chartSales.Series.Add(series2);
+            this.chartSales.Size = new System.Drawing.Size(808, 292);
             this.chartSales.TabIndex = 10;
             this.chartSales.Text = "Sales";
             // 
@@ -671,14 +671,14 @@
             this.guna2Panel1.BorderColor = System.Drawing.Color.Silver;
             this.guna2Panel1.BorderRadius = 10;
             this.guna2Panel1.BorderThickness = 1;
-            this.tableLayoutPanel1.SetColumnSpan(this.guna2Panel1, 4);
+            this.tableLayoutPanel1.SetColumnSpan(this.guna2Panel1, 3);
             this.guna2Panel1.Controls.Add(this.tableLayoutPanel8);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel1.FillColor = System.Drawing.Color.White;
-            this.guna2Panel1.Location = new System.Drawing.Point(633, 163);
+            this.guna2Panel1.Location = new System.Drawing.Point(843, 163);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.guna2Panel1.Size = new System.Drawing.Size(838, 346);
+            this.guna2Panel1.Size = new System.Drawing.Size(628, 346);
             this.guna2Panel1.TabIndex = 11;
             // 
             // tableLayoutPanel8
@@ -695,7 +695,7 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(818, 326);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(608, 326);
             this.tableLayoutPanel8.TabIndex = 0;
             // 
             // panel2
@@ -705,7 +705,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 31);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(812, 292);
+            this.panel2.Size = new System.Drawing.Size(602, 292);
             this.panel2.TabIndex = 13;
             // 
             // lblTableDescription
@@ -715,7 +715,7 @@
             this.lblTableDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTableDescription.Location = new System.Drawing.Point(0, 0);
             this.lblTableDescription.Name = "lblTableDescription";
-            this.lblTableDescription.Size = new System.Drawing.Size(812, 292);
+            this.lblTableDescription.Size = new System.Drawing.Size(602, 292);
             this.lblTableDescription.TabIndex = 8;
             this.lblTableDescription.Text = "No records found in the system.";
             this.lblTableDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -724,25 +724,25 @@
             // 
             this.tblProduts.AllowUserToAddRows = false;
             this.tblProduts.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tblProduts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblProduts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tblProduts.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblProduts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.tblProduts.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tblProduts.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tblProduts.DefaultCellStyle = dataGridViewCellStyle6;
             this.tblProduts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblProduts.GridColor = System.Drawing.SystemColors.Control;
             this.tblProduts.Location = new System.Drawing.Point(0, 0);
@@ -750,7 +750,7 @@
             this.tblProduts.ReadOnly = true;
             this.tblProduts.RowHeadersVisible = false;
             this.tblProduts.RowTemplate.Height = 30;
-            this.tblProduts.Size = new System.Drawing.Size(812, 292);
+            this.tblProduts.Size = new System.Drawing.Size(602, 292);
             this.tblProduts.TabIndex = 7;
             this.tblProduts.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.LightGrid;
             this.tblProduts.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -783,7 +783,7 @@
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label8.Location = new System.Drawing.Point(3, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(812, 28);
+            this.label8.Size = new System.Drawing.Size(602, 28);
             this.label8.TabIndex = 12;
             this.label8.Text = "PRODUCT";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -887,7 +887,7 @@
             this.cmbMonth.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.cmbMonth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cmbMonth.ItemHeight = 30;
-            this.cmbMonth.Location = new System.Drawing.Point(245, 7);
+            this.cmbMonth.Location = new System.Drawing.Point(235, 7);
             this.cmbMonth.Name = "cmbMonth";
             this.cmbMonth.Size = new System.Drawing.Size(142, 36);
             this.cmbMonth.TabIndex = 17;
@@ -898,7 +898,7 @@
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(182, 16);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(172, 16);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(57, 19);
             this.guna2HtmlLabel1.TabIndex = 18;
@@ -916,7 +916,7 @@
             this.cmbYear.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.cmbYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cmbYear.ItemHeight = 30;
-            this.cmbYear.Location = new System.Drawing.Point(58, 7);
+            this.cmbYear.Location = new System.Drawing.Point(48, 7);
             this.cmbYear.Name = "cmbYear";
             this.cmbYear.Size = new System.Drawing.Size(113, 36);
             this.cmbYear.TabIndex = 15;
@@ -927,7 +927,7 @@
             this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(13, 16);
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(3, 16);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             this.guna2HtmlLabel6.Size = new System.Drawing.Size(39, 19);
             this.guna2HtmlLabel6.TabIndex = 16;
@@ -938,7 +938,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1474, 562);
+            this.ClientSize = new System.Drawing.Size(1474, 711);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "DashboardForm";

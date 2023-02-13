@@ -61,6 +61,14 @@ namespace AllOut.Api.Services.Common
             return role.Status == Constants.STATUS_ENABLED_INT;
         }
 
+        public bool CheckSalesItemAvailability(SalesItem salesItem)
+        {
+            if (salesItem == null)
+                return false;
+
+            return true;
+        }
+
         public int GetCurrentStock(int inventories, int sales)
         {
             var result = inventories - sales;
