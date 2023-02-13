@@ -14,10 +14,10 @@ namespace AllOut.Desktop.Views.SalesForms
     public partial class SalesListForm : Form
     {
         private List<string> _salesIDs = new List<string>();
-        private const int BUTTON_COL_IDX = 0;
-        private const int CHECKBOX_COL_IDX = 1;
-        private const int ID_COL_IDX = 2;
-        private const int STATUS_COL_IDX = 12;
+        //private const int BUTTON_COL_IDX = 0;
+        private const int CHECKBOX_COL_IDX = 0;
+        private const int ID_COL_IDX = 1;
+        private const int STATUS_COL_IDX = 11;
 
         public SalesListForm()
         {
@@ -67,23 +67,23 @@ namespace AllOut.Desktop.Views.SalesForms
 
         private void tblObjectList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 && (e.ColumnIndex != BUTTON_COL_IDX || e.ColumnIndex != CHECKBOX_COL_IDX))
+            if (e.RowIndex < 0 && (/*e.ColumnIndex != BUTTON_COL_IDX || */e.ColumnIndex != CHECKBOX_COL_IDX))
                 return;
 
             var id = Utility.GetStringByCellValue(tblObjectList.Rows[e.RowIndex].Cells[ID_COL_IDX].Value);
 
-            //Check if Edit Button is Clicked
-            if (e.ColumnIndex == BUTTON_COL_IDX)
-            {
-                IsSelectAll(false);
+            ////Check if Edit Button is Clicked
+            //if (e.ColumnIndex == BUTTON_COL_IDX)
+            //{
+            //    IsSelectAll(false);
 
-                //Show POS Form
-                var form = new POSForm(id);
-                form.ShowDialog();
-            }
+            //    //Show POS Form
+            //    var form = new POSForm(id);
+            //    form.ShowDialog();
+            //}
 
             //Check if Select CheckBox is Clicked
-            else if (e.ColumnIndex == CHECKBOX_COL_IDX)
+            /*else*/ if (e.ColumnIndex == CHECKBOX_COL_IDX)
             {
                 var isIDExist = _salesIDs.Exists(data => data == id);
                 if (isIDExist)
@@ -173,16 +173,16 @@ namespace AllOut.Desktop.Views.SalesForms
                                                     ModifiedDate = data.ModifiedDate == null ? Constants.NA : DateTime.Parse(data.ModifiedDate.ToString()).ToString(Constants.DATE_FORMAT),
                                                 }).ToList();
 
-            //Add Edit Button on 1st Column
-            DataGridViewButtonColumn editButton = new DataGridViewButtonColumn
-            {
-                Name = Constants.BUTTON_NAME_EDIT,
-                HeaderText = Constants.BUTTON_HEADER_ACTION,
-                Text = Constants.BUTTON_NAME_EDIT,
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader,
-                UseColumnTextForButtonValue = true
-            };
-            tblObjectList.Columns.Insert(BUTTON_COL_IDX, editButton);
+            ////Add Edit Button on 1st Column
+            //DataGridViewButtonColumn editButton = new DataGridViewButtonColumn
+            //{
+            //    Name = Constants.BUTTON_NAME_EDIT,
+            //    HeaderText = Constants.BUTTON_HEADER_ACTION,
+            //    Text = Constants.BUTTON_NAME_EDIT,
+            //    AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader,
+            //    UseColumnTextForButtonValue = true
+            //};
+            //tblObjectList.Columns.Insert(BUTTON_COL_IDX, editButton);
 
             //Add Select Checkbox on 1st Column
             DataGridViewCheckBoxColumn selectCheckBox = new DataGridViewCheckBoxColumn

@@ -28,36 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardForm));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2CustomGradientPanel5 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.lblCountInventory = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.guna2PictureBox6 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2CustomGradientPanel3 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.lblCountCategory = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2CustomGradientPanel6 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
+            this.guna2PictureBox7 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.lblCountSales = new System.Windows.Forms.Label();
             this.guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.lblCountBrand = new System.Windows.Forms.Label();
+            this.guna2PictureBox3 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.lblCountProduct = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.guna2CustomGradientPanel4 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.lblCountUser = new System.Windows.Forms.Label();
+            this.guna2PictureBox5 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
@@ -68,12 +72,6 @@
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cmbYear = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2PictureBox6 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2PictureBox7 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2PictureBox3 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2PictureBox5 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2CustomGradientPanel7 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.lblCountRole = new System.Windows.Forms.Label();
@@ -82,26 +80,26 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.guna2CustomGradientPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox6)).BeginInit();
             this.guna2CustomGradientPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox4)).BeginInit();
             this.guna2CustomGradientPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox7)).BeginInit();
             this.guna2CustomGradientPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).BeginInit();
             this.guna2CustomGradientPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).BeginInit();
             this.guna2CustomGradientPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox5)).BeginInit();
             this.guna2Panel1.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SalesChart)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox5)).BeginInit();
             this.guna2CustomGradientPanel7.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
@@ -205,6 +203,20 @@
             this.label6.Text = "INVENTORY";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // guna2PictureBox6
+            // 
+            this.guna2PictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2PictureBox6.Image = global::AllOut.Desktop.Properties.Resources.white_inventory;
+            this.guna2PictureBox6.ImageRotate = 0F;
+            this.guna2PictureBox6.Location = new System.Drawing.Point(109, 3);
+            this.guna2PictureBox6.Name = "guna2PictureBox6";
+            this.tableLayoutPanel6.SetRowSpan(this.guna2PictureBox6, 2);
+            this.guna2PictureBox6.Size = new System.Drawing.Size(72, 72);
+            this.guna2PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox6.TabIndex = 9;
+            this.guna2PictureBox6.TabStop = false;
+            // 
             // guna2CustomGradientPanel3
             // 
             this.guna2CustomGradientPanel3.BorderRadius = 10;
@@ -265,6 +277,20 @@
             this.label5.Text = "CATEGORY";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // guna2PictureBox4
+            // 
+            this.guna2PictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2PictureBox4.Image = global::AllOut.Desktop.Properties.Resources.white_category;
+            this.guna2PictureBox4.ImageRotate = 0F;
+            this.guna2PictureBox4.Location = new System.Drawing.Point(109, 3);
+            this.guna2PictureBox4.Name = "guna2PictureBox4";
+            this.tableLayoutPanel4.SetRowSpan(this.guna2PictureBox4, 2);
+            this.guna2PictureBox4.Size = new System.Drawing.Size(72, 72);
+            this.guna2PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox4.TabIndex = 9;
+            this.guna2PictureBox4.TabStop = false;
+            // 
             // guna2CustomGradientPanel6
             // 
             this.guna2CustomGradientPanel6.BorderRadius = 10;
@@ -311,6 +337,20 @@
             this.label9.TabIndex = 11;
             this.label9.Text = "SALES";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // guna2PictureBox7
+            // 
+            this.guna2PictureBox7.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2PictureBox7.Image = global::AllOut.Desktop.Properties.Resources.white_sales;
+            this.guna2PictureBox7.ImageRotate = 0F;
+            this.guna2PictureBox7.Location = new System.Drawing.Point(109, 3);
+            this.guna2PictureBox7.Name = "guna2PictureBox7";
+            this.tableLayoutPanel7.SetRowSpan(this.guna2PictureBox7, 2);
+            this.guna2PictureBox7.Size = new System.Drawing.Size(72, 72);
+            this.guna2PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox7.TabIndex = 9;
+            this.guna2PictureBox7.TabStop = false;
             // 
             // lblCountSales
             // 
@@ -385,6 +425,20 @@
             this.lblCountBrand.Text = "-";
             this.lblCountBrand.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // guna2PictureBox3
+            // 
+            this.guna2PictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2PictureBox3.Image = global::AllOut.Desktop.Properties.Resources.white_brand;
+            this.guna2PictureBox3.ImageRotate = 0F;
+            this.guna2PictureBox3.Location = new System.Drawing.Point(109, 3);
+            this.guna2PictureBox3.Name = "guna2PictureBox3";
+            this.tableLayoutPanel3.SetRowSpan(this.guna2PictureBox3, 2);
+            this.guna2PictureBox3.Size = new System.Drawing.Size(72, 72);
+            this.guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox3.TabIndex = 9;
+            this.guna2PictureBox3.TabStop = false;
+            // 
             // guna2CustomGradientPanel1
             // 
             this.guna2CustomGradientPanel1.BorderRadius = 10;
@@ -417,6 +471,20 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(184, 78);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // guna2PictureBox2
+            // 
+            this.guna2PictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox2.Image")));
+            this.guna2PictureBox2.ImageRotate = 0F;
+            this.guna2PictureBox2.Location = new System.Drawing.Point(109, 3);
+            this.guna2PictureBox2.Name = "guna2PictureBox2";
+            this.tableLayoutPanel2.SetRowSpan(this.guna2PictureBox2, 2);
+            this.guna2PictureBox2.Size = new System.Drawing.Size(72, 72);
+            this.guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox2.TabIndex = 12;
+            this.guna2PictureBox2.TabStop = false;
             // 
             // lblCountProduct
             // 
@@ -491,6 +559,20 @@
             this.lblCountUser.Text = "-";
             this.lblCountUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // guna2PictureBox5
+            // 
+            this.guna2PictureBox5.BackColor = System.Drawing.Color.Transparent;
+            this.guna2PictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2PictureBox5.Image = global::AllOut.Desktop.Properties.Resources.white_users;
+            this.guna2PictureBox5.ImageRotate = 0F;
+            this.guna2PictureBox5.Location = new System.Drawing.Point(109, 3);
+            this.guna2PictureBox5.Name = "guna2PictureBox5";
+            this.tableLayoutPanel5.SetRowSpan(this.guna2PictureBox5, 2);
+            this.guna2PictureBox5.Size = new System.Drawing.Size(72, 72);
+            this.guna2PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.guna2PictureBox5.TabIndex = 9;
+            this.guna2PictureBox5.TabStop = false;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -540,26 +622,18 @@
             // 
             // SalesChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.SalesChart.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.SalesChart.ChartAreas.Add(chartArea2);
             this.tableLayoutPanel8.SetColumnSpan(this.SalesChart, 2);
             this.SalesChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.SalesChart.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.SalesChart.Legends.Add(legend2);
             this.SalesChart.Location = new System.Drawing.Point(3, 59);
             this.SalesChart.Name = "SalesChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Total";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
-            series2.Name = "Additional";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Deduction";
-            this.SalesChart.Series.Add(series1);
+            series2.Name = "Total";
             this.SalesChart.Series.Add(series2);
-            this.SalesChart.Series.Add(series3);
             this.SalesChart.Size = new System.Drawing.Size(598, 264);
             this.SalesChart.TabIndex = 10;
             this.SalesChart.Text = "chart1";
@@ -574,7 +648,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(199, 56);
             this.label8.TabIndex = 11;
-            this.label8.Text = "SALES REPORT";
+            this.label8.Text = "SALES";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel1
@@ -648,90 +722,6 @@
             this.guna2HtmlLabel6.Size = new System.Drawing.Size(39, 19);
             this.guna2HtmlLabel6.TabIndex = 16;
             this.guna2HtmlLabel6.Text = "YEAR:";
-            // 
-            // guna2PictureBox6
-            // 
-            this.guna2PictureBox6.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2PictureBox6.Image = global::AllOut.Desktop.Properties.Resources.white_inventory;
-            this.guna2PictureBox6.ImageRotate = 0F;
-            this.guna2PictureBox6.Location = new System.Drawing.Point(109, 3);
-            this.guna2PictureBox6.Name = "guna2PictureBox6";
-            this.tableLayoutPanel6.SetRowSpan(this.guna2PictureBox6, 2);
-            this.guna2PictureBox6.Size = new System.Drawing.Size(72, 72);
-            this.guna2PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox6.TabIndex = 9;
-            this.guna2PictureBox6.TabStop = false;
-            // 
-            // guna2PictureBox4
-            // 
-            this.guna2PictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2PictureBox4.Image = global::AllOut.Desktop.Properties.Resources.white_category;
-            this.guna2PictureBox4.ImageRotate = 0F;
-            this.guna2PictureBox4.Location = new System.Drawing.Point(109, 3);
-            this.guna2PictureBox4.Name = "guna2PictureBox4";
-            this.tableLayoutPanel4.SetRowSpan(this.guna2PictureBox4, 2);
-            this.guna2PictureBox4.Size = new System.Drawing.Size(72, 72);
-            this.guna2PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox4.TabIndex = 9;
-            this.guna2PictureBox4.TabStop = false;
-            // 
-            // guna2PictureBox7
-            // 
-            this.guna2PictureBox7.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2PictureBox7.Image = global::AllOut.Desktop.Properties.Resources.white_sales;
-            this.guna2PictureBox7.ImageRotate = 0F;
-            this.guna2PictureBox7.Location = new System.Drawing.Point(109, 3);
-            this.guna2PictureBox7.Name = "guna2PictureBox7";
-            this.tableLayoutPanel7.SetRowSpan(this.guna2PictureBox7, 2);
-            this.guna2PictureBox7.Size = new System.Drawing.Size(72, 72);
-            this.guna2PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox7.TabIndex = 9;
-            this.guna2PictureBox7.TabStop = false;
-            // 
-            // guna2PictureBox3
-            // 
-            this.guna2PictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2PictureBox3.Image = global::AllOut.Desktop.Properties.Resources.white_brand;
-            this.guna2PictureBox3.ImageRotate = 0F;
-            this.guna2PictureBox3.Location = new System.Drawing.Point(109, 3);
-            this.guna2PictureBox3.Name = "guna2PictureBox3";
-            this.tableLayoutPanel3.SetRowSpan(this.guna2PictureBox3, 2);
-            this.guna2PictureBox3.Size = new System.Drawing.Size(72, 72);
-            this.guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox3.TabIndex = 9;
-            this.guna2PictureBox3.TabStop = false;
-            // 
-            // guna2PictureBox2
-            // 
-            this.guna2PictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2PictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox2.Image")));
-            this.guna2PictureBox2.ImageRotate = 0F;
-            this.guna2PictureBox2.Location = new System.Drawing.Point(109, 3);
-            this.guna2PictureBox2.Name = "guna2PictureBox2";
-            this.tableLayoutPanel2.SetRowSpan(this.guna2PictureBox2, 2);
-            this.guna2PictureBox2.Size = new System.Drawing.Size(72, 72);
-            this.guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox2.TabIndex = 12;
-            this.guna2PictureBox2.TabStop = false;
-            // 
-            // guna2PictureBox5
-            // 
-            this.guna2PictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.guna2PictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2PictureBox5.Image = global::AllOut.Desktop.Properties.Resources.white_users;
-            this.guna2PictureBox5.ImageRotate = 0F;
-            this.guna2PictureBox5.Location = new System.Drawing.Point(109, 3);
-            this.guna2PictureBox5.Name = "guna2PictureBox5";
-            this.tableLayoutPanel5.SetRowSpan(this.guna2PictureBox5, 2);
-            this.guna2PictureBox5.Size = new System.Drawing.Size(72, 72);
-            this.guna2PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox5.TabIndex = 9;
-            this.guna2PictureBox5.TabStop = false;
             // 
             // guna2CustomGradientPanel7
             // 
@@ -821,33 +811,33 @@
             this.guna2CustomGradientPanel5.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox6)).EndInit();
             this.guna2CustomGradientPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox4)).EndInit();
             this.guna2CustomGradientPanel6.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox7)).EndInit();
             this.guna2CustomGradientPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).EndInit();
             this.guna2CustomGradientPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).EndInit();
             this.guna2CustomGradientPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox5)).EndInit();
             this.guna2Panel1.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SalesChart)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox5)).EndInit();
             this.guna2CustomGradientPanel7.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();

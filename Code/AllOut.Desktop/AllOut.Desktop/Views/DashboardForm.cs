@@ -49,8 +49,6 @@ namespace AllOut.Desktop.Views
         private void PopulateChart(int year = 0, int month = 0)
         {
             SalesChart.Series["Total"].Points.Clear();
-            SalesChart.Series["Additional"].Points.Clear();
-            SalesChart.Series["Deduction"].Points.Clear();
 
             var salesReports = new List<SalesReportInformation>();
             bool isAllYear = false;
@@ -106,22 +104,16 @@ namespace AllOut.Desktop.Views
                 if (isAllYear)
                 {
                     SalesChart.Series["Total"].Points.AddXY(salesReport.Year, salesReport.Total);
-                    SalesChart.Series["Additional"].Points.AddXY(salesReport.Year, salesReport.Additional);
-                    SalesChart.Series["Deduction"].Points.AddXY(salesReport.Year, salesReport.Deductions);
                     return;
                 }
                 if (isByYear)
                 {
                     SalesChart.Series["Total"].Points.AddXY(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(salesReport.Month), salesReport.Total);
-                    SalesChart.Series["Additional"].Points.AddXY(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(salesReport.Month), salesReport.Additional);
-                    SalesChart.Series["Deduction"].Points.AddXY(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(salesReport.Month), salesReport.Deductions);
                     return;
                 }
                 if (isByMonth)
                 {
                     SalesChart.Series["Total"].Points.AddXY(salesReport.Day, salesReport.Total);
-                    SalesChart.Series["Additional"].Points.AddXY(salesReport.Day, salesReport.Additional);
-                    SalesChart.Series["Deduction"].Points.AddXY(salesReport.Day, salesReport.Deductions);
                     return;
                 }
             }
