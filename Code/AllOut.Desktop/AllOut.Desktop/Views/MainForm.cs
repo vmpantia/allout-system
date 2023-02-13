@@ -12,6 +12,7 @@ using AllOut.Desktop.Views.InventoryForms;
 using AllOut.Desktop.Views.SalesForms;
 using AllOut.Desktop.Properties;
 using AllOut.Desktop.Views.RoleForms;
+using AllOut.Desktop.Views.ReportForms;
 
 namespace AllOut.Desktop.Views
 {
@@ -117,6 +118,12 @@ namespace AllOut.Desktop.Views
                     formDescription.Text = string.Format(Constants.DESC_FORM, Constants.FORM_SALES);
                     formIcon.Image = Resources.dg_sales;
                     activeForm = new SalesListForm();
+                    break;
+                case Constants.FORM_SALES_REPORT:
+                    formTitle.Text = Constants.FORM_SALES_REPORT;
+                    formDescription.Text = string.Format(Constants.DESC_FORM, Constants.FORM_SALES_REPORT);
+                    formIcon.Image = Resources.dg_sales_report;
+                    activeForm = new SalesReportForm();
                     break;
                 case Constants.FORM_PRODUCT:
                     formTitle.Text = Constants.FORM_PRODUCT;

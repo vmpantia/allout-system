@@ -64,7 +64,7 @@ namespace AllOut.Desktop.Views
             PopulateChart(type, salesReports);
 
             //Populate Product Sales
-            tblProduts.DataSource = productReports.Select(data => new
+            tblProduts.DataSource = productReports.Take(15).Select(data => new
             {
                 Product = data.ProductName,
                 Brand = data.BrandName,

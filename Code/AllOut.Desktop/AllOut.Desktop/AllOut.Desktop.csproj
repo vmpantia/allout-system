@@ -100,6 +100,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReportForms\SalesReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReportForms\SalesReportForm.Designer.cs">
+      <DependentUpon>SalesReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\RoleForms\RoleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +230,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReportForms\SalesReportForm.resx">
+      <DependentUpon>SalesReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RoleForms\RoleForm.resx">
       <DependentUpon>RoleForm.cs</DependentUpon>
