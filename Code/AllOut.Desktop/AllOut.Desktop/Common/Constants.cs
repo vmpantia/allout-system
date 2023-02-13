@@ -145,6 +145,9 @@ namespace AllOut.Desktop.Common
         public const string FORM_CATEGORY = "Category";
         public const string FORM_USER = "User";
         public const string FORM_ROLE = "Role";
+
+        public const string FORM_SALES_REPORT = "Sales Report";
+        public const string FORM_PRODUCTS_REPORT = "Products Report";
         #endregion
 
         #region Titles

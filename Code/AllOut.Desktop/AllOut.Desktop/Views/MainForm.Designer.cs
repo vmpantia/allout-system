@@ -44,7 +44,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.formIcon = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnProductsReport = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSalesReport = new Guna.UI2.WinForms.Guna2Button();
             this.btnRole = new Guna.UI2.WinForms.Guna2Button();
             this.btnBrand = new Guna.UI2.WinForms.Guna2Button();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -66,7 +67,8 @@
             // 
             // pnlSidebar
             // 
-            this.pnlSidebar.Controls.Add(this.guna2Button1);
+            this.pnlSidebar.Controls.Add(this.btnProductsReport);
+            this.pnlSidebar.Controls.Add(this.btnSalesReport);
             this.pnlSidebar.Controls.Add(this.label1);
             this.pnlSidebar.Controls.Add(this.label3);
             this.pnlSidebar.Controls.Add(this.label2);
@@ -92,7 +94,7 @@
             this.label3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(0, 532);
+            this.label3.Location = new System.Drawing.Point(0, 575);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label3.Size = new System.Drawing.Size(219, 35);
@@ -105,7 +107,7 @@
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(0, 358);
+            this.label2.Location = new System.Drawing.Point(0, 401);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.label2.Size = new System.Drawing.Size(219, 35);
@@ -280,26 +282,47 @@
             this.guna2PictureBox2.TabIndex = 5;
             this.guna2PictureBox2.TabStop = false;
             // 
-            // guna2Button1
+            // btnProductsReport
             // 
-            this.guna2Button1.BorderRadius = 6;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.guna2Button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.guna2Button1.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.guna2Button1.Image = global::AllOut.Desktop.Properties.Resources.dg_sales_report;
-            this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button1.Location = new System.Drawing.Point(15, 313);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(194, 37);
-            this.guna2Button1.TabIndex = 1;
-            this.guna2Button1.Text = "Sales Report";
-            this.guna2Button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button1.Click += new System.EventHandler(this.btnProduct_Click);
+            this.btnProductsReport.BorderRadius = 6;
+            this.btnProductsReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnProductsReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnProductsReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnProductsReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnProductsReport.FillColor = System.Drawing.Color.Transparent;
+            this.btnProductsReport.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnProductsReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnProductsReport.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnProductsReport.Image = global::AllOut.Desktop.Properties.Resources.icons8_product_report_64;
+            this.btnProductsReport.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnProductsReport.Location = new System.Drawing.Point(15, 356);
+            this.btnProductsReport.Name = "btnProductsReport";
+            this.btnProductsReport.Size = new System.Drawing.Size(194, 37);
+            this.btnProductsReport.TabIndex = 11;
+            this.btnProductsReport.Text = "Products Report";
+            this.btnProductsReport.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnProductsReport.Click += new System.EventHandler(this.btnProductsReport_Click);
+            // 
+            // btnSalesReport
+            // 
+            this.btnSalesReport.BorderRadius = 6;
+            this.btnSalesReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSalesReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSalesReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSalesReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSalesReport.FillColor = System.Drawing.Color.Transparent;
+            this.btnSalesReport.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnSalesReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnSalesReport.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnSalesReport.Image = global::AllOut.Desktop.Properties.Resources.dg_sales_report;
+            this.btnSalesReport.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSalesReport.Location = new System.Drawing.Point(15, 313);
+            this.btnSalesReport.Name = "btnSalesReport";
+            this.btnSalesReport.Size = new System.Drawing.Size(194, 37);
+            this.btnSalesReport.TabIndex = 1;
+            this.btnSalesReport.Text = "Sales Report";
+            this.btnSalesReport.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSalesReport.Click += new System.EventHandler(this.btnSalesReport_Click);
             // 
             // btnRole
             // 
@@ -314,7 +337,7 @@
             this.btnRole.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnRole.Image = global::AllOut.Desktop.Properties.Resources.dg_role;
             this.btnRole.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnRole.Location = new System.Drawing.Point(15, 618);
+            this.btnRole.Location = new System.Drawing.Point(15, 661);
             this.btnRole.Name = "btnRole";
             this.btnRole.Size = new System.Drawing.Size(194, 37);
             this.btnRole.TabIndex = 7;
@@ -335,7 +358,7 @@
             this.btnBrand.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnBrand.Image = global::AllOut.Desktop.Properties.Resources.dg_brand;
             this.btnBrand.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnBrand.Location = new System.Drawing.Point(15, 444);
+            this.btnBrand.Location = new System.Drawing.Point(15, 487);
             this.btnBrand.Name = "btnBrand";
             this.btnBrand.Size = new System.Drawing.Size(194, 37);
             this.btnBrand.TabIndex = 3;
@@ -367,7 +390,7 @@
             this.btnUser.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnUser.Image = global::AllOut.Desktop.Properties.Resources.dg_users;
             this.btnUser.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnUser.Location = new System.Drawing.Point(15, 575);
+            this.btnUser.Location = new System.Drawing.Point(15, 618);
             this.btnUser.Name = "btnUser";
             this.btnUser.Size = new System.Drawing.Size(194, 37);
             this.btnUser.TabIndex = 2;
@@ -388,7 +411,7 @@
             this.btnCategory.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnCategory.Image = global::AllOut.Desktop.Properties.Resources.dg_category;
             this.btnCategory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCategory.Location = new System.Drawing.Point(15, 487);
+            this.btnCategory.Location = new System.Drawing.Point(15, 530);
             this.btnCategory.Name = "btnCategory";
             this.btnCategory.Size = new System.Drawing.Size(194, 37);
             this.btnCategory.TabIndex = 2;
@@ -451,7 +474,7 @@
             this.btnProduct.HoverState.FillColor = System.Drawing.SystemColors.Control;
             this.btnProduct.Image = global::AllOut.Desktop.Properties.Resources.dg_product;
             this.btnProduct.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnProduct.Location = new System.Drawing.Point(15, 401);
+            this.btnProduct.Location = new System.Drawing.Point(15, 444);
             this.btnProduct.Name = "btnProduct";
             this.btnProduct.Size = new System.Drawing.Size(194, 37);
             this.btnProduct.TabIndex = 1;
@@ -553,7 +576,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button btnSalesReport;
         private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2Button btnProductsReport;
     }
 }

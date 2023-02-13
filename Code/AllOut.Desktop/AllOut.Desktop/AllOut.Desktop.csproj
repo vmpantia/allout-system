@@ -341,6 +341,7 @@
     <None Include="Images\icons8-role-66.png" />
     <None Include="Images\icons8-role-66-white.png" />
     <None Include="Images\icons8-sales-report-100.png" />
+    <None Include="Images\icons8-product-report-64.png" />
     <Content Include="Images\icons8-user-96.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

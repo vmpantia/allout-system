@@ -68,6 +68,16 @@ namespace AllOut.Desktop.Views
             SetActiveForm(Constants.FORM_ROLE);
         }
 
+        private void btnSalesReport_Click(object sender, EventArgs e)
+        {
+            SetActiveForm(Constants.FORM_SALES_REPORT);
+        }
+
+        private void btnProductsReport_Click(object sender, EventArgs e)
+        {
+            SetActiveForm(Constants.FORM_PRODUCTS_REPORT);
+        }
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             var response = HttpController.PostLogoutUserAsync(Globals.ClientInformation.ClientID);
