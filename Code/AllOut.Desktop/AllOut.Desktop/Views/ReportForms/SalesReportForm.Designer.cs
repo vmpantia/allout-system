@@ -28,25 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnUnselectAll = new Guna.UI2.WinForms.Guna2Button();
-            this.btnDelete = new Guna.UI2.WinForms.Guna2Button();
-            this.btnSelectAll = new Guna.UI2.WinForms.Guna2Button();
-            this.btnDisable = new Guna.UI2.WinForms.Guna2Button();
-            this.btnAdd = new Guna.UI2.WinForms.Guna2Button();
-            this.btnEnable = new Guna.UI2.WinForms.Guna2Button();
-            this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
-            this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.cmbMonth = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.cmbYear = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.btnExportExcel = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTableDescription = new System.Windows.Forms.Label();
             this.tblObjectList = new Guna.UI2.WinForms.Guna2DataGridView();
             this.btnSearchToolTip = new Guna.UI2.WinForms.Guna2HtmlToolTip();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblObjectList)).BeginInit();
             this.SuspendLayout();
@@ -62,31 +61,18 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 182F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1179, 525);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 9;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 144F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 277F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tableLayoutPanel2.Controls.Add(this.btnUnselectAll, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnDelete, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnSelectAll, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnDisable, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnAdd, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnEnable, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnSearch, 8, 0);
-            this.tableLayoutPanel2.Controls.Add(this.txtSearch, 7, 0);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 482F));
+            this.tableLayoutPanel2.Controls.Add(this.panel2, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnExportExcel, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -96,188 +82,97 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1179, 47);
             this.tableLayoutPanel2.TabIndex = 8;
             // 
-            // btnUnselectAll
+            // panel2
             // 
-            this.btnUnselectAll.BorderRadius = 6;
-            this.btnUnselectAll.DisabledState.BorderColor = System.Drawing.Color.Transparent;
-            this.btnUnselectAll.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnUnselectAll.DisabledState.FillColor = System.Drawing.Color.Transparent;
-            this.btnUnselectAll.DisabledState.ForeColor = System.Drawing.Color.Gray;
-            this.btnUnselectAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUnselectAll.Enabled = false;
-            this.btnUnselectAll.FillColor = System.Drawing.Color.White;
-            this.btnUnselectAll.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUnselectAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUnselectAll.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnUnselectAll.Image = global::AllOut.Desktop.Properties.Resources.dg_uncheck_al;
-            this.btnUnselectAll.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnUnselectAll.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnUnselectAll.Location = new System.Drawing.Point(188, 3);
-            this.btnUnselectAll.Name = "btnUnselectAll";
-            this.btnUnselectAll.Size = new System.Drawing.Size(114, 41);
-            this.btnUnselectAll.TabIndex = 9;
-            this.btnUnselectAll.Text = "Unselect All";
-            this.btnUnselectAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.panel2.Controls.Add(this.cmbMonth);
+            this.panel2.Controls.Add(this.guna2HtmlLabel1);
+            this.panel2.Controls.Add(this.cmbYear);
+            this.panel2.Controls.Add(this.guna2HtmlLabel6);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(700, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(476, 41);
+            this.panel2.TabIndex = 14;
             // 
-            // btnDelete
+            // cmbMonth
             // 
-            this.btnDelete.BorderRadius = 6;
-            this.btnDelete.DisabledState.BorderColor = System.Drawing.Color.Transparent;
-            this.btnDelete.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnDelete.DisabledState.FillColor = System.Drawing.Color.Transparent;
-            this.btnDelete.DisabledState.ForeColor = System.Drawing.Color.Gray;
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDelete.Enabled = false;
-            this.btnDelete.FillColor = System.Drawing.Color.White;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDelete.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnDelete.Image = global::AllOut.Desktop.Properties.Resources.dg_delete;
-            this.btnDelete.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDelete.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnDelete.Location = new System.Drawing.Point(488, 3);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(84, 41);
-            this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.cmbMonth.BackColor = System.Drawing.Color.White;
+            this.cmbMonth.BorderColor = System.Drawing.Color.Silver;
+            this.cmbMonth.BorderRadius = 6;
+            this.cmbMonth.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMonth.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbMonth.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbMonth.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.cmbMonth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbMonth.ItemHeight = 30;
+            this.cmbMonth.Location = new System.Drawing.Point(332, 2);
+            this.cmbMonth.Name = "cmbMonth";
+            this.cmbMonth.Size = new System.Drawing.Size(142, 36);
+            this.cmbMonth.TabIndex = 17;
+            this.cmbMonth.SelectedValueChanged += new System.EventHandler(this.cmbMonth_SelectedValueChanged);
             // 
-            // btnSelectAll
+            // guna2HtmlLabel1
             // 
-            this.btnSelectAll.BorderRadius = 6;
-            this.btnSelectAll.DisabledState.BorderColor = System.Drawing.Color.Transparent;
-            this.btnSelectAll.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnSelectAll.DisabledState.FillColor = System.Drawing.Color.Transparent;
-            this.btnSelectAll.DisabledState.ForeColor = System.Drawing.Color.Gray;
-            this.btnSelectAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSelectAll.Enabled = false;
-            this.btnSelectAll.FillColor = System.Drawing.Color.White;
-            this.btnSelectAll.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSelectAll.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnSelectAll.Image = global::AllOut.Desktop.Properties.Resources.dg_check_all;
-            this.btnSelectAll.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnSelectAll.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnSelectAll.Location = new System.Drawing.Point(83, 3);
-            this.btnSelectAll.Name = "btnSelectAll";
-            this.btnSelectAll.Size = new System.Drawing.Size(99, 41);
-            this.btnSelectAll.TabIndex = 8;
-            this.btnSelectAll.Text = "Select All";
-            this.btnSelectAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(269, 11);
+            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            this.guna2HtmlLabel1.Size = new System.Drawing.Size(48, 19);
+            this.guna2HtmlLabel1.TabIndex = 18;
+            this.guna2HtmlLabel1.Text = "Month:";
             // 
-            // btnDisable
+            // cmbYear
             // 
-            this.btnDisable.BorderRadius = 6;
-            this.btnDisable.DisabledState.BorderColor = System.Drawing.Color.Transparent;
-            this.btnDisable.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnDisable.DisabledState.FillColor = System.Drawing.Color.Transparent;
-            this.btnDisable.DisabledState.ForeColor = System.Drawing.Color.Gray;
-            this.btnDisable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDisable.Enabled = false;
-            this.btnDisable.FillColor = System.Drawing.Color.White;
-            this.btnDisable.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDisable.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnDisable.Image = global::AllOut.Desktop.Properties.Resources.dg_disabled;
-            this.btnDisable.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDisable.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnDisable.Location = new System.Drawing.Point(398, 3);
-            this.btnDisable.Name = "btnDisable";
-            this.btnDisable.Size = new System.Drawing.Size(84, 41);
-            this.btnDisable.TabIndex = 6;
-            this.btnDisable.Text = "Disable";
-            this.btnDisable.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.cmbYear.BackColor = System.Drawing.Color.White;
+            this.cmbYear.BorderColor = System.Drawing.Color.Silver;
+            this.cmbYear.BorderRadius = 6;
+            this.cmbYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbYear.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbYear.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cmbYear.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.cmbYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbYear.ItemHeight = 30;
+            this.cmbYear.Location = new System.Drawing.Point(131, 2);
+            this.cmbYear.Name = "cmbYear";
+            this.cmbYear.Size = new System.Drawing.Size(113, 36);
+            this.cmbYear.TabIndex = 15;
+            this.cmbYear.SelectedValueChanged += new System.EventHandler(this.cmbYear_SelectedValueChanged);
             // 
-            // btnAdd
+            // guna2HtmlLabel6
             // 
-            this.btnAdd.BorderRadius = 6;
-            this.btnAdd.DisabledState.BorderColor = System.Drawing.Color.Transparent;
-            this.btnAdd.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnAdd.DisabledState.FillColor = System.Drawing.Color.Transparent;
-            this.btnAdd.DisabledState.ForeColor = System.Drawing.Color.Gray;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.FillColor = System.Drawing.Color.White;
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnAdd.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Image = global::AllOut.Desktop.Properties.Resources.dg_add;
-            this.btnAdd.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnAdd.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnAdd.Location = new System.Drawing.Point(3, 3);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(74, 41);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.guna2HtmlLabel6.Location = new System.Drawing.Point(86, 11);
+            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
+            this.guna2HtmlLabel6.Size = new System.Drawing.Size(34, 19);
+            this.guna2HtmlLabel6.TabIndex = 16;
+            this.guna2HtmlLabel6.Text = "Year:";
             // 
-            // btnEnable
+            // btnExportExcel
             // 
-            this.btnEnable.BorderRadius = 6;
-            this.btnEnable.DisabledState.BorderColor = System.Drawing.Color.Transparent;
-            this.btnEnable.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
-            this.btnEnable.DisabledState.FillColor = System.Drawing.Color.Transparent;
-            this.btnEnable.DisabledState.ForeColor = System.Drawing.Color.Gray;
-            this.btnEnable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnEnable.Enabled = false;
-            this.btnEnable.FillColor = System.Drawing.Color.White;
-            this.btnEnable.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnEnable.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnEnable.Image = global::AllOut.Desktop.Properties.Resources.dg_enabled;
-            this.btnEnable.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnEnable.ImageSize = new System.Drawing.Size(15, 15);
-            this.btnEnable.Location = new System.Drawing.Point(308, 3);
-            this.btnEnable.Name = "btnEnable";
-            this.btnEnable.Size = new System.Drawing.Size(84, 41);
-            this.btnEnable.TabIndex = 0;
-            this.btnEnable.Text = "Enable";
-            this.btnEnable.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BorderRadius = 6;
-            this.btnSearch.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSearch.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSearch.FillColor = System.Drawing.Color.White;
-            this.btnSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSearch.HoverState.FillColor = System.Drawing.SystemColors.Control;
-            this.btnSearch.Image = global::AllOut.Desktop.Properties.Resources.dg_search;
-            this.btnSearch.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnSearch.Location = new System.Drawing.Point(1136, 3);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(40, 41);
-            this.btnSearch.TabIndex = 10;
-            this.btnSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.BorderColor = System.Drawing.Color.Silver;
-            this.txtSearch.BorderRadius = 6;
-            this.txtSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearch.DefaultText = "";
-            this.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.Location = new System.Drawing.Point(859, 3);
-            this.txtSearch.MaxLength = 50;
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PasswordChar = '\0';
-            this.txtSearch.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.txtSearch.PlaceholderText = "Search Brands";
-            this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(271, 41);
-            this.txtSearch.TabIndex = 11;
+            this.btnExportExcel.BorderRadius = 6;
+            this.btnExportExcel.DisabledState.BorderColor = System.Drawing.Color.Transparent;
+            this.btnExportExcel.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent;
+            this.btnExportExcel.DisabledState.FillColor = System.Drawing.Color.Transparent;
+            this.btnExportExcel.DisabledState.ForeColor = System.Drawing.Color.Gray;
+            this.btnExportExcel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExportExcel.FillColor = System.Drawing.Color.White;
+            this.btnExportExcel.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExportExcel.HoverState.FillColor = System.Drawing.SystemColors.Control;
+            this.btnExportExcel.Image = global::AllOut.Desktop.Properties.Resources.dg_export_excel;
+            this.btnExportExcel.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnExportExcel.ImageSize = new System.Drawing.Size(15, 15);
+            this.btnExportExcel.Location = new System.Drawing.Point(3, 3);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(138, 41);
+            this.btnExportExcel.TabIndex = 0;
+            this.btnExportExcel.Text = "Export to Excel";
+            this.btnExportExcel.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // panel1
             // 
@@ -305,25 +200,25 @@
             // 
             this.tblObjectList.AllowUserToAddRows = false;
             this.tblObjectList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tblObjectList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tblObjectList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tblObjectList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tblObjectList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.tblObjectList.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tblObjectList.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tblObjectList.DefaultCellStyle = dataGridViewCellStyle6;
             this.tblObjectList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblObjectList.GridColor = System.Drawing.SystemColors.Control;
             this.tblObjectList.Location = new System.Drawing.Point(0, 0);
@@ -373,6 +268,8 @@
             this.Text = "BrandListForm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tblObjectList)).EndInit();
             this.ResumeLayout(false);
@@ -383,17 +280,15 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private Guna.UI2.WinForms.Guna2Button btnUnselectAll;
-        private Guna.UI2.WinForms.Guna2Button btnDelete;
-        private Guna.UI2.WinForms.Guna2Button btnSelectAll;
-        private Guna.UI2.WinForms.Guna2Button btnDisable;
-        private Guna.UI2.WinForms.Guna2Button btnAdd;
-        private Guna.UI2.WinForms.Guna2Button btnEnable;
-        private Guna.UI2.WinForms.Guna2Button btnSearch;
+        private Guna.UI2.WinForms.Guna2Button btnExportExcel;
         private Guna.UI2.WinForms.Guna2HtmlToolTip btnSearchToolTip;
-        private Guna.UI2.WinForms.Guna2TextBox txtSearch;
         private System.Windows.Forms.Panel panel1;
         private Guna.UI2.WinForms.Guna2DataGridView tblObjectList;
         private System.Windows.Forms.Label lblTableDescription;
+        private System.Windows.Forms.Panel panel2;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbMonth;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbYear;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
     }
 }

@@ -173,6 +173,16 @@ namespace AllOut.Desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dg_export_excel {
+            get {
+                object obj = ResourceManager.GetObject("dg-export-excel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dg_inventory {
             get {
                 object obj = ResourceManager.GetObject("dg-inventory", resourceCulture);

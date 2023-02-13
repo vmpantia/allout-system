@@ -7,7 +7,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,28 +21,38 @@ namespace AllOut.Desktop.Views.ReportForms
         {
             InitializeComponent();
             PopulateSalesReport();
-            btnSearchToolTip.SetToolTip(btnSearch, string.Format(Constants.TOOLTIP_SEARCH, Constants.OBJECT_BRAND));
         }
 
         private void PopulateSalesReport()
         {
-            int year = 0, month = 0;
+            int year, month;
 
             //Reset
             tblObjectList.DataSource = null;
 
-            var type = ReportType.ALL;
+            var type = Utility.GetReportType(out year, out month, cmbYear, cmbMonth);
+            var sales = Utility.GetSalesReportByType(year, month, type);
 
-            var sales = GetSalesReportByType(year, month, type);
+            if(sales.Any() && type == ReportType.ALL)
+            {
+                //Initialize ComboBox
+                Utility.PopulateMonth(cmbMonth);
+                Utility.PopulateYear(sales.First().Year, sales.Last().Year, cmbYear);
+            }
 
             //Populate Sales Report
             lblTableDescription.Visible = sales.Count == 0;
+            DisplaySalesReportByType(sales, type);
+        }
+
+        private void DisplaySalesReportByType(List<SalesReportInformation> sales, ReportType type)
+        {
             switch (type)
             {
                 case ReportType.BY_YEAR:
                     tblObjectList.DataSource = sales.Select(data => new
                     {
-                        data.Month,
+                        Month = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(data.Month),
                         data.Quantity,
                         ItemTotal = data.ItemTotal.ToString(Constants.N0_FORMAT),
                         Additional = data.Additional.ToString(Constants.N0_FORMAT),
@@ -75,34 +87,14 @@ namespace AllOut.Desktop.Views.ReportForms
             }
         }
 
-        private List<SalesReportInformation> GetSalesReportByType(int year, int month, ReportType type)
+        private void cmbYear_SelectedValueChanged(object sender, EventArgs e)
         {
-            Response response;
+            PopulateSalesReport();
+        }
 
-            var salesReports = new List<SalesReportInformation>();
-            var clientID = Globals.ClientInformation.ClientID;
-
-            switch (type)
-            {
-                case ReportType.BY_YEAR:
-                    response = HttpController.GetSalesReportByYearAsync(clientID, year);
-                    break;
-
-                case ReportType.BY_MONTH:
-                    response = HttpController.GetSalesReportByYearAndMonthAsync(clientID, string.Format(Constants.YEAR_MONTH_FORMAT, year, month));
-                    break;
-
-                default:
-                    response = HttpController.GetSalesReportAsync(clientID);
-                    break;
-            }
-
-            if (response.Result == ResponseResult.SUCCESS)
-            {
-                salesReports = (List<SalesReportInformation>)response.Data;
-            }
-
-            return salesReports;
+        private void cmbMonth_SelectedValueChanged(object sender, EventArgs e)
+        {
+            PopulateSalesReport();
         }
     }
 }
