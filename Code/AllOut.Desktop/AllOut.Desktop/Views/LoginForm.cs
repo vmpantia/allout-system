@@ -57,12 +57,7 @@ namespace AllOut.Desktop.Views
             this.Show();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnRegister_Click(object sender, EventArgs e)
         {
             var regForm = new RegisterForm();
             regForm.ShowDialog();
@@ -76,7 +71,7 @@ namespace AllOut.Desktop.Views
         private void EnableButtonsAndFields(bool enable)
         {
             btnLogin.Enabled = enable;
-            btnClose.Enabled = enable;
+            btnRegister.Enabled = enable;
             txtLogonName.Enabled = enable;
             txtPassword.Enabled = enable;
         }
