@@ -178,17 +178,17 @@
         public const string ERROR_LOGIN_USER_NOT_ACTIVE = "Your account is disabled or for deletion.";
         public const string ERROR_LOGIN_GENERATE_CLIENT = "Error in generating user client.";
 
-        public const string ERROR_CLIENT_FORMAT = "Client is NOT authorized to process this request:\n";
+        public const string ERROR_CLIENT_FORMAT = "Client is NOT authorized to process this request:\n{0}";
         public const string ERROR_CLIENT_ID_EMPTY = "Client ID provided is empty.";
         public const string ERROR_CLIENT_ID_NOT_EXIST = "Client ID provided is NOT exist in the system.";
         public const string ERROR_CLIENT_ID_NOT_ACTIVE = "Client ID provided is NOT active in the system.";
         public const string ERROR_CLIENT_ID_EXPIRED = "Client ID provided is already expired.";
 
-        public const string ERROR_USER_FORMAT = "User is NOT authorized to process this request:\n";
+        public const string ERROR_USER_FORMAT = "User is NOT authorized to process this request:\n{0}";
         public const string ERROR_USER_NOT_EXIST = "User is NOT exist in the system.";
         public const string ERROR_USER_NOT_ACTIVE = "User is NOT active in the system.";
 
-        public const string ERROR_USER_ROLE_FORMAT = "User Role is NOT authorized to process this request:\n";
+        public const string ERROR_USER_ROLE_FORMAT = "User Role is NOT authorized to process this request:\n{0}";
         public const string ERROR_USER_ROLE_NOT_EXIST = "User Role is NOT exist in the system.";
         public const string ERROR_USER_ROLE_NOT_ACTIVE = "User Role is NOT active in the system.";
         public const string ERROR_USER_ROLE_NO_PERMISSION = "User Role doesn't have permission.";

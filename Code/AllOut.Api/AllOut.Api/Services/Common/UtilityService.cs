@@ -6,6 +6,7 @@ using AllOut.Api.Models;
 using AllOut.Api.Models.enums;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
+using System.Data;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -61,12 +62,12 @@ namespace AllOut.Api.Services.Common
             return role.Status == Constants.STATUS_ENABLED_INT;
         }
 
-        public bool CheckSalesItemAvailability(SalesItem salesItem)
+        public bool CheckSalesAvailability(Sales sales)
         {
-            if (salesItem == null)
+            if (sales == null)
                 return false;
 
-            return true;
+            return sales.Status == Constants.STATUS_ENABLED_INT;
         }
 
         public int GetCurrentStock(int inventories, int sales)

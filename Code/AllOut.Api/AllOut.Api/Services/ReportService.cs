@@ -177,15 +177,14 @@ namespace AllOut.Api.Services
                                       join c in _db.Categories on a.CategoryID equals c.CategoryID into cc from c in cc.DefaultIfEmpty()
                                       join d in _db.SalesItems on a.ProductID equals d.ProductID into dd from d in dd.DefaultIfEmpty()
                                       join e in _db.Sales on d.SalesID equals e.SalesID into ee from e in ee.DefaultIfEmpty()
-                                      where a.Status != Constants.STATUS_DELETION_INT &&
-                                            e.Status == Constants.STATUS_ENABLED_INT
+                                      where a.Status != Constants.STATUS_DELETION_INT
                                       select new ProductReportInformation
                                       {
                                           ProductName = a.Name,
                                           BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
                                           CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA,
-                                          Quantity = _utility.CheckSalesItemAvailability(d) ? d.Quantity : 0,
-                                          Total = _utility.CheckSalesItemAvailability(d) ? d.Total : 0
+                                          Quantity = _utility.CheckSalesAvailability(e) ? d.Quantity : 0,
+                                          Total = _utility.CheckSalesAvailability(e) ? d.Total : 0
                                       }).ToListAsync();
 
             var report = (from a in productSales
@@ -211,15 +210,14 @@ namespace AllOut.Api.Services
                                       join d in _db.SalesItems on a.ProductID equals d.ProductID into dd from d in dd.DefaultIfEmpty()
                                       join e in _db.Sales on d.SalesID equals e.SalesID into ee from e in ee.DefaultIfEmpty()
                                       where a.Status != Constants.STATUS_DELETION_INT &&
-                                            e.Status == Constants.STATUS_ENABLED_INT &&
                                             e.CreatedDate.Year == year
                                       select new ProductReportInformation
                                       {
                                           ProductName = a.Name,
                                           BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
                                           CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA,
-                                          Quantity = _utility.CheckSalesItemAvailability(d) ? d.Quantity : 0,
-                                          Total = _utility.CheckSalesItemAvailability(d) ? d.Total : 0
+                                          Quantity = _utility.CheckSalesAvailability(e) ? d.Quantity : 0,
+                                          Total = _utility.CheckSalesAvailability(e) ? d.Total : 0
                                       }).ToListAsync();
 
             var report = (from a in productSales
@@ -242,24 +240,19 @@ namespace AllOut.Api.Services
             var month = int.Parse(query.Split(Constants.DASH)[1]);
 
             var productSales = await (from a in _db.Products
-                                      join b in _db.Brands on a.BrandID equals b.BrandID into bb
-                                      from b in bb.DefaultIfEmpty()
-                                      join c in _db.Categories on a.CategoryID equals c.CategoryID into cc
-                                      from c in cc.DefaultIfEmpty()
-                                      join d in _db.SalesItems on a.ProductID equals d.ProductID into dd
-                                      from d in dd.DefaultIfEmpty()
-                                      join e in _db.Sales on d.SalesID equals e.SalesID into ee
-                                      from e in ee.DefaultIfEmpty()
+                                      join b in _db.Brands on a.BrandID equals b.BrandID into bb from b in bb.DefaultIfEmpty()
+                                      join c in _db.Categories on a.CategoryID equals c.CategoryID into cc from c in cc.DefaultIfEmpty()
+                                      join d in _db.SalesItems on a.ProductID equals d.ProductID into dd from d in dd.DefaultIfEmpty()
+                                      join e in _db.Sales on d.SalesID equals e.SalesID into ee from e in ee.DefaultIfEmpty()
                                       where a.Status != Constants.STATUS_DELETION_INT &&
-                                            e.Status == Constants.STATUS_ENABLED_INT &&
                                             e.CreatedDate.Year == year && e.CreatedDate.Month == month
                                       select new ProductReportInformation
                                       {
                                           ProductName = a.Name,
                                           BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
                                           CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA,
-                                          Quantity = _utility.CheckSalesItemAvailability(d) ? d.Quantity : 0,
-                                          Total = _utility.CheckSalesItemAvailability(d) ? d.Total : 0
+                                          Quantity = _utility.CheckSalesAvailability(e) ? d.Quantity : 0,
+                                          Total = _utility.CheckSalesAvailability(e) ? d.Total : 0
                                       }).ToListAsync();
 
             var report = (from a in productSales
