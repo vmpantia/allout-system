@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -13,7 +14,12 @@ namespace AllOut.Desktop.Common
         public const string APP_VERSION = "AllOut.Version 2023.02";
         public const string REGEX_NUMBER_PATTERN = "^-?[0-9]\\d*(\\.\\d+)?$";
 
+        #region CHART SERIES
+        public const string SERIES_TOTAL = "Total";
+        #endregion
+
         #region Common Format
+        public const string YEAR_MONTH_FORMAT = "{0}-{1}";
         public const string DATE_FORMAT = "yyyy/MM/dd";
         public const string NA = "N/A";
         public const string NAME_FORMAT = "{0}, {1}";
@@ -187,7 +193,27 @@ namespace AllOut.Desktop.Common
         public const string CMB_VALUE_PRODUCT_ID = "ProductID";
         public const string CMB_VALUE_BRAND_ID = "BrandID";
         public const string CMB_VALUE_CATEGORY_ID = "CategoryID"; 
-        public const string CMB_VALUE_ROLE_ID = "RoleID"; 
+        public const string CMB_VALUE_ROLE_ID = "RoleID";
+
+
+        public const string CMB_DISPLAY_MONTH_STRING = "MonthString";
+        public const string CMB_VALUE_MONTH_INT = "MonthInt";
+        public const string CMB_DISPLAY_YEAR_STRING = "YearString";
+        public const string CMB_VALUE_YEAR_INT = "YearInt";
         #endregion
+
+        public const string ALL = "All";
+        public const string MONTH_JAN = "JANUARY";
+        public const string MONTH_FEB = "FEBRUARY";
+        public const string MONTH_MAR = "MARCH";
+        public const string MONTH_APR = "APRIL";
+        public const string MONTH_MAY = "MAY";
+        public const string MONTH_JUN = "JUNE";
+        public const string MONTH_JUL = "JULY";
+        public const string MONTH_AUG = "AUGUST";
+        public const string MONTH_SEP = "SEPTEMBER";
+        public const string MONTH_OCT = "OCTOBER";
+        public const string MONTH_NOV = "NOVEMBER";
+        public const string MONTH_DEC = "DECEMBER";
     }
 }

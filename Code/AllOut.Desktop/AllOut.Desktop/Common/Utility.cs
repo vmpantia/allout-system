@@ -87,7 +87,7 @@ namespace AllOut.Desktop.Common
                 //Add Default Year
                 new Year
                 {
-                    YearString = "All",
+                    YearString = Constants.ALL,
                     YearInt = 0,
                 }
             };
@@ -108,19 +108,19 @@ namespace AllOut.Desktop.Common
             return new List<Month>
             {
                 //Add Default Month
-                new Month {  MonthName = "All", MonthNumber = 0, },
-                new Month {  MonthName = "JANUARY", MonthNumber = 1, },
-                new Month {  MonthName = "FEBRUARY", MonthNumber = 2, },
-                new Month {  MonthName = "MARCH", MonthNumber = 3, },
-                new Month {  MonthName = "APRIL", MonthNumber = 4, },
-                new Month {  MonthName = "MAY", MonthNumber = 5, },
-                new Month {  MonthName = "JUNE", MonthNumber = 6, },
-                new Month {  MonthName = "JULY", MonthNumber = 7, },
-                new Month {  MonthName = "AUGUST", MonthNumber = 8, },
-                new Month {  MonthName = "SEPTEMBER", MonthNumber = 9, },
-                new Month {  MonthName = "OCTOBER", MonthNumber = 10, },
-                new Month {  MonthName = "NOVEMBER", MonthNumber = 11, },
-                new Month {  MonthName = "DECEMBER", MonthNumber = 12, }
+                new Month {  MonthString = Constants.ALL, MonthInt = 0, },
+                new Month {  MonthString = Constants.MONTH_JAN, MonthInt = 1, },
+                new Month {  MonthString = Constants.MONTH_FEB, MonthInt = 2, },
+                new Month {  MonthString = Constants.MONTH_MAR, MonthInt = 3, },
+                new Month {  MonthString = Constants.MONTH_APR, MonthInt = 4, },
+                new Month {  MonthString = Constants.MONTH_MAY, MonthInt = 5, },
+                new Month {  MonthString = Constants.MONTH_JUN, MonthInt = 6, },
+                new Month {  MonthString = Constants.MONTH_JUL, MonthInt = 7, },
+                new Month {  MonthString = Constants.MONTH_AUG, MonthInt = 8, },
+                new Month {  MonthString = Constants.MONTH_SEP, MonthInt = 9, },
+                new Month {  MonthString = Constants.MONTH_OCT, MonthInt = 10, },
+                new Month {  MonthString = Constants.MONTH_NOV, MonthInt = 11, },
+                new Month {  MonthString = Constants.MONTH_DEC, MonthInt = 12, }
             };
         }
 

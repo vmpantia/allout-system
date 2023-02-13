@@ -1981,7 +1981,7 @@ namespace AllOut.Desktop.Controllers
         }
         #endregion
 
-        #region SalesReport
+        #region Report
         public static Response GetSalesReportAsync(Guid clientID)
         {
             var customResponse = new Response();
@@ -2078,6 +2078,117 @@ namespace AllOut.Desktop.Controllers
                     //Success Response
                     customResponse.Result = ResponseResult.SUCCESS;
                     customResponse.Data = JsonConvert.DeserializeObject<List<SalesReportInformation>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static Response GetProductsReportAsync(Guid clientID)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_PRODUCTS_REPORT, clientID);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.GetAsync(url).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<ProductReportInformation>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static Response GetProductsReportByYearAsync(Guid clientID, int year)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_PRODUCTS_REPORT_BY_YEAR, clientID, year);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.GetAsync(url).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<ProductReportInformation>>(content);
+                    return customResponse;
+                }
+                //API Error Response
+                customResponse.Result = ResponseResult.API_ERROR;
+                customResponse.Data = content;
+            }
+            catch (Exception ex)
+            {
+                //System Error Response
+                customResponse.Result = ResponseResult.SYSTEM_ERROR;
+                customResponse.Data = ex.Message;
+                customResponse.StatusCode = Constants.NA;
+            }
+            return customResponse;
+        }
+        public static Response GetProductsReportByYearAndMonthAsync(Guid clientID, string query)
+        {
+            var customResponse = new Response();
+            try
+            {
+                //Prepare API URL
+                var url = string.Format(Globals.GET_PRODUCTS_REPORT_BY_YEAR_MONTH, clientID, query);
+
+                //Send GET request to API
+                var httpClient = new HttpClient();
+                var httpResponse = httpClient.GetAsync(url).Result;
+
+                //Get content in reponse of API
+                var content = httpResponse.Content.ReadAsStringAsync().Result;
+
+                //Generate custom response based on the response of API
+                customResponse.StatusCode = httpResponse.StatusCode.ToString();
+                if (httpResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    //Success Response
+                    customResponse.Result = ResponseResult.SUCCESS;
+                    customResponse.Data = JsonConvert.DeserializeObject<List<ProductReportInformation>>(content);
                     return customResponse;
                 }
                 //API Error Response

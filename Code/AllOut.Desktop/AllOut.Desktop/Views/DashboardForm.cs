@@ -19,7 +19,7 @@ namespace AllOut.Desktop.Views
         {
             InitializeComponent();
             PopulateData();
-            PopulateChart();
+            PopulateSalesData();
         }
 
         private void PopulateData()
@@ -46,101 +46,145 @@ namespace AllOut.Desktop.Views
             lblCountRole.Text = response.Result == ResponseResult.SUCCESS ? (string)response.Data : Constants.NA;
         }
 
-        private void PopulateChart(int year = 0, int month = 0)
+        private void PopulateSalesData()
         {
-            SalesChart.Series["Total"].Points.Clear();
+            List<SalesReportInformation> salesReports;
+            List<ProductReportInformation> productReports;
+            int year, month;
 
-            var salesReports = new List<SalesReportInformation>();
-            bool isAllYear = false;
-            bool isByYear = false;
-            bool isByMonth = false;
-            if (year == 0 && month == 0)
+            //Reset
+            chartSales.Series[Constants.SERIES_TOTAL].Points.Clear();
+            tblProduts.DataSource = null;
+
+            var type = GetReportType(out year, out month);
+            GetReportsByType(out salesReports, out productReports, year, month, type);
+
+            //Initialize ComoboBox
+            if (salesReports.Any())
             {
-                isAllYear = true;
-                var res = HttpController.GetSalesReportAsync(Globals.ClientInformation.ClientID);
-                if (res.Result == ResponseResult.SUCCESS)
-                {
-                    salesReports = (List<SalesReportInformation>)res.Data;
-                    if (!salesReports.Any())
-                        return;
-
-                    var firstYear = salesReports.OrderBy(data => data.Year).First().Year;
-                    var lastYear = salesReports.OrderBy(data => data.Year).Last().Year;
-                    var years = Utility.GetYears(firstYear, lastYear);
-                    var months = Utility.GetMonths();
-
-                    cmbYear.DataSource = years;
-                    cmbYear.DisplayMember = "YearString";
-                    cmbYear.ValueMember = "YearInt";
-
-                    cmbMonth.DataSource = months;
-                    cmbMonth.DisplayMember = "MonthName";
-                    cmbMonth.ValueMember = "MonthNumber";
-                }
-            }
-            else if (year != 0 && month == 0)
-            {
-                isByYear = true;
-                var res = HttpController.GetSalesReportByYearAsync(Globals.ClientInformation.ClientID, year);
-                if (res.Result == ResponseResult.SUCCESS)
-                {
-                    salesReports = (List<SalesReportInformation>)res.Data;
-                }
-            }
-            else
-            {
-                isByMonth = true;
-                var res = HttpController.GetSalesReportByYearAndMonthAsync(Globals.ClientInformation.ClientID,
-                                                                           string.Format("{0}-{1}", year,
-                                                                                                    month));
-                if (res.Result == ResponseResult.SUCCESS)
-                {
-                    salesReports = (List<SalesReportInformation>)res.Data;
-                }
+                PopulateMonth();
+                PopulateYear(salesReports.First().Year, salesReports.Last().Year);
             }
 
+            //Populate Sales Chart
+            PopulateChart(type, salesReports);
+
+            //Populate Product Sales
+            tblProduts.DataSource = productReports;
+            lblTableDescription.Visible = productReports.Count == 0;
+        }
+
+        private void PopulateChart(ReportType type,  List<SalesReportInformation> salesReports)
+        {
             foreach (var salesReport in salesReports)
             {
-                if (isAllYear)
+                switch (type)
                 {
-                    SalesChart.Series["Total"].Points.AddXY(salesReport.Year, salesReport.Total);
-                    return;
-                }
-                if (isByYear)
-                {
-                    SalesChart.Series["Total"].Points.AddXY(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(salesReport.Month), salesReport.Total);
-                    return;
-                }
-                if (isByMonth)
-                {
-                    SalesChart.Series["Total"].Points.AddXY(salesReport.Day, salesReport.Total);
-                    return;
+                    case ReportType.BY_YEAR:
+                        chartSales.Series[Constants.SERIES_TOTAL].Points.AddXY(CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(salesReport.Month), salesReport.Total);
+                        break;
+                    case ReportType.BY_MONTH:
+                        chartSales.Series[Constants.SERIES_TOTAL].Points.AddXY(salesReport.Day, salesReport.Total);
+                        break;
+                    default:
+                        chartSales.Series[Constants.SERIES_TOTAL].Points.AddXY(salesReport.Year, salesReport.Total);
+                        break;
                 }
             }
         }
 
-        private void cmbYear_SelectedIndexChanged(object sender, EventArgs e)
+        private void GetReportsByType(out List<SalesReportInformation> salesReports, 
+                                      out List<ProductReportInformation> productReports,
+                                      int year,
+                                      int month,
+                                      ReportType type)
         {
-            //PopulateChart(false);
+            Response responseSales, responseProducts;
+            salesReports = new List<SalesReportInformation>();
+            productReports = new List<ProductReportInformation>();
+
+            var clientID = Globals.ClientInformation.ClientID;
+
+            switch (type)
+            {
+                case ReportType.BY_YEAR:
+                    responseSales = HttpController.GetSalesReportByYearAsync(clientID, year);
+                    if (responseSales.Result == ResponseResult.SUCCESS)
+                        salesReports = (List<SalesReportInformation>)responseSales.Data;
+
+                    responseProducts = HttpController.GetProductsReportByYearAsync(clientID, year);
+                    if (responseProducts.Result == ResponseResult.SUCCESS)
+                        productReports = (List<ProductReportInformation>)responseProducts.Data;
+                    break;
+
+                case ReportType.BY_MONTH:
+                    responseSales = HttpController.GetSalesReportByYearAndMonthAsync(clientID, string.Format(Constants.YEAR_MONTH_FORMAT, year, month));
+                    if (responseSales.Result == ResponseResult.SUCCESS)
+                        salesReports = (List<SalesReportInformation>)responseSales.Data;
+
+                    responseProducts = HttpController.GetProductsReportByYearAndMonthAsync(clientID, string.Format(Constants.YEAR_MONTH_FORMAT, year, month));
+                    if (responseSales.Result == ResponseResult.SUCCESS)
+                        productReports = (List<ProductReportInformation>)responseProducts.Data;
+                    break;
+
+                default:
+                    responseSales = HttpController.GetSalesReportAsync(clientID);
+                    if (responseSales.Result == ResponseResult.SUCCESS)
+                        salesReports = (List<SalesReportInformation>)responseSales.Data;
+
+                    responseProducts = HttpController.GetProductsReportAsync(clientID);
+                    if (responseProducts.Result == ResponseResult.SUCCESS)
+                        productReports = (List<ProductReportInformation>)responseProducts.Data;
+                    break;
+            }
         }
 
-        private void cmbMonth_SelectedIndexChanged(object sender, EventArgs e)
+        private ReportType GetReportType(out int year, out int month)
         {
-            //PopulateChart(false);
+            year = cmbYear.SelectedItem == null ? 0 : ((Year)cmbYear.SelectedItem).YearInt;
+            month = cmbMonth.SelectedItem == null ? 0 : ((Month)cmbMonth.SelectedItem).MonthInt;
+
+            if (year != 0 && month == 0)
+                return ReportType.BY_YEAR;
+
+            if (year == 0 && month != 0)
+                return ReportType.BY_MONTH;
+
+            return ReportType.ALL;
+        }
+
+        private void PopulateYear(int firstYear, int lastYear)
+        {
+            cmbYear.DataSource = null;
+
+            var years = Utility.GetYears(firstYear, lastYear);
+
+            cmbYear.DataSource = years;
+            cmbYear.DisplayMember = Constants.CMB_DISPLAY_YEAR_STRING;
+            cmbYear.ValueMember = Constants.CMB_VALUE_YEAR_INT;
+
+        }
+
+        private void PopulateMonth()
+        {
+            cmbMonth.DataSource = null;
+
+            var months = Utility.GetMonths();
+
+            cmbMonth.DataSource = months;
+            cmbMonth.DisplayMember = Constants.CMB_DISPLAY_MONTH_STRING;
+            cmbMonth.ValueMember = Constants.CMB_VALUE_MONTH_INT;
         }
 
         private void cmbYear_SelectedValueChanged(object sender, EventArgs e)
         {
-            int year = cmbYear.SelectedItem == null ? 0 : ((Year)cmbYear.SelectedItem).YearInt;
-            int month = cmbMonth.SelectedItem == null ? 0 : ((Month)cmbMonth.SelectedItem).MonthNumber;
-            PopulateChart(year, month);
+            PopulateSalesData();
         }
 
         private void cmbMonth_SelectedValueChanged(object sender, EventArgs e)
         {
-            int year = cmbYear.SelectedItem == null ? 0 : ((Year)cmbYear.SelectedItem).YearInt;
-            int month = cmbMonth.SelectedItem == null ? 0 : ((Month)cmbMonth.SelectedItem).MonthNumber;
-            PopulateChart(year, month);
+            PopulateSalesData();
         }
+
     }
 }

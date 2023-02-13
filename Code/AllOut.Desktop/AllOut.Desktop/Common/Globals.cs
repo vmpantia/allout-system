@@ -90,5 +90,9 @@ namespace AllOut.Desktop.Common
         public static string GET_SALES_REPORT = string.Concat(Constants.API_BASE, "Report/GetSalesReport?clientID={0}");
         public static string GET_SALES_REPORT_BY_YEAR = string.Concat(Constants.API_BASE, "Report/GetSalesReportByYear?clientID={0}&year={1}");
         public static string GET_SALES_REPORT_BY_YEAR_MONTH = string.Concat(Constants.API_BASE, "Report/GetSalesReportByYearAndMonth?clientID={0}&query={1}");
+
+        public static string GET_PRODUCTS_REPORT = string.Concat(Constants.API_BASE, "Report/GetProductsReport?clientID={0}");
+        public static string GET_PRODUCTS_REPORT_BY_YEAR = string.Concat(Constants.API_BASE, "Report/GetProductsReportByYear?clientID={0}&year={1}");
+        public static string GET_PRODUCTS_REPORT_BY_YEAR_MONTH = string.Concat(Constants.API_BASE, "Report/GetProductsReportByYearAndMonth?clientID={0}&query={1}");
     }
 }

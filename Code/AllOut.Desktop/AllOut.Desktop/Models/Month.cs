@@ -4,7 +4,7 @@ namespace AllOut.Desktop.Models
 {
     public class Month
     {
-        public string MonthName { get; set; }
-        public int MonthNumber { get; set; }
+        public string MonthString { get; set; }
+        public int MonthInt { get; set; }
     }
 }
