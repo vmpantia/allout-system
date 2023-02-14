@@ -1,45 +1,64 @@
 ﻿using AllOut.Desktop.Models;
 using Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AllOut.Desktop.Services
 {
-    public class ExcelService
+    public class ExcelService<T>
     {
         private ApplicationClass _excelApp;
         private readonly Workbook _excelWorkbook;
         private readonly Worksheet _excelWorksheet;
         private readonly object _misValue;
 
-        public ExcelService()
+        private int _excelDefaultRowIdx = 2, _excelDefaultColIdx = 1;
+        private int _firstRowIdx = 1;
+        private int _firstColIdx = 1;
+
+        private readonly List<T> _data;
+
+        public ExcelService(List<T> values)
         {
             _excelApp = new ApplicationClass();
-            _misValue = System.Reflection.Missing.Value;
 
+            _misValue = System.Reflection.Missing.Value;
             _excelWorkbook = _excelApp.Workbooks.Add(_misValue);
+
+            //Get Default Work Sheet
             _excelWorksheet = (Worksheet)_excelWorkbook.Worksheets.get_Item(1);
 
             //Clear Worksheet Rows
             _excelWorksheet.Rows.Clear();
+
+            _data = values;
         }
 
-        public string ExportToExcel(object input)
+        public string Title
         {
-            int excelRowIdx = 1, excelColIdx = 1;
+            set
+            {
+                _excelWorksheet.Name = value;
+                _excelWorksheet.Cells[_firstRowIdx, _firstColIdx] = value;
+            }
+        }
+
+        public string ExportToExcel()
+        {
             try
             {
-                var data = (List<SalesReportInformation>)input;
+                _excelDefaultRowIdx = 2;
+                _excelDefaultColIdx = 1;
 
-                if (data == null || data.Count() == 0)
+                if (_data == null || _data.Count() == 0)
                     return "Data to Export cannot be NULL.";
 
-                var rowCount = data.Count();
-
-                foreach(var item in data)
+                foreach(var item in _data)
                 {
                     var properties = item.GetType().GetProperties();
 
@@ -50,21 +69,38 @@ namespace AllOut.Desktop.Services
                         if (property.PropertyType.Name == "Decimal")
                             value = Convert.ToDouble(value).ToString(Common.Constants.N0_FORMAT);
 
-                        if(excelRowIdx == 1)
+                        if(_excelDefaultRowIdx == 2)
                         {
                             //Initialize Header and 1st Row
-                            _excelWorksheet.Cells[excelRowIdx, excelColIdx] = property.Name;
-                            _excelWorksheet.Cells[excelRowIdx + 1, excelColIdx] = value;
+                            _excelWorksheet.Cells[_excelDefaultRowIdx, _excelDefaultColIdx] = property.Name;
+                            _excelWorksheet.Cells[_excelDefaultRowIdx + 1, _excelDefaultColIdx] = value;
                         }
                         else
                         {
                             //Initialize 2nd Row and more
-                            _excelWorksheet.Cells[excelRowIdx, excelColIdx] = value;
+                            _excelWorksheet.Cells[_excelDefaultRowIdx, _excelDefaultColIdx] = value;
                         }
-                        excelColIdx++;
+                        _excelDefaultColIdx++;
                     }
-                    excelRowIdx++;
+                    _excelDefaultRowIdx++;
                 }
+
+
+                var columnCount = _data.First().GetType().GetProperties().Count();
+                var rowCount = _excelDefaultRowIdx;
+
+                _excelWorksheet.Range[_excelWorksheet.Cells[_firstRowIdx, _firstColIdx],
+                                                            _excelWorksheet.Cells[_firstRowIdx, columnCount]].Merge();
+
+                var range = _excelWorksheet.Range[_excelWorksheet.Cells[_firstRowIdx, _firstColIdx],
+                                                  _excelWorksheet.Cells[rowCount, columnCount]];
+
+                range.Columns.AutoFit();
+                Borders borders = range.Borders;
+                borders.LineStyle = XlLineStyle.xlContinuous;
+                borders.Weight = 2d;
+                _excelWorksheet.Cells.Font.Size = 15;
+
 
                 _excelWorkbook.SaveAs(@"C:\Users\vince\OneDrive\Desktop\test.xlsx", Type.Missing,
                                       Type.Missing, Type.Missing, Type.Missing, Type.Missing,
@@ -77,6 +113,29 @@ namespace AllOut.Desktop.Services
             catch(Exception ex)
             {
                 return ex.Message;
+            }
+            finally
+            {
+                DisposeObject(_excelWorksheet);
+                DisposeObject(_excelWorkbook);
+                DisposeObject(_excelApp);
+            }
+        }
+
+        private void DisposeObject(object data)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(data);
+                data = null;
+            }
+            catch(Exception ex)
+            {
+                data = null;
+            }
+            finally
+            {
+                GC.Collect();
             }
         }
     }

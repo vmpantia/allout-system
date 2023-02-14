@@ -106,9 +106,11 @@ namespace AllOut.Desktop.Views.ReportForms
             int year, month;
             var type = Utility.GetReportType(out year, out month, cmbYear, cmbMonth);
 
-            var excel = new ExcelService();
-
-            var result = excel.ExportToExcel(_sales);
+            var excel = new ExcelService<SalesReportInformation>(_sales)
+            {
+                Title = "Sales Report"
+            };
+            var result = excel.ExportToExcel();
             MessageBox.Show(result);
         }
     }
