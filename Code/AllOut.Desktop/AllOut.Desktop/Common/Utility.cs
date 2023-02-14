@@ -56,7 +56,6 @@ namespace AllOut.Desktop.Common
         {
             return value == null ? Guid.Empty : Guid.Parse(value.ToString());
         }
-
         public static string GetStringByCellValue(object value)
         {
             return value == null ? string.Empty : value.ToString();

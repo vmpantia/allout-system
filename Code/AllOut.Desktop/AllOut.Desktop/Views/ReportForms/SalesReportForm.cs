@@ -3,6 +3,7 @@ using AllOut.Desktop.Controllers;
 using AllOut.Desktop.Models;
 using AllOut.Desktop.Models.enums;
 using AllOut.Desktop.Models.Requests;
+using AllOut.Desktop.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace AllOut.Desktop.Views.ReportForms
 {
     public partial class SalesReportForm : Form
     {
+        private List<SalesReportInformation> _sales;
         public SalesReportForm()
         {
             InitializeComponent();
@@ -43,6 +45,8 @@ namespace AllOut.Desktop.Views.ReportForms
             //Populate Sales Report
             lblTableDescription.Visible = sales.Count == 0;
             DisplaySalesReportByType(sales, type);
+
+            _sales = sales;
         }
 
         private void DisplaySalesReportByType(List<SalesReportInformation> sales, ReportType type)
@@ -101,6 +105,11 @@ namespace AllOut.Desktop.Views.ReportForms
         {
             int year, month;
             var type = Utility.GetReportType(out year, out month, cmbYear, cmbMonth);
+
+            var excel = new ExcelService();
+
+            var result = excel.ExportToExcel(_sales);
+            MessageBox.Show(result);
         }
     }
 }
