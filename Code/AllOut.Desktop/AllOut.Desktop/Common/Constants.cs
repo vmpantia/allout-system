@@ -209,6 +209,7 @@ namespace AllOut.Desktop.Common
         public const string CMB_VALUE_YEAR_INT = "YearInt";
         #endregion
 
+        #region Months
         public const string ALL = "All";
         public const string MONTH_JAN = "JANUARY";
         public const string MONTH_FEB = "FEBRUARY";
@@ -222,5 +223,10 @@ namespace AllOut.Desktop.Common
         public const string MONTH_OCT = "OCTOBER";
         public const string MONTH_NOV = "NOVEMBER";
         public const string MONTH_DEC = "DECEMBER";
+        #endregion
+
+        public const string DATA_TYPE_DECIMAL = "Decimal";
+        public const string PROPERTY_STATUS = "Status";
+        public const string PROPERTY_DATE = "Date";
     }
 }

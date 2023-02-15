@@ -77,13 +77,13 @@ namespace AllOut.Desktop.Services
                     {
                         var value = property.GetValue(item);
 
-                        if (property.PropertyType.Name == "Decimal")
+                        if (property.PropertyType.Name == Common.Constants.DATA_TYPE_DECIMAL)
                             value = Convert.ToDouble(value).ToString(Common.Constants.N0_FORMAT);
 
-                        if (property.Name.Contains("Date"))
+                        if (property.Name.Contains(Common.Constants.PROPERTY_DATE))
                             value = value == null ? Common.Constants.NA : DateTime.Parse(value.ToString()).ToString(Common.Constants.DATE_FORMAT);
 
-                        if (property.Name == "Status")
+                        if (property.Name == Common.Constants.PROPERTY_STATUS)
                             value = Utility.ConvertStatusToString((int)value);
 
                         if (excelRowIdx == DEFAULT_START_ROW_IDX)
