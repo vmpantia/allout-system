@@ -11,15 +11,12 @@ namespace AllOut.Desktop.Common
 {
     public class Constants
     {
-
+        public const string HASH = "@l10uTxK@lr0T1r35";
         public const string APP_VERSION = "AllOut.Version 2023.02";
-        public const string REGEX_NUMBER_PATTERN = "^-?[0-9]\\d*(\\.\\d+)?$";
+        public const string API_BASE = "http://www.allout.api.com/";
+        //public const string API_BASE = "https://localhost:7252/";
 
-        #region Chart Series
-        public const string SERIES_TOTAL = "Total";
-        #endregion
-
-        #region Common Format
+        #region Common
         public const string FOLDER_PATH_FORMAT = @"{0}\{1}\";
         public const string EXCEL_FILE_FORMAT = "{0}_{1}.xlsx";
         public const string YEAR_MONTH_FORMAT = "{0}-{1}";
@@ -30,8 +27,14 @@ namespace AllOut.Desktop.Common
         public const string USERNAME_FORMAT = "{0}.{1}";
         public const char ZERO = '0';
         public const string NEWLINE = "\n";
-        public const string API_BASE = "http://www.allout.api.com/";
-        //public const string API_BASE = "https://localhost:7252/";
+        #endregion
+
+        #region Regex Patterns
+        public const string REGEX_NUMBER_PATTERN = "^-?[0-9]\\d*(\\.\\d+)?$";
+        #endregion
+
+        #region Chart Series
+        public const string SERIES_TOTAL = "Total";
         #endregion
 
         #region Sales Format
@@ -225,8 +228,13 @@ namespace AllOut.Desktop.Common
         public const string MONTH_DEC = "DECEMBER";
         #endregion
 
+        #region Data Type
         public const string DATA_TYPE_DECIMAL = "Decimal";
+        #endregion
+
+        #region Property
         public const string PROPERTY_STATUS = "Status";
         public const string PROPERTY_DATE = "Date";
+        #endregion
     }
 }

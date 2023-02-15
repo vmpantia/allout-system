@@ -151,23 +151,32 @@ namespace AllOut.Api.Services.Common
         public bool IsValidPassword(string password)
         {
             var regex = new Regex(Constants.REGEX_PASSWORD_PATTERN);
-            var value = DecodePassword(password);
+            var value = ParsePassword(password, false);
             return regex.IsMatch(value);
         }
 
-        public string EncodePassword(string password)
+        public string ParsePassword(string password, bool isEncrypt)
         {
             if (string.IsNullOrEmpty(password))
                 return password;
 
-            var bytes = Encoding.UTF8.GetBytes(password);
-            return Convert.ToBase64String(bytes);
-        }
-
-        public string DecodePassword(string password)
-        {
-            var bytes = Convert.FromBase64String(password);
-            return Encoding.UTF8.GetString(bytes);
+            byte[] data = UTF32Encoding.UTF8.GetBytes(password);
+            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+            {
+                byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(Constants.HASH));
+                using (TripleDESCryptoServiceProvider tripDes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                {
+                    if (isEncrypt)
+                    {
+                        ICryptoTransform encrypt = tripDes.CreateEncryptor();
+                        byte[] resultsEncrypt = encrypt.TransformFinalBlock(data, 0, data.Length);
+                        return Convert.ToBase64String(resultsEncrypt, 0, resultsEncrypt.Length);
+                    }
+                    ICryptoTransform decrypt = tripDes.CreateDecryptor();
+                    byte[] resultsDecrypt = decrypt.TransformFinalBlock(data, 0, data.Length);
+                    return UTF8Encoding.UTF8.GetString(resultsDecrypt);
+                }
+            }
         }
 
         #endregion

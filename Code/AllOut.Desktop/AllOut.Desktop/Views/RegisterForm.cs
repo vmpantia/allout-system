@@ -58,7 +58,7 @@ namespace AllOut.Desktop.Views
                     FirstName = txtFirstName.Text.Trim(),
                     MiddleName = txtMiddleName.Text.Trim(),
                     LastName = txtLastName.Text.Trim(),
-                    Password = Utility.EncodePassword(txtPassword.Text.Trim()),
+                    Password = Utility.ParsePassword(txtPassword.Text.Trim(), true),
                     IsEmailConfirmed = false,
                     RoleID = Guid.Empty,
                     Status = Constants.STATUS_ENABLED_INT,

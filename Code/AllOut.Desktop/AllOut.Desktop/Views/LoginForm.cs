@@ -26,7 +26,7 @@ namespace AllOut.Desktop.Views
             var loginUerRequest = new LoginUserRequest
             {
                 LogonName = txtLogonName.Text,
-                Password = Utility.EncodePassword(txtPassword.Text),
+                Password = Utility.ParsePassword(txtPassword.Text, true),
                 Browser = Constants.NA,
                 IPAddress = Constants.NA,
                 WindowsVersion = Constants.NA

@@ -26,10 +26,8 @@ namespace AllOut.Api.Services
         {
             //Initial Product Information
             var products = await (from a in _db.Products
-                                  join b in _db.Brands on a.BrandID equals b.BrandID into bb
-                                  from b in bb.DefaultIfEmpty()
-                                  join c in _db.Categories on a.CategoryID equals c.CategoryID into cc
-                                  from c in cc.DefaultIfEmpty()
+                                  join b in _db.Brands on a.BrandID equals b.BrandID into bb from b in bb.DefaultIfEmpty()
+                                  join c in _db.Categories on a.CategoryID equals c.CategoryID into cc from c in cc.DefaultIfEmpty()
                                   where a.Status != Constants.STATUS_DELETION_INT
                                   select new ProductFullInformation
                                   {

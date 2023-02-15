@@ -2,14 +2,16 @@
 {
     public class Constants
     {
+        public const string HASH = "@l10uTxK@lr0T1r35";
+
+        #region Common
         public const string DATE_FORMAT = "yyyy/MM/dd";
         public const string ID_PREFFIX_FORMAT = "yyyyMMdd";
         public const string NA = "N/A";
         public const string NAME_FORMAT = "{0}, {1}";
         public const char ZERO = '0';
-        public const string HASH = "@l10uTxK@lr0T1r35";
-        public const string HIDE_PASSWORD = "**************";
         public const char DASH = '-';
+        #endregion
 
         #region Regex Pattern
         public const string REGEX_EMAIL_PATTERN = "^[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*$";

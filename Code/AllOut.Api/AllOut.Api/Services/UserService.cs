@@ -6,6 +6,7 @@ using AllOut.Api.Common;
 using Microsoft.EntityFrameworkCore;
 using Puregold.API.Exceptions;
 using AllOut.Api.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace AllOut.Api.Services
 {
@@ -58,25 +59,80 @@ namespace AllOut.Api.Services
 
         public async Task<IEnumerable<UserFullInformation>> GetUsersAsync()
         {
-            var list = await GetUsers();
-            return list.Where(data => data.Status != Constants.STATUS_DELETION_INT).ToList();
+            var users = await (from a in _db.Users
+                               join b in _db.Roles on a.RoleID equals b.RoleID into bb from b in bb.DefaultIfEmpty()
+                               where a.Status != Constants.STATUS_DELETION_INT
+                               select new UserFullInformation
+                               {
+                                   UserID = a.UserID,
+                                   Email = a.Email,
+                                   Username = a.Username,
+                                   Password = a.Password,
+                                   FirstName = a.FirstName,
+                                   MiddleName = a.MiddleName,
+                                   LastName = a.LastName,
+                                   IsEmailConfirmed = a.IsEmailConfirmed,
+                                   RoleID = a.RoleID,
+                                   RoleName = _utility.CheckRoleAvailability(b) ? b.Name : Constants.NA,
+                                   Status = a.Status,
+                                   CreatedDate = a.CreatedDate,
+                                   ModifiedDate = a.ModifiedDate
+                               }).ToListAsync();
+
+            return users;
         }
 
         public async Task<IEnumerable<UserFullInformation>> GetUsersByQueryAsync(string query)
         {
-            var list = await GetUsers();
-            return list.Where(data => data.Email.Contains(query) ||
-                                      data.Username.Contains(query) ||
-                                      data.FirstName.Contains(query) ||
-                                      data.LastName.Contains(query) ||
-                                      data.RoleName.Contains(query)) 
-                       .Where(data => data.Status != Constants.STATUS_DELETION_INT).ToList();
+            var users = await (from a in _db.Users
+                               join b in _db.Roles on a.RoleID equals b.RoleID into bb from b in bb.DefaultIfEmpty()
+                               where a.Status != Constants.STATUS_DELETION_INT &&
+                                     (a.Email.Contains(query) || a.Username.Contains(query) ||
+                                      a.FirstName.Contains(query) || a.LastName.Contains(query) ||
+                                      b.Name.Contains(query))
+                               select new UserFullInformation
+                               {
+                                   UserID = a.UserID,
+                                   Email = a.Email,
+                                   Username = a.Username,
+                                   Password = a.Password,
+                                   FirstName = a.FirstName,
+                                   MiddleName = a.MiddleName,
+                                   LastName = a.LastName,
+                                   IsEmailConfirmed = a.IsEmailConfirmed,
+                                   RoleID = a.RoleID,
+                                   RoleName = _utility.CheckRoleAvailability(b) ? b.Name : Constants.NA,
+                                   Status = a.Status,
+                                   CreatedDate = a.CreatedDate,
+                                   ModifiedDate = a.ModifiedDate
+                               }).ToListAsync();
+
+            return users;
         }
 
         public async Task<IEnumerable<UserFullInformation>> GetUsersByStatusAsync(int status)
         {
-            var list = await GetUsers();
-            return list.Where(data => data.Status == status).ToList();
+            var users = await (from a in _db.Users
+                              join b in _db.Roles on a.RoleID equals b.RoleID into bb from b in bb.DefaultIfEmpty()
+                              where a.Status == status
+                              select new UserFullInformation
+                              {
+                                  UserID = a.UserID,
+                                  Email = a.Email,
+                                  Username = a.Username,
+                                  Password = a.Password,
+                                  FirstName = a.FirstName,
+                                  MiddleName = a.MiddleName,
+                                  LastName = a.LastName,
+                                  IsEmailConfirmed = a.IsEmailConfirmed,
+                                  RoleID = a.RoleID,
+                                  RoleName = _utility.CheckRoleAvailability(b) ? b.Name : Constants.NA,
+                                  Status = a.Status,
+                                  CreatedDate = a.CreatedDate,
+                                  ModifiedDate = a.ModifiedDate
+                              }).ToListAsync();
+
+            return users;
         }
 
         public async Task<User> GetUserByIDAsync(Guid userID)
@@ -86,7 +142,6 @@ namespace AllOut.Api.Services
             if (user == null)
                 throw new APIException(string.Format(Constants.ERROR_NOT_FOUND, Constants.OBJECT_USER));
 
-            user.Password = Constants.HIDE_PASSWORD;
             return user;
         }
 
@@ -269,6 +324,9 @@ namespace AllOut.Api.Services
                 !_utility.IsValidName(newData.LastName))
                 return Constants.ERROR_NAME_NOT_VALID;
 
+            if (!_utility.IsValidPassword(newData.Password))
+                return Constants.ERROR_PASSWORD_NOT_VALID;
+
             if (oldData != null)
             {
                 isNew = false;
@@ -291,10 +349,6 @@ namespace AllOut.Api.Services
                                 newData.LastName != oldData.LastName;
                 isEmailChanged = newData.Email != oldData.Email;
             }
-
-            //Check if ValidPassowrd when it's User creation
-            if (isNew && !_utility.IsValidPassword(newData.Password))
-                return Constants.ERROR_PASSWORD_NOT_VALID;
 
             if (isNew || isNameChanged || isEmailChanged)
             {
@@ -342,28 +396,6 @@ namespace AllOut.Api.Services
             await _db.SaveChangesAsync();
 
             return client;
-        }
-
-        private async Task<IEnumerable<UserFullInformation>> GetUsers()
-        {
-            return await (from a in _db.Users
-                          join b in _db.Roles on a.RoleID equals b.RoleID into bb from b in bb.DefaultIfEmpty()
-                          select new UserFullInformation
-                          {
-                              UserID = a.UserID,
-                              Email = a.Email,
-                              Username = a.Username,
-                              Password = Constants.HIDE_PASSWORD,
-                              FirstName = a.FirstName,
-                              MiddleName = a.MiddleName,
-                              LastName = a.LastName,
-                              IsEmailConfirmed = a.IsEmailConfirmed,
-                              RoleID = a.RoleID,
-                              RoleName = _utility.CheckRoleAvailability(b) ? b.Name : Constants.NA,
-                              Status = a.Status,
-                              CreatedDate = a.CreatedDate,
-                              ModifiedDate = a.ModifiedDate
-                          }).ToListAsync();
         }
         #endregion
     }
