@@ -108,10 +108,13 @@ namespace AllOut.Desktop.Views.ReportForms
 
             var excel = new ExcelService<SalesReportInformation>(_sales)
             {
-                Title = "Sales Report"
+                Title = Constants.TITLE_SALES_REPORT
             };
             var result = excel.ExportToExcel();
-            MessageBox.Show(result);
+            MessageBox.Show(result, 
+                            Constants.TITLE_EXPORT_EXCEL, 
+                            MessageBoxButtons.OK, 
+                            MessageBoxIcon.Information);
         }
     }
 }

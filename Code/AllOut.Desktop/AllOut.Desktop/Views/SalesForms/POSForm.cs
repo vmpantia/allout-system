@@ -61,9 +61,12 @@ namespace AllOut.Desktop.Views.SalesForms
             if (!Regex.IsMatch(txtPayment.Text, Constants.REGEX_NUMBER_PATTERN) || 
                 (decimal.TryParse(txtPayment.Text, out payment) && payment < 0))
             {
-                txtPayment.Text = "0";
+                txtPayment.Text = Constants.ZERO_STRING;
                 lblChange.Text = Constants.DEFAULT_AMOUNT;
-                MessageBox.Show("Please input valid amount.");
+                MessageBox.Show(Constants.ERROR_PAYMENT_INVALID,
+                                Constants.TITLE_PAYMENT_INVALID, 
+                                MessageBoxButtons.OK, 
+                                MessageBoxIcon.Error);
                 return;
             }
             ComputeAll(payment);
@@ -200,7 +203,7 @@ namespace AllOut.Desktop.Views.SalesForms
             }
 
             lblCashier.Text = string.Format(Constants.CASHIER_POS_FORMAT, Globals.ClientInformation.Name);
-            lblSalesID.Text = string.Format(Constants.CASHIER_POS_FORMAT, _isAdd ? Constants.NA : salesID);
+            lblSalesID.Text = string.Format(Constants.SALESID_POS_FORMAT, _isAdd ? Constants.NA : salesID);
             txtPayment.Text = Globals._salesInfo.AmountPaid.ToString();
             _payment = Globals._salesInfo.AmountPaid;
 

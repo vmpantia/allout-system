@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,8 +14,8 @@ namespace AllOut.Desktop.Common
     {
         public const string HASH = "@l10uTxK@lr0T1r35";
         public const string APP_VERSION = "AllOut.Version 2023.02";
-        //public const string API_BASE = "http://www.allout.api.com/";
-        public const string API_BASE = "https://localhost:7252/";
+        public const string API_BASE = "http://www.allout.api.com/";
+        //public const string API_BASE = "https://localhost:7252/";
 
         #region Common
         public const string FOLDER_PATH_FORMAT = @"{0}\{1}\";
@@ -25,7 +26,8 @@ namespace AllOut.Desktop.Common
         public const string NA = "N/A";
         public const string NAME_FORMAT = "{0}, {1}";
         public const string USERNAME_FORMAT = "{0}.{1}";
-        public const char ZERO = '0';
+        public const char ZERO_CHAR = '0';
+        public const string ZERO_STRING = "0";
         public const string NEWLINE = "\n";
         #endregion
 
@@ -132,6 +134,7 @@ namespace AllOut.Desktop.Common
         public const string ERROR_NAME_REQUIRED = "{0} Name field is Required.";
         public const string ERROR_PASSWORD_NOT_MATCH = "Password doesn't match in Confirm Password.";
         public const string ERROR_NO_RECORDS = "No records found in the system.";
+        public const string ERROR_PAYMENT_INVALID = "Please input valid amount.";
         #endregion
 
         #region Success Message
@@ -163,6 +166,10 @@ namespace AllOut.Desktop.Common
         public const string TITLE_SAVE = "Save {0}";
         public const string TITLE_REGISTER = "Register {0}";
         public const string TITLE_UPDATE_STATUS = "Update {0}(s) Status";
+        public const string TITLE_PAYMENT_INVALID = "Payment Invalid";
+
+        public const string TITLE_SALES_REPORT = "Sales Report";
+        public const string TITLE_EXPORT_EXCEL = "Export Data to Excel";
         #endregion
 
         #region Descriptions
