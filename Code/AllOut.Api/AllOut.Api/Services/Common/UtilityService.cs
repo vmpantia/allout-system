@@ -160,7 +160,7 @@ namespace AllOut.Api.Services.Common
             if (string.IsNullOrEmpty(password))
                 return password;
 
-            byte[] data = UTF32Encoding.UTF8.GetBytes(password);
+            byte[] data = isEncrypt ? UTF32Encoding.UTF8.GetBytes(password) : Convert.FromBase64String(password);
             using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
             {
                 byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(Constants.HASH));

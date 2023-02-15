@@ -13,8 +13,8 @@ namespace AllOut.Desktop.Common
     {
         public const string HASH = "@l10uTxK@lr0T1r35";
         public const string APP_VERSION = "AllOut.Version 2023.02";
-        public const string API_BASE = "http://www.allout.api.com/";
-        //public const string API_BASE = "https://localhost:7252/";
+        //public const string API_BASE = "http://www.allout.api.com/";
+        public const string API_BASE = "https://localhost:7252/";
 
         #region Common
         public const string FOLDER_PATH_FORMAT = @"{0}\{1}\";
