@@ -11,16 +11,20 @@ namespace AllOut.Desktop.Common
 {
     public class Constants
     {
+
         public const string APP_VERSION = "AllOut.Version 2023.02";
         public const string REGEX_NUMBER_PATTERN = "^-?[0-9]\\d*(\\.\\d+)?$";
 
-        #region CHART SERIES
+        #region Chart Series
         public const string SERIES_TOTAL = "Total";
         #endregion
 
         #region Common Format
+        public const string FOLDER_PATH_FORMAT = @"{0}\{1}\";
+        public const string EXCEL_FILE_FORMAT = "{0}_{1}.xlsx";
         public const string YEAR_MONTH_FORMAT = "{0}-{1}";
         public const string DATE_FORMAT = "yyyy/MM/dd";
+        public const string DATETIME_FORMAT = "yyyyyMMddHHmmss";
         public const string NA = "N/A";
         public const string NAME_FORMAT = "{0}, {1}";
         public const string USERNAME_FORMAT = "{0}.{1}";
