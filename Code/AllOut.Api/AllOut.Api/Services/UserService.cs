@@ -292,6 +292,7 @@ namespace AllOut.Api.Services
                 isEmailChanged = newData.Email != oldData.Email;
             }
 
+            //Check if ValidPassowrd when it's User creation
             if (isNew && !_utility.IsValidPassword(newData.Password))
                 return Constants.ERROR_PASSWORD_NOT_VALID;
 

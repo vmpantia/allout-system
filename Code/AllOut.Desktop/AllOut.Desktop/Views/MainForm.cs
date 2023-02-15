@@ -172,7 +172,7 @@ namespace AllOut.Desktop.Views
             if (client == null)
             {
                 lblUserEmail.Text = Constants.NA;
-                lblUsername.Text = Constants.NA;
+                lblName.Text = Constants.NA;
                 return;
             }
 
@@ -181,11 +181,11 @@ namespace AllOut.Desktop.Views
             if (response.Result != ResponseResult.SUCCESS)
             {
                 lblUserEmail.Text = Constants.NA;
-                lblUsername.Text = Constants.NA;
+                lblName.Text = Constants.NA;
                 return;
             }
             var user = response.Data as User;
-            lblUsername.Text = user.Username;
+            lblName.Text = Globals.ClientInformation.Name;
             lblUserEmail.Text = user.Email.ToLower();
         }
     }
