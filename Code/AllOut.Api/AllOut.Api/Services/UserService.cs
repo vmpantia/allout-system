@@ -269,9 +269,6 @@ namespace AllOut.Api.Services
                 !_utility.IsValidName(newData.LastName))
                 return Constants.ERROR_NAME_NOT_VALID;
 
-            if (!_utility.IsValidPassword(newData.Password))
-                return Constants.ERROR_PASSWORD_NOT_VALID;
-
             if (oldData != null)
             {
                 isNew = false;
@@ -295,11 +292,13 @@ namespace AllOut.Api.Services
                 isEmailChanged = newData.Email != oldData.Email;
             }
 
+            if (isNew && !_utility.IsValidPassword(newData.Password))
+                return Constants.ERROR_PASSWORD_NOT_VALID;
 
             if (isNew || isNameChanged || isEmailChanged)
             {
                 //Check Duplicate Name or Email for New Data
-                var duplicate = await _db.Users.Where(data => (data.FirstName == newData.FirstName && data.LastName == newData.LastName) ||
+                var duplicate = await _db.Users.Where(data => (data.FirstName == newData.FirstName && data.LastName == newData.LastName) &&
                                                               (data.Email == newData.Email)).ToListAsync();
 
                 if (duplicate.Count > 0)

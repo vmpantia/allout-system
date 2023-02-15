@@ -17,7 +17,7 @@ namespace AllOut.Desktop.Views.UserForms
         private const int BUTTON_COL_IDX = 0;
         private const int CHECKBOX_COL_IDX = 1;
         private const int ID_COL_IDX = 2;
-        private const int STATUS_COL_IDX = 9;
+        private const int STATUS_COL_IDX = 8;
 
         public UserListForm()
         {
@@ -161,7 +161,6 @@ namespace AllOut.Desktop.Views.UserForms
                                                 Email = data.Email,
                                                 Username = data.Username,
                                                 Password = data.Password,
-                                                EmailConfirmed = data.IsEmailConfirmed,
                                                 Role = data.RoleName,
                                                 Status = Utility.ConvertStatusToString(data.Status),
                                                 CreatedDate = data.CreatedDate == null ? Constants.NA : DateTime.Parse(data.CreatedDate.ToString()).ToString(Constants.DATE_FORMAT),

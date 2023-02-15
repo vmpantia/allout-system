@@ -75,6 +75,7 @@
             this.btnRegister.Size = new System.Drawing.Size(284, 37);
             this.btnRegister.TabIndex = 3;
             this.btnRegister.Text = "Sign up";
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // guna2CircleButton1
             // 
