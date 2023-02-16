@@ -3,26 +3,35 @@
 @inject IHTTPService _http
 @inject NavigationManager nav
 
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger" role="alert">
-        @errorMessage
+<section>
+    <div class="cstm-container">
+        <div class="title">
+            Login your Account
+        </div>
+        <!-- Email input -->
+        <div class="field">
+            <label for="logonName">Logon Name</label>
+            <input type="text" id="logonName" placeholder="Enter Username or Email Address" @bind="logonName" />
+        </div>
+
+        <!-- Password input -->
+        <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter Password" @bind="password" />
+        </div>
+
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <label class="errormsg">@errorMessage</label>
+        }
+        <div class="action">
+            <button @onclick="() => Login()">Login</button>
+            <label>or</label>
+            <button @onclick="() => Login()">Sign up</button>
+        </div>
     </div>
-}
+</section>
 
-<!-- Email input -->
-<div class="form-outline mb-4">
-    <label class="form-label" for="logonName">Email address</label>
-    <input type="text" id="logonName" class="form-control" placeholder="Enter Username or Email Address" @bind="logonName"/>
-</div>
-
-<!-- Password input -->
-<div class="form-outline mb-3">
-    <label class="form-label" for="password">Password</label>
-    <input type="password" id="password" class="form-control" placeholder="Enter password" @bind="password"/>
-</div>
-
-<button @onclick="() => Login()">Login</button>
 
 @code {
 
