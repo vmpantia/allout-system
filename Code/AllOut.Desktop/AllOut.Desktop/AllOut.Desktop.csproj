@@ -135,6 +135,12 @@
     <Compile Include="Views\CategoryForms\CategoryListForm.Designer.cs">
       <DependentUpon>CategoryListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SalesForms\SalesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SalesForms\SalesForm.Designer.cs">
+      <DependentUpon>SalesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SalesForms\AddOtherChargeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\CategoryForms\CategoryListForm.resx">
       <DependentUpon>CategoryListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SalesForms\SalesForm.resx">
+      <DependentUpon>SalesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SalesForms\AddOtherChargeForm.resx">
       <DependentUpon>AddOtherChargeForm.cs</DependentUpon>
