@@ -85,47 +85,48 @@ section{
     border: 2px solid gainsboro;
     padding: 50px;
 }
-.cstm-container .title{
-    font-size: 25px;
-    font-weight: bold;
-    border-bottom: 1px solid gainsboro;
-    text-align: center;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-}
-.cstm-container label, input, button {
-    width: 100%;
-}
-.cstm-container .field input {
-    border-radius: 5px;
-    border: 1px solid gainsboro;
-    font-size: 15px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-.cstm-container .field label {
-    padding: 0px 0 10px 0;
-}
-.cstm-container .errormsg {
-    color: #c0392b;
-    font-size: 13px;
-    padding-bottom: 10px;
-}
-.cstm-container .action button {
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #3498db;
-    border: none;
-    font-size: 15px;
-}
-.cstm-container .action button:hover {
-    background-color: #2980b9;
-}
-.cstm-container .action label {
-    margin: 7px;
-    text-align: center;
-}
+    .cstm-container .title{
+        font-size: 25px;
+        font-weight: bold;
+        border-bottom: 1px solid gainsboro;
+        text-align: center;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+    .cstm-container .field input {
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid gainsboro;
+        font-size: 15px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .cstm-container .field label {
+        width: 100%;
+        padding: 0px 0 10px 0;
+    }
+    .cstm-container .errormsg {
+        color: #c0392b;
+        font-size: 13px;
+        padding-bottom: 10px;
+    }
+    .cstm-container .action button {
+        width: 100%;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #3498db;
+        border: none;
+        font-size: 15px;
+    }
+    .cstm-container .action button:hover {
+        background-color: #2980b9;
+    }
+    .cstm-container .action label {
+        width: 100%;
+        margin: 7px;
+        text-align: center;
+    }
    
 
 /*Default Blazor CSS*/
