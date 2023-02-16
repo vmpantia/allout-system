@@ -1,6 +1,7 @@
 ﻿using AllOut.Web.Blazor.Models;
 using AllOut.Web.Blazor.Models.enums;
 using Newtonsoft.Json;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace AllOut.Web.Blazor.Commons
@@ -51,19 +52,28 @@ namespace AllOut.Web.Blazor.Commons
                 return Constants.STATUS_DELETION_STRING;
         }
 
-        public static string EncodePassword(string password)
+        public static string ParsePassword(string password, bool isEncrypt)
         {
             if (string.IsNullOrEmpty(password))
                 return password;
 
-            var bytes = Encoding.UTF8.GetBytes(password);
-            return Convert.ToBase64String(bytes);
-        }
-
-        public static string DecodePassword(string password)
-        {
-            var bytes = Convert.FromBase64String(password);
-            return Encoding.UTF8.GetString(bytes);
+            byte[] data = isEncrypt ? UTF32Encoding.UTF8.GetBytes(password) : Convert.FromBase64String(password);
+            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+            {
+                byte[] keys = md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(Constants.HASH));
+                using (TripleDESCryptoServiceProvider tripDes = new TripleDESCryptoServiceProvider() { Key = keys, Mode = CipherMode.ECB, Padding = PaddingMode.PKCS7 })
+                {
+                    if (isEncrypt)
+                    {
+                        ICryptoTransform encrypt = tripDes.CreateEncryptor();
+                        byte[] resultsEncrypt = encrypt.TransformFinalBlock(data, 0, data.Length);
+                        return Convert.ToBase64String(resultsEncrypt, 0, resultsEncrypt.Length);
+                    }
+                    ICryptoTransform decrypt = tripDes.CreateDecryptor();
+                    byte[] resultsDecrypt = decrypt.TransformFinalBlock(data, 0, data.Length);
+                    return UTF8Encoding.UTF8.GetString(resultsDecrypt);
+                }
+            }
         }
 
         public static Guid GetGuidByCellValue(object value)

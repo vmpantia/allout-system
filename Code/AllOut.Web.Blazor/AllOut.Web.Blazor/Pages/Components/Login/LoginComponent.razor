@@ -44,7 +44,7 @@
         var loginUerRequest = new LoginUserRequest
         {
             LogonName = logonName,
-            Password = Utility.EncodePassword(password),
+            Password = Utility.ParsePassword(password, true),
             Browser = Constants.NA,
             IPAddress = Constants.NA,
             WindowsVersion = Constants.NA
