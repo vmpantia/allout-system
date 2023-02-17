@@ -1,7 +1,5 @@
 ﻿using AllOut.Web.Blazor.Models;
 using AllOut.Web.Blazor.Models.enums;
-using AllOut.Web.Blazor.UserControls;
-using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -9,26 +7,6 @@ namespace AllOut.Web.Blazor.Commons
 {
     public class Utility
     {
-        #region User Controls
-        public static List<Button> Buttons
-        {
-            get
-            {
-                return new List<Button>
-                {
-                    new Button { Icon = "oi oi-dashboard", Text = "Dashboard", Page = "" },
-                    new Button { Icon = "oi oi-bar-chart", Text = "Sales", Page = "Sales" },
-                    new Button { Icon = "oi oi-spreadsheet", Text = "Inventory", Page = "Inventory" },
-                    new Button { Icon = "oi oi-cart", Text = "Product", Page = "Product" },
-                    new Button { Icon = "oi oi-tag", Text = "Brand", Page = "Brand" },
-                    new Button { Icon = "oi oi-target", Text = "Category", Page = "Category" },
-                    new Button { Icon = "oi oi-person", Text = "User", Page = "User" },
-                    new Button { Icon = "oi oi-project", Text = "Role", Page = "Role" },
-                };
-            }
-        }
-        #endregion
-
         public static string PermittedObjects(Role role, PermissionType type)
         {
             string allowed = string.Empty;

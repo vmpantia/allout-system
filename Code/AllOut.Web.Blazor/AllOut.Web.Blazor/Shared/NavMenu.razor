@@ -9,14 +9,17 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
-    @foreach (var button in Utility.Buttons)
-    {
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="@button.Page" Match="NavLinkMatch.All">
-                    <span class="@button.Icon" aria-hidden="true"></span> @button.Text
-            </NavLink>
-        </div>
-    }
+        <NavButton Icon="oi oi-dashboard" Text="Dashboard" Page="" />
+        <label class="category">TRANSACTION</label>
+        <NavButton Icon="oi oi-bar-chart" Text="Sales" Page="Sales" />
+        <NavButton Icon="oi oi-spreadsheet" Text="Inventory" Page="Inventory" />
+        <label class="category">MASTER DATA</label>
+        <NavButton Icon="oi oi-cart" Text="Product" Page="Product" />
+        <NavButton Icon="oi oi-tag" Text="Brand" Page="Brand" />
+        <NavButton Icon="oi oi-target" Text="Category" Page="Category" />
+        <label class="category">SETTING</label>
+        <NavButton Icon="oi oi-person" Text="User" Page="User" />
+        <NavButton Icon="oi oi-project" Text="Role" Page="Role" />
     </nav>
 </div>
 
