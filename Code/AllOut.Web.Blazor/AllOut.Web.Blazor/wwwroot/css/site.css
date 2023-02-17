@@ -12,14 +12,13 @@
     margin-top: 10px;
     display: inline-flex;
     width: 100%;
-    font-size: 15px;
     padding: 5px 0px 5px 0px;
     border-top: 1px solid gainsboro;
     border-bottom: 1px solid gainsboro;
 }
     .cstm-actions [type=button] {
         background-color: white;
-        padding: 7px 15px 7px 15px;
+        padding: 5px 15px 5px 15px;
         border-radius: 3px;
         border: none;
     }
