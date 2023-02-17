@@ -1,0 +1,16 @@
+﻿.cstm-page-title {
+    width: 100%;
+    display: inline-flex;
+}
+.cstm-page-title .icon {
+    font-size: 25px;
+    padding: 10px 15px 0px 0px;
+}
+.cstm-page-title .name {
+    font-size: 20px;
+    font-weight: bold;
+}
+.cstm-page-title .desc {
+    margin-top: -5px;
+    font-size: 15px;
+}

@@ -18,7 +18,7 @@
     top: -2px;
 }
 
-.nav-item {
+.nav-item { 
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
 }
@@ -56,7 +56,7 @@
     }
 
     .collapse {
-        /* Never collapse the sidebar for wide screens */
+        /*Never collapse the sidebar for wide screens */
         display: block;
     }
 }
