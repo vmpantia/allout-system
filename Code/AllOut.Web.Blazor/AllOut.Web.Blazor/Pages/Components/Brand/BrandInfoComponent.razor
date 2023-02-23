@@ -1,6 +1,6 @@
 ﻿@inject IHTTPService _http
 
-@if (showBox)
+@if (showModal)
 {
     <!-- Modal -->
     <div class="modal fade show d-block" tabindex="-1" role="dialog">
@@ -19,11 +19,11 @@
                         </div>
                     }
                     <div class="mb-3">
-                        <label for="name" class="form-label">NAME</label>
+                        <label for="name" class="form-label">Name:</label>
                         <input type="text" class="form-control" id="name" disabled="@disableEdit" @bind="brandInfo.Name">
                     </div>
                     <div class="mb-3">
-                        <label for="desc" class="form-label">DESCRIPTION</label>
+                        <label for="desc" class="form-label">Description</label>
                         <textarea class="form-control" id="desc" disabled="@disableEdit" rows="4" @bind="brandInfo.Description"></textarea>
                     </div>
                 </div>
@@ -43,14 +43,16 @@
 }
 
 @code {
-    private Brand brandInfo { get; set; }
-    private bool showBox { get; set; }
+    //Variable for Displaying and Hiding a Modal
+    private bool showModal = false;
 
-    private string icon { get; set; } = string.Empty;
-    private string title { get; set; } = string.Empty;
-    private string description { get; set; } = string.Empty;
+    private Brand brandInfo = new Brand();
 
-    private string errorMessage { get; set; } = string.Empty;
+    private string icon = string.Empty;
+    private string title = string.Empty;
+    private string description = string.Empty;
+
+    private string errorMessage = string.Empty;
 
     private bool disableEdit = false;
 
@@ -59,32 +61,28 @@
 
     public async Task InitializeBrand(Guid? brandID)
     {
-        errorMessage = string.Empty;
-        showBox = true;
+        showModal = true;
+        ResetData();
         StateHasChanged();
 
-        title = string.Format(Constants.TITLE_ADD, Constants.OBJECT_BRAND);
-        description = string.Format(Constants.DESC_ADD, Constants.OBJECT_BRAND);
-        icon = Constants.OI_PLUS;
+        var isAdd = brandID == null;
+        SetTitle(isAdd);
 
-        brandInfo = new Brand();
-        if(brandID != null)
+        if (isAdd)
+            return;
+
+        //Edit Data
+        var response = await _http.GetRequestAsync(Globals.GET_BRAND_BY_ID,
+                                                   Globals.ClientInformation.ClientID,
+                                                   (Guid)brandID!);
+        if (response.Result != ResponseResult.SUCCESS)
         {
-            title = string.Format(Constants.TITLE_EDIT, Constants.OBJECT_BRAND);
-            description = string.Format(Constants.DESC_EDIT, Constants.OBJECT_BRAND);
-            icon = Constants.OI_PENCIL;
-
-            var response = await _http.GetRequestAsync(Globals.GET_BRAND_BY_ID, Globals.ClientInformation.ClientID, (Guid)brandID);
-
-            if (response.Result != ResponseResult.SUCCESS)
-            {
-                errorMessage = response.Data;
-                return;
-            }
-            brandInfo = JsonConvert.DeserializeObject<Brand>(response.Data)!;
-
-            disableEdit = brandInfo.Status != Constants.STATUS_ENABLED_INT;
+            errorMessage = response.Data;
+            return;
         }
+        brandInfo = JsonConvert.DeserializeObject<Brand>(response.Data)!;
+        //Not able to Edit information once the status is NOT Enabled
+        disableEdit = brandInfo.Status != Constants.STATUS_ENABLED_INT;
     }
 
     private async Task Save()
@@ -99,7 +97,7 @@
         var request = new SaveBrandRequest
             {
                 FunctionID = isAdd ? Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN :
-                                        Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN,
+                                     Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN,
                 RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
                 client = Globals.ClientInformation,
                 inputBrand = brandInfo
@@ -115,13 +113,30 @@
             return;
         }
 
-        showBox = false;
+        showModal = false;
+        ResetData();
         await BrandInfoResponse.InvokeAsync(response);
     }
 
     private void Cancel()
     {
-        showBox = false;
+        showModal = false;
+        ResetData();
         BrandInfoResponse.InvokeAsync(null);
+    }
+
+    private void ResetData()
+    {
+        //Reset
+        disableEdit = false;
+        errorMessage = string.Empty;
+        brandInfo = new Brand();
+    }
+
+    private void SetTitle(bool isAdd)
+    {
+        title = string.Format(isAdd ? Constants.TITLE_ADD : Constants.TITLE_EDIT, Constants.OBJECT_BRAND);
+        description = string.Format(isAdd ? Constants.DESC_ADD : Constants.DESC_EDIT, Constants.OBJECT_BRAND);
+        icon = isAdd ? Constants.OI_PLUS : Constants.OI_PENCIL;
     }
 }
