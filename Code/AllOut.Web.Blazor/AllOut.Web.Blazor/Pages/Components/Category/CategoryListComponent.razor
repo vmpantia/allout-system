@@ -2,6 +2,8 @@
 @inject IHTTPService _http
 @inject IToastService _toast
 
+<Loader Show="@showLoader"></Loader>
+
 <Title Icon="oi oi-target"
        Name="Category"
        Description="In this page you can view all the Category that is saved in the system."></Title>
@@ -48,7 +50,7 @@
         </tr>
     </thead>
     <tbody>
-        @if (categoryList.Count == 0)
+        @if(categoryList == null || categoryList.Count == 0)
         {
             <tr>
                 <td colspan="7">
@@ -98,14 +100,19 @@
 <CategoryInfoComponent @ref="categoryInfo" CategoryInfoResponse="GetResponse"></CategoryInfoComponent>
 
 @code {
+    private bool showLoader = false;
     private bool selectAll = false;
     private bool disableOtherButtons = true;
     private CategoryInfoComponent? categoryInfo;
-    private List<Category> categoryList = new List<Category>();
+    private List<Category>? categoryList;
 
     protected override async Task OnInitializedAsync()
     {
+        showLoader = true;
+        //Delay Process for .5 second
+        await Task.Delay(Constants.DELAY_PROCESS);
         await PopulateCategories();
+        showLoader = false;
     }
 
     private async Task PopulateCategories(string? query = null)

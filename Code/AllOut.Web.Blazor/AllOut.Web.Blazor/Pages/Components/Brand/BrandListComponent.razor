@@ -2,6 +2,8 @@
 @inject IHTTPService _http
 @inject IToastService _toast
 
+<Loader Show="@showLoader"></Loader>
+
 <Title Icon="oi oi-tag"
        Name="Brand"
        Description="In this page you can view all the Brand that is saved in the system."></Title>
@@ -48,7 +50,7 @@
         </tr>
     </thead>
     <tbody>
-        @if (brandList.Count == 0)
+        @if(brandList == null || brandList.Count == 0)
         {
             <tr>
                 <td colspan="7">
@@ -98,14 +100,19 @@
 <BrandInfoComponent @ref="brandInfo" BrandInfoResponse="GetResponse"></BrandInfoComponent>
 
 @code {
+    private bool showLoader = false;
     private bool selectAll = false;
     private bool disableOtherButtons = true;
     private BrandInfoComponent? brandInfo;
-    private List<Brand> brandList = new List<Brand>();
+    private List<Brand>? brandList;
 
     protected override async Task OnInitializedAsync()
     {
+        showLoader = true;
+        ////Delay Process for .5 second
+        await Task.Delay(Constants.DELAY_PROCESS);
         await PopulateBrands();
+        showLoader = false;
     }
 
     private async Task PopulateBrands(string? query = null)

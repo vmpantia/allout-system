@@ -3,6 +3,7 @@
     public class Constants
     {
         public const string HASH = "@l10uTxK@lr0T1r35";
+        public const int DELAY_PROCESS = 500;
 
         #region Open Iconic
         public const string OI_PLUS = "oi oi-plus";

@@ -2,6 +2,8 @@
 @inject IHTTPService _http
 @inject IToastService _toast
 
+<Loader Show="@showLoader"></Loader>
+
 <Title Icon="oi oi-tag"
        Name="Product"
        Description="In this page you can view all the Product that is saved in the system."></Title>
@@ -50,10 +52,10 @@
         </tr>
     </thead>
     <tbody>
-        @if (productList.Count == 0)
+        @if(productList == null || productList.Count == 0)
         {
             <tr>
-                <td colspan="7">
+                <td colspan="9">
                     <div class="cstm-no-records">
                         @Constants.ERROR_NO_RECORDS
                     </div>
@@ -103,14 +105,19 @@
 <ProductInfoComponent @ref="productInfo" ProductInfoResponse="GetResponse"></ProductInfoComponent>
 
 @code {
+    private bool showLoader = false;
     private bool selectAll = false;
     private bool disableOtherButtons = true;
     private ProductInfoComponent? productInfo;
-    private List<ProductFullInformation> productList = new List<ProductFullInformation>();
+    private List<ProductFullInformation>? productList;
 
     protected override async Task OnInitializedAsync()
     {
+        showLoader = true;
+        //Delay Process for .5 second
+        await Task.Delay(Constants.DELAY_PROCESS);
         await PopulateProducts();
+        showLoader = false;
     }
 
     private async Task PopulateProducts(string? query = null)
