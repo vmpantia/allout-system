@@ -2,7 +2,7 @@
 
 namespace AllOut.Web.Blazor.Models
 { 
-    public class Category
+    public class Category : Selection
     {
         public Guid CategoryID { get; set; }
         public string Name { get; set; }
