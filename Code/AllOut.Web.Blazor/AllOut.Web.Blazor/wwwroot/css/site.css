@@ -17,15 +17,15 @@
 }
     .cstm-actions [type=button] {
         background-color: white;
-        padding: 7px 10px 7px 10px;
+        padding: 5px 10px 5px 10px;
         border-radius: 3px;
-        border: none;
+        border: 1px solid gainsboro;
     }
     .cstm-actions span {
         padding-right: 5px;
     }
     .cstm-actions [type=button]:hover:enabled {
-        background-color: gainsboro;
+        background-color: whitesmoke;
     }
     .cstm-actions [type=text] {
         border: 1px solid gainsboro;
@@ -92,16 +92,16 @@
         background-color: gainsboro;
     }
 
-.cstm-table-button-edit {
+.cstm-table-button {
     font-size: 11px;
-    background-color: rgb(211, 84, 0, 0.7);
-    color: whitesmoke;
+    background-color: white;
+    color: dimgrey;
     border-radius: 5px;
-    border: 1px solid rgb(211, 84, 0);
+    border: 1px solid dimgrey;
     padding: 3px 9px 3px 9px;
 }
-    .cstm-table-button-edit:hover:enabled {
-        background-color: rgb(230, 126, 34);
+    .cstm-table-button:hover:enabled {
+        background-color: silver;
     }
 
 /*Default Blazor CSS*/
