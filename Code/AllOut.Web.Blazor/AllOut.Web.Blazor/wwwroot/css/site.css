@@ -91,24 +91,21 @@
         background-color: gainsboro;
     }
 
-.cstm-table-button {
-    background-color: white;
-    border-radius: 3px;
-    border: 1px solid gainsboro;
+.cstm-table-button-edit {
+    font-size: 11px;
+    background-color: #fed330;
+    color: white;
+    border-radius: 5px;
+    border: none;
     padding: 3px 9px 3px 9px;
 }
-    .cstm-table-button:hover:enabled {
-        background-color: gainsboro;
-    }
-    .cstm-table-button span {
-        padding-right: 4px;
-        font-size: 12px;
+    .cstm-table-button-edit:hover:enabled {
+        background-color: #f7b731;
     }
 
 
 /*Default Blazor CSS*/
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 h1:focus {
     outline: none;
