@@ -58,19 +58,19 @@
 }
 .cstm-badge-Disabled {
     font-size: 11px;
-    font-weight: bold;
-    color: white;
-    background-color: #c0392b;
-    padding: 3px 5px 3px 5px;
-    border-radius: 3px;
+    color: whitesmoke;
+    background-color: rgb(192,57,43, 0.8);
+    border: 1px solid #C0392B;
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
 }
 .cstm-badge-Enabled {
     font-size: 11px;
-    font-weight: bold;
-    color: white;
-    background-color: #27ae60;
-    padding: 3px 5px 3px 5px;
-    border-radius: 3px;
+    color: whitesmoke;
+    background-color: rgb(39,174,96, 0.8);
+    border: 1px solid #27AE60;
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
 }
 
 .cstm-table {
@@ -94,14 +94,14 @@
 
 .cstm-table-button-edit {
     font-size: 11px;
-    background-color: #fed330;
-    color: white;
+    background-color: rgb(211, 84, 0, 0.7);
+    color: whitesmoke;
     border-radius: 5px;
-    border: none;
+    border: 1px solid rgb(211, 84, 0);
     padding: 3px 9px 3px 9px;
 }
     .cstm-table-button-edit:hover:enabled {
-        background-color: #f7b731;
+        background-color: rgb(230, 126, 34);
     }
 
 /*Default Blazor CSS*/
