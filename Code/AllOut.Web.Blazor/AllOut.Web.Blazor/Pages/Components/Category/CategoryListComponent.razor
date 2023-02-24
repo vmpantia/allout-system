@@ -48,7 +48,7 @@
         </tr>
     </thead>
     <tbody>
-        @if (CategoryList.Count == 0)
+        @if (categoryList.Count == 0)
         {
             <tr>
                 <td colspan="7">
@@ -60,7 +60,7 @@
         }
         else
         {
-            @foreach (var Category in CategoryList)
+            @foreach (var Category in categoryList)
             {
                 <tr>
                     <td class="cstm-column-checkbox">
@@ -95,13 +95,13 @@
     </tbody>
 </table>
 
-<CategoryInfoComponent @ref="CategoryInfo" CategoryInfoResponse="GetResponse"></CategoryInfoComponent>
+<CategoryInfoComponent @ref="categoryInfo" CategoryInfoResponse="GetResponse"></CategoryInfoComponent>
 
 @code {
     private bool selectAll = false;
     private bool disableOtherButtons = true;
-    private CategoryInfoComponent? CategoryInfo;
-    private List<Category> CategoryList = new List<Category>();
+    private CategoryInfoComponent? categoryInfo;
+    private List<Category> categoryList = new List<Category>();
 
     protected override async Task OnInitializedAsync()
     {
@@ -124,8 +124,8 @@
             return;
         }
 
-        CategoryList = JsonConvert.DeserializeObject<List<Category>>(response.Data)!;
-        disableOtherButtons = CategoryList.Where(data => data.isSelect).Count() == 0;
+        categoryList = JsonConvert.DeserializeObject<List<Category>>(response.Data)!;
+        disableOtherButtons = categoryList.Where(data => data.isSelect).Count() == 0;
     }
 
     private async Task SearchChange(ChangeEventArgs e)
@@ -159,7 +159,7 @@
                 FunctionID = functionID,
                 RequestStatus = requestStatus,
                 client = Globals.ClientInformation,
-                IDs = CategoryList.Where(data => data.isSelect)
+                IDs = categoryList.Where(data => data.isSelect)
                                .Select(data => data.CategoryID)
                                .ToList(),
                 newStatus = newStatus
@@ -184,19 +184,19 @@
 
     private void SelectAll(bool value)
     {
-        foreach (var Category in CategoryList)
+        foreach (var Category in categoryList)
         {
             Category.isSelect = value;
         }
 
-        disableOtherButtons = CategoryList.Where(data => data.isSelect).Count() == 0;
+        disableOtherButtons = categoryList.Where(data => data.isSelect).Count() == 0;
     }
 
-    private void Select(Category Category)
+    private void Select(Category category)
     {
-        Category.isSelect = !Category.isSelect;
+        category.isSelect = !category.isSelect;
 
-        disableOtherButtons = CategoryList.Where(data => data.isSelect).Count() == 0;
+        disableOtherButtons = categoryList.Where(data => data.isSelect).Count() == 0;
     }
 
     private void ResetData()
@@ -209,10 +209,10 @@
         ResetData();
         SelectAll(false);
 
-        if (CategoryInfo == null)
+        if (categoryInfo == null)
             return;
 
-        await CategoryInfo.InitializeCategory(id);
+        await categoryInfo.InitializeCategory(id);
     }
 
     private async Task GetResponse(Response res)
