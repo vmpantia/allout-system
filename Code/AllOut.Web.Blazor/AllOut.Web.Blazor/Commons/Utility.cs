@@ -146,8 +146,10 @@ namespace AllOut.Web.Blazor.Commons
                     return string.Format(url, clientID, (Guid)param);
                 case Constants.DT_INT:
                     return string.Format(url, clientID, (int)param);
-                default:
+                case Constants.DT_STRING:
                     return string.Format(url, clientID, (string)param);
+                default:
+                    return string.Format(url, clientID, param);
             }
         }
     }

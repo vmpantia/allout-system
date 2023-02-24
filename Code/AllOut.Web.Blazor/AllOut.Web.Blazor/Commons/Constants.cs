@@ -12,6 +12,7 @@
         #region Data Type in String
         public const string DT_INT = "int";
         public const string DT_GUID = "Guid";
+        public const string DT_STRING = "string";
         #endregion
 
         #region Common Format

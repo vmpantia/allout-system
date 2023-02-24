@@ -11,7 +11,7 @@ namespace AllOut.Api.Models
         public int ReorderPoint { get; set; }
         public decimal Price { get; set; }
         public int Status { get; set; }
-        public DateTime? CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public Guid BrandID { get; set; }
         public string BrandName { get; set; }
