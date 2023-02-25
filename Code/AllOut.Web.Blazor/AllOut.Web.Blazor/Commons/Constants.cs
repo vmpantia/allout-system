@@ -14,6 +14,7 @@
         public const string DT_INT = "int";
         public const string DT_GUID = "Guid";
         public const string DT_STRING = "string";
+        public const string DT_DATETIME = "DateTime";
         #endregion
 
         #region Common Format
