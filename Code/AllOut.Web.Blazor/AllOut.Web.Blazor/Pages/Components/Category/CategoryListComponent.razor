@@ -1,0 +1,233 @@
+﻿@page "/Category"
+@inject IHTTPService _http
+@inject IToastService _toast
+
+<Loader Show="@showLoader"></Loader>
+
+<Title Icon="oi oi-target"
+       Name="Category"
+       Description="In this page you can view all the Category that is saved in the system."></Title>
+
+@*Category Action Buttons*@
+<div class="cstm-actions">
+    <div class="buttons">
+        <button type="button" @onclick="() => ShowInfo()">
+            <span class="oi oi-plus" aria-hidden="true"></span>
+            Add
+        </button>
+        <button type="button" disabled="@disableOtherButtons" @onclick="() => EnableCategories()">
+            <span class="oi oi-chevron-top" aria-hidden="true"></span>
+            Enable
+        </button>
+        <button type="button" disabled="@disableOtherButtons" @onclick="() => DisableCategories()">
+            <span class="oi oi-chevron-bottom" aria-hidden="true"></span>
+            Disable
+        </button>
+        <button type="button" disabled="@disableOtherButtons" @onclick="() => DeleteCategories()">
+            <span class="oi oi-trash" aria-hidden="true"></span>
+            Delete
+        </button>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Search Category" @oninput="SearchChange" />
+    </div>
+</div>
+
+@*Category List*@
+<table class="cstm-table">
+    <thead>
+        <tr>
+            @*Select Checkbox*@
+            <th class="cstm-column-checkbox">
+                <input class="form-check-input" type="checkbox" checked="@selectAll" @onclick="() => SelectAllChange()">
+            </th>
+            <th>Name</th>
+            <th>Description</th>
+            <th class="cstm-column-status">Status</th>
+            <th class="cstm-column-date">Created Date</th>
+            <th class="cstm-column-date">Modified Date</th>
+            <th class="cstm-column-button">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(categoryList == null || categoryList.Count == 0)
+        {
+            <tr>
+                <td colspan="7">
+                    <div class="cstm-no-records">
+                        @Constants.ERROR_NO_RECORDS
+                    </div>
+                </td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var Category in categoryList)
+            {
+                <tr>
+                    <td class="cstm-column-checkbox">
+                        <input class="form-check-input" type="checkbox" checked="@Category.isSelect" @onclick="() => Select(Category)">
+                    </td>
+                    <td>@Category.Name</td>
+                    <td>@Category.Description</td>
+                    @*Status Column*@
+                    <td class="cstm-column-status">
+                        <span class="cstm-badge-@Utility.ConvertStatusToString(Category.Status)">
+                        @Utility.ConvertStatusToString(Category.Status)
+                        </span>
+                    </td>
+                    <td class="cstm-column-date">@Category.CreatedDate.ToString(Constants.DATE_FORMAT)</td>
+                    @*Modified Date Column*@
+                    <td class ="cstm-column-date">
+                        @if(Category.ModifiedDate == null) {
+                            @Constants.NA
+                        }
+                        else {
+                            @(((DateTime)Category.ModifiedDate).ToString(Constants.DATE_FORMAT))
+                        }
+                    </td>
+                    <td class="cstm-column-button">
+                        <button class="cstm-table-button" title="Edit" @onclick="() => ShowInfo(Category.CategoryID)">
+                            <span class="oi oi-pencil" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<CategoryInfoComponent @ref="categoryInfo" CategoryInfoResponse="GetResponse"></CategoryInfoComponent>
+
+@code {
+    private bool showLoader = false;
+    private bool selectAll = false;
+    private bool disableOtherButtons = true;
+    private CategoryInfoComponent? categoryInfo;
+    private List<Category>? categoryList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        showLoader = true;
+        //Delay Process for .5 second
+        await Task.Delay(Constants.DELAY_PROCESS);
+        await PopulateCategories();
+        showLoader = false;
+    }
+
+    private async Task PopulateCategories(string? query = null)
+    {
+        ResetData();
+
+        Response response;
+        if (string.IsNullOrEmpty(query))
+            response = await _http.GetRequestAsync(Globals.GET_CATEGORIES, Globals.ClientInformation.ClientID);
+        else
+            response = await _http.GetRequestAsync(Globals.GET_CATEGORIES_BY_QUERY, Globals.ClientInformation.ClientID, query);
+
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            _toast.ShowError(response.Data);
+            return;
+        }
+
+        categoryList = JsonConvert.DeserializeObject<List<Category>>(response.Data)!;
+        disableOtherButtons = categoryList.Where(data => data.isSelect).Count() == 0;
+    }
+
+    private async Task SearchChange(ChangeEventArgs e)
+    {
+        var query = string.Empty;
+        if (e.Value != null)
+            query = (string)e.Value;
+
+        await PopulateCategories(query);
+    }
+
+    private async Task EnableCategories()
+    {
+        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_CATEGORY_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_ENABLED_INT);
+    }
+
+    private async Task DisableCategories()
+    {
+        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_CATEGORY_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_DISABLED_INT);
+    }
+
+    private async Task DeleteCategories()
+    {
+        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_CATEGORY_BY_ADMIN, Constants.REQUEST_STATUS_POST_DELETE, Constants.STATUS_DELETION_INT);
+    }
+
+    private async Task UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
+    {
+        var request = new UpdateStatusByGUIDsRequest
+            {
+                FunctionID = functionID,
+                RequestStatus = requestStatus,
+                client = Globals.ClientInformation,
+                IDs = categoryList.Where(data => data.isSelect)
+                               .Select(data => data.CategoryID)
+                               .ToList(),
+                newStatus = newStatus
+            };
+
+        var response = await _http.PostRequestAsync(Globals.POST_UPDATE_CATEGORY_STATUS_BY_IDS, request);
+
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            _toast.ShowError(response.Data);
+            return;
+        }
+        await PopulateCategories();
+        _toast.ShowSuccess(response.Data);
+    }
+
+    private void SelectAllChange()
+    {
+        selectAll = !selectAll;
+        SelectAll(selectAll);
+    }
+
+    private void SelectAll(bool value)
+    {
+        foreach (var Category in categoryList)
+        {
+            Category.isSelect = value;
+        }
+
+        disableOtherButtons = categoryList.Where(data => data.isSelect).Count() == 0;
+    }
+
+    private void Select(Category category)
+    {
+        category.isSelect = !category.isSelect;
+
+        disableOtherButtons = categoryList.Where(data => data.isSelect).Count() == 0;
+    }
+
+    private void ResetData()
+    {
+        selectAll = false;
+    }
+
+    private async Task ShowInfo(Guid? id = null)
+    {
+        ResetData();
+        SelectAll(false);
+
+        if (categoryInfo == null)
+            return;
+
+        await categoryInfo.InitializeCategory(id);
+    }
+
+    private async Task GetResponse(Response res)
+    {
+        if(res != null && res.Result == ResponseResult.SUCCESS)
+        {
+            await PopulateCategories();
+            _toast.ShowSuccess(res.Data);
+        }
+    }
+}

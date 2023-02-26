@@ -1,0 +1,183 @@
+﻿@page "/Brand"
+@inject IHTTPService _http
+@inject IToastService _toast
+
+<Loader Show="@showLoader"></Loader>
+
+<Title Icon="oi oi-tag"
+       Name="Brand"
+       Description="In this page you can view all the Brand that is saved in the system."></Title>
+
+@*Brand Action Buttons*@
+<div class="cstm-actions">
+    <div class="buttons">
+        <button type="button" @onclick="() => ShowInfo()">
+            <span class="oi oi-plus" aria-hidden="true"></span>
+            Add
+        </button>
+        <button type="button" disabled="@disableOtherButtons" @onclick="() => EnableBrands()">
+            <span class="oi oi-chevron-top" aria-hidden="true"></span>
+            Enable
+        </button>
+        <button type="button" disabled="@disableOtherButtons" @onclick="() => DisableBrands()">
+            <span class="oi oi-chevron-bottom" aria-hidden="true"></span>
+            Disable
+        </button>
+        <button type="button" disabled="@disableOtherButtons" @onclick="() => DeleteBrands()">
+            <span class="oi oi-trash" aria-hidden="true"></span>
+            Delete
+        </button>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Search Brand" @oninput="SearchChange" />
+    </div>
+</div>
+
+<Grid Items="brandList" TItem="Brand">
+    <Columns>
+        <Column Name="isSelect" ColType="ColumnType.CHECKBOX"></Column>
+        <Column Name="Name" Title="Name" ColType="ColumnType.TEXT"></Column>
+        <Column Name="Description" Title="Description" ColType="ColumnType.TEXT"></Column>
+        <Column Name="Status" Title="Status" ColType="ColumnType.TEXT"></Column>
+        <Column Name="CreatedDate" Title="Created Date" ColType="ColumnType.TEXT"></Column>
+        <Column Name="ModifiedDate" Title="Modified Date" ColType="ColumnType.TEXT"></Column>
+    </Columns>
+</Grid>
+
+<BrandInfoComponent @ref="brandInfo" BrandInfoResponse="GetResponse"></BrandInfoComponent>
+
+@code {
+
+
+    private bool showLoader = false;
+    private bool selectAll = false;
+    private bool disableOtherButtons = true;
+    private BrandInfoComponent? brandInfo;
+
+    private List<Brand>? brandList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        showLoader = true;
+        ////Delay Process for .5 second
+        await Task.Delay(Constants.DELAY_PROCESS);
+        await PopulateBrands();
+        showLoader = false;
+    }
+
+    private async Task PopulateBrands(string? query = null)
+    {
+        ResetData();
+
+        Response response;
+        if (string.IsNullOrEmpty(query))
+            response = await _http.GetRequestAsync(Globals.GET_BRANDS, Globals.ClientInformation.ClientID);
+        else
+            response = await _http.GetRequestAsync(Globals.GET_BRANDS_BY_QUERY, Globals.ClientInformation.ClientID, query);
+
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            _toast.ShowError(response.Data);
+            return;
+        }
+
+        brandList = JsonConvert.DeserializeObject<List<Brand>>(response.Data)!;
+        disableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
+    }
+
+    private async Task SearchChange(ChangeEventArgs e)
+    {
+        var query = string.Empty;
+        if (e.Value != null)
+            query = (string)e.Value;
+
+        await PopulateBrands(query);
+    }
+
+    private async Task EnableBrands()
+    {
+        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_ENABLED_INT);
+    }
+
+    private async Task DisableBrands()
+    {
+        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_DISABLED_INT);
+    }
+
+    private async Task DeleteBrands()
+    {
+        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN, Constants.REQUEST_STATUS_POST_DELETE, Constants.STATUS_DELETION_INT);
+    }
+
+    private async Task UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
+    {
+        var request = new UpdateStatusByGUIDsRequest
+            {
+                FunctionID = functionID,
+                RequestStatus = requestStatus,
+                client = Globals.ClientInformation,
+                IDs = brandList.Where(data => data.isSelect)
+                               .Select(data => data.BrandID)
+                               .ToList(),
+                newStatus = newStatus
+            };
+
+        var response = await _http.PostRequestAsync(Globals.POST_UPDATE_BRAND_STATUS_BY_IDS, request);
+
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            _toast.ShowError(response.Data);
+            return;
+        }
+        await PopulateBrands();
+        _toast.ShowSuccess(response.Data);
+    }
+
+    private void SelectAllChange()
+    {
+        selectAll = !selectAll;
+        SelectAll(selectAll);
+    }
+
+    private void SelectAll(bool value)
+    {
+        foreach (var brand in brandList)
+        {
+            brand.isSelect = value;
+        }
+
+        disableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
+    }
+
+    private void Select(Brand brand)
+    {
+        brand.isSelect = !brand.isSelect;
+
+        disableOtherButtons = brandList.Where(data => data.isSelect).Count() == 0;
+    }
+
+    private void ResetData()
+    {
+        selectAll = false;
+    }
+
+    private async Task ShowInfo(Guid? id = null)
+    {
+        ResetData();
+        SelectAll(false);
+
+        if (brandInfo == null)
+            return;
+
+        await brandInfo.InitializeBrand(id);
+    }
+
+    private async Task GetResponse(Response res)
+    {
+        if(res != null && res.Result == ResponseResult.SUCCESS)
+        {
+            await PopulateBrands();
+            _toast.ShowSuccess(res.Data);
+        }
+    }
+}

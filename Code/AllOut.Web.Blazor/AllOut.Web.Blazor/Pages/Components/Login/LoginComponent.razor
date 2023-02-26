@@ -1,0 +1,63 @@
+﻿@page "/Login"
+@layout LoginLayout
+@inject IHTTPService _http
+@inject NavigationManager nav
+
+<section>
+    <div class="login-container">
+        <div class="title">
+            Login your Account
+        </div>
+        <!-- Email input -->
+        <div class="field">
+            <label for="logonName">Logon Name</label>
+            <input type="text" id="logonName" placeholder="Enter Username or Email Address" @bind="logonName" />
+        </div>
+
+        <!-- Password input -->
+        <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter Password" @bind="password" />
+        </div>
+
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <label class="errormsg">@errorMessage</label>
+        }
+        <div class="action">
+            <button @onclick="() => Login()">Login</button>
+            <label>or</label>
+            <button @onclick="() => Login()">Sign up</button>
+        </div>
+    </div>
+</section>
+
+
+@code {
+
+    private string logonName { get; set; } = string.Empty;
+    private string password { get; set; } = string.Empty;
+    private string errorMessage { get; set; } = string.Empty;
+
+    private async Task Login()
+    {
+        var loginUerRequest = new LoginUserRequest
+        {
+            LogonName = logonName,
+            Password = Utility.ParsePassword(password, true),
+            Browser = Constants.NA,
+            IPAddress = Constants.NA,
+            WindowsVersion = Constants.NA
+        };
+
+        var response = await _http.PostRequestAsync(Globals.POST_LOGIN_USER, loginUerRequest);
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            errorMessage = response.Data;
+            return;
+        }
+
+        Globals.ClientInformation = JsonConvert.DeserializeObject<Client>(response.Data)!;
+        nav.NavigateTo("/");
+    }
+}
