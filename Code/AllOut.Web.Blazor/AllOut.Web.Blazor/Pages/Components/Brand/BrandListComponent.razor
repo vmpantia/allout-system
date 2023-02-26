@@ -45,7 +45,8 @@
         <Column Name="CreatedDate" Label="Created Date" />
         <Column Name="ModifiedDate" Label="Modified Date" />
         <Column Name="Action" Label="Action">
-            <button class="cstm-table-button" title="Edit" @onclick="() => ShowInfo(context.BrandID)">
+            <button class="cstm-table-button" title="Edit" 
+                    @onclick="() => ShowInfo(context.BrandID)">
                 <span class="oi oi-pencil" aria-hidden="true"></span>
             </button>
         </Column>
