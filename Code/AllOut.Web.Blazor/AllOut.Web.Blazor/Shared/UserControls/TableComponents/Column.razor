@@ -1,66 +1,69 @@
 ﻿@typeparam TItem
 
+@*Set Column Headers*@
 @if(Item == null) {
-    if(ColType == ColumnType.CHECKBOX)
-    {
-        <th class="@css">
-            <input class="form-check-input" type="checkbox">
-        </th>
-        return;
-    }
-    <th class="@css">@Title</th>
+    <th class="@css">
+        @switch (ColType)
+        {
+            case ColumnType.CHECKBOX:
+                <input class="form-check-input" type="checkbox">
+                break;
+            default:
+                @Title
+                break;
+        }
+    </th>
 }
+@*Set Column Data*@
 else {
     var property = typeof(TItem).GetProperty(Name);
 
-    //Check if the property is NULL
+    //Return NULL 
     if(property == null)
         return;
 
     //Check if the property value is NULL
     var value = property.GetValue(Item);
+    
+    <td class="@css">
+        @switch (ColType)
+        {
+            case ColumnType.CHECKBOX:
+                    <input class="form-check-input" type="checkbox" checked="@value">
+                break;
 
-    if(ColType == ColumnType.CHECKBOX)
-    {
-        if (value == null)
-            return;
+            case ColumnType.TEXT:
+                var val = value ?? Constants.NA;
+                switch (Name)
+                {
+                    //Common Properties Checking
+                    #region Status Property Name
+                    case "Status":
+                        var status = @Utility.ConvertStatusToString((int)val);
+                            <span class="cstm-badge-@status">
+                                @status
+                            </span>
+                            break;
+                        #endregion
 
-        <td class="@css">
-            <input class="form-check-input" type="checkbox" checked="@((bool)value)">
-        </td>
-        return;
-    }
+                    #region Date Property Name
+                    case "CreatedDate":
+                    case "ModifiedDate":
+                        var date = val.ToString() == Constants.NA ? 
+                                   (string)val : ((DateTime)val).ToString(Constants.DATE_FORMAT);
 
-    if (value == null)
-    {
-        <td class="@css">@Constants.NA</td>
-        return;
-    }
+                        @date.ToString();
+                        break;
+                    #endregion
 
-    //Property Name Checking
-    switch(Name)
-    {
-        case "Status":
-            var status = @Utility.ConvertStatusToString((int)value);
-            <td class="@css">
-                <span class="cstm-badge-@status">
-                    @status
-                </span>
-            </td>
-            break;
-        case "CreatedDate":
-        case "ModifiedDate":
-            if (value.GetType().Name == "DateTime") {
-                <td class="@css">@(((DateTime)value).ToString(Constants.DATE_FORMAT))</td>
-            }
-            else {
-                <td class="@css">@Constants.NA</td>
-            }
-            break;
-        default:
-            <td class="@css">@value.ToString()</td>
-            break;
-    }
+                    default:
+                        var data = val.ToString();
+                        @data
+                        break;
+                }
+                break;
+        }
+    </td>
 }
 
 @code {
