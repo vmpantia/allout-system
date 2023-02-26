@@ -8,9 +8,9 @@
         </tr> 
     </thead>
     <tbody>
-        @if (Items != null && Items.Count == 0)
+        @if (DataSource != null && DataSource.Count == 0)
         {
-            var properties = Items.GetType().GetProperties().Count();
+            var properties = DataSource.GetType().GetProperties().Count();
             <tr>
                 <td colspan="@properties">
                     <div class="cstm-no-records">
@@ -19,13 +19,13 @@
                 </td>
             </tr>
         }
-        else if(Items != null)
+        else if (DataSource != null)
         {
-            @foreach (var item in Items)
+            @foreach (var data in DataSource)
             {
-                <CascadingValue Value="item">
+                <CascadingValue Value="data">
                     <tr>
-                        @Columns(item)
+                        @Columns(data)
                     </tr>
                 </CascadingValue>
             }
@@ -34,7 +34,7 @@
 </table>
 @code {
     [Parameter]
-    public List<TItem> Items { get; set; }
+    public List<TItem> DataSource { get; set; }
 
     [Parameter]
     public RenderFragment<TItem>? Columns { get; set; }
