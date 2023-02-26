@@ -35,14 +35,20 @@
 
 <Grid Items="brandList" TItem="Brand">
     <Columns>
-        <Column Name="isSelect" Label="" >
-            <input class="form-check-input" type="checkbox" checked="@context.isSelect">
+        <Column Name="Select">
+            <input class="form-check-input" type="checkbox" checked="@context.isSelect" 
+                   @onclick="() => Select(context)">
         </Column>
-        <Column Name="Name" Label="Name"/>
+        <Column Name="Name" Label="Name" />
         <Column Name="Description" Label="Description" />
-        <Column Name="Status" Label="Status"></Column>
-        <Column Name="CreatedDate" Label="Created Date"></Column>
-        <Column Name="ModifiedDate" Label="Modified Date"></Column>
+        <Column Name="Status" Label="Status" />
+        <Column Name="CreatedDate" Label="Created Date" />
+        <Column Name="ModifiedDate" Label="Modified Date" />
+        <Column Name="Action" Label="Action">
+            <button class="cstm-table-button" title="Edit" @onclick="() => ShowInfo(context.BrandID)">
+                <span class="oi oi-pencil" aria-hidden="true"></span>
+            </button>
+        </Column>
     </Columns>
 </Grid>
 
