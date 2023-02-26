@@ -5,7 +5,7 @@
     <thead>
         <tr>
             @Columns(default(TItem))
-        </tr>
+        </tr> 
     </thead>
     <tbody>
         @if (Items != null && Items.Count == 0)
@@ -33,7 +33,6 @@
     </tbody>
 </table>
 @code {
-
     [Parameter]
     public List<TItem> Items { get; set; }
 

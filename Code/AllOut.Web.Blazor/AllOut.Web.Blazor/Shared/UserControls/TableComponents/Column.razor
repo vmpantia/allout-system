@@ -1,69 +1,14 @@
 ﻿@typeparam TItem
 
-@*Set Column Headers*@
-@if(Item == null) {
-    <th class="@css">
-        @switch (ColType)
-        {
-            case ColumnType.CHECKBOX:
-                <input class="form-check-input" type="checkbox">
-                break;
-            default:
-                @Title
-                break;
-        }
-    </th>
+@if(@Item == null){
+    <th>@Label</th>
 }
-@*Set Column Data*@
-else {
+else if(ChildContent == null) {
     var property = typeof(TItem).GetProperty(Name);
-
-    //Return NULL 
-    if(property == null)
-        return;
-
-    //Check if the property value is NULL
-    var value = property.GetValue(Item);
-    
-    <td class="@css">
-        @switch (ColType)
-        {
-            case ColumnType.CHECKBOX:
-                    <input class="form-check-input" type="checkbox" checked="@value">
-                break;
-
-            case ColumnType.TEXT:
-                var val = value ?? Constants.NA;
-                switch (Name)
-                {
-                    //Common Properties Checking
-                    #region Status Property Name
-                    case "Status":
-                        var status = @Utility.ConvertStatusToString((int)val);
-                            <span class="cstm-badge-@status">
-                                @status
-                            </span>
-                            break;
-                        #endregion
-
-                    #region Date Property Name
-                    case "CreatedDate":
-                    case "ModifiedDate":
-                        var date = val.ToString() == Constants.NA ? 
-                                   (string)val : ((DateTime)val).ToString(Constants.DATE_FORMAT);
-
-                        @date.ToString();
-                        break;
-                    #endregion
-
-                    default:
-                        var data = val.ToString();
-                        @data
-                        break;
-                }
-                break;
-        }
-    </td>
+    <td>@property.GetValue(Item).ToString()</td>
+}
+else {
+    <td>@ChildContent</td>
 }
 
 @code {
@@ -71,29 +16,11 @@ else {
     public string Name { get; set; }
 
     [Parameter]
-    public string Title { get; set; }
-
-    [Parameter]
-    public ColumnType ColType { get; set; }
+    public string Label { get; set; }
 
     [CascadingParameter]
     public TItem Item { get; set; }
 
-    public string css {
-        get
-        {
-            switch (Name)
-            {
-                case "isSelect":
-                    return "cstm-column-checkbox";
-                case "Status":
-                    return "cstm-column-status";
-                case "CreatedDate":
-                case "ModifiedDate":
-                    return "cstm-column-date";
-                default:
-                    return string.Empty;
-            }
-        }
-    }
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
 }
