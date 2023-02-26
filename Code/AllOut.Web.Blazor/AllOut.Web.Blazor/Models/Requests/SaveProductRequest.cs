@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AllOut.Web.Blazor.Models.Requests
+namespace AllOut.Web.Blazor.Models
 {
     public class SaveProductRequest : RequestBase
     {

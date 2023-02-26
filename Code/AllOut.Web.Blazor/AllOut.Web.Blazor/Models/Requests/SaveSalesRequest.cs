@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AllOut.Web.Blazor.Models.Requests
+namespace AllOut.Web.Blazor.Models
 { 
     public class SaveSalesRequest : RequestBase
     {

@@ -1,4 +1,5 @@
-﻿namespace AllOut.Web.Blazor.Models.Requests
+﻿
+namespace AllOut.Web.Blazor.Models
 {
     public class SaveRoleRequest : RequestBase
     {

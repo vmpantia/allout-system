@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace AllOut.Web.Blazor.Models
-{ 
+{
     public class ProductFullInformation : Selection
     {
         public Guid ProductID { get; set; }
@@ -17,6 +17,6 @@ namespace AllOut.Web.Blazor.Models
         public Guid CategoryID { get; set; }
         public string CategoryName { get; set; }
         public int Stock { get; set; }
-        public bool ReorderState { get; set; }  
+        public bool ReorderState { get; set; }
     }
 }

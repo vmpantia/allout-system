@@ -1,4 +1,5 @@
-﻿namespace AllOut.Web.Blazor.Models.enums.UserControls
+﻿
+namespace AllOut.Web.Blazor.Models.enums
 {
     public enum ColumnType
     {
