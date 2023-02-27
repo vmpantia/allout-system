@@ -1,8 +1,14 @@
 ﻿@typeparam TItem
 
-@if(Item == null){
+@if(Item == null) {
     <th class="@css">
-        @Label
+        @if (CheckBoxHeader)
+        {
+            <input class="form-check-input" type="checkbox" checked="@CheckBoxValue" @onclick="() => CheckBoxClick()">
+        }
+        else {
+            @Label
+        }
     </th>
 }
 else if(ChildContent == null) {
@@ -69,4 +75,20 @@ else {
             }
         }
     }
+
+    [Parameter]
+    public bool CheckBoxHeader { get; set; }
+
+    [Parameter]
+    public bool CheckBoxValue { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> CheckBoxStateChanged { get; set; }
+
+    private async Task CheckBoxClick()
+    {
+        CheckBoxValue = !CheckBoxValue;
+        await CheckBoxStateChanged.InvokeAsync(CheckBoxValue);
+    }
+
 }
