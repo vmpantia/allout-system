@@ -1,0 +1,67 @@
+﻿<div class="cstm-actions">
+    <div class="buttons">
+        <button type="button" @onclick="() => AddButtonClick()">
+            <span class="oi oi-plus" aria-hidden="true"></span>
+            Add
+        </button>
+        <button type="button" disabled="@StatusButtonValue" @onclick="() => EnableStatusButtonClick()">
+            <span class="oi oi-chevron-top" aria-hidden="true"></span>
+            Enable
+        </button>
+        <button type="button" disabled="@StatusButtonValue" @onclick="() => DisableStatusButtonClick()">
+            <span class="oi oi-chevron-bottom" aria-hidden="true"></span>
+            Disable
+        </button>
+        <button type="button" disabled="@StatusButtonValue" @onclick="() => DeleteStatusButtonClick()">
+            <span class="oi oi-trash" aria-hidden="true"></span>
+            Delete
+        </button>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Search Brand" @oninput="SearchChange" />
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool StatusButtonValue { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid> AddButtonClicked { get; set; }
+
+    [Parameter]
+    public EventCallback<int> StatusButtonsClicked { get; set; }
+
+    [Parameter]
+    public EventCallback<string> SearchValueChanged { get; set; }
+
+    private async Task SearchChange(ChangeEventArgs e)
+    {
+        var query = string.Empty;
+        if (e.Value != null)
+            query = (string)e.Value;
+
+        await SearchValueChanged.InvokeAsync(query);
+    }
+
+    private async Task AddButtonClick()
+    {
+        await AddButtonClicked.InvokeAsync(Guid.Empty);
+    }
+
+    private async Task EnableStatusButtonClick()
+    {
+        await StatusButtonsClicked.InvokeAsync(Constants.STATUS_ENABLED_INT);
+    }
+
+    private async Task DisableStatusButtonClick()
+    {
+        await StatusButtonsClicked.InvokeAsync(Constants.STATUS_DISABLED_INT);
+    }
+
+    private async Task DeleteStatusButtonClick()
+    {
+        await StatusButtonsClicked.InvokeAsync(Constants.STATUS_DELETION_INT);
+    }
+
+}

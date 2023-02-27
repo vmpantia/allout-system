@@ -59,13 +59,13 @@
     [Parameter]
     public EventCallback<Response> BrandInfoResponse { get; set; }
 
-    public async Task InitializeBrand(Guid? brandID)
+    public async Task InitializeBrand(Guid brandID)
     {
         showModal = true;
         ResetData();
         StateHasChanged();
 
-        var isAdd = brandID == null;
+        var isAdd = brandID == Guid.Empty;
         SetTitle(isAdd);
 
         if (isAdd)
