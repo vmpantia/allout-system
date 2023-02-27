@@ -12,7 +12,7 @@
 
 <Actions StatusButtonValue="@statusButtons" 
          AddButtonClicked="ShowInfo"
-         StatusButtonsClicked="StatusButtonClick"
+         StatusButtonsClicked="StatusButtonClicked"
          SearchValueChanged="SearchChanged" />
 
 <Table DataSource="brandList" TItem="Brand" ColumnCount="7">
@@ -68,14 +68,13 @@
         await PopulateBrands(query);
     }
 
-    private async Task StatusButtonClick(int value)
+    private async Task StatusButtonClicked(int value)
     {
         var functionID = string.Empty;
         switch (value)
         {
             case Constants.STATUS_ENABLED_INT:
                 functionID = Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN;
-
                 break;
             case Constants.STATUS_DISABLED_INT:
                 functionID = Constants.FUNCTION_ID_BULK_CHANGE_BRAND_BY_ADMIN;
@@ -84,7 +83,7 @@
                 functionID = Constants.FUNCTION_ID_BULK_DELETE_BRAND_BY_ADMIN;
                 break;
         }
-        await UpdateStatusByIDs(functionID, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_DISABLED_INT);
+        await UpdateStatusByIDs(functionID, Constants.REQUEST_STATUS_COMPLETED, value);
     }
 
     private async Task GetResponse(Response res)
