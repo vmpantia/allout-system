@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<Table DataSource="brandList" TItem="Brand">
+<Table DataSource="brandList" TItem="Brand" ColumnCount="7">
     <Columns>
         <Column Name="Select" CheckBoxHeader="true" CheckBoxValue="@selectAllValue" CheckBoxStateChanged="SelectAllChanged">
             <input class="form-check-input" type="checkbox" checked="@context.isSelect" 

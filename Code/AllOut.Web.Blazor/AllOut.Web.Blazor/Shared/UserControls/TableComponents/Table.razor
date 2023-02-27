@@ -8,18 +8,17 @@
         </tr> 
     </thead>
     <tbody>
-        @if (DataSource != null && DataSource.Count == 0)
+        @if (DataSource == null || DataSource.Count == 0)
         {
-            var properties = DataSource.GetType().GetProperties().Count();
             <tr>
-                <td colspan="@properties">
+                <td colspan="@ColumnCount">
                     <div class="cstm-no-records">
                         @Constants.ERROR_NO_RECORDS
                     </div>
                 </td>
             </tr>
         }
-        else if (DataSource != null)
+        else
         {
             @foreach (var data in DataSource)
             {
@@ -35,6 +34,9 @@
 @code {
     [Parameter]
     public List<TItem> DataSource { get; set; }
+
+    [Parameter]
+    public int ColumnCount { get; set; }
 
     [Parameter]
     public RenderFragment<TItem>? Columns { get; set; }
