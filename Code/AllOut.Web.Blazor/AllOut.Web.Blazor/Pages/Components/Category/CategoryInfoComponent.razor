@@ -65,7 +65,7 @@
         ResetData();
         StateHasChanged();
 
-        var isAdd = CategoryID == null;
+        var isAdd = CategoryID == Guid.Empty;
         SetTitle(isAdd);
 
         if (isAdd)

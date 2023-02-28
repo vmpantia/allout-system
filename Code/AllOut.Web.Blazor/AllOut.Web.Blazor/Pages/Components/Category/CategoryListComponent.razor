@@ -8,36 +8,16 @@
        Name="Category"
        Description="In this page you can view all the Category that is saved in the system."></Title>
 
-@*Category Action Buttons*@
-<div class="cstm-actions">
-    <div class="buttons">
-        <button type="button" @onclick="() => ShowInfo()">
-            <span class="oi oi-plus" aria-hidden="true"></span>
-            Add
-        </button>
-        <button type="button" disabled="@statusButtons" @onclick="() => EnableCategories()">
-            <span class="oi oi-chevron-top" aria-hidden="true"></span>
-            Enable
-        </button>
-        <button type="button" disabled="@statusButtons" @onclick="() => DisableCategories()">
-            <span class="oi oi-chevron-bottom" aria-hidden="true"></span>
-            Disable
-        </button>
-        <button type="button" disabled="@statusButtons" @onclick="() => DeleteCategories()">
-            <span class="oi oi-trash" aria-hidden="true"></span>
-            Delete
-        </button>
-    </div>
-    <div class="search">
-        <input type="text" placeholder="Search Category" @oninput="SearchChange" />
-    </div>
-</div>
+<Actions StatusButtonValue="@statusButtons"
+         AddButtonClicked="ShowInfo"
+         StatusButtonsClicked="StatusButtonClicked"
+         SearchValueChanged="SearchChanged" />
 
 <Table DataSource="categoryList" TItem="Category" ColumnCount="7">
     <Columns>
         <Column Name="Select" CheckBoxHeader="true" CheckBoxValue="@selectAllValue" CheckBoxStateChanged="SelectAllChanged">
             <input class="form-check-input" type="checkbox" checked="@context.isSelect"
-                   @onclick="() => Select(context)">
+                   @onclick="() => SelectChanged(context)">
         </Column>
         <Column Name="Name" Label="Name" />
         <Column Name="Description" Label="Description" />
@@ -73,31 +53,30 @@
         showLoader = false;
     }
 
-    private async Task SearchChange(ChangeEventArgs e)
+    private async Task SearchChanged(string query)
     {
-        var query = string.Empty;
-        if (e.Value != null)
-            query = (string)e.Value;
-
         await PopulateCategories(query);
     }
 
-    private async Task EnableCategories()
+    private async Task StatusButtonClicked(int value)
     {
-        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_CATEGORY_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_ENABLED_INT);
+        var functionID = string.Empty;
+        switch (value)
+        {
+            case Constants.STATUS_ENABLED_INT:
+                functionID = Constants.FUNCTION_ID_BULK_CHANGE_CATEGORY_BY_ADMIN;
+                break;
+            case Constants.STATUS_DISABLED_INT:
+                functionID = Constants.FUNCTION_ID_BULK_CHANGE_CATEGORY_BY_ADMIN;
+                break;
+            default:
+                functionID = Constants.FUNCTION_ID_BULK_DELETE_CATEGORY_BY_ADMIN;
+                break;
+        }
+        await UpdateStatusByIDs(functionID, Constants.REQUEST_STATUS_COMPLETED, value);
     }
 
-    private async Task DisableCategories()
-    {
-        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_CHANGE_CATEGORY_BY_ADMIN, Constants.REQUEST_STATUS_COMPLETED, Constants.STATUS_DISABLED_INT);
-    }
-
-    private async Task DeleteCategories()
-    {
-        await UpdateStatusByIDs(Constants.FUNCTION_ID_BULK_DELETE_CATEGORY_BY_ADMIN, Constants.REQUEST_STATUS_POST_DELETE, Constants.STATUS_DELETION_INT);
-    }
-
-    private async Task ShowInfo(Guid? id = null)
+    private async Task ShowInfo(Guid id)
     {
         SelectAllChanged(false);
 
@@ -116,7 +95,7 @@
         }
     }
 
-    private void Select(Category category)
+    private void SelectChanged(Category category)
     {
         category.isSelect = !category.isSelect;
         EnableStatusButtons();
