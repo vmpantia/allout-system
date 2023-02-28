@@ -104,6 +104,27 @@
         background-color: silver;
     }
 
+.cstm-card {
+    margin-top: 20px;
+    display: inline-flex;
+    border: 1px solid gainsboro;
+}
+    .cstm-card .information {
+        padding: 10px 20px 10px 20px;
+    }
+    .cstm-card .information .object{
+        font-size: 15px;
+        font-weight: bold;
+    }
+    .cstm-card .information .count {
+        font-size: 30px;
+    }
+    .cstm-card .icon {
+        padding: 10px 20px 10px 20px;
+        font-size: 50px;
+    }
+
+
 /*Default Blazor CSS*/
 html, body {
 }

@@ -1,0 +1,33 @@
+﻿@page "/"
+
+<Loader Show="@showLoader"></Loader>
+
+<Title Icon="oi oi-dashboard"
+       Name="Dashboard"
+       Description="In this page you can view the summary of data that is stored in system."></Title>
+
+<div class="cstm-card">
+    <div class="information">
+        <div class="object">
+            Product
+        </div>
+        <div class="count">
+            1000000
+        </div>
+    </div>
+    <div class="icon">
+        <span class="oi oi-cart" aria-hidden="true"></span>
+    </div>
+</div>
+
+@code {
+    private bool showLoader = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        showLoader = true;
+        //Delay Process for .5 second
+        await Task.Delay(Constants.DELAY_PROCESS);
+        showLoader = false;
+    }
+}
