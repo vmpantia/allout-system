@@ -81,13 +81,13 @@
     [Parameter]
     public EventCallback<Response> ProductInfoResponse { get; set; }
 
-    public async Task InitializeProduct(Guid? productID)
+    public async Task InitializeProduct(Guid productID)
     {
         showModal = true;
         ResetData();
         StateHasChanged();
 
-        var isAdd = productID == null;
+        var isAdd = productID == Guid.Empty;
         SetTitle(isAdd);
 
         await PopuplateBrands();

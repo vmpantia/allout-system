@@ -39,7 +39,7 @@
     {
         var query = string.Empty;
         if (e.Value != null)
-            query = (string)e.Value;
+            query = ((string)e.Value).Trim();
 
         await SearchValueChanged.InvokeAsync(query);
     }
