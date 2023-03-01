@@ -49,11 +49,11 @@
     text-align: center;
 }
 .cstm-column-date {
-    width: 200px;
+    width: 130px;
     text-align: center;
 }
 .cstm-column-status {
-    width: 120px;
+    width: 70px;
     text-align: center;
 }
 .cstm-badge-Disabled {
@@ -86,24 +86,23 @@
         font-weight: bold;
         color: dimgray;
     }
-        .cstm-table th [type=button] {
+    .cstm-table th:hover {
+        background-color: gainsboro;
+    }
+    .cstm-table th [type=button] {
+            width: 100%;
             background-color: transparent;
             font-weight: bold;
             text-align: center;
-            width: 100%;
             border: none;
             color: dimgray;
-        }
-        .cstm-table th span {
-            font-size: 12px;
-            padding-right: 5px;
         }
 .cstm-table tr:nth-child(even) {
     background-color: whitesmoke;
 }
-.cstm-table tr:hover {
+.cstm-table td:hover {
         background-color: gainsboro;
-    }
+}
 
 .cstm-table-button {
     font-size: 11px;

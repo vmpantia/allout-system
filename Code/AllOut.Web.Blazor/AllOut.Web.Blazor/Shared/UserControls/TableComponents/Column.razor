@@ -8,8 +8,7 @@
         }
         else if (Sortable)
         {
-            <button type="button" @onclick="() => SortClick()">
-                <span class="@(isAscending ? "oi oi-chevron-bottom" : "oi oi-chevron-top")" aria-hidden="true"></span>
+            <button type="button" @onclick="() => SortClick()" title="Sort by @Name">
                 @Label
             </button>
         }
