@@ -99,7 +99,7 @@
         //Edit Data
         var response = await _http.GetRequestAsync(Globals.GET_PRODUCT_BY_ID,
                                                    Globals.ClientInformation.ClientID,
-                                                   (Guid)productID!);
+                                                   productID);
         if (response.Result != ResponseResult.SUCCESS)
         {
             errorMessage = response.Data;

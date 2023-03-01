@@ -59,13 +59,13 @@
     [Parameter]
     public EventCallback<Response> CategoryInfoResponse { get; set; }
 
-    public async Task InitializeCategory(Guid? CategoryID)
+    public async Task InitializeCategory(Guid? categoryID)
     {
         showModal = true;
         ResetData();
         StateHasChanged();
 
-        var isAdd = CategoryID == Guid.Empty;
+        var isAdd = categoryID == Guid.Empty;
         SetTitle(isAdd);
 
         if (isAdd)
@@ -74,7 +74,7 @@
         //Edit Data
         var response = await _http.GetRequestAsync(Globals.GET_CATEGORY_BY_ID,
                                                    Globals.ClientInformation.ClientID,
-                                                   (Guid)CategoryID!);
+                                                   categoryID);
         if (response.Result != ResponseResult.SUCCESS)
         {
             errorMessage = response.Data;

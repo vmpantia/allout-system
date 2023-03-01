@@ -19,11 +19,11 @@
             <input class="form-check-input" type="checkbox" checked="@context.isSelect"
                    @onclick="() => SelectChanged(context)">
         </Column>
-        <Column Name="Name" Label="Name" />
+        <Column Name="Name" Label="Name" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="Description" Label="Description" />
-        <Column Name="Status" Label="Status" />
-        <Column Name="CreatedDate" Label="Created Date" />
-        <Column Name="ModifiedDate" Label="Modified Date" />
+        <Column Name="Status" Label="Status" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="CreatedDate" Label="Created Date" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="ModifiedDate" Label="Modified Date" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="Action" Label="Action">
             <button class="cstm-table-button" title="Edit"
                     @onclick="() => ShowInfo(context.CategoryID)">
@@ -109,6 +109,11 @@
             category.isSelect = value;
         }
         EnableStatusButtons();
+    }
+
+    private void SortChanged(SortSetting sort)
+    {
+        categoryList = Utility.SortList<Category>(categoryList, sort);
     }
     #endregion
 

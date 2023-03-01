@@ -74,7 +74,7 @@
         //Edit Data
         var response = await _http.GetRequestAsync(Globals.GET_BRAND_BY_ID,
                                                    Globals.ClientInformation.ClientID,
-                                                   (Guid)brandID!);
+                                                   brandID);
         if (response.Result != ResponseResult.SUCCESS)
         {
             errorMessage = response.Data;

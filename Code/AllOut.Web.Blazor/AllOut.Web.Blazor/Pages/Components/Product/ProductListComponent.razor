@@ -19,14 +19,15 @@
             <input class="form-check-input" type="checkbox" checked="@context.isSelect"
                    @onclick="() => SelectChanged(context)">
         </Column>
-        <Column Name="ProductName" Label="Name" />
-        <Column Name="BrandName" Label="Brand" />
-        <Column Name="CategoryName" Label="Category" />
+        <Column Name="ProductName" Label="Name" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="BrandName" Label="Brand" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="CategoryName" Label="Category" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="ProductDescription" Label="Description" />
-        <Column Name="Stock" Label="Stock"/>
+        <Column Name="Stock" Label="Stock" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="ReorderState" Label="ReorderState" />
-        <Column Name="CreatedDate" Label="Created Date" />
-        <Column Name="ModifiedDate" Label="Modified Date" />
+        <Column Name="Status" Label="Status" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="CreatedDate" Label="Created Date" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="ModifiedDate" Label="Modified Date" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="Action" Label="Action">
             <button class="cstm-table-button" title="Edit"
                     @onclick="() => ShowInfo(context.BrandID)">
@@ -112,6 +113,11 @@
             Product.isSelect = value;
         }
         EnableStatusButtons();
+    }
+
+    private void SortChanged(SortSetting sort)
+    {
+        productList = Utility.SortList<ProductFullInformation>(productList, sort);
     }
     #endregion
 
