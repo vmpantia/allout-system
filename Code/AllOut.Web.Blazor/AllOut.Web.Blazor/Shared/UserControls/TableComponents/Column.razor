@@ -6,7 +6,15 @@
         {
             <input class="form-check-input" type="checkbox" checked="@CheckBoxValue" @onclick="() => CheckBoxClick()">
         }
-        else {
+        else if (Sortable)
+        {
+            <button type="button" @onclick="() => SortClick()">
+                <span class="@(isAscending ? "oi oi-chevron-bottom" : "oi oi-chevron-top")" aria-hidden="true"></span>
+                @Label
+            </button>
+        }
+        else
+        {
             @Label
         }
     </th>
@@ -87,8 +95,35 @@ else {
 
     private async Task CheckBoxClick()
     {
-        CheckBoxValue = !CheckBoxValue;
-        await CheckBoxStateChanged.InvokeAsync(CheckBoxValue);
+        if (CheckBoxHeader)
+        {
+            //If CheckBoxHeader is TRUE do the statement below
+            CheckBoxValue = !CheckBoxValue;
+            await CheckBoxStateChanged.InvokeAsync(CheckBoxValue);
+        }
+    }
+
+    [Parameter]
+    public bool Sortable { get; set; }
+
+    public bool isAscending { get; set; } = true;
+
+    [Parameter]
+    public EventCallback<SortSetting> SortStateChanged { get; set; }
+
+    private async Task SortClick()
+    {
+        if (Sortable && !CheckBoxHeader)
+        {
+            //If Sortable is TRUE and CheckBoxHeader is False do the statement below
+            isAscending = !isAscending;
+            var sort = new SortSetting
+            {
+                PorpertyName = Name,
+                isAscending = isAscending
+            };
+            await SortStateChanged.InvokeAsync(sort);
+        }
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿using AllOut.Web.Blazor.Models;
+using AllOut.Web.Blazor.Models.Common;
 using AllOut.Web.Blazor.Models.enums;
 using System.Security.Cryptography;
 using System.Text;
@@ -151,6 +152,21 @@ namespace AllOut.Web.Blazor.Commons
                 default:
                     return string.Format(url, clientID, param);
             }
+        }
+
+        public static List<T> SortList<T>(List<T> list, SortSetting sort)
+        {
+            if (sort == null)
+                return list;
+
+            var property = typeof(T).GetProperty(sort.PorpertyName);
+            if (property == null)
+                return list;
+
+            list = sort.isAscending ?
+                        list.OrderBy(data => property.GetValue(data)).ToList() :
+                        list.OrderByDescending(data => property.GetValue(data)).ToList();
+            return list;
         }
     }
 }
