@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AllOut.Web.Blazor.Models.DataAccess;
 
-namespace AllOut.Web.Blazor.Models
+namespace AllOut.Web.Blazor.Models.FullInformations
 {
     public class SalesFullInformation : Sales
     {

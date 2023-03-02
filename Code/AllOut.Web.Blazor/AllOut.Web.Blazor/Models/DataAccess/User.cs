@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AllOut.Web.Blazor.Models.Data
+﻿namespace AllOut.Web.Blazor.Models.DataAccess
 {
     public class User
     {

@@ -1,5 +1,5 @@
-﻿using AllOut.Web.Blazor.Models;
-using AllOut.Web.Blazor.Models.Common;
+﻿using AllOut.Web.Blazor.Models.Commons;
+using AllOut.Web.Blazor.Models.DataAccess;
 using AllOut.Web.Blazor.Models.enums;
 using System.Security.Cryptography;
 using System.Text;

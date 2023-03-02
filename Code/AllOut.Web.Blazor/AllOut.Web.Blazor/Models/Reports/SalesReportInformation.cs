@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AllOut.Web.Blazor.Models.Report
+﻿namespace AllOut.Web.Blazor.Models.Reports
 {
     public class SalesReportInformation
     {

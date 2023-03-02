@@ -1,6 +1,6 @@
 ﻿using AllOut.Web.Blazor.Commons;
 using AllOut.Web.Blazor.Contractors;
-using AllOut.Web.Blazor.Models.Common;
+using AllOut.Web.Blazor.Models.Commons;
 using AllOut.Web.Blazor.Models.enums;
 using Newtonsoft.Json;
 using System.Net;

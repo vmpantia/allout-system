@@ -1,6 +1,6 @@
-﻿using System;
+﻿using AllOut.Web.Blazor.Models.Commons;
 
-namespace AllOut.Web.Blazor.Models
+namespace AllOut.Web.Blazor.Models.DataAccess
 {
     public class Role : Selection
     {

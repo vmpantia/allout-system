@@ -1,5 +1,4 @@
-﻿using AllOut.Web.Blazor.Models;
-using System.Net.Security;
+﻿using AllOut.Web.Blazor.Models.DataAccess;
 
 namespace AllOut.Web.Blazor.Commons
 {

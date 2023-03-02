@@ -1,6 +1,6 @@
 ﻿using AllOut.Web.Blazor.Models.enums;
 
-namespace AllOut.Web.Blazor.Models.Common
+namespace AllOut.Web.Blazor.Models.Commons
 {
     public class Response
     {

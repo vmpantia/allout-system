@@ -1,4 +1,4 @@
-﻿namespace AllOut.Web.Blazor.Models.Common
+﻿namespace AllOut.Web.Blazor.Models.Commons
 {
     public class SortSetting
     {

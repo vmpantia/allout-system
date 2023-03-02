@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AllOut.Web.Blazor.Models
+﻿namespace AllOut.Web.Blazor.Models.DataAccess
 {
     public class OtherCharge
     {

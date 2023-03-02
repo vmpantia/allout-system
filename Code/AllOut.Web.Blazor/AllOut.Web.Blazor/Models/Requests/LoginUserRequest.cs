@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AllOut.Web.Blazor.Models
+﻿namespace AllOut.Web.Blazor.Models.Requests
 {
     public class LoginUserRequest
     {

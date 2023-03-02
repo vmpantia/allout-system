@@ -1,4 +1,4 @@
-﻿namespace AllOut.Web.Blazor.Models
+﻿namespace AllOut.Web.Blazor.Models.Commons
 {
     public class Selection
     {
