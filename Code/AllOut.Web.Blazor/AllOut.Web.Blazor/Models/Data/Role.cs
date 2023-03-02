@@ -2,7 +2,7 @@
 
 namespace AllOut.Web.Blazor.Models
 {
-    public class Role
+    public class Role : Selection
     {
         public Guid RoleID { get; set; }
         public string Name { get; set; }

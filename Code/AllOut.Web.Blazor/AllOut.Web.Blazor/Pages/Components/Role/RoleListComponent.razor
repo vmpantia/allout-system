@@ -1,0 +1,184 @@
+﻿@page "/Role"
+@inject IHTTPService _http
+@inject IToastService _toast
+
+<Loader Show="@showLoader"></Loader>
+
+<Title Icon="oi oi-project"
+       Name="Role"
+       Description="In this page you can view all the Role that is saved in the system." />
+
+<Actions StatusButtonValue="@statusButtons" 
+         AddButtonClicked="ShowInfo"
+         StatusButtonsClicked="StatusButtonClicked"
+         SearchValueChanged="SearchChanged" />
+
+<Table DataSource="roleList" TItem="RoleFullInformation" ColumnCount="7" Pagination="true">
+    <Columns>
+        <Column Name="Select" CheckBoxHeader="true" CheckBoxValue="@selectAllValue" CheckBoxStateChanged="SelectAllChanged">
+            <input class="form-check-input" type="checkbox" checked="@context.isSelect" 
+                   @onclick="() => SelectChanged(context)">
+        </Column>
+        <Column Name="Name" Label="Name" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="Add" Label="Add" />
+        <Column Name="Edit" Label="Edit" />
+        <Column Name="Delete" Label="Delete" />
+        <Column Name="Status" Label="Status" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="CreatedDate" Label="Created Date" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="ModifiedDate" Label="Modified Date" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="Action" Label="Action">
+            <button class="cstm-table-button" title="Edit" 
+                    @onclick="() => ShowInfo(context.RoleID)">
+                <span class="oi oi-pencil" aria-hidden="true"></span>
+            </button>
+        </Column>
+    </Columns>
+</Table>
+
+@code {
+    private bool showLoader = false;
+    private bool selectAllValue = false;
+    private bool statusButtons = true;
+
+    private List<RoleFullInformation> roleList = new List<RoleFullInformation>();
+
+    #region Event Handler Functions
+    protected override async Task OnInitializedAsync()
+    {
+        showLoader = true;
+        ////Delay Process for .5 second
+        await Task.Delay(Constants.DELAY_PROCESS);
+        await PopulateRoles();
+        showLoader = false;
+    }
+
+    private async Task ShowInfo(Guid id)
+    {
+        //SelectAllChanged(false);
+
+        //if (brandInfo == null)
+        //    return;
+
+        //await brandInfo.InitializeBrand(id);
+    }
+
+    private async Task SearchChanged(string query)
+    {
+        await PopulateRoles(query);
+    }
+
+    private async Task StatusButtonClicked(int value)
+    {
+        var functionID = string.Empty;
+        switch (value)
+        {
+            case Constants.STATUS_ENABLED_INT:
+                functionID = Constants.FUNCTION_ID_BULK_CHANGE_ROLE_BY_ADMIN;
+                break;
+            case Constants.STATUS_DISABLED_INT:
+                functionID = Constants.FUNCTION_ID_BULK_CHANGE_ROLE_BY_ADMIN;
+                break;
+            default:
+                functionID = Constants.FUNCTION_ID_BULK_DELETE_ROLE_BY_ADMIN;
+                break;
+        }
+        await UpdateStatusByIDs(functionID, Constants.REQUEST_STATUS_COMPLETED, value);
+    }
+
+    private async Task GetResponse(Response res)
+    {
+        if (res != null && res.Result == ResponseResult.SUCCESS)
+        {
+            await PopulateRoles();
+            _toast.ShowSuccess(res.Data);
+        }
+    }
+
+    private void SelectChanged(Role brand)
+    {
+        brand.isSelect = !brand.isSelect;
+        EnableStatusButtons();
+    }
+
+    private void SelectAllChanged(bool value)
+    {
+        selectAllValue = value;
+        foreach (var role in roleList)
+        {
+            role.isSelect = value;
+        }
+        EnableStatusButtons();
+    }
+
+    private void SortChanged(SortSetting sort)
+    {
+        roleList = Utility.SortList<RoleFullInformation>(roleList, sort);
+    }
+    #endregion
+
+    #region Common Functions
+    private async Task PopulateRoles(string? query = null)
+    {
+        selectAllValue = false;
+
+        Response response;
+        if (string.IsNullOrEmpty(query))
+            response = await _http.GetRequestAsync(Globals.GET_ROLES, Globals.ClientInformation.ClientID);
+        else
+            response = await _http.GetRequestAsync(Globals.GET_ROLES_BY_QUERY, Globals.ClientInformation.ClientID, query);
+
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            _toast.ShowError(response.Data);
+            return;
+        }
+
+        var result = JsonConvert.DeserializeObject<List<RoleFullInformation>>(response.Data)!;
+        if (result == null)
+            roleList = new List<RoleFullInformation>();
+        else
+            roleList = result.Select(data => new RoleFullInformation
+            {
+                RoleID = data.RoleID,
+                Name = data.Name,
+                Add = Utility.PermittedObjects(data, PermissionType.ADD),
+                Edit = Utility.PermittedObjects(data, PermissionType.EDIT),
+                Delete = Utility.PermittedObjects(data, PermissionType.DELETE),
+                Status = data.Status,
+                CreatedDate = data.CreatedDate,
+                ModifiedDate = data.ModifiedDate
+            }).ToList();
+
+        EnableStatusButtons();
+    }
+
+    private async Task UpdateStatusByIDs(string functionID, string requestStatus, int newStatus)
+    {
+        var request = new UpdateStatusByGUIDsRequest
+            {
+                FunctionID = functionID,
+                RequestStatus = requestStatus,
+                client = Globals.ClientInformation,
+                IDs = roleList.Where(data => data.isSelect)
+                              .Select(data => data.RoleID)
+                              .ToList(),
+                newStatus = newStatus
+            };
+
+        var response = await _http.PostRequestAsync(Globals.POST_UPDATE_ROLE_STATUS_BY_IDS, request);
+
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            _toast.ShowError(response.Data);
+            return;
+        }
+        await PopulateRoles();
+        _toast.ShowSuccess(response.Data);
+    }
+
+    private void EnableStatusButtons()
+    {
+        statusButtons = roleList.Where(data => data.isSelect).Count() == 0;
+    }
+    #endregion
+}

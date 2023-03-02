@@ -137,6 +137,74 @@
         border: 1px solid gainsboro;
     }
 
+.cstm-permission-0 {
+    margin-right: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: rgba(44, 62, 80,0.8);
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
+}
+.cstm-permission-1 {
+    margin-right: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: rgba(142, 68, 173, 0.8);
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
+}
+.cstm-permission-2 {
+    margin-right: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: rgba(22, 160, 133, 0.8);
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
+}
+
+.cstm-permission-3 {
+    margin-right: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: rgba(243, 156, 18, 0.8);
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
+}
+
+.cstm-permission-4 {
+    margin-right: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: rgba(211, 84, 0, 0.8);
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
+}
+
+.cstm-permission-5 {
+    margin-right: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: rgba(192, 57, 43, 0.8);
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
+}
+
+.cstm-permission-6 {
+    margin-right: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: rgba(41, 128, 185,0.8);
+    padding: 1px 5px 1px 5px;
+    border-radius: 5px;
+}
+
 .cstm-card {
     margin-top: 20px;
     display: inline-flex;

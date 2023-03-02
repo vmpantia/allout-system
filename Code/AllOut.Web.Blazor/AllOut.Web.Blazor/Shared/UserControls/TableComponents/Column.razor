@@ -38,7 +38,33 @@ else if(ChildContent == null) {
             case "CreatedDate":
             case "ModifiedDate":
                 @(value == null ? Constants.NA : 
-                                  ((DateTime)value).ToString(Constants.DATE_FORMAT))
+                                              ((DateTime)value).ToString(Constants.DATE_FORMAT))
+                break;
+            //This condition is for Roles Only
+            case "Add":
+            case "Edit":
+            case "Delete":
+                @if (value == null)
+                {
+                    @Constants.NA
+                }
+                else
+                {
+                    var values = ((string)value).Split(Constants.NEWLINE);
+                    var makeNewLine = 0;
+                    for(var idx = 0; idx < values.Count() - 1; idx++)
+                    {
+                        if(makeNewLine == 4)
+                        {
+                            makeNewLine = 0;
+                            <br />
+                        }
+                        <span class="cstm-permission-@idx">
+                            @values[idx]
+                        </span>
+                        makeNewLine++;
+                    }
+                }
                 break;
             default:
                 @value
