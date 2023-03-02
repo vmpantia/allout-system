@@ -116,6 +116,27 @@
         background-color: silver;
     }
 
+.cstm-table-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0px 30px 0px;
+    font-size: 15px;
+}
+    .cstm-table-pagination button {
+        padding: 7px 15px 7px 15px;
+        border: 1px solid gainsboro;
+    }
+    .cstm-table-pagination button span:enabled:hover {
+        padding: 7px 15px 7px 15px;
+        border: none;
+    }
+    .cstm-table-pagination .page-details {
+        padding: 7px 15px 7px 15px;
+        border: 1px solid gainsboro;
+    }
+
 .cstm-card {
     margin-top: 20px;
     display: inline-flex;

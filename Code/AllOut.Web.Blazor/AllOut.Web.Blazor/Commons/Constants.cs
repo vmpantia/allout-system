@@ -5,6 +5,12 @@
         public const string HASH = "@l10uTxK@lr0T1r35";
         public const int DELAY_PROCESS = 500;
 
+        #region Pagination
+        public const int DEFAULT_PAGE_SIZE = 15;
+        public const int DEFAULT_PAGE_NO = 1;
+        public const int ZERO = 0;
+        #endregion
+
         #region Open Iconic
         public const string OI_PLUS = "oi oi-plus";
         public const string OI_PENCIL = "oi oi-pencil";
