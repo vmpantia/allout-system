@@ -1,4 +1,5 @@
 ﻿using System;
+using AllOut.Web.Blazor.Models.Data;
 
 namespace AllOut.Web.Blazor.Models
 {

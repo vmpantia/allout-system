@@ -2,7 +2,7 @@
 
 namespace AllOut.Web.Blazor.Models
 {
-    public class Product
+    public class Product : Selection
     {
         public Guid ProductID { get; set; }
         public Guid BrandID { get; set; }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AllOut.Web.Blazor.Models
+namespace AllOut.Web.Blazor.Models.Common
 {
     public class Month
     {

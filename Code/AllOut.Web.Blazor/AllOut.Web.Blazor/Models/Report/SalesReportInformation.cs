@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AllOut.Web.Blazor.Models
+namespace AllOut.Web.Blazor.Models.Report
 {
     public class SalesReportInformation
     {

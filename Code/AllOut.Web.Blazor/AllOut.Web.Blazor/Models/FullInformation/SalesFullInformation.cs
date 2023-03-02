@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace AllOut.Web.Blazor.Models
 {
-    public class SalesFullInformation
+    public class SalesFullInformation : Sales
     {
-        public string SalesID { get; set; }
-
-        //Cashier
-        public Guid UserID { get; set; }
         public string Name { get; set; }
 
         //Sales Items
@@ -24,11 +20,5 @@ namespace AllOut.Web.Blazor.Models
         public decimal TotalAdditional { get; set; }
         public decimal TotalDeduction { get; set; }
         public decimal Total { get; set; }
-        public decimal AmountPaid { get; set; }
-        public decimal Change { get; set; }
-        public string Remarks { get; set; }
-        public int Status { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime? ModifiedDate { get; set; }
     }
 }

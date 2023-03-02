@@ -1,4 +1,4 @@
-﻿using AllOut.Web.Blazor.Models;
+﻿using AllOut.Web.Blazor.Models.Common;
 
 namespace AllOut.Web.Blazor.Contractors
 {
