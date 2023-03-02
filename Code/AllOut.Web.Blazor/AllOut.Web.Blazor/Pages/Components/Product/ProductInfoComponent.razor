@@ -19,11 +19,11 @@
                         </div>
                     }
                     <div class="mb-3">
-                        <label for="name" class="form-label">Name:</label>
+                        <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" disabled="@disableEdit" @bind="productInfo.Name">
                     </div>
                     <div class="mb-3">
-                        <label for="brands" class="form-label">Brand:</label>
+                        <label for="brands" class="form-label">Brand</label>
                         <select type="text" class="form-control" id="brands" disabled="@disableEdit" @bind="productInfo.BrandID">
                             <option value="@Guid.Empty">Select Brand</option>
                             @foreach (var brand in brandList)
@@ -33,7 +33,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="brands" class="form-label">Category:</label>
+                        <label for="brands" class="form-label">Category</label>
                         <select type="text" class="form-control" id="categories" disabled="@disableEdit" @bind="productInfo.CategoryID">
                             <option value="@Guid.Empty">Select Category</option>
                             @foreach (var category in categoryList)
