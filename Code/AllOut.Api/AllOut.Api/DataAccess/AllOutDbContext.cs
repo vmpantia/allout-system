@@ -1,4 +1,5 @@
 ﻿using AllOut.Api.DataAccess.Models;
+using AllOut.Api.DataAccess.Models.Transactions;
 using Microsoft.EntityFrameworkCore;
 
 namespace AllOut.Api.DataAccess

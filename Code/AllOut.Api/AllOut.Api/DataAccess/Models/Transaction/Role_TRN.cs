@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 
-namespace AllOut.Api.DataAccess.Models
+namespace AllOut.Api.DataAccess.Models.Transactions
 {
     [PrimaryKey(nameof(RequestID), nameof(Number), nameof(RoleID))]
     public class Role_TRN

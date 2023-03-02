@@ -1,4 +1,4 @@
-﻿namespace Puregold.API.Exceptions
+﻿namespace AllOut.Api.Exceptions
 {
     [Serializable]
     public class APIException : Exception

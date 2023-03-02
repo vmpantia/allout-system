@@ -2,10 +2,11 @@
 using AllOut.Api.DataAccess;
 using AllOut.Api.DataAccess.Models;
 using AllOut.Api.Models.Requests;
-using AllOut.Api.Common;
+using AllOut.Api.Commons;
 using Microsoft.EntityFrameworkCore;
-using Puregold.API.Exceptions;
-using AllOut.Api.Models;
+using AllOut.Api.Models.FullInformations;
+using AllOut.Api.DataAccess.Models.Transactions;
+using AllOut.Api.Exceptions;
 
 namespace AllOut.Api.Services
 {
@@ -32,17 +33,17 @@ namespace AllOut.Api.Services
                                   select new ProductFullInformation
                                   {
                                       ProductID = a.ProductID,
-                                      ProductName = a.Name,
-                                      ProductDescription = a.Description,
+                                      Name = a.Name,
+                                      Description = a.Description,
                                       ReorderPoint = a.ReorderPoint,
                                       Price = a.Price,
                                       Status = a.Status,
                                       CreatedDate = a.CreatedDate,
                                       ModifiedDate = a.ModifiedDate,
                                       BrandID = a.BrandID,
-                                      BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
+                                      Brand = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
                                       CategoryID = a.CategoryID,
-                                      CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
+                                      Category = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
                                   }).ToListAsync();
 
             foreach (var product in products)
@@ -64,17 +65,17 @@ namespace AllOut.Api.Services
                                   select new ProductFullInformation
                                   {
                                       ProductID = a.ProductID,
-                                      ProductName = a.Name,
-                                      ProductDescription = a.Description,
+                                      Name = a.Name,
+                                      Description = a.Description,
                                       ReorderPoint = a.ReorderPoint,
                                       Price = a.Price,
                                       Status = a.Status,
                                       CreatedDate = a.CreatedDate,
                                       ModifiedDate = a.ModifiedDate,
                                       BrandID = a.BrandID,
-                                      BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
+                                      Brand = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
                                       CategoryID = a.CategoryID,
-                                      CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
+                                      Category = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
                                   }).ToListAsync();
 
             foreach (var product in products)
@@ -95,17 +96,17 @@ namespace AllOut.Api.Services
                                   select new ProductFullInformation
                                   {
                                       ProductID = a.ProductID,
-                                      ProductName = a.Name,
-                                      ProductDescription = a.Description,
+                                      Name = a.Name,
+                                      Description = a.Description,
                                       ReorderPoint = a.ReorderPoint,
                                       Price = a.Price,
                                       Status = a.Status,
                                       CreatedDate = a.CreatedDate,
                                       ModifiedDate = a.ModifiedDate,
                                       BrandID = a.BrandID,
-                                      BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
+                                      Brand = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
                                       CategoryID = a.CategoryID,
-                                      CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
+                                      Category = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
                                   }).ToListAsync();
 
             foreach (var product in products)

@@ -1,10 +1,7 @@
-﻿using AllOut.Api.Common;
-using AllOut.Api.Contractors;
-using AllOut.Api.DataAccess.Models;
+﻿using AllOut.Api.Contractors;
 using AllOut.Api.Models.enums;
 using AllOut.Api.Models.Requests;
 using Microsoft.AspNetCore.Mvc;
-using Puregold.API.Exceptions;
 
 namespace AllOut.Api.Controllers
 {

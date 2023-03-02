@@ -1,15 +1,14 @@
 ﻿using AllOut.Api.DataAccess.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace AllOut.Api.Models
+namespace AllOut.Api.Models.Reports
 {
-    public class SalesItemFullInformation
+    public class ProductReportInformation
     {
-        public string SalesID { get; set; }
-        public Guid ProductID { get; set; }
         public string ProductName { get; set; }
+        public string BrandName { get; set; }
+        public string CategoryName { get; set; }
         public int Quantity { get; set; }
-        public decimal Price { get; set; }
         public decimal Total { get; set; }
     }
 }

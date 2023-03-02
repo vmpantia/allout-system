@@ -1,6 +1,7 @@
-﻿using AllOut.Web.Blazor.Models.DataAccess;
+﻿using AllOut.Api.DataAccess.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace AllOut.Web.Blazor.Models.FullInformations
+namespace AllOut.Api.Models.FullInformations
 {
     public class SalesFullInformation : Sales
     {

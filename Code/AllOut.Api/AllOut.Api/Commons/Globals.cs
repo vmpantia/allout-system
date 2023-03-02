@@ -1,4 +1,4 @@
-﻿namespace AllOut.Api.Common
+﻿namespace AllOut.Api.Commons
 {
     public class Globals
     {

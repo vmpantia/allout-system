@@ -1,7 +1,7 @@
 ﻿using AllOut.Api.Contractors;
 using AllOut.Api.DataAccess;
 using AllOut.Api.DataAccess.Models;
-using AllOut.Api.Common;
+using AllOut.Api.Commons;
 using Microsoft.EntityFrameworkCore;
 
 namespace AllOut.Api.Services.Common

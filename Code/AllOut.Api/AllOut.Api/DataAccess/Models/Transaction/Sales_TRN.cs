@@ -1,8 +1,7 @@
-﻿using Azure.Core;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace AllOut.Api.DataAccess.Models
+namespace AllOut.Api.DataAccess.Models.Transactions
 {
     [PrimaryKey(nameof(RequestID), nameof(Number), nameof(SalesID))]
     public class Sales_TRN

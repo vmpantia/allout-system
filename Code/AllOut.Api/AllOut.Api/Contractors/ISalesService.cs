@@ -1,4 +1,4 @@
-﻿using AllOut.Api.Models;
+﻿using AllOut.Api.Models.FullInformations;
 using AllOut.Api.Models.Requests;
 
 namespace AllOut.Api.Contractors

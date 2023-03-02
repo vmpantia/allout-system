@@ -1,13 +1,8 @@
 ﻿using AllOut.Api.Contractors;
 using AllOut.Api.DataAccess;
-using AllOut.Api.DataAccess.Models;
-using AllOut.Api.Models.Requests;
-using AllOut.Api.Common;
+using AllOut.Api.Commons;
 using Microsoft.EntityFrameworkCore;
-using Puregold.API.Exceptions;
-using AllOut.Api.Models;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.IdentityModel.Tokens;
+using AllOut.Api.Models.Reports;
 
 namespace AllOut.Api.Services
 {

@@ -1,7 +1,7 @@
 ﻿using AllOut.Api.DataAccess.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace AllOut.Api.Models
+namespace AllOut.Api.Models.Reports
 {
     public class SalesReportInformation
     {

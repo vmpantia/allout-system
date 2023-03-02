@@ -2,10 +2,11 @@
 using AllOut.Api.DataAccess;
 using AllOut.Api.DataAccess.Models;
 using AllOut.Api.Models.Requests;
-using AllOut.Api.Common;
+using AllOut.Api.Commons;
 using Microsoft.EntityFrameworkCore;
-using Puregold.API.Exceptions;
-using AllOut.Api.Models;
+using AllOut.Api.Models.FullInformations;
+using AllOut.Api.DataAccess.Models.Transactions;
+using AllOut.Api.Exceptions;
 
 namespace AllOut.Api.Services
 {
@@ -32,7 +33,7 @@ namespace AllOut.Api.Services
                                    {
                                        SalesID = a.SalesID,
                                        UserID = a.UserID,
-                                       Name = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
+                                       CashierName = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
                                        AmountPaid = a.AmountPaid,
                                        Change = a.Change,
                                        Remarks = a.Remarks,
@@ -64,7 +65,7 @@ namespace AllOut.Api.Services
                                    {
                                        SalesID = a.SalesID,
                                        UserID = a.UserID,
-                                       Name = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
+                                       CashierName = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
                                        AmountPaid = a.AmountPaid,
                                        Change = a.Change,
                                        Remarks = a.Remarks,
@@ -95,7 +96,7 @@ namespace AllOut.Api.Services
                                    {
                                        SalesID = a.SalesID,
                                        UserID = a.UserID,
-                                       Name = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
+                                       CashierName = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
                                        AmountPaid = a.AmountPaid,
                                        Change = a.Change,
                                        Remarks = a.Remarks,
@@ -127,7 +128,7 @@ namespace AllOut.Api.Services
                                    {
                                        SalesID = a.SalesID,
                                        UserID = a.UserID,
-                                       Name = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
+                                       CashierName = _utility.CheckUserAvailability(b) ? string.Format(Constants.NAME_FORMAT, b.LastName, b.FirstName) : Constants.NA,
                                        AmountPaid = a.AmountPaid,
                                        Change = a.Change,
                                        Remarks = a.Remarks,

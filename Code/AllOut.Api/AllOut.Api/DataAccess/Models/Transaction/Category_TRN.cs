@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace AllOut.Api.DataAccess.Models
+namespace AllOut.Api.DataAccess.Models.Transactions
 {
     [PrimaryKey(nameof(RequestID), nameof(Number), nameof(CategoryID))]
     public class Category_TRN
