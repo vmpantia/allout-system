@@ -13,7 +13,7 @@
          StatusButtonsClicked="StatusButtonClicked"
          SearchValueChanged="SearchChanged" />
 
-<Table DataSource="categoryList" TItem="Category" ColumnCount="7">
+<Table DataSource="categoryList" TItem="Category" ColumnCount="7" Pagination="true">
     <Columns>
         <Column Name="Select" CheckBoxHeader="true" CheckBoxValue="@selectAllValue" CheckBoxStateChanged="SelectAllChanged">
             <input class="form-check-input" type="checkbox" checked="@context.isSelect"

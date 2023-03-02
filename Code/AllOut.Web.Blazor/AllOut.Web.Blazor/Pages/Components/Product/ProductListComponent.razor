@@ -13,7 +13,7 @@
          StatusButtonsClicked="StatusButtonClicked"
          SearchValueChanged="SearchChanged" />
 
-<Table DataSource="productList" TItem="ProductFullInformation" ColumnCount="9">
+<Table DataSource="productList" TItem="ProductFullInformation" ColumnCount="9" Pagination="true">
     <Columns>
         <Column Name="Select" CheckBoxHeader="true" CheckBoxValue="@selectAllValue" CheckBoxStateChanged="SelectAllChanged">
             <input class="form-check-input" type="checkbox" checked="@context.isSelect"

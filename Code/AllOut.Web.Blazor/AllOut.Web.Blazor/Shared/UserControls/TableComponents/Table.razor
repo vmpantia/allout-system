@@ -44,7 +44,7 @@
 {
     PageCount = (int)Math.Ceiling((double)DataSource.Count() / PageSize);
 
-    if (PageCount < Constants.DEFAULT_PAGE_NO)
+    if (PageCount <= Constants.DEFAULT_PAGE_NO)
         return;
 
     <div class="cstm-table-pagination">
