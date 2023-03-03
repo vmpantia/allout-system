@@ -132,7 +132,7 @@ namespace AllOut.Desktop.Views.RoleForms
 
                 int permission = 0, index = 0;
                 if (add)
-                    permission |= 1 << index; //1
+                    permission |= 1 << index; //    
 
                 index++;
 

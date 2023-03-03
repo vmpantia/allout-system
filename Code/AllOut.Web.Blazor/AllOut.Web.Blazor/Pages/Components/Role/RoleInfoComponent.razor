@@ -49,9 +49,9 @@
 
                                             <tr>
                                                 <td>@name</td>
-                                                <td class="@Constants.CSS_COLUMN_CHECKBOX"><input class="form-check-input" type="checkbox" checked="@Utility.IsPermitted((int)permission, PermissionType.ADD)"></td>
-                                                <td class="@Constants.CSS_COLUMN_CHECKBOX"><input class="form-check-input" type="checkbox" checked="@Utility.IsPermitted((int)permission, PermissionType.EDIT)"></td>
-                                                <td class="@Constants.CSS_COLUMN_CHECKBOX"><input class="form-check-input" type="checkbox" checked="@Utility.IsPermitted((int)permission, PermissionType.DELETE)"></td>
+                                                <td class="@Constants.CSS_COLUMN_CHECKBOX"><input class="form-check-input" type="checkbox" checked="@Utility.IsPermitted((int)permission, PermissionType.ADD)" @onclick="() => CheckBoxClick(property, PermissionType.ADD)"></td>
+                                                <td class="@Constants.CSS_COLUMN_CHECKBOX"><input class="form-check-input" type="checkbox" checked="@Utility.IsPermitted((int)permission, PermissionType.EDIT)" @onclick="() => CheckBoxClick(property, PermissionType.EDIT)"></td>
+                                                <td class="@Constants.CSS_COLUMN_CHECKBOX"><input class="form-check-input" type="checkbox" checked="@Utility.IsPermitted((int)permission, PermissionType.DELETE)" @onclick="() => CheckBoxClick(property, PermissionType.DELETE)"></td>
                                             </tr>
                                         }
                                     }
@@ -170,5 +170,16 @@
         title = string.Format(isAdd ? Constants.TITLE_ADD : Constants.TITLE_EDIT, Constants.OBJECT_BRAND);
         description = string.Format(isAdd ? Constants.DESC_ADD : Constants.DESC_EDIT, Constants.OBJECT_BRAND);
         icon = isAdd ? Constants.OI_PLUS : Constants.OI_PENCIL;
+    }
+
+    private void CheckBoxClick(System.Reflection.PropertyInfo property, PermissionType type)
+    {
+        var permission = property.GetValue(roleInfo);
+        if (permission == null)
+            return;
+
+        var newPermission = Utility.IsPermitted((int)permission, type) ? (int)permission - (int)type : 
+                                                                         (int)permission + (int)type;
+        property.SetValue(roleInfo, newPermission);
     }
 }
