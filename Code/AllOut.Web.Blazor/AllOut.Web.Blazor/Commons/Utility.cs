@@ -16,13 +16,13 @@ namespace AllOut.Web.Blazor.Commons
 
             foreach (var property in properties)
             {
-                if (property.Name.Contains(Constants.OBJECT_PERMISSION))
+                if (property.Name.Contains(Constants.PROP_PERMISSION))
                 {
                     var permission = (int)property.GetValue(role)!;
 
                     if (Utility.IsPermitted(permission, type))
                     {
-                        var name = property.Name.Replace(Constants.OBJECT_PERMISSION, string.Empty);
+                        var name = property.Name.Replace(Constants.PROP_PERMISSION, string.Empty);
                         allowed += string.Concat(name.ToUpper(), Constants.NEWLINE);
                     }
                 }

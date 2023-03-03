@@ -24,7 +24,7 @@
         #endregion
 
         #region Common Format
-        public const string DATE_FORMAT = "yyyy/MM/dd";
+        public const string FORMAT_DATE = "yyyy-MM-dd";
         public const string NA = "N/A";
         public const string NEWLINE = "\n";
         public const string API_BASE = "http://www.allout.api.com/";
@@ -118,16 +118,16 @@
         public const string ERROR_NO_RECORDS = "No records found in the system.";
         #endregion
 
-        #region Forms
-        public const string LINK_LOGIN = "/Login";
-        public const string LINK_DASHBOARD = "/Dashboard";
-        public const string LINK_INVENTORY = "/Inventory";
-        public const string LINK_SALES = "/Sales";
-        public const string LINK_PRODUCT = "/Product";
-        public const string LINK_BRAND = "/Brand";
-        public const string LINK_CATEGORY = "/Category";
-        public const string LINK_USER = "/User";
-        public const string LINK_ROLE = "/Role";
+        #region Pages
+        public const string PAGE_LOGIN = "/Login";
+        public const string PAGE_DASHBOARD = "/Dashboard";
+        public const string PAGE_INVENTORY = "/Inventory";
+        public const string PAGE_SALES = "/Sales";
+        public const string PAGE_PRODUCT = "/Product";
+        public const string PAGE_BRAND = "/Brand";
+        public const string PAGE_CATEGORY = "/Category";
+        public const string PAGE_USER = "/User";
+        public const string PAGE_ROLE = "/Role";
         #endregion
 
         #region Titles
@@ -149,8 +149,28 @@
         public const string OBJECT_INVENTORY = "Inventory";
         public const string OBJECT_SALES = "Sales";
         public const string OBJECT_REQUEST = "Request";
+        #endregion
 
-        public const string OBJECT_PERMISSION = "Permission";
+        #region Common Properties
+        public const string PROP_SELECT = "Select";
+
+        public const string PROP_STATUS = "Status";
+        public const string PROP_CREATED_DATE = "CreatedDate";
+        public const string PROP_MODIFIED_DATE = "ModifiedDate";
+
+        public const string PROP_ADD = "Add";
+        public const string PROP_EDIT = "Edit";
+        public const string PROP_DELETE = "Delete";
+
+        public const string PROP_PERMISSION = "Permission";
+        public const string PROP_ACTION = "Action";
+        #endregion
+
+        #region CSS 
+        public const string CSS_COLUMN_CHECKBOX = "cstm-column-checkbox";
+        public const string CSS_COLUMN_STATUS = "cstm-column-status";
+        public const string CSS_COLUMN_DATE = "cstm-column-date";
+        public const string CSS_COLUMN_BUTTON = "cstm-column-button";
         #endregion
     }
 }

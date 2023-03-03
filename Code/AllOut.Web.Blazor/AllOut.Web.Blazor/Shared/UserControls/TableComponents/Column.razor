@@ -29,21 +29,21 @@ else if(ChildContent == null) {
     <td class="@css">
         @switch(Name)
         {
-            case "Status":
+            case Constants.PROP_STATUS:
                 var status = Utility.ConvertStatusToString((int)value);
                 <span class="cstm-badge-@status">
                     @status
                 </span>
                 break;
-            case "CreatedDate":
-            case "ModifiedDate":
+            case Constants.PROP_CREATED_DATE:
+            case Constants.PROP_MODIFIED_DATE:
                 @(value == null ? Constants.NA : 
-                                              ((DateTime)value).ToString(Constants.DATE_FORMAT))
+                                              ((DateTime)value).ToString(Constants.FORMAT_DATE))
                 break;
             //This condition is for Roles Only
-            case "Add":
-            case "Edit":
-            case "Delete":
+            case Constants.PROP_ADD:
+            case Constants.PROP_EDIT:
+            case Constants.PROP_DELETE:
                 @if (value == null)
                 {
                     @Constants.NA
@@ -94,15 +94,15 @@ else {
         {
             switch (Name)
             {
-                case "Select":
-                    return "cstm-column-checkbox";
-                case "Status":
-                    return "cstm-column-status";
-                case "CreatedDate":
-                case "ModifiedDate":
-                    return "cstm-column-date";
-                case "Action":
-                    return "cstm-column-button";
+                case Constants.PROP_SELECT:
+                    return Constants.CSS_COLUMN_CHECKBOX;
+                case Constants.PROP_STATUS:
+                    return Constants.CSS_COLUMN_STATUS;
+                case Constants.PROP_CREATED_DATE:
+                case Constants.PROP_MODIFIED_DATE:
+                    return Constants.CSS_COLUMN_DATE;
+                case Constants.PROP_ACTION:
+                    return Constants.CSS_COLUMN_BUTTON;
                 default:
                     return string.Empty;
             }
