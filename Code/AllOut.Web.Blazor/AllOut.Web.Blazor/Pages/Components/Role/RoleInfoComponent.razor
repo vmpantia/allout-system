@@ -22,6 +22,43 @@
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" disabled="@disableEdit" @bind="roleInfo.Name">
                     </div>
+
+                    <div class="mb-3">
+                        <label for="table" class="form-label">Permissions</label>
+                        <table class="cstm-table" id="table">
+                            <thead>
+                                <tr>
+                                    <th>Permission</th>
+                                    <th>Add</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var properties = roleInfo.GetType().GetProperties();
+
+                                    foreach (var property in properties)
+                                    {
+                                        if (property.Name.Contains(Constants.PROP_PERMISSION))
+                                        {
+                                            var name = property.Name.Replace(Constants.PROP_PERMISSION, string.Empty);
+                                            var permission = property.GetValue(roleInfo);
+                                            if (permission == null)
+                                                return;
+
+                                            <tr>
+                                                <td>@name</td>
+                                                <td class="@Constants.CSS_COLUMN_CHECKBOX"><input class="form-check-input" type="checkbox" checked="@Utility.IsPermitted((int)permission, PermissionType.ADD)"></td>
+                                                <td class="@Constants.CSS_COLUMN_CHECKBOX"><input class="form-check-input" type="checkbox" checked="@Utility.IsPermitted((int)permission, PermissionType.EDIT)"></td>
+                                                <td class="@Constants.CSS_COLUMN_CHECKBOX"><input class="form-check-input" type="checkbox" checked="@Utility.IsPermitted((int)permission, PermissionType.DELETE)"></td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary btn-sm" disabled="@disableEdit" @onclick="() => Save()">
@@ -90,16 +127,16 @@
 
         //Prepare Request for Save
         var request = new SaveRoleRequest
-            {
-                FunctionID = isAdd ? Constants.FUNCTION_ID_ADD_ROLE_BY_ADMIN :
-                                     Constants.FUNCTION_ID_CHANGE_ROLE_BY_ADMIN,
-                RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
-                client = Globals.ClientInformation,
-                inputRole = roleInfo
-            };
+        {
+            FunctionID = isAdd ? Constants.FUNCTION_ID_ADD_ROLE_BY_ADMIN :
+                                    Constants.FUNCTION_ID_CHANGE_ROLE_BY_ADMIN,
+            RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
+            client = Globals.ClientInformation,
+            inputRole = roleInfo
+        };
 
         //Send Request for Save
-        var response = await _http.PostRequestAsync(Globals.POST_SAVE_BRAND, request);
+        var response = await _http.PostRequestAsync(Globals.POST_SAVE_ROLE, request);
 
         //Check Response Result
         if (response.Result != ResponseResult.SUCCESS)
