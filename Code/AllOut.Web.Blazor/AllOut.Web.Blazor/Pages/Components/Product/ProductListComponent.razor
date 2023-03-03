@@ -4,6 +4,8 @@
 
 <Loader Show="@showLoader"></Loader>
 
+<ProductInfoComponent @ref="productInfo" ProductInfoResponse="GetResponse"></ProductInfoComponent>
+
 <Title Icon="oi oi-tag"
        Name="Product"
        Description="In this page you can view all the Product that is saved in the system."></Title>
@@ -36,8 +38,6 @@
         </Column>
     </Columns>
 </Table>
-
-<ProductInfoComponent @ref="productInfo" ProductInfoResponse="GetResponse"></ProductInfoComponent>
 
 @code {
     private bool showLoader = false;

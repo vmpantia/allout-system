@@ -4,6 +4,8 @@
 
 <Loader Show="@showLoader"></Loader>
 
+<CategoryInfoComponent @ref="categoryInfo" CategoryInfoResponse="GetResponse"></CategoryInfoComponent>
+
 <Title Icon="oi oi-target"
        Name="Category"
        Description="In this page you can view all the Category that is saved in the system."></Title>
@@ -32,8 +34,6 @@
         </Column>
     </Columns>
 </Table>
-
-<CategoryInfoComponent @ref="categoryInfo" CategoryInfoResponse="GetResponse"></CategoryInfoComponent>
 
 @code {
     private bool showLoader = false;

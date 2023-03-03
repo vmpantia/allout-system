@@ -4,6 +4,8 @@
 
 <Loader Show="@showLoader"></Loader>
 
+<RoleInfoComponent @ref="roleInfo" RoleInfoResponse="GetResponse" />
+
 <Title Icon="oi oi-project"
        Name="Role"
        Description="In this page you can view all the Role that is saved in the system." />
@@ -40,6 +42,7 @@
     private bool selectAllValue = false;
     private bool statusButtons = true;
 
+    private RoleInfoComponent? roleInfo;
     private List<RoleFullInformation> roleList = new List<RoleFullInformation>();
 
     #region Event Handler Functions
@@ -54,12 +57,12 @@
 
     private async Task ShowInfo(Guid id)
     {
-        //SelectAllChanged(false);
+        SelectAllChanged(false);
 
-        //if (brandInfo == null)
-        //    return;
+        if (roleInfo == null)
+            return;
 
-        //await brandInfo.InitializeBrand(id);
+        await roleInfo.InitializeRole(id);
     }
 
     private async Task SearchChanged(string query)
