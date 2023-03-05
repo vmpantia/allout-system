@@ -1,0 +1,179 @@
+﻿@inject IHTTPService _http
+
+@if (showModal)
+{
+    <!-- Modal -->
+    <div class="modal fade show d-block" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <Title Icon="@icon"
+                       Name="@title"
+                       Description="@description"></Title>
+                </div>
+                <div class="modal-body">
+                    @if (!string.IsNullOrEmpty(errorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @errorMessage
+                        </div>
+                    }
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" disabled="@disableEdit" @bind="userInfo.Email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" readonly="true" @bind="userInfo.Username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" disabled="@disableEdit" @bind="userInfo.FirstName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="middleName" class="form-label">Middle Name</label>
+                        <input type="text" class="form-control" id="middleName" disabled="@disableEdit" @bind="userInfo.MiddleName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" disabled="@disableEdit" @bind="userInfo.LastName">
+                    </div>                    
+                    <div class="mb-3">
+                        <label for="brands" class="form-label">Role</label>
+                        <select type="text" class="form-control" id="brands" disabled="@disableEdit" @bind="userInfo.RoleID">
+                            <option value="@Guid.Empty">Select Role</option>
+                            @foreach (var role in roleList)
+                            {
+                                <option value="@role.RoleID">@role.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" disabled="@disableEdit" @onclick="() => Save()">
+                        <span class="oi oi-data-transfer-download" aria-hidden="true"></span>
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" @onclick="() => Cancel()">
+                        <span class="oi oi-x" aria-hidden="true"></span>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    //Variable for Displaying and Hiding a Modal
+    private bool showModal = false;
+
+    private User userInfo = new User();
+    private List<Role> roleList = new List<Role>();
+
+    private string icon = string.Empty;
+    private string title = string.Empty;
+    private string description = string.Empty;
+
+    private string errorMessage = string.Empty;
+
+    private bool disableEdit = false;
+
+    [Parameter]
+    public EventCallback<Response> UserInfoResponse { get; set; }
+
+    public async Task InitializeUser(Guid userID)
+    {
+        showModal = true;
+        ResetData();
+        StateHasChanged();
+
+        var isAdd = userID == Guid.Empty;
+        SetTitle(isAdd);
+
+        await PopuplateRoles();
+
+        if (isAdd)
+            return;
+
+        //Edit Data
+        var response = await _http.GetRequestAsync(Globals.GET_USER_BY_ID,
+                                                   Globals.ClientInformation.ClientID,
+                                                   userID);
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            errorMessage = response.Data;
+            return;
+        }
+        userInfo = JsonConvert.DeserializeObject<User>(response.Data)!;
+        //Not able to Edit information once the status is NOT Enabled
+        disableEdit = userInfo.Status != Constants.STATUS_ENABLED_INT;
+    }
+
+    private async Task PopuplateRoles()
+    {
+        var response = await _http.GetRequestAsync(Globals.GET_ROLES_BY_STATUS,
+                                                   Globals.ClientInformation.ClientID,
+                                                   Constants.STATUS_ENABLED_INT);
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            errorMessage = response.Data;
+            return;
+        }
+        roleList = JsonConvert.DeserializeObject<List<Role>>(response.Data)!;
+    }
+
+    private async Task Save()
+    {
+        var isAdd = userInfo.UserID == Guid.Empty ? true : false;
+
+        userInfo.Email = userInfo.Email == null ? string.Empty : userInfo.Email.ToUpper();
+        userInfo.Status = Constants.STATUS_ENABLED_INT;
+
+        //Prepare Request for Save
+        var request = new SaveUserRequest
+            {
+                FunctionID = isAdd ? Constants.FUNCTION_ID_ADD_USER_BY_ADMIN :
+                                     Constants.FUNCTION_ID_CHANGE_USER_BY_ADMIN,
+                RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
+                client = Globals.ClientInformation,
+                inputUser = userInfo
+            };
+
+        //Send Request for Save
+        var response = await _http.PostRequestAsync(Globals.POST_SAVE_USER, request);
+
+        //Check Response Result
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            errorMessage = response.Data;
+            return;
+        }
+
+        showModal = false;
+        ResetData();
+        await UserInfoResponse.InvokeAsync(response);
+    }
+
+    private void Cancel()
+    {
+        showModal = false;
+        ResetData();
+        UserInfoResponse.InvokeAsync(null);
+    }
+
+    private void ResetData()
+    {
+        //Reset
+        disableEdit = false;
+        errorMessage = string.Empty;
+        userInfo = new User();
+    }
+
+    private void SetTitle(bool isAdd)
+    {
+        title = string.Format(isAdd ? Constants.TITLE_ADD : Constants.TITLE_EDIT, Constants.OBJECT_USER);
+        description = string.Format(isAdd ? Constants.DESC_ADD : Constants.DESC_EDIT, Constants.OBJECT_USER);
+        icon = isAdd ? Constants.OI_PLUS : Constants.OI_PENCIL;
+    }
+}

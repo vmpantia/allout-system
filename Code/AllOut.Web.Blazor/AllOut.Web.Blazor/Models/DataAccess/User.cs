@@ -1,6 +1,8 @@
-﻿namespace AllOut.Web.Blazor.Models.DataAccess
+﻿using AllOut.Web.Blazor.Models.Commons;
+
+namespace AllOut.Web.Blazor.Models.DataAccess
 {
-    public class User
+    public class User : Selection
     {
         public Guid UserID { get; set; }
         public string Email { get; set; }
