@@ -1,0 +1,56 @@
+﻿@typeparam TItem
+
+<div class="mb-3">
+    <label class="form-label">@Label</label>
+    <select type="text" class="form-control" disabled="@(!ControlEnableState)" @bind="@BindingValue">
+        <option value="@Guid.Empty">Select Product</option>
+        @foreach (var data in DataSource)
+        {
+            var propertyValue = data.GetType().GetProperty(ValueMember);
+            var propertyDisplay = data.GetType().GetProperty(DisplayMember);
+
+            if (propertyValue == null || propertyDisplay == null)
+                return;
+
+            var value = propertyValue.GetValue(data);
+            var display = propertyDisplay.GetValue(data);
+
+            if (value == null || display == null)
+                return;
+
+            <option value="@value">@display</option>
+        }
+    </select>
+</div>
+@code {
+    [Parameter]
+    public List<TItem> DataSource { get; set; }
+
+    [Parameter]
+    public string DisplayMember { get; set; }
+
+    [Parameter]
+    public string ValueMember { get; set; }
+
+    [Parameter]
+    public string Label { get; set; }
+
+    [Parameter]
+    public bool ControlEnableState { get; set; } = true;
+
+    private Guid _value;
+    [Parameter]
+    public Guid BindingValue
+    {
+        get => _value;
+        set
+        {
+            if (_value == value) return;
+            _value = value;
+            BindingValueChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<Guid> BindingValueChanged { get; set; }
+}

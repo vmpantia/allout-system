@@ -22,7 +22,7 @@
                     }
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" disabled="@ControlEnableState" @onclick="() => SaveButtonClick()">
+                    <button type="button" class="btn btn-primary btn-sm" disabled="@(!ControlEnableState)" @onclick="() => SaveButtonClick()">
                         <span class="oi oi-data-transfer-download" aria-hidden="true"></span>
                         Save
                     </button>
@@ -57,7 +57,7 @@
 
     public bool ModalVisibleState { get; set; }
 
-    public bool ControlEnableState { get; set; }
+    public bool ControlEnableState { get; set; } = true;
 
     public string ErrorMessageValue { get; set; }
 

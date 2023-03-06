@@ -1,6 +1,6 @@
 ﻿<div class="mb-3">
     <label class="form-label">@Label</label>
-    <textarea class="form-control" rows="4" disabled="@ControlEnableState" @bind="@BindingValue"></textarea>
+    <textarea class="form-control" rows="4" disabled="@(!ControlEnableState)" @bind="@BindingValue"></textarea>
 </div>
 
 @code {
@@ -8,7 +8,7 @@
     public string Label { get; set; }
 
     [Parameter]
-    public bool ControlEnableState { get; set; }
+    public bool ControlEnableState { get; set; } = true;
 
     private string _value;
     [Parameter]
