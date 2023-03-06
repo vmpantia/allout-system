@@ -22,8 +22,8 @@
                    @onclick="() => SelectChanged(context)">
         </Column>
         <Column Name="Name" Label="Name" Sortable="true" SortStateChanged="SortChanged" />
-        <Column Name="Brand" Label="Brand" Sortable="true" SortStateChanged="SortChanged" />
-        <Column Name="Category" Label="Category" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="BrandName" Label="Brand" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="CategoryName" Label="Category" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="Description" Label="Description" />
         <Column Name="Stock" Label="Stock" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="ReorderState" Label="ReorderState" />
@@ -57,14 +57,15 @@
         showLoader = false;
     }
 
-    private async Task ShowInfo(Guid id)
+    private async Task ShowInfo(object id)
     {
         SelectAllChanged(false);
 
         if (productInfo == null)
             return;
 
-        await productInfo.InitializeProduct(id);
+        var param = id == null ? Guid.Empty : (Guid)id;
+        await productInfo.InitializeProduct(param);
     }
 
     private async Task SearchChanged(string query)

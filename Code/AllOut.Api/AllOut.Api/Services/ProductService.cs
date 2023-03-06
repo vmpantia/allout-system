@@ -41,9 +41,9 @@ namespace AllOut.Api.Services
                                       CreatedDate = a.CreatedDate,
                                       ModifiedDate = a.ModifiedDate,
                                       BrandID = a.BrandID,
-                                      Brand = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
+                                      BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
                                       CategoryID = a.CategoryID,
-                                      Category = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
+                                      CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
                                   }).ToListAsync();
 
             foreach (var product in products)
@@ -73,9 +73,9 @@ namespace AllOut.Api.Services
                                       CreatedDate = a.CreatedDate,
                                       ModifiedDate = a.ModifiedDate,
                                       BrandID = a.BrandID,
-                                      Brand = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
+                                      BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
                                       CategoryID = a.CategoryID,
-                                      Category = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
+                                      CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
                                   }).ToListAsync();
 
             foreach (var product in products)
@@ -104,9 +104,9 @@ namespace AllOut.Api.Services
                                       CreatedDate = a.CreatedDate,
                                       ModifiedDate = a.ModifiedDate,
                                       BrandID = a.BrandID,
-                                      Brand = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
+                                      BrandName = _utility.CheckBrandAvailablity(b) ? b.Name : Constants.NA,
                                       CategoryID = a.CategoryID,
-                                      Category = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
+                                      CategoryName = _utility.CheckCategoryAvailablity(c) ? c.Name : Constants.NA
                                   }).ToListAsync();
 
             foreach (var product in products)

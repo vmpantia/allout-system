@@ -1,38 +1,38 @@
-﻿@page "/User"
+﻿@page "/Inventory"
 @inject IHTTPService _http
 @inject IToastService _toast
 
 <Loader Show="@showLoader"></Loader>
 
-<UserInfoComponent @ref="userInfo" UserInfoResponse="GetResponse" />
+<InventoryInfoComponent @ref="inventoryInfo" InventoryInfoResponse="GetResponse" />
 
-<Title Icon="oi oi-person"
-       Name="User"
-       Description="In this page you can view all the User that is saved in the system." />
+<Title Icon="oi oi-tag"
+       Name="Inventory"
+       Description="In this page you can view all the Inventory that is saved in the system." />
 
 <Actions StatusButtonValue="@statusButtons" 
          AddButtonClicked="ShowInfo"
          StatusButtonsClicked="StatusButtonClicked"
          SearchValueChanged="SearchChanged" />
 
-<Table DataSource="userList" TItem="UserFullInformation" ColumnCount="11" Pagination="true">
+<Table DataSource="inventoryList" TItem="InventoryFullInformation" ColumnCount="11" Pagination="true">
     <Columns>
         <Column Name="Select" CheckBoxHeader="true" CheckBoxValue="@selectAllValue" CheckBoxStateChanged="SelectAllChanged">
             <input class="form-check-input" type="checkbox" checked="@context.isSelect" 
                    @onclick="() => SelectChanged(context)">
         </Column>
-        <Column Name="Email" Label="Email" Sortable="true" SortStateChanged="SortChanged" />
-        <Column Name="Username" Label="Username" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="InventoryID" Label="ID" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="Name" Label="Name" Sortable="true" SortStateChanged="SortChanged" />
-        <Column Name="Password" Label="Password" />
-        <Column Name="IsEmailConfirmed" Label="Email Confirmed" />
-        <Column Name="RoleName" Label="Role" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="ProductName" Label="Product" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="BrandName" Label="Brand" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="CategoryName" Label="Category" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="Quantity" Label="Quantity" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="Status" Label="Status" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="CreatedDate" Label="Created Date" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="ModifiedDate" Label="Modified Date" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="Action" Label="Action">
             <button class="cstm-table-button" title="Edit" 
-                    @onclick="() => ShowInfo(context.UserID)">
+                    @onclick="() => ShowInfo(context.InventoryID)">
                 <span class="oi oi-pencil" aria-hidden="true"></span>
             </button>
         </Column>
@@ -44,8 +44,8 @@
     private bool selectAllValue = false;
     private bool statusButtons = true;
 
-    private UserInfoComponent? userInfo;
-    private List<UserFullInformation> userList = new List<UserFullInformation>();
+    private InventoryInfoComponent? inventoryInfo;
+    private List<InventoryFullInformation> inventoryList = new List<InventoryFullInformation>();
 
     #region Event Handler Functions
     protected override async Task OnInitializedAsync()
@@ -53,7 +53,7 @@
         showLoader = true;
         ////Delay Process for .5 second
         await Task.Delay(Constants.DELAY_PROCESS);
-        await PopulateUsers();
+        await PopulateInventories();
         showLoader = false;
     }
 
@@ -61,16 +61,16 @@
     {
         SelectAllChanged(false);
 
-        if (userInfo == null)
+        if (inventoryInfo == null)
             return;
 
-        var param = id == null ? Guid.Empty : (Guid)id;
-        await userInfo.InitializeUser(param);
+        var param = id == null ? string.Empty : (string)id;
+        await inventoryInfo.InitializeInventory(param);
     }
 
     private async Task SearchChanged(string query)
     {
-        await PopulateUsers(query);
+        await PopulateInventories(query);
     }
 
     private async Task StatusButtonClicked(int value)
@@ -79,13 +79,13 @@
         switch (value)
         {
             case Constants.STATUS_ENABLED_INT:
-                functionID = Constants.FUNCTION_ID_BULK_CHANGE_USER_BY_ADMIN;
+                functionID = Constants.FUNCTION_ID_BULK_CHANGE_INVENTORY_BY_ADMIN;
                 break;
             case Constants.STATUS_DISABLED_INT:
-                functionID = Constants.FUNCTION_ID_BULK_CHANGE_USER_BY_ADMIN;
+                functionID = Constants.FUNCTION_ID_BULK_CHANGE_INVENTORY_BY_ADMIN;
                 break;
             default:
-                functionID = Constants.FUNCTION_ID_BULK_DELETE_USER_BY_ADMIN;
+                functionID = Constants.FUNCTION_ID_BULK_DELETE_INVENTORY_BY_ADMIN;
                 break;
         }
         await UpdateStatusByIDs(functionID, Constants.REQUEST_STATUS_COMPLETED, value);
@@ -95,43 +95,43 @@
     {
         if (res != null && res.Result == ResponseResult.SUCCESS)
         {
-            await PopulateUsers();
+            await PopulateInventories();
             _toast.ShowSuccess(res.Data);
         }
     }
 
-    private void SelectChanged(UserFullInformation user)
+    private void SelectChanged(InventoryFullInformation inventory)
     {
-        user.isSelect = !user.isSelect;
+        inventory.isSelect = !inventory.isSelect;
         EnableStatusButtons();
     }
 
     private void SelectAllChanged(bool value)
     {
         selectAllValue = value;
-        foreach (var user in userList)
+        foreach (var inventory in inventoryList)
         {
-            user.isSelect = value;
+            inventory.isSelect = value;
         }
         EnableStatusButtons();
     }
 
     private void SortChanged(SortSetting sort)
     {
-        userList = Utility.SortList<UserFullInformation>(userList, sort);
+        inventoryList = Utility.SortList<InventoryFullInformation>(inventoryList, sort);
     }
     #endregion
 
     #region Common Functions
-    private async Task PopulateUsers(string? query = null)
+    private async Task PopulateInventories(string? query = null)
     {
         selectAllValue = false;
 
         Response response;
         if (string.IsNullOrEmpty(query))
-            response = await _http.GetRequestAsync(Globals.GET_USERS, Globals.ClientInformation.ClientID);
+            response = await _http.GetRequestAsync(Globals.GET_INVENTORIES, Globals.ClientInformation.ClientID);
         else
-            response = await _http.GetRequestAsync(Globals.GET_USERS_BY_QUERY, Globals.ClientInformation.ClientID, query);
+            response = await _http.GetRequestAsync(Globals.GET_INVENTORIES_BY_QUERY, Globals.ClientInformation.ClientID, query);
 
         if (response.Result != ResponseResult.SUCCESS)
         {
@@ -139,7 +139,7 @@
             return;
         }
 
-        userList = JsonConvert.DeserializeObject<List<UserFullInformation>>(response.Data)!;
+        inventoryList = JsonConvert.DeserializeObject<List<InventoryFullInformation>>(response.Data)!;
         EnableStatusButtons();
     }
 
@@ -150,26 +150,26 @@
                 FunctionID = functionID,
                 RequestStatus = requestStatus,
                 client = Globals.ClientInformation,
-                IDs = userList.Where(data => data.isSelect)
-                              .Select(data => data.UserID)
-                              .ToList(),
+                IDs = inventoryList.Where(data => data.isSelect)
+                                   .Select(data => data.BrandID)
+                                   .ToList(),
                 newStatus = newStatus
             };
 
-        var response = await _http.PostRequestAsync(Globals.POST_UPDATE_USER_STATUS_BY_IDS, request);
+        var response = await _http.PostRequestAsync(Globals.POST_UPDATE_INVENTORY_STATUS_BY_IDS, request);
 
         if (response.Result != ResponseResult.SUCCESS)
         {
             _toast.ShowError(response.Data);
             return;
         }
-        await PopulateUsers();
+        await PopulateInventories();
         _toast.ShowSuccess(response.Data);
     }
 
     private void EnableStatusButtons()
     {
-        statusButtons = userList.Where(data => data.isSelect).Count() == 0;
+        statusButtons = inventoryList.Where(data => data.isSelect).Count() == 0;
     }
     #endregion
 }

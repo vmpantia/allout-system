@@ -76,14 +76,15 @@
         await UpdateStatusByIDs(functionID, Constants.REQUEST_STATUS_COMPLETED, value);
     }
 
-    private async Task ShowInfo(Guid id)
+    private async Task ShowInfo(object id)
     {
         SelectAllChanged(false);
 
         if (categoryInfo == null)
             return;
 
-        await categoryInfo.InitializeCategory(id);
+        var param = id == null ? Guid.Empty : (Guid)id;
+        await categoryInfo.InitializeCategory(param);
     }
 
     private async Task GetResponse(Response res)

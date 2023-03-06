@@ -27,7 +27,7 @@
     public bool StatusButtonValue { get; set; }
 
     [Parameter]
-    public EventCallback<Guid> AddButtonClicked { get; set; }
+    public EventCallback<object> AddButtonClicked { get; set; }
 
     [Parameter]
     public EventCallback<int> StatusButtonsClicked { get; set; }
@@ -46,7 +46,7 @@
 
     private async Task AddButtonClick()
     {
-        await AddButtonClicked.InvokeAsync(Guid.Empty);
+        await AddButtonClicked.InvokeAsync(null);
     }
 
     private async Task EnableStatusButtonClick()

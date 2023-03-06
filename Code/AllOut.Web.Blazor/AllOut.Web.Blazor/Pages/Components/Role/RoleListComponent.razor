@@ -55,14 +55,15 @@
         showLoader = false;
     }
 
-    private async Task ShowInfo(Guid id)
+    private async Task ShowInfo(object id)
     {
         SelectAllChanged(false);
 
         if (roleInfo == null)
             return;
 
-        await roleInfo.InitializeRole(id);
+        var param = id == null ? Guid.Empty : (Guid)id;
+        await roleInfo.InitializeRole(param);
     }
 
     private async Task SearchChanged(string query)

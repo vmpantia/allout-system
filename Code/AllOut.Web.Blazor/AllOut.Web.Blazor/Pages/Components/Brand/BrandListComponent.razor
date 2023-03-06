@@ -53,14 +53,15 @@
         showLoader = false;
     }
 
-    private async Task ShowInfo(Guid id)
+    private async Task ShowInfo(object id)
     {
         SelectAllChanged(false);
 
         if (brandInfo == null)
             return;
 
-        await brandInfo.InitializeBrand(id);
+        var param = id == null ? Guid.Empty : (Guid)id;
+        await brandInfo.InitializeBrand(param);
     }
 
     private async Task SearchChanged(string query)
