@@ -76,29 +76,41 @@
 }
 
 @code {
-    //Variable for Displaying and Hiding a Modal
+    #region Variable(s)
+    //Variable for showing and hiding modal
     private bool showModal = false;
 
-    private Role roleInfo = new Role();
-
+    //Variables for labels in modal headers
     private string icon = string.Empty;
     private string title = string.Empty;
     private string description = string.Empty;
 
+    //Variable for storing and displaying error from request
     private string errorMessage = string.Empty;
 
+    //Variable for enabling and disabling of fields or buttons
     private bool disableEdit = false;
 
+    //Variable for identifying if the transction is Add or Edit
+    private bool isAdd = false;
+
+    //Variable for storing the data that is displayed in fields
+    private Role roleInfo = new Role();
+    #endregion
+
+    #region Event Handler(s) of Components
     [Parameter]
     public EventCallback<Response> RoleInfoResponse { get; set; }
+    #endregion
 
     public async Task InitializeRole(Guid roleID)
     {
-        showModal = true;
-        ResetData();
+        //Check if the transaction is add or edit
+        isAdd = roleID == Guid.Empty;
+
         StateHasChanged();
 
-        var isAdd = roleID == Guid.Empty;
+        Reset(true);
         SetTitle(isAdd);
 
         if (isAdd)
@@ -120,20 +132,16 @@
 
     private async Task Save()
     {
-        var isAdd = roleInfo.RoleID == Guid.Empty ? true : false;
-
         roleInfo.Name = roleInfo.Name == null ? string.Empty : roleInfo.Name.ToUpper();
-        roleInfo.Status = Constants.STATUS_ENABLED_INT;
-
         //Prepare Request for Save
         var request = new SaveRoleRequest
-        {
-            FunctionID = isAdd ? Constants.FUNCTION_ID_ADD_ROLE_BY_ADMIN :
-                                    Constants.FUNCTION_ID_CHANGE_ROLE_BY_ADMIN,
-            RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
-            client = Globals.ClientInformation,
-            inputRole = roleInfo
-        };
+            {
+                FunctionID = isAdd ? Constants.FUNCTION_ID_ADD_ROLE_BY_ADMIN :
+                                     Constants.FUNCTION_ID_CHANGE_ROLE_BY_ADMIN,
+                RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
+                client = Globals.ClientInformation,
+                inputRole = roleInfo
+            };
 
         //Send Request for Save
         var response = await _http.PostRequestAsync(Globals.POST_SAVE_ROLE, request);
@@ -145,20 +153,20 @@
             return;
         }
 
-        showModal = false;
-        ResetData();
+        Reset(false);
         await RoleInfoResponse.InvokeAsync(response);
     }
 
-    private void Cancel()
+    private async Task Cancel()
     {
-        showModal = false;
-        ResetData();
-        RoleInfoResponse.InvokeAsync(null);
+        Reset(false);
+        await RoleInfoResponse.InvokeAsync(null);
     }
 
-    private void ResetData()
+    private void Reset(bool isModalShow)
     {
+        //Display or Hide modal
+        showModal = isModalShow;
         //Reset
         disableEdit = false;
         errorMessage = string.Empty;
@@ -167,8 +175,8 @@
 
     private void SetTitle(bool isAdd)
     {
-        title = string.Format(isAdd ? Constants.TITLE_ADD : Constants.TITLE_EDIT, Constants.OBJECT_BRAND);
-        description = string.Format(isAdd ? Constants.DESC_ADD : Constants.DESC_EDIT, Constants.OBJECT_BRAND);
+        title = string.Format(isAdd ? Constants.TITLE_ADD : Constants.TITLE_EDIT, Constants.OBJECT_ROLE);
+        description = string.Format(isAdd ? Constants.DESC_ADD : Constants.DESC_EDIT, Constants.OBJECT_ROLE);
         icon = isAdd ? Constants.OI_PLUS : Constants.OI_PENCIL;
     }
 

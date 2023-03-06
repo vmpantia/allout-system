@@ -65,33 +65,45 @@
 }
 
 @code {
-    //Variable for Displaying and Hiding a Modal
+    #region Variable(s)
+    //Variable for showing and hiding modal
     private bool showModal = false;
 
-    private User userInfo = new User();
-    private List<Role> roleList = new List<Role>();
-
+    //Variables for labels in modal headers
     private string icon = string.Empty;
     private string title = string.Empty;
     private string description = string.Empty;
 
+    //Variable for storing and displaying error from request
     private string errorMessage = string.Empty;
 
+    //Variable for enabling and disabling of fields or buttons
     private bool disableEdit = false;
 
+    //Variable for identifying if the transction is Add or Edit
+    private bool isAdd = false;
+
+    //Variable for storing the data that is displayed in fields
+    private User userInfo = new User();
+
+    //Variable for storing data showed in combobox
+    private List<Role> roleList = new List<Role>();
+    #endregion
+
+    #region Event Handler(s) of Components
     [Parameter]
     public EventCallback<Response> UserInfoResponse { get; set; }
+    #endregion
 
     public async Task InitializeUser(Guid userID)
     {
-        showModal = true;
-        ResetData();
+        //Check if the transaction is add or edit
+        isAdd = userID == Guid.Empty;
+
         StateHasChanged();
 
-        var isAdd = userID == Guid.Empty;
+        Reset(true);
         SetTitle(isAdd);
-
-        await PopuplateRoles();
 
         if (isAdd)
             return;
@@ -125,11 +137,10 @@
 
     private async Task Save()
     {
-        var isAdd = userInfo.UserID == Guid.Empty ? true : false;
-
         userInfo.Email = userInfo.Email == null ? string.Empty : userInfo.Email.ToUpper();
-        userInfo.Status = Constants.STATUS_ENABLED_INT;
-
+        userInfo.FirstName = userInfo.FirstName == null ? string.Empty : userInfo.FirstName.ToUpper();
+        userInfo.MiddleName = userInfo.MiddleName == null ? string.Empty : userInfo.MiddleName.ToUpper();
+        userInfo.LastName = userInfo.LastName == null ? string.Empty : userInfo.LastName.ToUpper();
         //Prepare Request for Save
         var request = new SaveUserRequest
             {
@@ -150,20 +161,20 @@
             return;
         }
 
-        showModal = false;
-        ResetData();
+        Reset(false);
         await UserInfoResponse.InvokeAsync(response);
     }
 
-    private void Cancel()
+    private async Task Cancel()
     {
-        showModal = false;
-        ResetData();
-        UserInfoResponse.InvokeAsync(null);
+        Reset(false);
+        await UserInfoResponse.InvokeAsync(null);
     }
 
-    private void ResetData()
+    private void Reset(bool isModalShow)
     {
+        //Display or Hide modal
+        showModal = isModalShow;
         //Reset
         disableEdit = false;
         errorMessage = string.Empty;

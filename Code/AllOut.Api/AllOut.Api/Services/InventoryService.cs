@@ -245,6 +245,10 @@ namespace AllOut.Api.Services
             if (newData == null)
                 return string.Format(Constants.ERROR_NULL, Constants.OBJECT_INVENTORY);
 
+            //Check if ProductID have value
+            if (newData.ProductID == Guid.Empty)
+                return string.Format(Constants.ERROR_OBJECT_REQUIRED, Constants.OBJECT_PRODUCT);
+
             var isItemExist = _db.Products.Where(data => data.ProductID == newData.ProductID).ToList();
             if (!isItemExist.Any())
                 return Constants.ERROR_PRODUCT_NOT_EXIST;

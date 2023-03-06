@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pages\Components\Product\ProductInfoComponent.razor~RFdfe5526.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Blazored.Toast" Version="4.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>

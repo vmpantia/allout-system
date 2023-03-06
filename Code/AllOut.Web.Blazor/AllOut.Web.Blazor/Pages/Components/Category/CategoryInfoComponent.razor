@@ -43,29 +43,41 @@
 }
 
 @code {
-    //Variable for Displaying and Hiding a Modal
+    #region Variable(s)
+    //Variable for showing and hiding modal
     private bool showModal = false;
 
-    private Category categoryInfo = new Category();
-
+    //Variables for labels in modal headers
     private string icon = string.Empty;
     private string title = string.Empty;
     private string description = string.Empty;
 
+    //Variable for storing and displaying error from request
     private string errorMessage = string.Empty;
 
+    //Variable for enabling and disabling of fields or buttons
     private bool disableEdit = false;
 
+    //Variable for identifying if the transction is Add or Edit
+    private bool isAdd = false;
+
+    //Variable for storing the data that is displayed in fields
+    private Category categoryInfo = new Category();
+    #endregion
+
+    #region Event Handler(s) of Components
     [Parameter]
     public EventCallback<Response> CategoryInfoResponse { get; set; }
+    #endregion
 
-    public async Task InitializeCategory(Guid? categoryID)
+    public async Task InitializeCategory(Guid categoryID)
     {
-        showModal = true;
-        ResetData();
+        //Check if the transaction is add or edit
+        isAdd = categoryID == Guid.Empty;
+
         StateHasChanged();
 
-        var isAdd = categoryID == Guid.Empty;
+        Reset(true);
         SetTitle(isAdd);
 
         if (isAdd)
@@ -87,12 +99,8 @@
 
     private async Task Save()
     {
-        var isAdd = categoryInfo.CategoryID == Guid.Empty ? true : false;
-
         categoryInfo.Name = categoryInfo.Name == null ? string.Empty : categoryInfo.Name.ToUpper();
         categoryInfo.Description = categoryInfo.Description == null ? string.Empty : categoryInfo.Description.ToUpper();
-        categoryInfo.Status = Constants.STATUS_ENABLED_INT;
-
         //Prepare Request for Save
         var request = new SaveCategoryRequest
             {
@@ -113,20 +121,20 @@
             return;
         }
 
-        showModal = false;
-        ResetData();
+        Reset(false);
         await CategoryInfoResponse.InvokeAsync(response);
     }
 
-    private void Cancel()
+    private async Task Cancel()
     {
-        showModal = false;
-        ResetData();
-        CategoryInfoResponse.InvokeAsync(null);
+        Reset(false);
+        await CategoryInfoResponse.InvokeAsync(null);
     }
 
-    private void ResetData()
+    private void Reset(bool isModalShow)
     {
+        //Display or Hide modal
+        showModal = isModalShow;
         //Reset
         disableEdit = false;
         errorMessage = string.Empty;

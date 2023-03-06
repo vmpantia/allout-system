@@ -63,35 +63,49 @@
 }
 
 @code {
-    //Variable for Displaying and Hiding a Modal
+    #region Variable(s)
+    //Variable for showing and hiding modal
     private bool showModal = false;
 
-    private Product productInfo = new Product();
-    private List<Brand> brandList = new List<Brand>();
-    private List<Category> categoryList = new List<Category>();
-
+    //Variables for labels in modal headers
     private string icon = string.Empty;
     private string title = string.Empty;
     private string description = string.Empty;
 
+    //Variable for storing and displaying error from request
     private string errorMessage = string.Empty;
 
+    //Variable for enabling and disabling of fields or buttons
     private bool disableEdit = false;
 
+    //Variable for identifying if the transction is Add or Edit
+    private bool isAdd = false;
+
+    //Variable for storing the data that is displayed in fields
+    private Product productInfo = new Product();
+
+    //Variable for storing data showed in combobox
+    private List<Brand> brandList = new List<Brand>();
+    private List<Category> categoryList = new List<Category>();
+    #endregion
+
+    #region Event Handler(s) of Components
     [Parameter]
     public EventCallback<Response> ProductInfoResponse { get; set; }
+    #endregion
 
     public async Task InitializeProduct(Guid productID)
     {
-        showModal = true;
-        ResetData();
+        //Check if the transaction is add or edit
+        isAdd = productID == Guid.Empty;
+
         StateHasChanged();
 
-        var isAdd = productID == Guid.Empty;
+        Reset(true);
         SetTitle(isAdd);
 
-        await PopuplateBrands();
-        await PopuplateCategories();
+        await PopulateBrands();
+        await PopulateCategories();
 
         if (isAdd)
             return;
@@ -110,7 +124,7 @@
         disableEdit = productInfo.Status != Constants.STATUS_ENABLED_INT;
     }
 
-    private async Task PopuplateBrands()
+    private async Task PopulateBrands()
     {
         var response = await _http.GetRequestAsync(Globals.GET_BRANDS_BY_STATUS,
                                                    Globals.ClientInformation.ClientID,
@@ -123,7 +137,7 @@
         brandList = JsonConvert.DeserializeObject<List<Brand>>(response.Data)!;
     }
 
-    private async Task PopuplateCategories()
+    private async Task PopulateCategories()
     {
         var response = await _http.GetRequestAsync(Globals.GET_CATEGORIES_BY_STATUS,
                                                    Globals.ClientInformation.ClientID,
@@ -138,12 +152,8 @@
 
     private async Task Save()
     {
-        var isAdd = productInfo.ProductID == Guid.Empty ? true : false;
-
         productInfo.Name = productInfo.Name == null ? string.Empty : productInfo.Name.ToUpper();
         productInfo.Description = productInfo.Description == null ? string.Empty : productInfo.Description.ToUpper();
-        productInfo.Status = Constants.STATUS_ENABLED_INT;
-
         //Prepare Request for Save
         var request = new SaveProductRequest
             {
@@ -164,20 +174,20 @@
             return;
         }
 
-        showModal = false;
-        ResetData();
+        Reset(false);
         await ProductInfoResponse.InvokeAsync(response);
     }
 
-    private void Cancel()
+    private async Task Cancel()
     {
-        showModal = false;
-        ResetData();
-        ProductInfoResponse.InvokeAsync(null);
+        Reset(false);
+        await ProductInfoResponse.InvokeAsync(null);
     }
 
-    private void ResetData()
+    private void Reset(bool isModalShow)
     {
+        //Display or Hide modal
+        showModal = isModalShow;
         //Reset
         disableEdit = false;
         errorMessage = string.Empty;

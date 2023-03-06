@@ -23,10 +23,6 @@
                         <input type="text" class="form-control" id="id" readonly="true" @bind="inventoryInfo.InventoryID">
                     </div>
                     <div class="mb-3">
-                        <label for="quantity" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" disabled="@disableEdit" @bind="inventoryInfo.Quantity">
-                    </div>
-                    <div class="mb-3">
                         <label for="product" class="form-label">Product</label>
                         <select type="text" class="form-control" id="product" disabled="@disableEdit" @bind="inventoryInfo.ProductID">
                             <option value="@Guid.Empty">Select Product</option>
@@ -35,6 +31,10 @@
                                 <option value="@product.ProductID">@product.Name</option>
                             }
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="quantity" disabled="@disableEdit" @bind="inventoryInfo.Quantity">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -53,30 +53,44 @@
 }
 
 @code {
-    //Variable for Displaying and Hiding a Modal
+    #region Variable(s)
+    //Variable for showing and hiding modal
     private bool showModal = false;
 
-    private Inventory inventoryInfo = new Inventory();
-    private List<Product> productList = new List<Product>();
-
+    //Variables for labels in modal headers 
     private string icon = string.Empty;
     private string title = string.Empty;
     private string description = string.Empty;
 
+    //Variable for storing and displaying error from request
     private string errorMessage = string.Empty;
 
+    //Variable for enabling and disabling of fields or buttons
     private bool disableEdit = false;
 
+    //Variable for identifying if the transction is Add or Edit
+    private bool isAdd = false;
+
+    //Variable for storing the data that is displayed in fields
+    private Inventory inventoryInfo = new Inventory();
+
+    //Variable for storing data showed in combobox
+    private List<Product> productList = new List<Product>();
+    #endregion
+
+    #region Event Handler(s) of Components
     [Parameter]
     public EventCallback<Response> InventoryInfoResponse { get; set; }
+    #endregion
 
     public async Task InitializeInventory(string inventoryID)
     {
-        showModal = true;
-        ResetData();
+        //Check if the transaction is add or edit
+        isAdd = string.IsNullOrEmpty(inventoryID);
+
         StateHasChanged();
 
-        var isAdd = string.IsNullOrEmpty(inventoryID);
+        Reset(true);
         SetTitle(isAdd);
 
         await PopulateProducts();
@@ -113,10 +127,7 @@
 
     private async Task Save()
     {
-        var isAdd = string.IsNullOrEmpty(inventoryInfo.InventoryID);
-
         inventoryInfo.InventoryID = isAdd ? string.Empty : inventoryInfo.InventoryID;
-        inventoryInfo.Status = Constants.STATUS_ENABLED_INT;
 
         //Prepare Request for Save
         var request = new SaveInventoryRequest
@@ -138,20 +149,20 @@
             return;
         }
 
-        showModal = false;
-        ResetData();
+        Reset(false);
         await InventoryInfoResponse.InvokeAsync(response);
     }
 
-    private void Cancel()
+    private async Task Cancel()
     {
-        showModal = false;
-        ResetData();
-        InventoryInfoResponse.InvokeAsync(null);
+        Reset(false);
+        await InventoryInfoResponse.InvokeAsync(null);
     }
 
-    private void ResetData()
+    private void Reset(bool isModalShow)
     {
+        //Display or Hide modal
+        showModal = isModalShow;
         //Reset
         disableEdit = false;
         errorMessage = string.Empty;
