@@ -5,14 +5,8 @@
         SaveButtonClicked="Save"
         CancelButtonClicked="Cancel">
     <Fields>
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" disabled="@modalInfo?.ControlEnableState" @bind="brandInfo.Name">
-        </div>
-        <div class="mb-3">
-            <label for="desc" class="form-label">Description</label>
-            <textarea class="form-control" id="desc" disabled="@modalInfo?.ControlEnableState" rows="4" @bind="brandInfo.Description"></textarea>
-        </div>
+        <TextBox Label="Name" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@brandInfo.Name" />
+        <TextArea Label="Description" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@brandInfo.Description" />
     </Fields>
 </ModalInfo>
 

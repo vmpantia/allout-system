@@ -1,0 +1,28 @@
+﻿<div class="mb-3">
+    <label class="form-label">@Label</label>
+    <input type="text" class="form-control" disabled="@ControlEnableState" @bind="@BindingValue">
+</div>
+
+@code {
+    [Parameter]
+    public string Label { get; set; }
+
+    [Parameter]
+    public bool ControlEnableState { get; set; }
+
+    private string _value;
+    [Parameter]
+    public string BindingValue
+    {
+        get => _value;
+        set
+        {
+            if (_value == value) return;
+            _value = value;
+            BindingValueChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<string> BindingValueChanged { get; set; }
+}
