@@ -4,31 +4,31 @@
 
 <Loader Show="@showLoader"></Loader>
 
-<CategoryInfoComponent @ref="categoryInfo" CategoryInfoResponse="GetResponse"></CategoryInfoComponent>
+<CategoryInfoComponent @ref="categoryInfo" CategoryInfoResponse="CategoryInfoResponse"></CategoryInfoComponent>
 
 <Title Icon="oi oi-target"
        Name="Category"
        Description="In this page you can view all the Category that is saved in the system."></Title>
 
 <Actions StatusButtonValue="@statusButtons"
-         AddButtonClicked="ShowInfo"
-         StatusButtonsClicked="StatusButtonClicked"
-         SearchValueChanged="SearchChanged" />
+         AddButtonClicked="InitializeCategory"
+         StatusButtonsClicked="StatusButtonsClicked"
+         SearchValueChanged="SearchValueChanged" />
 
 <Table DataSource="categoryList" TItem="Category" ColumnCount="7" Pagination="true">
     <Columns>
-        <Column Name="Select" CheckBoxHeader="true" CheckBoxValue="@selectAllValue" CheckBoxStateChanged="SelectAllChanged">
+        <Column Name="Select" CheckBoxHeader="true" CheckBoxValue="@selectAllValue" CheckBoxStateChanged="CheckBoxStateChanged">
             <input class="form-check-input" type="checkbox" checked="@context.isSelect"
-                   @onclick="() => SelectChanged(context)">
+                   @onclick="() => CheckBoxStateChanged(context)">
         </Column>
-        <Column Name="Name" Label="Name" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="Name" Label="Name" Sortable="true" SortStateChanged="SortStateChanged" />
         <Column Name="Description" Label="Description" />
-        <Column Name="Status" Label="Status" Sortable="true" SortStateChanged="SortChanged" />
-        <Column Name="CreatedDate" Label="Created Date" Sortable="true" SortStateChanged="SortChanged" />
-        <Column Name="ModifiedDate" Label="Modified Date" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="Status" Label="Status" Sortable="true" SortStateChanged="SortStateChanged" />
+        <Column Name="CreatedDate" Label="Created Date" Sortable="true" SortStateChanged="SortStateChanged" />
+        <Column Name="ModifiedDate" Label="Modified Date" Sortable="true" SortStateChanged="SortStateChanged" />
         <Column Name="Action" Label="Action">
             <button class="cstm-table-button" title="Edit"
-                    @onclick="() => ShowInfo(context.CategoryID)">
+                    @onclick="() => InitializeCategory(context.CategoryID)">
                 <span class="oi oi-pencil" aria-hidden="true"></span>
             </button>
         </Column>
@@ -36,12 +36,14 @@
 </Table>
 
 @code {
+    #region Variable(s)
     private bool showLoader = false;
     private bool selectAllValue = false;
     private bool statusButtons = true;
 
     private CategoryInfoComponent? categoryInfo;
     private List<Category> categoryList = new List<Category>();
+    #endregion
 
     #region Event Handler Functions
     protected override async Task OnInitializedAsync()
@@ -53,19 +55,17 @@
         showLoader = false;
     }
 
-    private async Task SearchChanged(string query)
+    private async Task SearchValueChanged(string query)
     {
         await PopulateCategories(query);
     }
 
-    private async Task StatusButtonClicked(int value)
+    private async Task StatusButtonsClicked(int value)
     {
         var functionID = string.Empty;
         switch (value)
         {
             case Constants.STATUS_ENABLED_INT:
-                functionID = Constants.FUNCTION_ID_BULK_CHANGE_CATEGORY_BY_ADMIN;
-                break;
             case Constants.STATUS_DISABLED_INT:
                 functionID = Constants.FUNCTION_ID_BULK_CHANGE_CATEGORY_BY_ADMIN;
                 break;
@@ -76,9 +76,9 @@
         await UpdateStatusByIDs(functionID, Constants.REQUEST_STATUS_COMPLETED, value);
     }
 
-    private async Task ShowInfo(object id)
+    private async Task InitializeCategory(object id)
     {
-        SelectAllChanged(false);
+        CheckBoxStateChanged(false);
 
         if (categoryInfo == null)
             return;
@@ -87,7 +87,7 @@
         await categoryInfo.InitializeCategory(param);
     }
 
-    private async Task GetResponse(Response res)
+    private async Task CategoryInfoResponse(Response res)
     {
         if (res != null && res.Result == ResponseResult.SUCCESS)
         {
@@ -96,13 +96,13 @@
         }
     }
 
-    private void SelectChanged(Category category)
+    private void CheckBoxStateChanged(Category category)
     {
         category.isSelect = !category.isSelect;
         EnableStatusButtons();
     }
 
-    private void SelectAllChanged(bool value)
+    private void CheckBoxStateChanged(bool value)
     {
         selectAllValue = value;
         foreach (var category in categoryList)
@@ -112,7 +112,7 @@
         EnableStatusButtons();
     }
 
-    private void SortChanged(SortSetting sort)
+    private void SortStateChanged(SortSetting sort)
     {
         categoryList = Utility.SortList<Category>(categoryList, sort);
     }

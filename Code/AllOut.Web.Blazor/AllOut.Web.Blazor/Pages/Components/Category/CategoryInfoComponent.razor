@@ -2,8 +2,8 @@
 
 <ModalInfo @ref="modalInfo"
            ModalIcon="@icon" ModalTitle="@title" ModalDescription="@description"
-           SaveButtonClicked="Save"
-           CancelButtonClicked="Cancel">
+           SaveButtonClicked="SaveButtonClicked"
+           CancelButtonClicked="CancelButtonClicked">
     <Fields>
         <TextBox Label="Name" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@categoryInfo.Name" />
         <TextArea Label="Description" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@categoryInfo.Description" />
@@ -12,18 +12,14 @@
 
 @code {
     #region Variable(s)
-    //Variable for ModalInfo Component
     private ModalInfo? modalInfo;
 
-    //Variables for labels in modal headers
     private string icon = string.Empty;
     private string title = string.Empty;
     private string description = string.Empty;
 
-    //Variable for identifying if the transction is Add or Edit
     private bool isAdd = false;
 
-    //Variable for storing the data that is displayed in fields
     private Category categoryInfo = new Category();
     #endregion
 
@@ -61,7 +57,8 @@
             modalInfo.ControlEnableState = categoryInfo.Status != Constants.STATUS_ENABLED_INT;
     }
 
-    private async Task Save()
+    #region Event Handler Functions
+    private async Task SaveButtonClicked()
     {
         categoryInfo.Name = categoryInfo.Name == null ? string.Empty : categoryInfo.Name.ToUpper();
         categoryInfo.Description = categoryInfo.Description == null ? string.Empty : categoryInfo.Description.ToUpper();
@@ -90,12 +87,14 @@
         await CategoryInfoResponse.InvokeAsync(response);
     }
 
-    private async Task Cancel()
+    private async Task CancelButtonClicked()
     {
         Reset(false);
         await CategoryInfoResponse.InvokeAsync(null);
     }
+    #endregion
 
+    #region Common Functions
     private void Reset(bool isModalShow)
     {
         if (modalInfo != null)
@@ -114,4 +113,5 @@
         description = string.Format(isAdd ? Constants.DESC_ADD : Constants.DESC_EDIT, Constants.OBJECT_CATEGORY);
         icon = isAdd ? Constants.OI_PLUS : Constants.OI_PENCIL;
     }
+    #endregion
 }
