@@ -1,62 +1,30 @@
 ﻿@inject IHTTPService _http
 
-@if (showModal)
-{
-    <!-- Modal -->
-    <div class="modal fade show d-block" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <Title Icon="@icon"
-                       Name="@title"
-                       Description="@description"></Title>
-                </div>
-                <div class="modal-body">
-                    @if (!string.IsNullOrEmpty(errorMessage))
-                    {
-                        <div class="alert alert-danger" role="alert">
-                            @errorMessage
-                        </div>
-                    }
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" disabled="@disableEdit" @bind="brandInfo.Name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="desc" class="form-label">Description</label>
-                        <textarea class="form-control" id="desc" disabled="@disableEdit" rows="4" @bind="brandInfo.Description"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" disabled="@disableEdit" @onclick="() => Save()">
-                        <span class="oi oi-data-transfer-download" aria-hidden="true"></span>
-                        Save
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm" @onclick="() => Cancel()">
-                        <span class="oi oi-x" aria-hidden="true"></span>
-                        Cancel
-                    </button>
-                </div>
-            </div>
+<ModalInfo @ref="modalInfo" 
+        ModalIcon="@icon" ModalTitle="@title" ModalDescription="@description"
+        SaveButtonClicked="Save"
+        CancelButtonClicked="Cancel">
+    <Fields>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" disabled="@modalInfo?.ControlEnableState" @bind="brandInfo.Name">
         </div>
-    </div>
-}
+        <div class="mb-3">
+            <label for="desc" class="form-label">Description</label>
+            <textarea class="form-control" id="desc" disabled="@modalInfo?.ControlEnableState" rows="4" @bind="brandInfo.Description"></textarea>
+        </div>
+    </Fields>
+</ModalInfo>
 
 @code {
     #region Variable(s)
-    //Variable for showing and hiding modal
-    private bool showModal = false;
+    //Variable for ModalInfo Component
+    private ModalInfo? modalInfo;
 
     //Variables for labels in modal headers
     private string icon = string.Empty;
     private string title = string.Empty;
     private string description = string.Empty;
-
-    //Variable for storing and displaying error from request
-    private string errorMessage = string.Empty;
-
-    //Variable for enabling and disabling of fields or buttons
-    private bool disableEdit = false;
 
     //Variable for identifying if the transction is Add or Edit
     private bool isAdd = false;
@@ -89,12 +57,14 @@
                                                    brandID);
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = response.Data;
+            if(modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
             return;
         }
         brandInfo = JsonConvert.DeserializeObject<Brand>(response.Data)!;
         //Not able to Edit information once the status is NOT Enabled
-        disableEdit = brandInfo.Status != Constants.STATUS_ENABLED_INT;
+        if (modalInfo != null)
+            modalInfo.ControlEnableState = brandInfo.Status != Constants.STATUS_ENABLED_INT;
     }
 
     private async Task Save()
@@ -117,7 +87,8 @@
         //Check Response Result
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = response.Data;
+            if (modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
             return;
         }
 
@@ -133,11 +104,13 @@
 
     private void Reset(bool isModalShow)
     {
-        //Display or Hide modal
-        showModal = isModalShow;
+        if(modalInfo != null)
+        {
+            modalInfo.ModalVisibleState = isModalShow;
+            modalInfo.ControlEnableState = false;
+            modalInfo.ErrorMessageValue = string.Empty;
+        }
         //Reset
-        disableEdit = false;
-        errorMessage = string.Empty;
         brandInfo = new Brand();
     }
 

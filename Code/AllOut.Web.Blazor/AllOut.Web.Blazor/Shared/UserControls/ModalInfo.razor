@@ -1,0 +1,73 @@
+﻿@if (ModalVisibleState)
+{
+    <!-- Modal -->
+    <div class="modal fade show d-block" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <Title Icon="@ModalIcon"
+                       Name="@ModalTitle"
+                       Description="@ModalDescription"></Title>
+                </div>
+                <div class="modal-body" >
+                    @if (!string.IsNullOrEmpty(ErrorMessageValue))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @ErrorMessageValue
+                        </div>
+                    }
+                    @if (Fields != null)
+                    {
+                        @Fields
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" disabled="@ControlEnableState" @onclick="() => SaveButtonClick()">
+                        <span class="oi oi-data-transfer-download" aria-hidden="true"></span>
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" @onclick="() => CancelButtonClick()">
+                        <span class="oi oi-x" aria-hidden="true"></span>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string ModalIcon { get; set; }
+
+    [Parameter]
+    public string ModalTitle { get; set; }
+
+    [Parameter]
+    public string ModalDescription { get; set; }
+
+    [Parameter]
+    public RenderFragment? Fields { get; set; }
+
+    [Parameter]
+    public EventCallback SaveButtonClicked { get; set; }
+
+    [Parameter]
+    public EventCallback CancelButtonClicked { get; set; }
+
+    public bool ModalVisibleState { get; set; }
+
+    public bool ControlEnableState { get; set; }
+
+    public string ErrorMessageValue { get; set; }
+
+    private async Task SaveButtonClick()
+    {
+        await SaveButtonClicked.InvokeAsync();
+    }
+
+    private async Task CancelButtonClick()
+    {
+        await CancelButtonClicked.InvokeAsync();
+    }
+}
