@@ -1,92 +1,34 @@
 ﻿@inject IHTTPService _http
 
-@if (showModal)
-{
-    <!-- Modal -->
-    <div class="modal fade show d-block" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <Title Icon="@icon"
-                       Name="@title"
-                       Description="@description"></Title>
-                </div>
-                <div class="modal-body">
-                    @if (!string.IsNullOrEmpty(errorMessage))
-                    {
-                        <div class="alert alert-danger" role="alert">
-                            @errorMessage
-                        </div>
-                    }
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" disabled="@disableEdit" @bind="userInfo.Email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" readonly="true" @bind="userInfo.Username">
-                    </div>
-                    <div class="mb-3">
-                        <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" class="form-control" id="firstName" disabled="@disableEdit" @bind="userInfo.FirstName">
-                    </div>
-                    <div class="mb-3">
-                        <label for="middleName" class="form-label">Middle Name</label>
-                        <input type="text" class="form-control" id="middleName" disabled="@disableEdit" @bind="userInfo.MiddleName">
-                    </div>
-                    <div class="mb-3">
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" class="form-control" id="lastName" disabled="@disableEdit" @bind="userInfo.LastName">
-                    </div>                    
-                    <div class="mb-3">
-                        <label for="brands" class="form-label">Role</label>
-                        <select type="text" class="form-control" id="brands" disabled="@disableEdit" @bind="userInfo.RoleID">
-                            <option value="@Guid.Empty">Select Role</option>
-                            @foreach (var role in roleList)
-                            {
-                                <option value="@role.RoleID">@role.Name</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" disabled="@disableEdit" @onclick="() => Save()">
-                        <span class="oi oi-data-transfer-download" aria-hidden="true"></span>
-                        Save
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm" @onclick="() => Cancel()">
-                        <span class="oi oi-x" aria-hidden="true"></span>
-                        Cancel
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-}
+
+<ModalInfo @ref="modalInfo"
+           ModalIcon="@icon" ModalTitle="@title" ModalDescription="@description"
+           SaveButtonClicked="SaveButtonClicked"
+           CancelButtonClicked="CancelButtonClicked">
+    <Fields>
+        <TextBox Label="Email" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@userInfo.Email" />
+        <TextBox Label="Username" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@userInfo.Username" />
+        <TextBox Label="First Name" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@userInfo.FirstName" />
+        <TextBox Label="Middle Name" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@userInfo.MiddleName" />
+        <TextBox Label="Last Name" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@userInfo.LastName" />
+        <ComboBox Label="Role" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@userInfo.RoleID"
+                  DataSource="@roleList" ValueMember="RoleID" DisplayMember="Name" />
+      
+    </Fields>
+</ModalInfo>
 
 @code {
     #region Variable(s)
-    //Variable for showing and hiding modal
-    private bool showModal = false;
+    private ModalInfo? modalInfo;
 
-    //Variables for labels in modal headers
     private string icon = string.Empty;
     private string title = string.Empty;
     private string description = string.Empty;
 
-    //Variable for storing and displaying error from request
-    private string errorMessage = string.Empty;
-
-    //Variable for enabling and disabling of fields or buttons
-    private bool disableEdit = false;
-
-    //Variable for identifying if the transction is Add or Edit
     private bool isAdd = false;
 
-    //Variable for storing the data that is displayed in fields
     private User userInfo = new User();
 
-    //Variable for storing data showed in combobox
     private List<Role> roleList = new List<Role>();
     #endregion
 
@@ -114,28 +56,18 @@
                                                    userID);
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = response.Data;
+            if (modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
             return;
         }
         userInfo = JsonConvert.DeserializeObject<User>(response.Data)!;
         //Not able to Edit information once the status is NOT Enabled
-        disableEdit = userInfo.Status != Constants.STATUS_ENABLED_INT;
+        if (modalInfo != null)
+            modalInfo.ControlEnableState = userInfo.Status == Constants.STATUS_ENABLED_INT;
     }
 
-    private async Task PopuplateRoles()
-    {
-        var response = await _http.GetRequestAsync(Globals.GET_ROLES_BY_STATUS,
-                                                   Globals.ClientInformation.ClientID,
-                                                   Constants.STATUS_ENABLED_INT);
-        if (response.Result != ResponseResult.SUCCESS)
-        {
-            errorMessage = response.Data;
-            return;
-        }
-        roleList = JsonConvert.DeserializeObject<List<Role>>(response.Data)!;
-    }
-
-    private async Task Save()
+    #region Event Handler Functions
+    private async Task SaveButtonClicked()
     {
         userInfo.Email = userInfo.Email == null ? string.Empty : userInfo.Email.ToUpper();
         userInfo.FirstName = userInfo.FirstName == null ? string.Empty : userInfo.FirstName.ToUpper();
@@ -157,7 +89,8 @@
         //Check Response Result
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = response.Data;
+            if (modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
             return;
         }
 
@@ -165,19 +98,37 @@
         await UserInfoResponse.InvokeAsync(response);
     }
 
-    private async Task Cancel()
+    private async Task CancelButtonClicked()
     {
         Reset(false);
         await UserInfoResponse.InvokeAsync(null);
     }
+    #endregion
+
+    #region Common Functions
+    private async Task PopuplateRoles()
+    {
+        var response = await _http.GetRequestAsync(Globals.GET_ROLES_BY_STATUS,
+                                                   Globals.ClientInformation.ClientID,
+                                                   Constants.STATUS_ENABLED_INT);
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            if (modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
+            return;
+        }
+        roleList = JsonConvert.DeserializeObject<List<Role>>(response.Data)!;
+    }
 
     private void Reset(bool isModalShow)
     {
-        //Display or Hide modal
-        showModal = isModalShow;
+        if (modalInfo != null)
+        {
+            modalInfo.ModalVisibleState = isModalShow;
+            modalInfo.ControlEnableState = true;
+            modalInfo.ErrorMessageValue = string.Empty;
+        }
         //Reset
-        disableEdit = false;
-        errorMessage = string.Empty;
         userInfo = new User();
     }
 
@@ -187,4 +138,5 @@
         description = string.Format(isAdd ? Constants.DESC_ADD : Constants.DESC_EDIT, Constants.OBJECT_USER);
         icon = isAdd ? Constants.OI_PLUS : Constants.OI_PENCIL;
     }
+    #endregion
 }

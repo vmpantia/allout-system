@@ -54,7 +54,7 @@
         brandInfo = JsonConvert.DeserializeObject<Brand>(response.Data)!;
         //Not able to Edit information once the status is NOT Enabled
         if (modalInfo != null)
-            modalInfo.ControlEnableState = brandInfo.Status != Constants.STATUS_ENABLED_INT;
+            modalInfo.ControlEnableState = brandInfo.Status == Constants.STATUS_ENABLED_INT;
     }
 
     #region Event Handler Functions
@@ -100,7 +100,7 @@
         if(modalInfo != null)
         {
             modalInfo.ModalVisibleState = isModalShow;
-            modalInfo.ControlEnableState = false;
+            modalInfo.ControlEnableState = true;
             modalInfo.ErrorMessageValue = string.Empty;
         }
         //Reset

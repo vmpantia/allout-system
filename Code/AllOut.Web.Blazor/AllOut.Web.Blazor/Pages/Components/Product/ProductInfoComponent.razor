@@ -1,90 +1,31 @@
 ﻿@inject IHTTPService _http
 
-@if (showModal)
-{
-    <!-- Modal -->
-    <div class="modal fade show d-block" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <Title Icon="@icon"
-                       Name="@title"
-                       Description="@description"></Title>
-                </div>
-                <div class="modal-body">
-                    @if (!string.IsNullOrEmpty(errorMessage))
-                    {
-                        <div class="alert alert-danger" role="alert">
-                            @errorMessage
-                        </div>
-                    }
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" disabled="@disableEdit" @bind="productInfo.Name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="brands" class="form-label">Brand</label>
-                        <select type="text" class="form-control" id="brands" disabled="@disableEdit" @bind="productInfo.BrandID">
-                            <option value="@Guid.Empty">Select Brand</option>
-                            @foreach (var brand in brandList)
-                            {
-                                <option value="@brand.BrandID">@brand.Name</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="brands" class="form-label">Category</label>
-                        <select type="text" class="form-control" id="categories" disabled="@disableEdit" @bind="productInfo.CategoryID">
-                            <option value="@Guid.Empty">Select Category</option>
-                            @foreach (var category in categoryList)
-                            {
-                                <option value="@category.CategoryID">@category.Name</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="desc" class="form-label">Description</label>
-                        <textarea class="form-control" id="desc" disabled="@disableEdit" rows="4" @bind="productInfo.Description"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" disabled="@disableEdit" @onclick="() => Save()">
-                        <span class="oi oi-data-transfer-download" aria-hidden="true"></span>
-                        Save
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm" @onclick="() => Cancel()">
-                        <span class="oi oi-x" aria-hidden="true"></span>
-                        Cancel
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-}
+<ModalInfo @ref="modalInfo"
+           ModalIcon="@icon" ModalTitle="@title" ModalDescription="@description"
+           SaveButtonClicked="SaveButtonClicked"
+           CancelButtonClicked="CancelButtonClicked">
+    <Fields>
+        <TextBox Label="Name" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@productInfo.Name" />
+        <ComboBox Label="Brand" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@productInfo.BrandID"
+                  DataSource="@brandList" ValueMember="BrandID" DisplayMember="Name" />
+        <ComboBox Label="Category" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@productInfo.CategoryID"
+                  DataSource="@categoryList" ValueMember="CategoryID" DisplayMember="Name" />
+        <TextArea Label="Description" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@productInfo.Description" />
+    </Fields>
+</ModalInfo>
 
 @code {
     #region Variable(s)
-    //Variable for showing and hiding modal
-    private bool showModal = false;
+    private ModalInfo? modalInfo;
 
-    //Variables for labels in modal headers
     private string icon = string.Empty;
     private string title = string.Empty;
     private string description = string.Empty;
 
-    //Variable for storing and displaying error from request
-    private string errorMessage = string.Empty;
-
-    //Variable for enabling and disabling of fields or buttons
-    private bool disableEdit = false;
-
-    //Variable for identifying if the transction is Add or Edit
     private bool isAdd = false;
 
-    //Variable for storing the data that is displayed in fields
     private Product productInfo = new Product();
 
-    //Variable for storing data showed in combobox
     private List<Brand> brandList = new List<Brand>();
     private List<Category> categoryList = new List<Category>();
     #endregion
@@ -116,41 +57,18 @@
                                                    productID);
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = response.Data;
+            if (modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
             return;
         }
         productInfo = JsonConvert.DeserializeObject<Product>(response.Data)!;
         //Not able to Edit information once the status is NOT Enabled
-        disableEdit = productInfo.Status != Constants.STATUS_ENABLED_INT;
+        if (modalInfo != null)
+            modalInfo.ControlEnableState = productInfo.Status == Constants.STATUS_ENABLED_INT;
     }
 
-    private async Task PopulateBrands()
-    {
-        var response = await _http.GetRequestAsync(Globals.GET_BRANDS_BY_STATUS,
-                                                   Globals.ClientInformation.ClientID,
-                                                   Constants.STATUS_ENABLED_INT);
-        if (response.Result != ResponseResult.SUCCESS)
-        {
-            errorMessage = response.Data;
-            return;
-        }
-        brandList = JsonConvert.DeserializeObject<List<Brand>>(response.Data)!;
-    }
-
-    private async Task PopulateCategories()
-    {
-        var response = await _http.GetRequestAsync(Globals.GET_CATEGORIES_BY_STATUS,
-                                                   Globals.ClientInformation.ClientID,
-                                                   Constants.STATUS_ENABLED_INT);
-        if (response.Result != ResponseResult.SUCCESS)
-        {
-            errorMessage = response.Data;
-            return;
-        }
-        categoryList = JsonConvert.DeserializeObject<List<Category>>(response.Data)!;
-    }
-
-    private async Task Save()
+    #region Event Handler Functions
+    private async Task SaveButtonClicked()
     {
         productInfo.Name = productInfo.Name == null ? string.Empty : productInfo.Name.ToUpper();
         productInfo.Description = productInfo.Description == null ? string.Empty : productInfo.Description.ToUpper();
@@ -170,7 +88,8 @@
         //Check Response Result
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = response.Data;
+            if (modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
             return;
         }
 
@@ -178,19 +97,51 @@
         await ProductInfoResponse.InvokeAsync(response);
     }
 
-    private async Task Cancel()
+    private async Task CancelButtonClicked()
     {
         Reset(false);
         await ProductInfoResponse.InvokeAsync(null);
     }
+    #endregion
+
+    #region Common Functions
+    private async Task PopulateBrands()
+    {
+        var response = await _http.GetRequestAsync(Globals.GET_BRANDS_BY_STATUS,
+                                                   Globals.ClientInformation.ClientID,
+                                                   Constants.STATUS_ENABLED_INT);
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            if (modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
+            return;
+        }
+        brandList = JsonConvert.DeserializeObject<List<Brand>>(response.Data)!;
+    }
+
+    private async Task PopulateCategories()
+    {
+        var response = await _http.GetRequestAsync(Globals.GET_CATEGORIES_BY_STATUS,
+                                                   Globals.ClientInformation.ClientID,
+                                                   Constants.STATUS_ENABLED_INT);
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            if (modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
+            return;
+        }
+        categoryList = JsonConvert.DeserializeObject<List<Category>>(response.Data)!;
+    }
 
     private void Reset(bool isModalShow)
     {
-        //Display or Hide modal
-        showModal = isModalShow;
+        if (modalInfo != null)
+        {
+            modalInfo.ModalVisibleState = isModalShow;
+            modalInfo.ControlEnableState = true;
+            modalInfo.ErrorMessageValue = string.Empty;
+        }
         //Reset
-        disableEdit = false;
-        errorMessage = string.Empty;
         productInfo = new Product();
     }
 
@@ -200,4 +151,5 @@
         description = string.Format(isAdd ? Constants.DESC_ADD : Constants.DESC_EDIT, Constants.OBJECT_PRODUCT);
         icon = isAdd ? Constants.OI_PLUS : Constants.OI_PENCIL;
     }
+    #endregion
 }

@@ -54,7 +54,7 @@
         categoryInfo = JsonConvert.DeserializeObject<Category>(response.Data)!;
         //Not able to Edit information once the status is NOT Enabled
         if (modalInfo != null)
-            modalInfo.ControlEnableState = categoryInfo.Status != Constants.STATUS_ENABLED_INT;
+            modalInfo.ControlEnableState = categoryInfo.Status == Constants.STATUS_ENABLED_INT;
     }
 
     #region Event Handler Functions

@@ -1,80 +1,29 @@
 ﻿@inject IHTTPService _http
 
-@if (showModal)
-{
-    <!-- Modal -->
-    <div class="modal fade show d-block" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <Title Icon="@icon"
-                       Name="@title"
-                       Description="@description"></Title>
-                </div>
-                <div class="modal-body">
-                    @if (!string.IsNullOrEmpty(errorMessage))
-                    {
-                        <div class="alert alert-danger" role="alert">
-                            @errorMessage
-                        </div>
-                    }
-                    <div class="mb-3">
-                        <label for="id" class="form-label">Inventory ID</label>
-                        <input type="text" class="form-control" id="id" readonly="true" @bind="inventoryInfo.InventoryID">
-                    </div>
-                    <div class="mb-3">
-                        <label for="product" class="form-label">Product</label>
-                        <select type="text" class="form-control" id="product" disabled="@disableEdit" @bind="inventoryInfo.ProductID">
-                            <option value="@Guid.Empty">Select Product</option>
-                            @foreach (var product in productList)
-                            {
-                                <option value="@product.ProductID">@product.Name</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="quantity" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" disabled="@disableEdit" @bind="inventoryInfo.Quantity">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" disabled="@disableEdit" @onclick="() => Save()">
-                        <span class="oi oi-data-transfer-download" aria-hidden="true"></span>
-                        Save
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm" @onclick="() => Cancel()">
-                        <span class="oi oi-x" aria-hidden="true"></span>
-                        Cancel
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-}
+<ModalInfo @ref="modalInfo"
+           ModalIcon="@icon" ModalTitle="@title" ModalDescription="@description"
+           SaveButtonClicked="SaveButtonClicked"
+           CancelButtonClicked="CancelButtonClicked">
+    <Fields>
+        <TextBox Label="Inventory ID" ControlEnableState="false" @bind-BindingValue="@inventoryInfo.InventoryID" />
+        <NumberBox Label="Quantity" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@inventoryInfo.Quantity" />
+        <ComboBox Label="Product" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@inventoryInfo.ProductID"
+                  DataSource="@productList" ValueMember="ProductID" DisplayMember="Name"/>
+    </Fields>
+</ModalInfo>
 
 @code {
     #region Variable(s)
-    //Variable for showing and hiding modal
-    private bool showModal = false;
+    private ModalInfo? modalInfo;
 
-    //Variables for labels in modal headers 
     private string icon = string.Empty;
     private string title = string.Empty;
     private string description = string.Empty;
 
-    //Variable for storing and displaying error from request
-    private string errorMessage = string.Empty;
-
-    //Variable for enabling and disabling of fields or buttons
-    private bool disableEdit = false;
-
-    //Variable for identifying if the transction is Add or Edit
     private bool isAdd = false;
 
-    //Variable for storing the data that is displayed in fields
     private Inventory inventoryInfo = new Inventory();
 
-    //Variable for storing data showed in combobox
     private List<Product> productList = new List<Product>();
     #endregion
 
@@ -104,28 +53,18 @@
                                                    inventoryID);
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = response.Data;
+            if (modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
             return;
         }
         inventoryInfo = JsonConvert.DeserializeObject<Inventory>(response.Data)!;
         //Not able to Edit information once the status is NOT Enabled
-        disableEdit = inventoryInfo.Status != Constants.STATUS_ENABLED_INT;
+        if (modalInfo != null)
+            modalInfo.ControlEnableState = inventoryInfo.Status == Constants.STATUS_ENABLED_INT;
     }
 
-    private async Task PopulateProducts()
-    {
-        var response = await _http.GetRequestAsync(Globals.GET_PRODUCTS_BY_STATUS,
-                                                   Globals.ClientInformation.ClientID,
-                                                   Constants.STATUS_ENABLED_INT);
-        if (response.Result != ResponseResult.SUCCESS)
-        {
-            errorMessage = response.Data;
-            return;
-        }
-        productList = JsonConvert.DeserializeObject<List<Product>>(response.Data)!;
-    }
-
-    private async Task Save()
+    #region Event Handler Functions
+    private async Task SaveButtonClicked()
     {
         inventoryInfo.InventoryID = isAdd ? string.Empty : inventoryInfo.InventoryID;
 
@@ -145,7 +84,8 @@
         //Check Response Result
         if (response.Result != ResponseResult.SUCCESS)
         {
-            errorMessage = response.Data;
+            if (modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
             return;
         }
 
@@ -153,19 +93,37 @@
         await InventoryInfoResponse.InvokeAsync(response);
     }
 
-    private async Task Cancel()
+    private async Task CancelButtonClicked()
     {
         Reset(false);
         await InventoryInfoResponse.InvokeAsync(null);
     }
+    #endregion
+
+    #region Common Functions
+    private async Task PopulateProducts()
+    {
+        var response = await _http.GetRequestAsync(Globals.GET_PRODUCTS_BY_STATUS,
+                                                   Globals.ClientInformation.ClientID,
+                                                   Constants.STATUS_ENABLED_INT);
+        if (response.Result != ResponseResult.SUCCESS)
+        {
+            if (modalInfo != null)
+                modalInfo.ErrorMessageValue = response.Data;
+            return;
+        }
+        productList = JsonConvert.DeserializeObject<List<Product>>(response.Data)!;
+    }
 
     private void Reset(bool isModalShow)
     {
-        //Display or Hide modal
-        showModal = isModalShow;
+        if (modalInfo != null)
+        {
+            modalInfo.ModalVisibleState = isModalShow;
+            modalInfo.ControlEnableState = true;
+            modalInfo.ErrorMessageValue = string.Empty;
+        }
         //Reset
-        disableEdit = false;
-        errorMessage = string.Empty;
         inventoryInfo = new Inventory();
     }
 
@@ -175,4 +133,5 @@
         description = string.Format(isAdd ? Constants.DESC_ADD : Constants.DESC_EDIT, Constants.OBJECT_INVENTORY);
         icon = isAdd ? Constants.OI_PLUS : Constants.OI_PENCIL;
     }
+    #endregion
 }
