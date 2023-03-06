@@ -2,8 +2,8 @@
 
 <ModalInfo @ref="modalInfo" 
         ModalIcon="@icon" ModalTitle="@title" ModalDescription="@description"
-        SaveButtonClicked="Save"
-        CancelButtonClicked="Cancel">
+        SaveButtonClicked="SaveButtonClicked"
+        CancelButtonClicked="CancelButtonClicked">
     <Fields>
         <TextBox Label="Name" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@brandInfo.Name" />
         <TextArea Label="Description" ControlEnableState="@modalInfo.ControlEnableState" @bind-BindingValue="@brandInfo.Description" />
@@ -12,18 +12,14 @@
 
 @code {
     #region Variable(s)
-    //Variable for ModalInfo Component
     private ModalInfo? modalInfo;
-
-    //Variables for labels in modal headers
+     
     private string icon = string.Empty;
     private string title = string.Empty;
     private string description = string.Empty;
 
-    //Variable for identifying if the transction is Add or Edit
     private bool isAdd = false;
 
-    //Variable for storing the data that is displayed in fields
     private Brand brandInfo = new Brand();
     #endregion
 
@@ -51,7 +47,7 @@
                                                    brandID);
         if (response.Result != ResponseResult.SUCCESS)
         {
-            if(modalInfo != null)
+            if (modalInfo != null)
                 modalInfo.ErrorMessageValue = response.Data;
             return;
         }
@@ -61,7 +57,8 @@
             modalInfo.ControlEnableState = brandInfo.Status != Constants.STATUS_ENABLED_INT;
     }
 
-    private async Task Save()
+    #region Event Handler Functions
+    private async Task SaveButtonClicked()
     {
         brandInfo.Name = brandInfo.Name == null ? string.Empty : brandInfo.Name.ToUpper();
         brandInfo.Description = brandInfo.Description == null ? string.Empty : brandInfo.Description.ToUpper();
@@ -69,7 +66,7 @@
         var request = new SaveBrandRequest
             {
                 FunctionID = isAdd ? Constants.FUNCTION_ID_ADD_BRAND_BY_ADMIN :
-                                     Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN,
+                                         Constants.FUNCTION_ID_CHANGE_BRAND_BY_ADMIN,
                 RequestStatus = Constants.REQUEST_STATUS_COMPLETED,
                 client = Globals.ClientInformation,
                 inputBrand = brandInfo
@@ -90,12 +87,14 @@
         await BrandInfoResponse.InvokeAsync(response);
     }
 
-    private async Task Cancel()
+    private async Task CancelButtonClicked()
     {
         Reset(false);
         await BrandInfoResponse.InvokeAsync(null);
     }
+    #endregion
 
+    #region Common Functions
     private void Reset(bool isModalShow)
     {
         if(modalInfo != null)
@@ -114,4 +113,5 @@
         description = string.Format(isAdd ? Constants.DESC_ADD : Constants.DESC_EDIT, Constants.OBJECT_BRAND);
         icon = isAdd ? Constants.OI_PLUS : Constants.OI_PENCIL;
     }
+    #endregion
 }
