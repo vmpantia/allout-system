@@ -1,37 +1,39 @@
-﻿@page "/Inventory"
+﻿@page "/Sales"
 @inject IHTTPService _http
 @inject IToastService _toast
 
 <Loader Show="@showLoader"></Loader>
 
-<InventoryInfoComponent @ref="inventoryInfo" InventoryInfoResponse="GetResponse" />
-
-<Title Icon="oi oi-tag"
-       Name="Inventory"
-       Description="In this page you can view all the Inventory that is saved in the system." />
+<Title Icon="oi oi-bar-chart"
+       Name="Sales"
+       Description="In this page you can view all the Sales that is saved in the system." />
 
 <Actions StatusButtonValue="@statusButtons" 
          AddButtonClicked="ShowInfo"
          StatusButtonsClicked="StatusButtonClicked"
          SearchValueChanged="SearchChanged" />
 
-<Table DataSource="inventoryList" TItem="InventoryFullInformation" ColumnCount="11" Pagination="true">
+<Table DataSource="salesList" TItem="SalesFullInformation" ColumnCount="14" Pagination="true">
     <Columns>
         <Column Name="Select" CheckBoxHeader="true" CheckBoxValue="@selectAllValue" CheckBoxStateChanged="SelectAllChanged">
             <input class="form-check-input" type="checkbox" checked="@context.isSelect" 
                    @onclick="() => SelectChanged(context)">
         </Column>
-        <Column Name="InventoryID" Label="ID" Sortable="true" SortStateChanged="SortChanged" />
-        <Column Name="ProductName" Label="Product" Sortable="true" SortStateChanged="SortChanged" />
-        <Column Name="BrandName" Label="Brand" Sortable="true" SortStateChanged="SortChanged" />
-        <Column Name="CategoryName" Label="Category" Sortable="true" SortStateChanged="SortChanged" />
-        <Column Name="Quantity" Label="Quantity" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="SalesID" Label="ID" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="CashierName" Label="Person Incharged" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="TotalItems" Label="No. of Items" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="TotalAdditional" Label="Additional Charges" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="TotalDeduction" Label="Deductions" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="Total" Label="Total" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="AmountPaid" Label="Amount Paid" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="Change" Label="Change" Sortable="true" SortStateChanged="SortChanged" />
+        <Column Name="Remarks" Label="Remarks" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="Status" Label="Status" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="CreatedDate" Label="Created Date" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="ModifiedDate" Label="Modified Date" Sortable="true" SortStateChanged="SortChanged" />
         <Column Name="Action" Label="Action">
             <button class="cstm-table-button" title="Edit" 
-                    @onclick="() => ShowInfo(context.InventoryID)">
+                    @onclick="() => ShowInfo(context.SalesID)">
                 <span class="oi oi-pencil" aria-hidden="true"></span>
             </button>
         </Column>
@@ -43,8 +45,7 @@
     private bool selectAllValue = false;
     private bool statusButtons = true;
 
-    private InventoryInfoComponent? inventoryInfo;
-    private List<InventoryFullInformation> inventoryList = new List<InventoryFullInformation>();
+    private List<SalesFullInformation> salesList = new List<SalesFullInformation>();
 
     #region Event Handler Functions
     protected override async Task OnInitializedAsync()
@@ -52,7 +53,7 @@
         showLoader = true;
         ////Delay Process for .5 second
         await Task.Delay(Constants.DELAY_PROCESS);
-        await PopulateInventories();
+        await PopulateSales();
         showLoader = false;
     }
 
@@ -60,16 +61,16 @@
     {
         SelectAllChanged(false);
 
-        if (inventoryInfo == null)
-            return;
+        //if (inventoryInfo == null)
+        //    return;
 
-        var param = id == null ? string.Empty : (string)id;
-        await inventoryInfo.InitializeInventory(param);
+        //var param = id == null ? string.Empty : (string)id;
+        //await inventoryInfo.InitializeInventory(param);
     }
 
     private async Task SearchChanged(string query)
     {
-        await PopulateInventories(query);
+        await PopulateSales(query);
     }
 
     private async Task StatusButtonClicked(int value)
@@ -78,13 +79,13 @@
         switch (value)
         {
             case Constants.STATUS_ENABLED_INT:
-                functionID = Constants.FUNCTION_ID_BULK_CHANGE_INVENTORY_BY_ADMIN;
+                functionID = Constants.FUNCTION_ID_BULK_CHANGE_SALES_BY_ADMIN;
                 break;
             case Constants.STATUS_DISABLED_INT:
-                functionID = Constants.FUNCTION_ID_BULK_CHANGE_INVENTORY_BY_ADMIN;
+                functionID = Constants.FUNCTION_ID_BULK_CHANGE_SALES_BY_ADMIN;
                 break;
             default:
-                functionID = Constants.FUNCTION_ID_BULK_DELETE_INVENTORY_BY_ADMIN;
+                functionID = Constants.FUNCTION_ID_BULK_DELETE_SALES_BY_ADMIN;
                 break;
         }
         await UpdateStatusByIDs(functionID, Constants.REQUEST_STATUS_COMPLETED, value);
@@ -94,12 +95,12 @@
     {
         if (res != null && res.Result == ResponseResult.SUCCESS)
         {
-            await PopulateInventories();
+            await PopulateSales();
             _toast.ShowSuccess(res.Data);
         }
     }
 
-    private void SelectChanged(InventoryFullInformation inventory)
+    private void SelectChanged(SalesFullInformation inventory)
     {
         inventory.isSelect = !inventory.isSelect;
         EnableStatusButtons();
@@ -108,29 +109,29 @@
     private void SelectAllChanged(bool value)
     {
         selectAllValue = value;
-        foreach (var inventory in inventoryList)
+        foreach (var sales in salesList)
         {
-            inventory.isSelect = value;
+            sales.isSelect = value;
         }
         EnableStatusButtons();
     }
 
     private void SortChanged(SortSetting sort)
     {
-        inventoryList = Utility.SortList<InventoryFullInformation>(inventoryList, sort);
+        salesList = Utility.SortList<SalesFullInformation>(salesList, sort);
     }
     #endregion
 
     #region Common Functions
-    private async Task PopulateInventories(string? query = null)
+    private async Task PopulateSales(string? query = null)
     {
         selectAllValue = false;
 
         Response response;
         if (string.IsNullOrEmpty(query))
-            response = await _http.GetRequestAsync(Globals.GET_INVENTORIES, Globals.ClientInformation.ClientID);
+            response = await _http.GetRequestAsync(Globals.GET_SALES, Globals.ClientInformation.ClientID);
         else
-            response = await _http.GetRequestAsync(Globals.GET_INVENTORIES_BY_QUERY, Globals.ClientInformation.ClientID, query);
+            response = await _http.GetRequestAsync(Globals.GET_SALES_BY_QUERY, Globals.ClientInformation.ClientID, query);
 
         if (response.Result != ResponseResult.SUCCESS)
         {
@@ -138,7 +139,7 @@
             return;
         }
 
-        inventoryList = JsonConvert.DeserializeObject<List<InventoryFullInformation>>(response.Data)!;
+        salesList = JsonConvert.DeserializeObject<List<SalesFullInformation>>(response.Data)!;
         EnableStatusButtons();
     }
 
@@ -149,26 +150,26 @@
                 FunctionID = functionID,
                 RequestStatus = requestStatus,
                 client = Globals.ClientInformation,
-                IDs = inventoryList.Where(data => data.isSelect)
-                                   .Select(data => data.InventoryID)
+                IDs = salesList.Where(data => data.isSelect)
+                                   .Select(data => data.SalesID)
                                    .ToList(),
                 newStatus = newStatus
             };
 
-        var response = await _http.PostRequestAsync(Globals.POST_UPDATE_INVENTORY_STATUS_BY_IDS, request);
+        var response = await _http.PostRequestAsync(Globals.POST_UPDATE_SALES_STATUS_BY_IDS, request);
 
         if (response.Result != ResponseResult.SUCCESS)
         {
             _toast.ShowError(response.Data);
             return;
         }
-        await PopulateInventories();
+        await PopulateSales();
         _toast.ShowSuccess(response.Data);
     }
 
     private void EnableStatusButtons()
     {
-        statusButtons = inventoryList.Where(data => data.isSelect).Count() == 0;
+        statusButtons = salesList.Where(data => data.isSelect).Count() == 0;
     }
     #endregion
 }

@@ -1,6 +1,8 @@
-﻿namespace AllOut.Web.Blazor.Models.DataAccess
+﻿using AllOut.Web.Blazor.Models.Commons;
+
+namespace AllOut.Web.Blazor.Models.DataAccess
 {
-    public class Sales
+    public class Sales : Selection
     {
         public string SalesID { get; set; }
         public Guid UserID { get; set; }
